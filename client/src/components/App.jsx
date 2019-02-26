@@ -12,7 +12,7 @@ import Signup from "./pages/Signup";
 
 export default function App() {
   return (
-    <div className="App bg-dark text-white min-vh-100">
+    <div className="App bg-dark text-white vh-100">
       <div className="container">
         <Navbar />
         <Switch>
