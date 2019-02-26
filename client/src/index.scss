@@ -1,21 +1,20 @@
+@import "../node_modules/bootstrap/scss/bootstrap.scss";
 // --------------------
 // Definition of variables
 $primary: #32c3ff;
-
 
 // ----------------------------------------
 // To install Boostrap:
 // 1) Run in the client folder: $ npm i bootstrap
 // 2) Import bootstrap with the following line
 // @import '../node_modules/bootstrap/scss/bootstrap.scss';
-// 
+//
 // To install Reactstrap:
 // 1) Run in the client folder: $ npm i reactstrap
 // 2) Go to the official documentation and take some examples: https://reactstrap.github.io/
 // import { Button } from 'reactstrap';
 // <Button color="danger">Danger!</Button>
 // ----------------------------------------
-
 
 // --------------------
 // Style reusable for all components
@@ -97,5 +96,16 @@ body {
   .result {
     font-size: 1.2em;
     color: $primary;
+  }
+}
+
+// --------------------
+// Style for ShowcaseBox component
+.ShowcaseBox {
+  .box-dimensions {
+    width: 25vh;
+    height: 25vh;
+    line-height: 25vh;
+    font-size: 6rem;
   }
 }
