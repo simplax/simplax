@@ -5,6 +5,7 @@ import Secret from "./pages/Secret";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import api from "../api";
+import BlogPost from './pages/Blog'
 
 export default class App extends Component {
   constructor(props) {
@@ -40,6 +41,7 @@ export default class App extends Component {
           <Route path="/signup" component={Signup} />
           <Route path="/login" component={Login} />
           <Route path="/secret" component={Secret} />
+          <Route path="/blog" component={BlogPost} />
           <Route render={() => <h2>404</h2>} />
         </Switch>
       </div>
