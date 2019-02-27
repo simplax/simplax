@@ -1,4 +1,4 @@
-@import "../node_modules/bootstrap/scss/bootstrap.scss";
+@import '../node_modules/bootstrap/scss/bootstrap.scss';
 // --------------------
 // Definition of variables
 $primary: #32c3ff;
@@ -53,6 +53,35 @@ body {
   .result {
     font-size: 1.2em;
     color: $primary;
+  }
+}
+
+// --------------------
+// Navbar
+.Navbar {
+  position: fixed;
+}
+
+// --------------------
+// Showcase
+.Showcase {
+  .showcase__scroll-container {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .showcase__box-container {
+    height: 150vh;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+
+    .showcase__box {
+      width: 20vw;
+      height: 20vw;
+      background-color: tomato;
+    }
   }
 }
 
