@@ -5,6 +5,7 @@ const parallaxDataSchema = new Schema(
   {
     category: {
       type: String,
+      enum: ['Transform', 'Color', 'CSS Filter'],
       required: true
     },
     property: {
@@ -21,15 +22,18 @@ const parallaxDataSchema = new Schema(
     },
     unit: {
       type: String,
-      default: '',
-      required: true
+      default: ''
     },
     start: {
       type: String,
       default: 'self',
       required: true
     },
-    startOffset: {
+    startOffsetIn: {
+      type: String,
+      required: true
+    },
+    startOffsetOut: {
       type: String,
       required: true
     },
@@ -38,14 +42,17 @@ const parallaxDataSchema = new Schema(
       default: 'self',
       required: true
     },
-    endOffset: {
+    endOffsetIn: {
+      type: String,
+      required: true
+    },
+    endOffsetOut: {
       type: String,
       required: true
     },
     easing: {
       type: String,
-      default: 'easeInSine',
-      required: true
+      default: 'easeInSine'
     }
   },
   {
