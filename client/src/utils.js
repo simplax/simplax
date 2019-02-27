@@ -1,3 +1,5 @@
+// TO DO - convert duration --> end
+
 export default function generateParallaxData(effectsArray) {
   // [startValue, endValue, property, unit] = effectsArray
   function generateStartValues(i, offset) {
