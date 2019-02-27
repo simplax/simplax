@@ -101,9 +101,9 @@ router.get(
 
 router.get(
   "/github-login/callback",
-  passport.authenticate("github", { failureRedirect: "/" }),
+  passport.authenticate("github", { failureRedirect: "/github-login" }),
   (req, res, next) => {
-    res.redirect(process.env.FRONTEND_URI + "/");
+    res.redirect(process.env.FRONTEND_URI + "/github-login/callback");
   }
 )
 
