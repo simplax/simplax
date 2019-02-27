@@ -1,7 +1,7 @@
 import React, { useRef } from "react";
 
 export default function CodeSnipppetModal() {
-  const textAreaRef = useRef(null);
+  const codeSnippetValue = useRef(null);
 
   const code = `import React, { Component } from 'react';
 import Plx from 'react-plx';
@@ -34,7 +34,7 @@ class Example extends Component {
 }`;
 
   function copyToClipboard(e) {
-    textAreaRef.current.select();
+    codeSnippetValue.current.select();
     document.execCommand("copy");
     e.target.focus(); // not show text selection
   }
@@ -70,7 +70,7 @@ class Example extends Component {
             </div>
             <div className="modal-body">
               <pre>{code}</pre>
-              <textarea ref={textAreaRef} value={code} />
+              <textarea rows="0" ref={codeSnippetValue} defaultValue={code} />
             </div>
 
             <div className="modal-footer">
