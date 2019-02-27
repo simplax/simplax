@@ -1,7 +1,10 @@
 @import "../node_modules/bootstrap/scss/bootstrap.scss";
+@import url("https://fonts.googleapis.com/css?family=Raleway");
+
 // --------------------
-// Definition of variables
+// Variables
 $primary: #32c3ff;
+$dark: #202020;
 
 // ----------------------------------------
 // To install Boostrap:
@@ -17,7 +20,8 @@ $primary: #32c3ff;
 // ----------------------------------------
 
 // --------------------
-// Style reusable for all components
+// Body
+// --------------------
 body {
   margin: 0;
   padding: 0;
@@ -26,21 +30,16 @@ body {
   color: $white;
 }
 
-.info {
-  margin: 20px;
-  padding: 10px 20px;
-  border-radius: 10px;
-  display: inline-block;
-  background-color: #5776e9;
-  color: white;
-}
-
-.info.info-danger {
-  background-color: #e73f3f;
+// --------------------
+// Reusable
+// --------------------
+.link:hover {
+  text-decoration: none;
 }
 
 // --------------------
-// Style for Home component
+// Home
+// --------------------
 .Home {
   p {
     font-size: 1.2em;
@@ -48,39 +47,65 @@ body {
 }
 
 // --------------------
-// Style for Secret component
-.Secret {
-  .result {
-    font-size: 1.2em;
-    color: $primary;
-  }
-}
-
-// --------------------
-// Navbar
-// .Navbar {
-//   position: fixed;
-// }
-
-// --------------------
 // Showcase
+// --------------------
 .Showcase {
-  .showcase__scroll-container {
+  .customize-btn {
+    font-family: "Raleway", sans-serif;
+    letter-spacing: 1px;
+    color: white;
+    padding: 0.6rem 1rem;
+    border-radius: 15px;
+    background-image: linear-gradient(-45deg, #ff4040, #ff8410);
+    border: 1px solid $white;
+    box-shadow: 0px 0px 40px rgba(255, 191, 71, 0.7);
+    position: fixed;
+    bottom: 30px;
+    right: 5vw;
+    transition-property: all;
+    transition-duration: 0.3s;
+  }
+  .customize-btn:hover {
+    transform: translateY(-2px);
+    background-image: linear-gradient(-45deg, #b92020, #cc680b);
+    box-shadow: 0px 0px 15px rgba(255, 191, 71, 0.7);
+  }
+  .customize-btn:active {
+    transform: translateY(-1px);
+    box-shadow: 0px 0px 30px rgba(255, 191, 71, 0.7);
+  }
+  .showcase__top-container {
     height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
   }
-  .showcase__box-container {
+  .showcase__scroll-container {
     height: 150vh;
     display: flex;
     justify-content: center;
     align-items: flex-end;
-
-    .showcase__box {
-      width: 20vw;
-      height: 20vw;
-      background-color: tomato;
+    .showcase__box-container {
+      p,
+      h3 {
+        margin: 0;
+      }
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      .showcase__box {
+        width: 20vw;
+        height: 20vw;
+        background-image: linear-gradient(-45deg, #ff6464, #ff9419);
+        border: 2px solid white;
+      }
+      .unlike {
+        color: #8d8c8c;
+      }
+      .like {
+        color: #ff6464;
+      }
     }
   }
 }

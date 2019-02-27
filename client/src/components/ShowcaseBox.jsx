@@ -1,8 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Plx from 'react-plx';
 
 const ShowcaseBox = props => {
+  /*******************************************
+   * Get data from props and set parallaxData
+   *******************************************/
   const {
+    _id,
     start,
     startOffsetIn,
     startOffsetOut,
@@ -50,11 +54,29 @@ const ShowcaseBox = props => {
     }
   ];
 
+  /*********************************
+   * functions
+   *********************************/
+  const likeClassName = () => {
+    return props.likes.includes(_id)
+      ? 'like fas fa-heart fa-2x'
+      : 'unlike fas fa-heart fa-2x';
+  };
+
+  /*********************************
+   * render
+   *********************************/
   return (
-    <div className="showcase__box-container">
-      <Plx parallaxData={parallaxData}>
-        <div className="showcase__box">hello box</div>
-      </Plx>
+    <div className="showcase__scroll-container">
+      <div className="showcase__box-container">
+        <h3>{property}</h3>
+        <div>
+          <Plx parallaxData={parallaxData}>
+            <div className="showcase__box"/>
+          </Plx>
+        </div>
+        <i className={likeClassName()} onClick={() => props.onLikeClick(_id)} />
+      </div>
     </div>
   );
 };

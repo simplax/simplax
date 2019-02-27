@@ -1,6 +1,6 @@
-import React, { useState } from "react";
-import Slider from "rc-slider";
-import "rc-slider/assets/index.css";
+import React, { useState } from 'react';
+import Slider from 'rc-slider';
+import 'rc-slider/assets/index.css';
 
 const createSliderWithTooltip = Slider.createSliderWithTooltip;
 const Range = createSliderWithTooltip(Slider.Range);
@@ -10,7 +10,10 @@ export default function CustomizeForm({ start, end, property, unit }) {
 
   return (
     <div className="CustomizeForm">
-      <div className="alert alert-light alert-dismissible fade show" role="alert">
+      <div
+        className="alert alert-light alert-dismissible fade show"
+        role="alert"
+      >
         <label>{property}</label>
 
         <Range
@@ -31,7 +34,12 @@ export default function CustomizeForm({ start, end, property, unit }) {
             <i className="far fa-pause-circle" />
           </span>
         </button>
-        <button type="button" className="close pl-0" data-dismiss="alert" aria-label="Close">
+        <button
+          type="button"
+          className="close pl-0"
+          data-dismiss="alert"
+          aria-label="Close"
+        >
           <span aria-hidden="true">
             {/* <i className="fas fa-times" /> */}
             <i className="far fa-times-circle" />
