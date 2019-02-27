@@ -57,30 +57,41 @@ body {
 }
 
 // --------------------
-// Navbar
-.Navbar {
-  position: fixed;
-}
-
-// --------------------
 // Showcase
 .Showcase {
-  .showcase__scroll-container {
+  .showcase__top-container {
     height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
   }
-  .showcase__box-container {
+  .showcase__scroll-container {
     height: 150vh;
     display: flex;
     justify-content: center;
     align-items: flex-end;
+    .showcase__box-container {
+      p,
+      h3 {
+        margin: 0;
+      }
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
 
-    .showcase__box {
-      width: 20vw;
-      height: 20vw;
-      background-color: tomato;
+      .showcase__box {
+        width: 20vw;
+        height: 20vw;
+        background-color: tomato;
+      }
+
+      .unlike {
+        color: #8d8c8c;
+      }
+      .like {
+        color: #ff9dad;
+      }
     }
   }
 }
