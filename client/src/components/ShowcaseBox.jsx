@@ -1,15 +1,62 @@
-import React, { Component } from "react";
-import Plx from "react-plx";
+import React from 'react';
+import Plx from 'react-plx';
 
-export default class ShowcaseBox extends Component {
-  render() {
-    return (
-      <div className="ShowcaseBox vh-100 d-flex justify-content-center align-items-center">
-        <Plx parallaxData={this.props.parallaxData}>
-          <div className="box-dimensions bg-info rounded text-white text-center">B</div>
-          <div className="text-white">{this.props.property}</div>
-        </Plx>
-      </div>
-    );
-  }
-}
+const ShowcaseBox = props => {
+  const {
+    start,
+    startOffsetIn,
+    startOffsetOut,
+    end,
+    endOffsetIn,
+    endOffsetOut,
+    easing,
+    startValue,
+    endValue,
+    category,
+    property,
+    unit
+  } = props.data;
+
+  const parallaxData = [
+    {
+      start,
+      startOffset: startOffsetIn,
+      end,
+      endOffset: endOffsetIn,
+      easing,
+      properties: [
+        {
+          startValue,
+          endValue,
+          property,
+          unit
+        }
+      ]
+    },
+    {
+      start,
+      startOffset: startOffsetOut,
+      end,
+      endOffset: endOffsetOut,
+      easing,
+      properties: [
+        {
+          startValue: endValue,
+          endValue: startValue,
+          property,
+          unit
+        }
+      ]
+    }
+  ];
+
+  return (
+    <div className="showcase__box-container">
+      <Plx parallaxData={parallaxData}>
+        <div className="showcase__box">hello box</div>
+      </Plx>
+    </div>
+  );
+};
+
+export default ShowcaseBox;
