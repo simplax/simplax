@@ -1,56 +1,39 @@
 import React from 'react';
-import ReactQuill from 'react-quill';
-import 'react-quill/dist/quill.snow.css';
+import api from '../../api';
+import { Link } from "react-router-dom";
 
 
-export default class Quill extends React.Component {
+
+export default class Blog extends React.Component {
   constructor(props) {
     super(props)
-    this.state = { text: '' } // You can also pass a Quill Delta here
-    this.handleChange = this.handleChange.bind(this)
-    this.handleClick = this.handleClick.bind(this)
+    this.state = { blogs: [], abc: "<h1>hi Min <h1>" }
+    this.deleteCountry = this.deleteCountry.bind(this)
   }
 
-
-  modules = {
-    toolbar: [
-      [{ 'header': [1, 2, false] }],
-      ['bold', 'italic', 'underline', 'strike', 'blockquote'],
-      [{ 'list': 'ordered' }, { 'list': 'bullet' }, { 'indent': '-1' }, { 'indent': '+1' }],
-      ['link', 'image'],
-      ['clean']
-    ],
+  componentDidMount() {
+    api.getBlogPost()
+      .then(data => this.setState({ blogs: data }))
   }
 
-  formats = [
-    'header',
-    'bold', 'italic', 'underline', 'strike', 'blockquote',
-    'list', 'bullet', 'indent',
-    'link', 'image'
-  ]
-
-  handleChange(value) {
-    this.setState({ text: value })
-  }
-
-  handleClick() {
-
+  deleteCountry(blogId) {
+    api.deleteBlogPost(blogId)
+      .then(() => this.setState({ blogs: this.state.blogs.filter(blog => blog._id !== blogId) }))
   }
 
   render() {
-    return (
-      <div style={{}}>
-        <form action="">
-          <label htmlFor="title">title:</label>
-          <input type="text" name='title' />
-          <ReactQuill value={this.state.text}
-            onChange={this.handleChange} theme="snow" modules={this.modules}
-            formats={this.formats} placeholder={'new blogpost'} />
-          <button className="btn btn-primary mt-5" onClick={this.handleClick} type='submit' >Add post</button>
-        </form>
 
+    return (
+      <div>
+        {this.state.blogs.map((blog) => (
+          <div key={blog._id}>
+            {blog.title}
+            <div dangerouslySetInnerHTML={{ __html: blog.blogContent }} />
+            <Link to={`/edit-blog/${blog._id}`}>Edit</Link>
+            <button onClick={e => this.deleteCountry(blog._id)}>Delete</button>
+          </div>
+        ))}
       </div>
     )
   }
 }
-

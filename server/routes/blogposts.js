@@ -12,7 +12,49 @@ router.get('/', (req, res, next) => {
     .catch(err => next(err))
 })
 
+router.post('/', (req, res, next) => {
+  let { title, blogContent } = req.body
+  BlogPost.create({ title, blogContent })
+    .then(blogpost => {
+      res.json({
+        success: true,
+        blogpost
+      });
+    })
+    .catch(err => next(err))
+});
 
+router.get('/:id', (req, res, next) => {
+  BlogPost.findById(req.params.id)
+    .then(blogpost => {
+      res.json({
+        blogpost
+      })
+    })
+    .catch(err => next(err))
+})
+
+router.delete('/:id', (req, res, next) => {
+  BlogPost.findByIdAndDelete(req.params.id)
+    .then(blogpost => {
+      res.json({
+        blogpost
+      })
+    })
+    .catch(err => next(err))
+})
+
+router.put('/:id', (req, res, next) => {
+  let { title, blogContent } = req.body
+  BlogPost.findByIdAndUpdate(req.params.id, { title, blogContent })
+    .then(blogpost => {
+      res.json({
+        blogpost
+      })
+    })
+    .catch(err => next(err))
+
+})
 
 
 module.exports = router;
