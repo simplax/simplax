@@ -1,27 +1,27 @@
-import React from "react";
-import ShowcaseBox from "./ShowcaseBox";
-import generateParallaxData from "../utils";
+import React from 'react';
+import ShowcaseBox from './ShowcaseBox';
+import generateParallaxData from '../utils';
 
 const parallaxData = generateParallaxData([
-  [1, 2, "scale", "px"],
-  [0, 90, "rotate", "deg"],
-  [1, 0.05, "opacity", ""],
-  [0, 200, "translateX", "%"],
-  [0, 75, "skewX", "deg"],
-  [1, 3, "scaleX", "px"],
-  [1, 10, "brightness", "px"],
-  [0, 90, "hueRotate", ""],
-  [0, 1, "invert", ""]
+  [1, 2, 'scale', 'px'],
+  [0, 90, 'rotate', 'deg'],
+  [1, 0.05, 'opacity', ''],
+  [0, 200, 'translateX', '%'],
+  [0, 75, 'skewX', 'deg'],
+  [1, 3, 'scaleX', 'px'],
+  [1, 10, 'brightness', 'px'],
+  [0, 90, 'hueRotate', ''],
+  [0, 1, 'invert', '']
 ]);
 parallaxData.unshift([
   {
-    start: 0,
-    end: "50vh",
+    start: '0',
+    end: '50vh',
     properties: [
       {
-        startValue: 1,
-        endValue: 0.01,
-        property: "opacity"
+        startValue: '1',
+        endValue: '0.01',
+        property: 'opacity'
       }
     ]
   }
@@ -30,7 +30,7 @@ parallaxData.unshift([
 export default function ShowcaseTemplate() {
   return (
     <div className="ShowcaseTemplate">
-      <ShowcaseBox parallaxData={parallaxData[0]} property={"start"} />
+      <ShowcaseBox parallaxData={parallaxData[0]} property={'start'} />
       <ShowcaseBox
         parallaxData={parallaxData[1]}
         property={parallaxData[1][0].properties[0].property}

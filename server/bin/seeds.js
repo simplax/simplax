@@ -1,43 +1,45 @@
-const path = require('path')
-require('dotenv').config({ path: path.join(__dirname, '../.env') })
+const path = require('path');
+require('dotenv').config({ path: path.join(__dirname, '../.env') });
 
-// Seeds file that remove all users and create 2 new users
+const mongoose = require('mongoose');
+const User = require('../models/User');
+const userData = require('./userData');
+const ParallaxData = require('../models/ParallaxData');
+const parallaxData = require('./parallaxData');
 
-// To execute this seed, run from the root of the project
-// $ node bin/seeds.js
+require('../configs/database');
 
-const mongoose = require("mongoose");
-const bcrypt = require("bcrypt");
-const User = require("../models/User");
-
-const bcryptSalt = 10;
-
-require('../configs/database')
-
-let users = [
-  {
-    username: "alice",
-    password: bcrypt.hashSync("alice", bcrypt.genSaltSync(bcryptSalt)),
-  },
-  {
-    username: "bob",
-    password: bcrypt.hashSync("bob", bcrypt.genSaltSync(bcryptSalt)),
-  }
-]
-
-User.deleteMany()
+Promise.all([User.deleteMany({}), ParallaxData.deleteMany({})])
   .then(() => {
-    return User.create(users)
+    return Promise.all([
+      User.create(userData),
+      ParallaxData.create(parallaxData)
+    ]);
   })
-  .then(usersCreated => {
-    console.log(`${usersCreated.length} users created with the following id:`);
-    console.log(usersCreated.map(u => u._id));
+  .then(([usersCreated, parallaxDataCreated]) => {
+    console.log(`${usersCreated.length} users created`);
+    console.log(`${parallaxDataCreated.length} parallaxData created`);
   })
   .then(() => {
-    // Close properly the connection to Mongoose
-    mongoose.disconnect()
+    mongoose.disconnect();
   })
   .catch(err => {
-    mongoose.disconnect()
-    throw err
-  })
+    mongoose.disconnect();
+    throw err;
+  });
+
+// User.deleteMany({})
+//   .then(() => {
+//     return User.create(userData)
+//   })
+//   .then(usersCreated => {
+//     console.log(`${usersCreated.length} users created with the following id:`);
+//     console.log(usersCreated.map(u => u._id));
+//   })
+//   .then(() => {
+//     mongoose.disconnect()
+//   })
+//   .catch(err => {
+//     mongoose.disconnect()
+//     throw err
+//   })

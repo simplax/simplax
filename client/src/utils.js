@@ -7,6 +7,7 @@ export default function generateParallaxData(effectsArray) {
     let startOut = (8 / 8) * 100 + i * offset;
     return [`${startIn}vh`, `${startOut}vh`];
   }
+  
   let parallaxData = [];
   for (let i = 0; i < effectsArray.length; i++) {
     parallaxData.push([
