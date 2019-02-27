@@ -50,6 +50,11 @@ export default function Navbar() {
                 Blog
               </NavLink>
             </li>
+            <li className="nav-item">
+              <NavLink className="nav-link" to="/new-blog">
+                New Blog
+              </NavLink>
+            </li>
             {!api.isLoggedIn() && (
               <li>
                 <NavLink className="nav-link" to="/signup">

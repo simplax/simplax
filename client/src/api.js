@@ -78,5 +78,39 @@ export default {
       .get('/showcase')
       .then(res => res.data)
       .catch(errHandler);
+  },
+
+  postBlogPost(data) {
+    return service
+      .post('/blogposts', data)
+      .then(res => res.data)
+      .catch(errHandler)
+  },
+
+  getBlogPost() {
+    return service
+      .get('/blogposts')
+      .then(res => res.data)
+      .catch(errHandler)
+  },
+
+  updateBlogPost(id, data) {
+    return service
+      .put('/blogposts/' + id, data)
+      .then(res => res.data)
+      .catch(errHandler)
+  },
+
+  getBlogPostDetail(BlogId) {
+    return service.get('/blogposts/' + BlogId)
+      .then(res => res.data)
+      .catch(errHandler)
+  },
+
+  deleteBlogPost(BlogId) {
+    return service.delete('/blogposts/' + BlogId)
+      .then(res => res.data)
+      .catch(errHandler)
+
   }
 };
