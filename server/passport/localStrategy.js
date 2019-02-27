@@ -1,27 +1,37 @@
 const passport = require('passport');
-const LocalStrategy = require('passport-local').Strategy;
+// const LocalStrategy = require('passport-local').Strategy;
 const User = require('../models/User');
 const bcrypt = require('bcrypt');
 
-passport.use(new LocalStrategy({
-  usernameField: 'username',
-  passwordField: 'password'
+var GitHubStrategy = require('passport-github').Strategy;
+
+passport.use(new GitHubStrategy({
+  clientID: process.env.GITHUB_CLIENT_ID,
+  clientSecret: process.env.GITHUB_CLIENT_SECRET,
+  callbackURL: process.env.BACKEND_URI + "/api/github-login/callback"
 },
-  (username, password, done) => {
-    User.findOne({ username })
-      .then(foundUser => {
-        if (!foundUser) {
-          done(null, false, { message: 'Incorrect username' });
-          return;
+  (accessToken, refreshToken, profile, cb) => {
+    User.findOne({ _github: profile.id })
+      .then(user => {
+        if (user) {
+          return cb(null, user);
         }
 
-        if (!bcrypt.compareSync(password, foundUser.password)) {
-          done(null, false, { message: 'Incorrect password' });
-          return;
-        }
+        const newUser = new User({
+          _github: profile.id,
+          githubName: profile.displayName,
+          githubUsername: profile.username,
 
-        done(null, foundUser);
+        });
+
+        newUser.save()
+          .then(user => {
+            console.log("user", user)
+            cb(null, newUser);
+          })
       })
-      .catch(err => done(err));
+      .catch(error => {
+
+      })
   }
 ));
