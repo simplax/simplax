@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import api from '../../api';
 import ShowcaseBox from '../ShowcaseBox';
 
@@ -59,6 +60,19 @@ const Showcase = props => {
             />
           );
         })}
+      </div>
+      <div>
+        <Link
+          to={{
+            pathname: '/customize',
+            state: {
+              likes: { likes }
+            }
+          }}
+          className="link customize-btn"
+        >
+          Customize
+        </Link>
       </div>
     </div>
   );

@@ -63,13 +63,16 @@ const ShowcaseBox = props => {
       : 'unlike fas fa-heart fa-2x';
   };
 
+  /*********************************
+   * render
+   *********************************/
   return (
     <div className="showcase__scroll-container">
       <div className="showcase__box-container">
         <h3>{property}</h3>
         <div>
           <Plx parallaxData={parallaxData}>
-            <div className="showcase__box">hello box</div>
+            <div className="showcase__box"/>
           </Plx>
         </div>
         <i className={likeClassName()} onClick={() => props.onLikeClick(_id)} />
