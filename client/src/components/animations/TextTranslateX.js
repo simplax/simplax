@@ -3,14 +3,14 @@
 import React, { useState } from 'react';
 import { useTrail, animated } from 'react-spring';
 
-const TextTranslateX = ({ text, animationState }) => {
+const TextTranslateX = ({ text, isEnter }) => {
   const textArr = text.split('');
 
   const config = { mass: 1, tension: 2000, friction: 100 };
   const trail = useTrail(textArr.length, {
     config,
-    opacity: animationState === 'enter' ? 1 : 0,
-    x: animationState === 'enter' ? 0 : -20,
+    opacity: isEnter ? 1 : 0,
+    x: isEnter ? 0 : -20,
     from: { opacity: 0, x: -20 }
   });
 

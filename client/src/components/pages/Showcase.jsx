@@ -8,55 +8,34 @@ const Showcase = props => {
   /*********************************
    * States
    *********************************/
-  const [parallaxData, setParallaxData] = useState(null);
   const [plxDataTransform, setPlxDataTransform] = useState(null);
   const [plxDataColors, setPlxDataColors] = useState(null);
   const [plxDataFilter, setPlxDataFilter] = useState(null);
   const [likes, setLikes] = useState([]);
-  // const [category, setCategory] = useState('');
   const [property, setProperty] = useState('');
-  const [scrollPos, setScrollPos] = useState(0);
-  const [animationState, setAnimationState] = useState('hidden');
+  const [propertyAnimation, setPropertyAnimation] = useState(false);
 
   /*********************************
    * Effects
    *********************************/
   // componentDidMount
+  // GET all parallaxData and filter by category
   useEffect(() => {
     api.getAllParallaxData().then(allPlxData => {
-      setParallaxData(allPlxData);
-    });
-  }, []);
-
-  // transform
-  useEffect(() => {
-    let transforms =
-      parallaxData &&
-      parallaxData.filter(data => {
+      let transforms = allPlxData.filter(data => {
         return data.category === 'Transform';
       });
-    setPlxDataTransform(transforms);
-  }, [parallaxData]);
-
-  // colors
-  useEffect(() => {
-    let colors =
-      parallaxData &&
-      parallaxData.filter(data => {
+      setPlxDataTransform(transforms);
+      let colors = allPlxData.filter(data => {
         return data.category === 'Colors';
       });
-    setPlxDataColors(colors);
-  }, [parallaxData]);
-
-  // filters
-  useEffect(() => {
-    let filters =
-      parallaxData &&
-      parallaxData.filter(data => {
+      setPlxDataColors(colors);
+      let filters = allPlxData.filter(data => {
         return data.category === 'CSS Filter';
       });
-    setPlxDataFilter(filters);
-  }, [parallaxData]);
+      setPlxDataFilter(filters);
+    });
+  }, []);
 
   /*********************************
    * Event Handler
@@ -71,12 +50,12 @@ const Showcase = props => {
 
   const handlePlxStart = property => {
     setProperty(property);
-    setAnimationState('enter');
+    setPropertyAnimation(true);
   };
 
   const handlePlxEnd = property => {
     setProperty(property);
-    setAnimationState('exit');
+    setPropertyAnimation(false);
   };
 
   /*********************************
@@ -173,7 +152,7 @@ const Showcase = props => {
 
       {/* Display Property Name */}
       <div className="test">
-        <TextTranslateX text={property} animationState={animationState} />
+        <TextTranslateX text={property} isEnter={propertyAnimation} />
       </div>
     </div>
   );
