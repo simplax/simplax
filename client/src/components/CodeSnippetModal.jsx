@@ -63,13 +63,12 @@ class Example extends Component {
             <div className="modal-header">
               <h5 className="modal-title">Code snippet for your awesome React app!</h5>
               <button type="button" className="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">
-                  <i className="far fa-times-circle" />
-                </span>
+                <span aria-hidden="true">&times;</span>
               </button>
             </div>
             <div className="modal-body">
               <pre>{code}</pre>
+              {/* TO DO: make textarea disapear... */}
               <textarea rows="0" ref={codeSnippetValue} defaultValue={code} />
             </div>
 
@@ -77,14 +76,12 @@ class Example extends Component {
               <button type="button" className="btn btn-outline-info" data-dismiss="modal">
                 Close
               </button>
-              {/* Logical shortcut for only displaying the 
-                   button if the copy command exists */
               document.queryCommandSupported("copy") && (
-                <div>
-                  <button className="btn btn-info" onClick={copyToClipboard}>
-                    Copy to Clipboard
-                  </button>
-                </div>
+              <div>
+                <button className="btn btn-info" onClick={copyToClipboard}>
+                  Copy to Clipboard
+                </button>
+              </div>
               )}
             </div>
           </div>

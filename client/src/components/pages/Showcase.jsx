@@ -65,9 +65,7 @@ const Showcase = props => {
    *********************************/
   const handleLikeClick = id => {
     const likesTemp = [...likes];
-    likesTemp.includes(id)
-      ? likesTemp.splice(likesTemp.indexOf(id), 1)
-      : likesTemp.push(id);
+    likesTemp.includes(id) ? likesTemp.splice(likesTemp.indexOf(id), 1) : likesTemp.push(id);
     setLikes(likesTemp);
   };
 
@@ -175,13 +173,12 @@ const Showcase = props => {
       <div>
         <Link
           to={{
-            pathname: '/customize',
+            pathname: "/customize",
             state: {
-              likes: { likes }
+              likes
             }
           }}
-          className="link customize-btn"
-        >
+          className="link customize-btn">
           Customize
         </Link>
       </div>
