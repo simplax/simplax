@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import api from '../../api';
+import Plx from 'react-plx';
 import ShowcaseBox from '../ShowcaseBox';
 import TextTranslateX from '../animations/TextTranslateX';
 
@@ -59,13 +60,44 @@ const Showcase = props => {
   };
 
   /*********************************
+   * parallaxData
+   *********************************/
+  const categoryParallaxData = [
+    {
+      start: 'self',
+      end: 'self',
+      endOffset: '40vh',
+      properties: [
+        {
+          startValue: 1,
+          endValue: 2,
+          property: 'scale'
+        }
+      ]
+    },
+    {
+      start: 'self',
+      startOffset: '60vh',
+      end: 'self',
+      endOffset: '100vh',
+      properties: [
+        {
+          startValue: 2,
+          endValue: 1,
+          property: 'scale'
+        }
+      ]
+    }
+  ];
+
+  /*********************************
    * Render
    *********************************/
   if (!plxDataTransform || !plxDataColors || !plxDataFilter) {
     return (
       <div className="Showcase">
         <div className="showcase__top-container">
-          <h2>Loading...</h2>
+          <h2 className="category">Loading...</h2>
         </div>
       </div>
     );
@@ -78,7 +110,9 @@ const Showcase = props => {
 
       {/* Transform */}
       <div className="category-container">
-        <h2>Transform</h2>
+        <Plx parallaxData={categoryParallaxData}>
+          <h2 className="category">TRANSFORM</h2>
+        </Plx>
       </div>
       <div>
         {plxDataTransform.map(data => {
@@ -97,7 +131,7 @@ const Showcase = props => {
 
       {/* Colors */}
       <div className="category-container">
-        <h2>Colors</h2>
+        <h2 className="category">COLORS</h2>
       </div>
       <div>
         {plxDataColors.map(data => {
@@ -116,7 +150,7 @@ const Showcase = props => {
 
       {/* CSS Filter */}
       <div className="category-container">
-        <h2>CSS Filter</h2>
+        <h2 className="category">CSS FILTER</h2>
       </div>
       <div>
         {plxDataFilter.map(data => {
