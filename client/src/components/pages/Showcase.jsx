@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import api from '../../api';
-import ShowcaseBox from '../ShowcaseBox';
+import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
+import api from "../../api";
+import ShowcaseBox from "../ShowcaseBox";
 
 const Showcase = props => {
   /*********************************
@@ -24,11 +24,9 @@ const Showcase = props => {
   /*********************************
    * Event Handler
    *********************************/
-  const clickLikeHander = id => {
+  const handleLikeClick = id => {
     const likesTemp = [...likes];
-    likesTemp.includes(id)
-      ? likesTemp.splice(likesTemp.indexOf(id), 1)
-      : likesTemp.push(id);
+    likesTemp.includes(id) ? likesTemp.splice(likesTemp.indexOf(id), 1) : likesTemp.push(id);
     setLikes(likesTemp);
   };
 
@@ -52,25 +50,19 @@ const Showcase = props => {
       <div>
         {parallaxData.map(data => {
           return (
-            <ShowcaseBox
-              key={data._id}
-              data={data}
-              onLikeClick={clickLikeHander}
-              likes={likes}
-            />
+            <ShowcaseBox key={data._id} data={data} onLikeClick={handleLikeClick} likes={likes} />
           );
         })}
       </div>
       <div>
         <Link
           to={{
-            pathname: '/customize',
+            pathname: "/customize",
             state: {
-              likes: { likes }
+              likes
             }
           }}
-          className="link customize-btn"
-        >
+          className="link customize-btn">
           Customize
         </Link>
       </div>
