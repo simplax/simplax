@@ -64,9 +64,9 @@ export default function Navbar() {
             )}
             {!api.isLoggedIn() && (
               <li>
-                <NavLink className="nav-link" to="/login">
-                  Login
-                </NavLink>
+
+                <a className="github-login-link" href={api.service.defaults.baseURL + "/github-login"}>Login with Github</a>
+
               </li>
             )}
             {api.isLoggedIn() && (

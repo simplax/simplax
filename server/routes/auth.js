@@ -31,7 +31,7 @@ router.post("/signup", (req, res, next) => {
       req.logIn(userSaved, () => {
         // hide "encryptedPassword" before sending the JSON (it's a security risk)
         userSaved.password = undefined;
-        res.json( userSaved );
+        res.json(userSaved);
       });
     })
     .catch(err => next(err))
@@ -93,6 +93,19 @@ router.post('/login-with-passport-local-strategy', (req, res, next) => {
     })
   })(req, res, next)
 })
+
+router.get(
+  "/github-login",
+  passport.authenticate('github')
+);
+
+router.get(
+  "/github-login/callback",
+  passport.authenticate("github", { failureRedirect: "/github-login" }),
+  (req, res, next) => {
+    res.redirect(process.env.FRONTEND_URI + "/github-login/callback");
+  }
+)
 
 router.get("/logout", (req, res) => {
   req.logout()
