@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import api from '../../api';
+import Plx from 'react-plx';
 import ShowcaseBox from '../ShowcaseBox';
 import TextTranslateX from '../animations/TextTranslateX';
 
@@ -58,6 +59,52 @@ const Showcase = props => {
     setPropertyAnimation(false);
   };
 
+  const handleCategoryPlxStart = property => {
+    setProperty('');
+    setPropertyAnimation(false);
+  };
+
+  /*********************************
+   * parallaxData for category
+   *********************************/
+  const categoryParallaxData = [
+    {
+      start: 'self',
+      end: 'self',
+      endOffset: '40vh',
+      properties: [
+        {
+          startValue: 0.8,
+          endValue: 1.5,
+          property: 'scale'
+        },
+        {
+          startValue: 0,
+          endValue: 1,
+          property: 'opacity'
+        }
+      ]
+    },
+    {
+      start: 'self',
+      startOffset: '60vh',
+      end: 'self',
+      endOffset: '100vh',
+      properties: [
+        {
+          startValue: 1.5,
+          endValue: 0.8,
+          property: 'scale'
+        },
+        {
+          startValue: 1,
+          endValue: 0,
+          property: 'opacity'
+        }
+      ]
+    }
+  ];
+
   /*********************************
    * Render
    *********************************/
@@ -65,20 +112,25 @@ const Showcase = props => {
     return (
       <div className="Showcase">
         <div className="showcase__top-container">
-          <h2>Loading...</h2>
+          <h2 className="category">Loading...</h2>
         </div>
       </div>
     );
   }
   return (
     <div id="Showcase" className="Showcase">
-      <div className="showcase__top-container showcase__top-container--scroll">
+      <div className="scroll-down-container">
         <h2>Scroll Down</h2>
       </div>
 
       {/* Transform */}
-      <div className="showcase__top-container showcase__top-container--category">
-        <h2>Transform</h2>
+      <div className="category-container">
+        <Plx
+          parallaxData={categoryParallaxData}
+          onPlxStart={handleCategoryPlxStart}
+        >
+          <h2 className="category">TRANSFORM</h2>
+        </Plx>
       </div>
       <div>
         {plxDataTransform.map(data => {
@@ -96,8 +148,13 @@ const Showcase = props => {
       </div>
 
       {/* Colors */}
-      <div className="showcase__top-container showcase__top-container--category">
-        <h2>Colors</h2>
+      <div className="category-container">
+        <Plx
+          parallaxData={categoryParallaxData}
+          onPlxStart={handleCategoryPlxStart}
+        >
+          <h2 className="category">COLORS</h2>
+        </Plx>
       </div>
       <div>
         {plxDataColors.map(data => {
@@ -115,8 +172,13 @@ const Showcase = props => {
       </div>
 
       {/* CSS Filter */}
-      <div className="showcase__top-container showcase__top-container--category">
-        <h2>CSS Filter</h2>
+      <div className="category-container">
+        <Plx
+          parallaxData={categoryParallaxData}
+          onPlxStart={handleCategoryPlxStart}
+        >
+          <h2 className="category">CSS FILTER</h2>
+        </Plx>
       </div>
       <div>
         {plxDataFilter.map(data => {
@@ -133,7 +195,7 @@ const Showcase = props => {
         })}
       </div>
 
-      <div className="showcase__top-container showcase__top-container--scroll" />
+      <div className="scroll-down-container" />
 
       {/* Customize Button */}
       <div>

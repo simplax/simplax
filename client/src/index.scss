@@ -1,15 +1,3 @@
-@import "../node_modules/bootstrap/scss/bootstrap.scss";
-@import url("https://fonts.googleapis.com/css?family=Poppins");
-
-// --------------------
-// Variables
-$primary: #ff8410;
-$secondary: #ff4040;
-$primary-light: #ffb731;
-$secondary-light: #ff6e6e;
-$grey: #a3a3a3;
-$dark: #202020;
-
 // ----------------------------------------
 // To install Boostrap:
 // 1) Run in the client folder: $ npm i bootstrap
@@ -23,13 +11,26 @@ $dark: #202020;
 // <Button color="danger">Danger!</Button>
 // ----------------------------------------
 
+@import '../node_modules/bootstrap/scss/bootstrap.scss';
+@import url('https://fonts.googleapis.com/css?family=Poppins');
+
+// --------------------
+// Variables
+// --------------------
+$primary: #ff8410;
+$secondary: #ff4040;
+$primary-light: #ffb731;
+$secondary-light: #ff6e6e;
+$grey: #a3a3a3;
+$dark: #202020;
+
 // --------------------
 // Body
 // --------------------
 body {
   margin: 0;
   padding: 0;
-  font-family: "Poppins", sans-serif;
+  font-family: 'Poppins', sans-serif;
   background-color: $dark;
   color: $white;
 }
@@ -41,6 +42,26 @@ body {
   text-decoration: none;
 }
 
+.scroll-down-container {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.showcase-box-container {
+  height: 150vh;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+}
+
+.showcase-box {
+  width: 20vw;
+  height: 20vw;
+  background-image: linear-gradient(-45deg, $secondary-light, $primary-light);
+  border: 2px solid white;
+}
 // --------------------
 // Home
 // --------------------
@@ -76,41 +97,25 @@ body {
   }
   .customize-btn:hover {
     transform: translateY(-2px);
-    background-image: linear-gradient(-45deg, darken($secondary, 30%), darken($primary, 10%));
+    background-image: linear-gradient(
+      -45deg,
+      darken($secondary, 30%),
+      darken($primary, 10%)
+    );
     box-shadow: 0px 0px 15px rgba($primary, 0.7);
   }
   .customize-btn:active {
     transform: translateY(-1px);
     box-shadow: 0px 0px 30px rgba($primary, 0.7);
   }
-  .showcase__top-container {
+  .category-container {
     height: 100vh;
     display: flex;
     justify-content: center;
-  }
-  .showcase__top-container--scroll {
-    align-items: center;
-  }
-  .showcase__top-container--category {
     align-items: flex-end;
   }
-  .showcase__scroll-container {
-    height: 150vh;
-    display: flex;
-    justify-content: center;
-    align-items: flex-end;
-    .showcase__box-container {
-      width: 100%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      .showcase__box {
-        width: 20vw;
-        height: 20vw;
-        background-image: linear-gradient(-45deg, $secondary-light, $primary-light);
-        border: 2px solid white;
-      }
-    }
+  .category {
+    letter-spacing: 0.4rem;
   }
 }
 

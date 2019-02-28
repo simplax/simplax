@@ -72,22 +72,19 @@ const ShowcaseBox = ({ data, onLikeClick, likes, onPlxStart, onPlxEnd }) => {
    * render
    *********************************/
   return (
-    <div className="showcase__scroll-container">
-      <div className="showcase__box-container">
-        <div>
-          <Plx
-            parallaxData={parallaxData}
-            onPlxStart={() => {
-              onPlxStart(property);
-            }}
-            onPlxEnd={() => {
-              onPlxEnd(property);
-            }}
-          >
-            <div className="showcase__box" />
-          </Plx>
-        </div>
-      </div>
+    <div className="showcase-box-container">
+      <Plx
+        parallaxData={parallaxData}
+        onPlxStart={() => {
+          onPlxStart(property);
+        }}
+        onPlxEnd={() => {
+          onPlxEnd(property);
+        }}
+      >
+        <div className="showcase-box" />
+      </Plx>
+
       <i className={likeClassName()} onClick={() => onLikeClick(_id)} />
     </div>
   );
