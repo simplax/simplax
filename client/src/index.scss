@@ -1,9 +1,13 @@
-@import "../node_modules/bootstrap/scss/bootstrap.scss";
-@import url("https://fonts.googleapis.com/css?family=Raleway");
+@import '../node_modules/bootstrap/scss/bootstrap.scss';
+@import url('https://fonts.googleapis.com/css?family=Poppins');
 
 // --------------------
 // Variables
-$primary: #32c3ff;
+$primary: #ff8410;
+$secondary: #ff4040;
+$primary-light: #ffb731;
+$secondary-light: #ff6e6e;
+$grey: #a3a3a3;
 $dark: #202020;
 
 // ----------------------------------------
@@ -25,7 +29,7 @@ $dark: #202020;
 body {
   margin: 0;
   padding: 0;
-  font-family: sans-serif;
+  font-family: 'Poppins', sans-serif;
   background-color: $dark;
   color: $white;
 }
@@ -51,14 +55,13 @@ body {
 // --------------------
 .Showcase {
   .customize-btn {
-    font-family: "Raleway", sans-serif;
     letter-spacing: 1px;
     color: white;
     padding: 0.6rem 1rem;
     border-radius: 15px;
-    background-image: linear-gradient(-45deg, #ff4040, #ff8410);
+    background-image: linear-gradient(-45deg, $secondary, $primary);
     border: 1px solid $white;
-    box-shadow: 0px 0px 40px rgba(255, 191, 71, 0.7);
+    box-shadow: 0px 0px 50px rgba(lighten($primary, 30%), 0.7);
     position: fixed;
     bottom: 30px;
     right: 5vw;
@@ -67,18 +70,27 @@ body {
   }
   .customize-btn:hover {
     transform: translateY(-2px);
-    background-image: linear-gradient(-45deg, #b92020, #cc680b);
-    box-shadow: 0px 0px 15px rgba(255, 191, 71, 0.7);
+    background-image: linear-gradient(
+      -45deg,
+      darken($secondary, 30%),
+      darken($primary, 10%)
+    );
+    box-shadow: 0px 0px 15px rgba($primary, 0.7);
   }
   .customize-btn:active {
     transform: translateY(-1px);
-    box-shadow: 0px 0px 30px rgba(255, 191, 71, 0.7);
+    box-shadow: 0px 0px 30px rgba($primary, 0.7);
   }
   .showcase__top-container {
     height: 100vh;
     display: flex;
     justify-content: center;
+  }
+  .showcase__top-container--scroll {
     align-items: center;
+  }
+  .showcase__top-container--category {
+    align-items: flex-end;
   }
   .showcase__scroll-container {
     height: 150vh;
@@ -97,14 +109,18 @@ body {
       .showcase__box {
         width: 20vw;
         height: 20vw;
-        background-image: linear-gradient(-45deg, #ff6464, #ff9419);
+        background-image: linear-gradient(
+          -45deg,
+          $secondary-light,
+          $primary-light
+        );
         border: 2px solid white;
       }
       .unlike {
-        color: #8d8c8c;
+        color: $grey;
       }
       .like {
-        color: #ff6464;
+        color: $secondary;
       }
     }
   }
