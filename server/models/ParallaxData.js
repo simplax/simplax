@@ -5,7 +5,7 @@ const parallaxDataSchema = new Schema(
   {
     category: {
       type: String,
-      enum: ['Transform', 'Color', 'CSS Filter'],
+      enum: ['Transform', 'Colors', 'CSS Filter'],
       required: true
     },
     property: {
