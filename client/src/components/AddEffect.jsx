@@ -37,6 +37,7 @@ export default function AddEffect({ likes, onAddEffect }) {
       <div className="p-3 bg-light text-dark rounded">
         <div className="row">
           <div className="col-8">
+            {/* TO DO: not working if not first option selected */}
             <select
               className="custom-select"
               value={effect}

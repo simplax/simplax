@@ -76,12 +76,12 @@ class Example extends Component {
               <button type="button" className="btn btn-outline-info" data-dismiss="modal">
                 Close
               </button>
-              document.queryCommandSupported("copy") && (
-              <div>
-                <button className="btn btn-info" onClick={copyToClipboard}>
-                  Copy to Clipboard
-                </button>
-              </div>
+              {document.queryCommandSupported("copy") && (
+                <div>
+                  <button className="btn btn-info" onClick={copyToClipboard}>
+                    Copy to Clipboard
+                  </button>
+                </div>
               )}
             </div>
           </div>
