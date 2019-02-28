@@ -10,7 +10,7 @@ const TextTranslateX = ({ text, animationState }) => {
   const trail = useTrail(textArr.length, {
     config,
     opacity: animationState === 'enter' ? 1 : 0,
-    x: animationState === 'exit' ? 0 : -20,
+    x: animationState === 'enter' ? 0 : -20,
     from: { opacity: 0, x: -20 }
   });
 

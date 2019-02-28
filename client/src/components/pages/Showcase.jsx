@@ -26,8 +26,6 @@ const Showcase = props => {
     api.getAllParallaxData().then(allPlxData => {
       setParallaxData(allPlxData);
     });
-
-    // window.onscroll = handleScroll;
   }, []);
 
   // transform
@@ -65,7 +63,9 @@ const Showcase = props => {
    *********************************/
   const handleLikeClick = id => {
     const likesTemp = [...likes];
-    likesTemp.includes(id) ? likesTemp.splice(likesTemp.indexOf(id), 1) : likesTemp.push(id);
+    likesTemp.includes(id)
+      ? likesTemp.splice(likesTemp.indexOf(id), 1)
+      : likesTemp.push(id);
     setLikes(likesTemp);
   };
 
@@ -78,19 +78,6 @@ const Showcase = props => {
     setProperty(property);
     setAnimationState('exit');
   };
-
-  // const handleScroll = e => {
-  //   console.log(e.currentTarget.scrollY);
-  //   let prevScrollPos = scrollPos;
-  //   let nowScrollPos = e.currentTarget.scrollY;
-
-  //   setScrollPos(e.currentTarget.scrollY);
-
-  //   if (nowScrollPos - prevScrollPos > 1000) {
-  //     console.log('too fast!!!!!!');
-  //   }
-
-  // };
 
   /*********************************
    * Render
@@ -173,12 +160,13 @@ const Showcase = props => {
       <div>
         <Link
           to={{
-            pathname: "/customize",
+            pathname: '/customize',
             state: {
               likes
             }
           }}
-          className="link customize-btn">
+          className="link customize-btn"
+        >
           Customize
         </Link>
       </div>
