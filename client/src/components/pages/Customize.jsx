@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
+import AddEffect from "../AddEffect";
 import CustomizeForm from "../CustomizeForm";
 import CodeSnippetModal from "../CodeSnippetModal";
+import CustomizeBox from "../CustomizeBox";
 import api from "../../api";
 
 export default function Customize({ location }) {
@@ -8,6 +10,7 @@ export default function Customize({ location }) {
    * States
    *********************************/
   const [parallaxData, setParallaxData] = useState(null);
+  // TO DO: clear location.state after data was read
   // location.state is not defined when accessing via navbar
   const [likes, setLikes] = useState(location.state ? location.state.likes : []);
   console.log("TCL: Customize -> likes", likes);
@@ -21,7 +24,6 @@ export default function Customize({ location }) {
     }
     let likesUrl = likes.join("-");
     api.getManyParallaxData(likesUrl).then(res => {
-      console.log("API");
       setParallaxData(res);
     });
   }, [likes]);
@@ -29,7 +31,12 @@ export default function Customize({ location }) {
   /*********************************
    * Event Handler
    *********************************/
-  function handleClose(id) {
+  function handleAddEffect(id) {
+    const likesTemp = [...likes];
+    likesTemp.push(id);
+    setLikes(likesTemp);
+  }
+  function handleCloseEffect(id) {
     const likesTemp = [...likes];
     likesTemp.splice(likesTemp.indexOf(id), 1);
     setLikes(likesTemp);
@@ -45,8 +52,10 @@ export default function Customize({ location }) {
       </div>
     );
   }
+  // TO DO: fix AddEffect, CustomizeForm and CodeSnippetModal
   return (
-    <div className="Customize">
+    <div className="Customize Showcase">
+      <AddEffect likes={likes} onAddEffect={handleAddEffect} />
       {likes.length === 0
         ? null
         : parallaxData.map(data => (
@@ -57,10 +66,14 @@ export default function Customize({ location }) {
               unit={data.unit}
               start={data.startValue}
               end={data.endValue}
-              onClose={handleClose}
+              onCloseEffect={handleCloseEffect}
             />
           ))}
-      <CodeSnippetModal />
+      <CodeSnippetModal className="code-snippet-modal" />
+      <div className="showcase__top-container showcase__top-container--scroll">
+        <h2>Scroll Down</h2>
+      </div>
+      {/* <CustomizeBox parallaxDataSelection={parallaxData} /> */}
     </div>
   );
 }
