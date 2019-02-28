@@ -54,6 +54,12 @@ body {
 // Showcase
 // --------------------
 .Showcase {
+  .unlike {
+    color: $grey;
+  }
+  .like {
+    color: $secondary;
+  }
   .customize-btn {
     letter-spacing: 1px;
     color: white;
@@ -98,13 +104,9 @@ body {
     justify-content: center;
     align-items: flex-end;
     .showcase__box-container {
-      p,
-      h3 {
-        margin: 0;
-      }
       width: 100%;
       display: flex;
-      justify-content: space-between;
+      justify-content: center;
       align-items: center;
       .showcase__box {
         width: 20vw;
@@ -116,24 +118,7 @@ body {
         );
         border: 2px solid white;
       }
-      .unlike {
-        color: $grey;
-      }
-      .like {
-        color: $secondary;
-      }
     }
-  }
-}
-
-// --------------------
-// Style for ShowcaseBox component
-.ShowcaseBox {
-  .box-dimensions {
-    width: 25vh;
-    height: 25vh;
-    line-height: 25vh;
-    font-size: 6rem;
   }
 }
 
@@ -143,4 +128,25 @@ body {
   .mute {
     right: 2rem;
   }
+}
+
+//------------- Animationsssssssssssss -------------
+
+// --------------------
+// TextTranslateX
+// --------------------
+.TextTranslateX {
+  position: fixed;
+  top: 50vh;
+  left: 10vw;
+  .TextTranslateX__text {
+    margin-left: 2px;
+    display: inline-block;
+  }
+}
+
+.test {
+  position: fixed;
+  top: 50vh;
+  left: 10vw;
 }

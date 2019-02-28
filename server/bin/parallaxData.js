@@ -10,7 +10,7 @@ const parallaxData = [
     startOffsetOut: '60vh',
     end: 'self',
     endOffsetIn: '50vh',
-    endOffsetOut: '110vh',
+    endOffsetOut: '100vh',
     easing: 'easeInSine'
   },
   {
@@ -24,7 +24,7 @@ const parallaxData = [
     startOffsetOut: '60vh',
     end: 'self',
     endOffsetIn: '50vh',
-    endOffsetOut: '110vh',
+    endOffsetOut: '100vh',
     easing: 'easeInSine'
   },
   {
@@ -38,7 +38,7 @@ const parallaxData = [
     startOffsetOut: '60vh',
     end: 'self',
     endOffsetIn: '50vh',
-    endOffsetOut: '110vh',
+    endOffsetOut: '100vh',
     easing: 'easeInSine'
   },
   {
@@ -52,7 +52,7 @@ const parallaxData = [
     startOffsetOut: '60vh',
     end: 'self',
     endOffsetIn: '50vh',
-    endOffsetOut: '110vh',
+    endOffsetOut: '100vh',
     easing: 'easeInSine'
   },
   {
@@ -66,7 +66,7 @@ const parallaxData = [
     startOffsetOut: '60vh',
     end: 'self',
     endOffsetIn: '50vh',
-    endOffsetOut: '110vh',
+    endOffsetOut: '100vh',
     easing: 'easeInSine'
   }
 ];

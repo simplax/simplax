@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import api from '../../api';
 import ShowcaseBox from '../ShowcaseBox';
+import TextTranslateX from '../animations/TextTranslateX';
 
 const Showcase = props => {
   /*********************************
@@ -13,43 +14,51 @@ const Showcase = props => {
   const [plxDataFilter, setPlxDataFilter] = useState(null);
   const [likes, setLikes] = useState([]);
   // const [category, setCategory] = useState('');
-  // const [property, setProperty] = useState('');
+  const [property, setProperty] = useState('');
+  const [scrollPos, setScrollPos] = useState(0);
+  const [animationState, setAnimationState] = useState('hidden');
 
   /*********************************
-   * Effect
+   * Effects
    *********************************/
+  // componentDidMount
   useEffect(() => {
     api.getAllParallaxData().then(allPlxData => {
       setParallaxData(allPlxData);
     });
+
+    // window.onscroll = handleScroll;
   }, []);
 
+  // transform
   useEffect(() => {
     let transforms =
       parallaxData &&
       parallaxData.filter(data => {
-        return data.category == 'Transform';
+        return data.category === 'Transform';
       });
     setPlxDataTransform(transforms);
-  }, parallaxData);
+  }, [parallaxData]);
 
+  // colors
   useEffect(() => {
     let colors =
       parallaxData &&
       parallaxData.filter(data => {
-        return data.category == 'Colors';
+        return data.category === 'Colors';
       });
     setPlxDataColors(colors);
-  }, parallaxData);
+  }, [parallaxData]);
 
+  // filters
   useEffect(() => {
     let filters =
       parallaxData &&
       parallaxData.filter(data => {
-        return data.category == 'CSS Filter';
+        return data.category === 'CSS Filter';
       });
     setPlxDataFilter(filters);
-  }, parallaxData);
+  }, [parallaxData]);
 
   /*********************************
    * Event Handler
@@ -61,6 +70,29 @@ const Showcase = props => {
       : likesTemp.push(id);
     setLikes(likesTemp);
   };
+
+  const handlePlxStart = property => {
+    setProperty(property);
+    setAnimationState('enter');
+  };
+
+  const handlePlxEnd = property => {
+    setProperty(property);
+    setAnimationState('exit');
+  };
+
+  // const handleScroll = e => {
+  //   console.log(e.currentTarget.scrollY);
+  //   let prevScrollPos = scrollPos;
+  //   let nowScrollPos = e.currentTarget.scrollY;
+
+  //   setScrollPos(e.currentTarget.scrollY);
+
+  //   if (nowScrollPos - prevScrollPos > 1000) {
+  //     console.log('too fast!!!!!!');
+  //   }
+
+  // };
 
   /*********************************
    * Render
@@ -75,7 +107,7 @@ const Showcase = props => {
     );
   }
   return (
-    <div className="Showcase">
+    <div id="Showcase" className="Showcase">
       <div className="showcase__top-container showcase__top-container--scroll">
         <h2>Scroll Down</h2>
       </div>
@@ -91,6 +123,8 @@ const Showcase = props => {
               key={data._id}
               data={data}
               onLikeClick={handleLikeClick}
+              onPlxStart={handlePlxStart}
+              onPlxEnd={handlePlxEnd}
               likes={likes}
             />
           );
@@ -108,6 +142,8 @@ const Showcase = props => {
               key={data._id}
               data={data}
               onLikeClick={handleLikeClick}
+              onPlxStart={handlePlxStart}
+              onPlxEnd={handlePlxEnd}
               likes={likes}
             />
           );
@@ -125,11 +161,15 @@ const Showcase = props => {
               key={data._id}
               data={data}
               onLikeClick={handleLikeClick}
+              onPlxStart={handlePlxStart}
+              onPlxEnd={handlePlxEnd}
               likes={likes}
             />
           );
         })}
       </div>
+
+      <div className="showcase__top-container showcase__top-container--scroll" />
 
       {/* Customize Button */}
       <div>
@@ -144,6 +184,11 @@ const Showcase = props => {
         >
           Customize
         </Link>
+      </div>
+
+      {/* Display Property Name */}
+      <div className="test">
+        <TextTranslateX text={property} animationState={animationState} />
       </div>
     </div>
   );
