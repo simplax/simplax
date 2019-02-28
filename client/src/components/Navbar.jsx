@@ -1,10 +1,11 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import api from "../api";
 
 export default function Navbar() {
+
   useEffect(() => {
-    api.logout();
+
   });
   return (
     <div className="Navbar">
@@ -70,7 +71,7 @@ export default function Navbar() {
               </li>
             )}
             {api.isLoggedIn() && (
-              <NavLink className="nav-link" to="/" onClick={() => useEffect()}>
+              <NavLink className="nav-link" to="/" onClick={() => api.logout()}>
                 Logout
               </NavLink>
             )}

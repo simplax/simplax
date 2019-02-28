@@ -19,7 +19,6 @@ passport.use(new GitHubStrategy({
 
         const newUser = new User({
           _github: profile.id,
-          githubName: profile.displayName,
           githubUsername: profile.username,
 
         });
