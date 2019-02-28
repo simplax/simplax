@@ -59,8 +59,13 @@ const Showcase = props => {
     setPropertyAnimation(false);
   };
 
+  const handleCategoryPlxStart = property => {
+    setProperty('');
+    setPropertyAnimation(false);
+  };
+
   /*********************************
-   * parallaxData
+   * parallaxData for category
    *********************************/
   const categoryParallaxData = [
     {
@@ -69,9 +74,14 @@ const Showcase = props => {
       endOffset: '40vh',
       properties: [
         {
-          startValue: 1,
-          endValue: 2,
+          startValue: 0.8,
+          endValue: 1.5,
           property: 'scale'
+        },
+        {
+          startValue: 0,
+          endValue: 1,
+          property: 'opacity'
         }
       ]
     },
@@ -82,9 +92,14 @@ const Showcase = props => {
       endOffset: '100vh',
       properties: [
         {
-          startValue: 2,
-          endValue: 1,
+          startValue: 1.5,
+          endValue: 0.8,
           property: 'scale'
+        },
+        {
+          startValue: 1,
+          endValue: 0,
+          property: 'opacity'
         }
       ]
     }
@@ -110,7 +125,10 @@ const Showcase = props => {
 
       {/* Transform */}
       <div className="category-container">
-        <Plx parallaxData={categoryParallaxData}>
+        <Plx
+          parallaxData={categoryParallaxData}
+          onPlxStart={handleCategoryPlxStart}
+        >
           <h2 className="category">TRANSFORM</h2>
         </Plx>
       </div>
@@ -131,7 +149,12 @@ const Showcase = props => {
 
       {/* Colors */}
       <div className="category-container">
-        <h2 className="category">COLORS</h2>
+        <Plx
+          parallaxData={categoryParallaxData}
+          onPlxStart={handleCategoryPlxStart}
+        >
+          <h2 className="category">COLORS</h2>
+        </Plx>
       </div>
       <div>
         {plxDataColors.map(data => {
@@ -150,7 +173,12 @@ const Showcase = props => {
 
       {/* CSS Filter */}
       <div className="category-container">
-        <h2 className="category">CSS FILTER</h2>
+        <Plx
+          parallaxData={categoryParallaxData}
+          onPlxStart={handleCategoryPlxStart}
+        >
+          <h2 className="category">CSS FILTER</h2>
+        </Plx>
       </div>
       <div>
         {plxDataFilter.map(data => {
