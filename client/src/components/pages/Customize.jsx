@@ -1,7 +1,10 @@
-import React from "react";
-import CustomizeForm from "../CustomizeForm";
+import React, { useEffect } from 'react';
+import CustomizeForm from '../CustomizeForm';
 
-export default function Customize() {
+export default function Customize(props) {
+  useEffect(() => {
+    console.log(props.location.state.likes)
+  }, [])
   return (
     <div className="Customize">
       <CustomizeForm property="scale" unit="" start={1} end={2} />

@@ -69,10 +69,10 @@ const ShowcaseBox = props => {
   return (
     <div className="showcase__scroll-container">
       <div className="showcase__box-container">
-        <h3>{property}</h3>
+        <h5>{property}</h5>
         <div>
           <Plx parallaxData={parallaxData}>
-            <div className="showcase__box"/>
+            <div className="showcase__box" />
           </Plx>
         </div>
         <i className={likeClassName()} onClick={() => props.onLikeClick(_id)} />

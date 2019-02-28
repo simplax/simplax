@@ -24,7 +24,7 @@ const Showcase = props => {
   /*********************************
    * Event Handler
    *********************************/
-  const clickLikeHander = id => {
+  const handleLikeClick = id => {
     const likesTemp = [...likes];
     likesTemp.includes(id)
       ? likesTemp.splice(likesTemp.indexOf(id), 1)
@@ -49,13 +49,17 @@ const Showcase = props => {
       <div className="showcase__top-container">
         <h2>Scroll Down</h2>
       </div>
+      {/* Transform */}
+      <div className="showcase__top-container">
+        <h2>Transform</h2>
+      </div>
       <div>
         {parallaxData.map(data => {
           return (
             <ShowcaseBox
               key={data._id}
               data={data}
-              onLikeClick={clickLikeHander}
+              onLikeClick={handleLikeClick}
               likes={likes}
             />
           );
