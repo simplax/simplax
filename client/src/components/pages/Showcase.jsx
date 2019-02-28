@@ -72,12 +72,12 @@ const Showcase = props => {
   }
   return (
     <div id="Showcase" className="Showcase">
-      <div className="showcase__top-container showcase__top-container--scroll">
+      <div className="scroll-down-container">
         <h2>Scroll Down</h2>
       </div>
 
       {/* Transform */}
-      <div className="showcase__top-container showcase__top-container--category">
+      <div className="category-container">
         <h2>Transform</h2>
       </div>
       <div>
@@ -96,7 +96,7 @@ const Showcase = props => {
       </div>
 
       {/* Colors */}
-      <div className="showcase__top-container showcase__top-container--category">
+      <div className="category-container">
         <h2>Colors</h2>
       </div>
       <div>
@@ -115,7 +115,7 @@ const Showcase = props => {
       </div>
 
       {/* CSS Filter */}
-      <div className="showcase__top-container showcase__top-container--category">
+      <div className="category-container">
         <h2>CSS Filter</h2>
       </div>
       <div>
@@ -133,7 +133,7 @@ const Showcase = props => {
         })}
       </div>
 
-      <div className="showcase__top-container showcase__top-container--scroll" />
+      <div className="scroll-down-container" />
 
       {/* Customize Button */}
       <div>
