@@ -20,20 +20,21 @@ const CategoryTranslateY = ({ text }) => {
 
   return (
     <div className="TextTranslateY">
-      <div>
+      <a className="nav-link" href="#">
         {trail.map(({ y, opacity }, index) => (
-          <animated.h4
+          <animated.span
             key={index}
             className="TextTranslateY__text"
+            href="#"
             style={{
               opacity,
               transform: y.interpolate(y => `translateY(${y}px)`)
             }}
           >
             {textArr[index]}
-          </animated.h4>
+          </animated.span>
         ))}
-      </div>
+      </a>
     </div>
   );
 };

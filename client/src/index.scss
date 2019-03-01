@@ -43,6 +43,10 @@ body {
   text-decoration: none;
 }
 
+.container-50vh {
+  height: 50vh;
+}
+
 .scroll-down-container {
   height: 100vh;
   display: flex;
@@ -119,6 +123,8 @@ body {
 .CategoryNavbar {
   background-color: $dark;
   width: 100%;
+  position: sticky;
+  top: 0;
   z-index: 1;
   ul {
     margin: 0.2rem 12rem;
@@ -134,11 +140,6 @@ body {
   .nav-link:hover {
     color: $primary-super-light !important;
   }
-}
-
-.sticky-navbar {
-  position: sticky;
-  top: 0;
 }
 
 // --------------------
@@ -206,7 +207,6 @@ body {
 // --------------------
 .TextTranslateY {
   .TextTranslateY__text {
-    margin-left: 2px;
     display: inline-block;
   }
 }

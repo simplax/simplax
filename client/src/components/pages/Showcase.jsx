@@ -7,7 +7,7 @@ import api from '../../api';
 import ShowcaseBox from '../ShowcaseBox';
 import CategoryNavbar from '../CategoryNavbar';
 import TextTranslateX from '../animations/TextTranslateX';
-import TextTranslateY from '../animations/TextTranslateY';
+
 
 const Showcase = ({ onLikeClick, likes, onCustomizeClick }) => {
   /*********************************
@@ -22,7 +22,7 @@ const Showcase = ({ onLikeClick, likes, onCustomizeClick }) => {
   /*********************************
    * Intersection Observer
    *********************************/
-  const [ref, inView] = useInView();
+  const [categoryNavRef, categoryNavInView] = useInView({});
 
   /*********************************
    * Effects
@@ -45,10 +45,6 @@ const Showcase = ({ onLikeClick, likes, onCustomizeClick }) => {
       setPlxDataFilter(filters);
     });
   }, []);
-
-  useEffect(() => {
-    console.log('category navbar inView:', inView);
-  }, [inView]);
 
   /*********************************
    * Event Handler
@@ -129,9 +125,8 @@ const Showcase = ({ onLikeClick, likes, onCustomizeClick }) => {
       </div>
 
       {/* Category Navbar */}
-      <div ref={ref} className="sticky-navbar">
-        <CategoryNavbar />
-      </div>
+      <div ref={categoryNavRef} className="container-50vh" />
+      {!categoryNavInView && <CategoryNavbar />}
       <div className="scroll-down-container" />
 
       {/* Transform */}
@@ -215,12 +210,11 @@ const Showcase = ({ onLikeClick, likes, onCustomizeClick }) => {
 
       <button
         type="button"
-
         className="btn btn-customize"
         onClick={onCustomizeClick}
       >
         Customize
-        </button>
+      </button>
     </div>
   );
 };

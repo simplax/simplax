@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import Plx from 'react-plx';
-import TransitionEnter from './animations/TextTranslateY';
+import TextTranslateY from './animations/TextTranslateY';
 
-const CategoryNavbar = ref => {
+const CategoryNavbar = () => {
   return (
     <div className="CategoryNavbar">
       <nav className="navbar navbar-dark navbar-expand-lg">
@@ -21,19 +21,13 @@ const CategoryNavbar = ref => {
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav">
             <li className="nav-item">
-              <a className="nav-link" href="#">
-                Transform
-              </a>
+              <TextTranslateY text="Transform" />
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="#">
-                Colors
-              </a>
+              <TextTranslateY text="Colors" />
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="#">
-                CSS Filter
-              </a>
+              <TextTranslateY text="CSS Filter" />
             </li>
           </ul>
         </div>
