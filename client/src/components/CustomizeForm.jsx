@@ -10,11 +10,10 @@ export default function CustomizeForm({ start, end, property, unit, onCloseEffec
 
   return (
     <div className="CustomizeForm">
-      <div className="p-3 bg-light text-dark rounded">
+      <div className="p-2 mb-1 w-25 bg-light text-dark rounded">
         <div className="row">
-          <div className="col-8">
+          <div className="col-7 d-flex flex-column justify-content-center">
             <label>{property}</label>
-
             <Range
               step={0.1}
               min={start}
@@ -25,11 +24,9 @@ export default function CustomizeForm({ start, end, property, unit, onCloseEffec
               tipFormatter={value => `${value} ${unit}`}
             />
           </div>
-          <div className="col-2">
-            <button className="btn btn-outline-info btn-block">Mute</button>
-          </div>
-          <div className="col-2">
-            <button className="btn btn-info btn-block" onClick={() => onCloseEffect(_id)}>
+          <div className="col-5">
+            <button className="btn btn-outline-info btn-block btn-sm">Mute</button>
+            <button className="btn btn-info btn-block btn-sm" onClick={() => onCloseEffect(_id)}>
               Remove
             </button>
           </div>
