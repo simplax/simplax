@@ -43,7 +43,7 @@ class Example extends Component {
     <div className="CodeSnipppetModal">
       <button
         type="button"
-        className="btn btn-info"
+        className="btn btn-info fixed-bottom mb-5 ml-5"
         data-toggle="modal"
         data-target="#codeSnippetModal">
         Show code snippet
@@ -68,8 +68,7 @@ class Example extends Component {
             </div>
             <div className="modal-body">
               <pre>{code}</pre>
-              {/* TO DO: make textarea disapear... */}
-              <textarea rows="0" ref={codeSnippetValue} defaultValue={code} />
+              <textarea className="hidden" rows="0" ref={codeSnippetValue} defaultValue={code} />
             </div>
 
             <div className="modal-footer">
