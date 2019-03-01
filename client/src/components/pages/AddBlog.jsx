@@ -19,6 +19,7 @@ export default class AddBlog extends React.Component {
   }
 
 
+
   modules = {
     toolbar: [
       ['bold', 'italic', 'underline', 'strike'],        // toggled buttons

@@ -111,7 +111,7 @@ const Showcase = props => {
   if (!plxDataTransform || !plxDataColors || !plxDataFilter) {
     return (
       <div className="Showcase">
-        <div className="showcase__top-container">
+        <div className="scroll-down-container">
           <h2 className="category">Loading...</h2>
         </div>
       </div>
