@@ -10,7 +10,7 @@ export default function CustomizeForm({ start, end, property, unit, onCloseEffec
 
   return (
     <div className="CustomizeForm">
-      <div className="p-2 mb-1 w-25 bg-light text-dark rounded">
+      <div className="p-2 mb-1 bg-light text-dark rounded">
         <div className="row">
           <div className="col-7 d-flex flex-column justify-content-center">
             <label>{property}</label>
