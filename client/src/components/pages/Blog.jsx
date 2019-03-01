@@ -26,7 +26,7 @@ export default class Blog extends React.Component {
     return (
       <div>
         {this.state.blogs.map((blog) => (
-          <div key={blog._id}>
+          <div key={blog._id} style={{ border: '1px solid black' }}>
             {blog.title}
             <div dangerouslySetInnerHTML={{ __html: blog.blogContent }} />
             <Link to={`/edit-blog/${blog._id}`}>Edit</Link>
