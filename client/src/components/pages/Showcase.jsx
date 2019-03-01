@@ -3,16 +3,17 @@ import { Link } from 'react-router-dom';
 import api from '../../api';
 import Plx from 'react-plx';
 import ShowcaseBox from '../ShowcaseBox';
+import CategoryNavbar from '../CategoryNavbar';
 import TextTranslateX from '../animations/TextTranslateX';
+import TextTranslateY from '../animations/TextTranslateY';
 
-const Showcase = props => {
+const Showcase = ({ onLikeClick, likes }) => {
   /*********************************
    * States
    *********************************/
   const [plxDataTransform, setPlxDataTransform] = useState(null);
   const [plxDataColors, setPlxDataColors] = useState(null);
   const [plxDataFilter, setPlxDataFilter] = useState(null);
-  const [likes, setLikes] = useState([]);
   const [property, setProperty] = useState('');
   const [propertyAnimation, setPropertyAnimation] = useState(false);
 
@@ -41,14 +42,6 @@ const Showcase = props => {
   /*********************************
    * Event Handler
    *********************************/
-  const handleLikeClick = id => {
-    const likesTemp = [...likes];
-    likesTemp.includes(id)
-      ? likesTemp.splice(likesTemp.indexOf(id), 1)
-      : likesTemp.push(id);
-    setLikes(likesTemp);
-  };
-
   const handlePlxStart = property => {
     setProperty(property);
     setPropertyAnimation(true);
@@ -119,9 +112,13 @@ const Showcase = props => {
   }
   return (
     <div id="Showcase" className="Showcase">
+      {/* Scroll Down */}
       <div className="scroll-down-container">
         <h2>Scroll Down</h2>
       </div>
+
+      {/* Category Navbar */}
+      <CategoryNavbar />
 
       {/* Transform */}
       <div className="category-container">
@@ -138,7 +135,7 @@ const Showcase = props => {
             <ShowcaseBox
               key={data._id}
               data={data}
-              onLikeClick={handleLikeClick}
+              onLikeClick={onLikeClick}
               onPlxStart={handlePlxStart}
               onPlxEnd={handlePlxEnd}
               likes={likes}
@@ -162,7 +159,7 @@ const Showcase = props => {
             <ShowcaseBox
               key={data._id}
               data={data}
-              onLikeClick={handleLikeClick}
+              onLikeClick={onLikeClick}
               onPlxStart={handlePlxStart}
               onPlxEnd={handlePlxEnd}
               likes={likes}
@@ -186,7 +183,7 @@ const Showcase = props => {
             <ShowcaseBox
               key={data._id}
               data={data}
-              onLikeClick={handleLikeClick}
+              onLikeClick={onLikeClick}
               onPlxStart={handlePlxStart}
               onPlxEnd={handlePlxEnd}
               likes={likes}
@@ -197,23 +194,8 @@ const Showcase = props => {
 
       <div className="scroll-down-container" />
 
-      {/* Customize Button */}
-      <div>
-        <Link
-          to={{
-            pathname: '/customize',
-            state: {
-              likes
-            }
-          }}
-          className="link customize-btn"
-        >
-          Customize
-        </Link>
-      </div>
-
       {/* Display Property Name */}
-      <div className="test">
+      <div className="property-text">
         <TextTranslateX text={property} isEnter={propertyAnimation} />
       </div>
     </div>

@@ -1,4 +1,7 @@
 // text fade in from left to right, fade out from right to left
+// Takes two props:
+// text: string, text that you want to animate
+// isEnter: boolean, determine text enter or exit
 
 import React, { useState } from 'react';
 import { useTrail, animated } from 'react-spring';
@@ -22,7 +25,6 @@ const TextTranslateX = ({ text, isEnter }) => {
             key={index}
             className="TextTranslateX__text"
             style={{
-              // display: 'none',
               opacity,
               transform: x.interpolate(x => `translateX(${x}px)`)
             }}
