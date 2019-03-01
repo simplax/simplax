@@ -11,8 +11,8 @@
 // <Button color="danger">Danger!</Button>
 // ----------------------------------------
 
-@import '../node_modules/bootstrap/scss/bootstrap.scss';
-@import url('https://fonts.googleapis.com/css?family=Poppins');
+@import "../node_modules/bootstrap/scss/bootstrap.scss";
+@import url("https://fonts.googleapis.com/css?family=Poppins");
 
 // --------------------
 // Variables
@@ -31,7 +31,7 @@ $dark: #202020;
 body {
   margin: 0;
   padding: 0;
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   background-color: $dark;
   color: $white;
 }
@@ -81,6 +81,18 @@ body {
 }
 
 // --------------------
+// CodeSnipppetModal
+// --------------------
+.CodeSnipppetModal {
+  .hidden {
+    position: absolute;
+    opacity: 0.01;
+    height: 0;
+    overflow: hidden;
+  }
+}
+
+// --------------------
 // Showcase
 // --------------------
 .Showcase {
@@ -90,7 +102,6 @@ body {
   .like {
     color: $secondary;
   }
-
   .category-container {
     height: 100vh;
     display: flex;

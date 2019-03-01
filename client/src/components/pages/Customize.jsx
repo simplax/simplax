@@ -47,30 +47,31 @@ export default function Customize({ likedEffects }) {
    *********************************/
   if (!parallaxData && likes.length !== 0) {
     return (
-      <div className="Customize">
+      <div className="Customize scroll-down-container">
         <h2>Loading...</h2>
       </div>
     );
   }
-  // TO DO: fix AddEffect, CustomizeForm and CodeSnippetModal
   return (
-    <div className="Customize Showcase">
-      <AddEffect likes={likes} onAddEffect={handleAddEffect} />
-      {likes.length === 0
-        ? null
-        : parallaxData.map(data => (
-            <CustomizeForm
-              key={data._id}
-              id={data._id}
-              property={data.property}
-              unit={data.unit}
-              start={data.startValue}
-              end={data.endValue}
-              onCloseEffect={handleCloseEffect}
-            />
-          ))}
-      <CodeSnippetModal className="code-snippet-modal" />
-      <div className="showcase__top-container showcase__top-container--scroll">
+    <div className="Customize">
+      <div className="fixed-top mt-5 ml-5">
+        <AddEffect likes={likes} onAddEffect={handleAddEffect} />
+        {likes.length === 0
+          ? null
+          : parallaxData.map(data => (
+              <CustomizeForm
+                key={data._id}
+                id={data._id}
+                property={data.property}
+                unit={data.unit}
+                start={data.startValue}
+                end={data.endValue}
+                onCloseEffect={handleCloseEffect}
+              />
+            ))}
+      </div>
+      <CodeSnippetModal />
+      <div className="scroll-down-container">
         <h2>Scroll Down</h2>
       </div>
       {/* <CustomizeBox parallaxDataSelection={parallaxData} /> */}
