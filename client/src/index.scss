@@ -11,17 +11,17 @@
 // <Button color="danger">Danger!</Button>
 // ----------------------------------------
 
-@import "../node_modules/bootstrap/scss/bootstrap.scss";
-@import url("https://fonts.googleapis.com/css?family=Poppins");
+@import '../node_modules/bootstrap/scss/bootstrap.scss';
+@import url('https://fonts.googleapis.com/css?family=Poppins');
 
 // --------------------
 // Variables
 // --------------------
 $primary: #ff8410;
-$secondary: #ff4040;
 $primary-light: #ffb731;
+$primary-super-light: #ff9c5b;
+$secondary: #ff4040;
 $secondary-light: #ff6e6e;
-$light: #ffebcd;
 $grey: #a3a3a3;
 $dark: #202020;
 
@@ -31,7 +31,7 @@ $dark: #202020;
 body {
   margin: 0;
   padding: 0;
-  font-family: "Poppins", sans-serif;
+  font-family: 'Poppins', sans-serif;
   background-color: $dark;
   color: $white;
 }
@@ -114,6 +114,34 @@ body {
 }
 
 // --------------------
+// Category Navbar
+// --------------------
+.CategoryNavbar {
+  background-color: $dark;
+  width: 100%;
+  z-index: 1;
+  ul {
+    margin: 0.2rem 12rem;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+  }
+  .nav-link {
+    letter-spacing: 0.2rem;
+    transition-property: all;
+    transition-duration: 0.6s;
+  }
+  .nav-link:hover {
+    color: $primary-super-light !important;
+  }
+}
+
+.sticky-navbar {
+  position: sticky;
+  top: 0;
+}
+
+// --------------------
 // Style for CustomizeForm component
 .CustomizeForm {
   .code-snippet-modal {
@@ -141,6 +169,7 @@ body {
   right: 5vw;
   transition-property: all;
   transition-duration: 0.3s;
+  z-index: 2;
 }
 .btn-customize:hover {
   transform: translateY(-2px);
