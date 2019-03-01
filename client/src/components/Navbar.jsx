@@ -1,12 +1,9 @@
-import React, { useEffect, useState } from "react";
-import { NavLink } from "react-router-dom";
-import api from "../api";
+import React, { useEffect, useState } from 'react';
+import { NavLink } from 'react-router-dom';
+import api from '../api';
 
 export default function Navbar() {
-
-  useEffect(() => {
-
-  });
+  useEffect(() => {});
   return (
     <div className="Navbar">
       <nav className="navbar navbar-expand-lg navbar-dark bg-transparent">
@@ -20,7 +17,8 @@ export default function Navbar() {
           data-target="#navbarToggler"
           aria-controls="navbarToggler"
           aria-expanded="false"
-          aria-label="Toggle navigation">
+          aria-label="Toggle navigation"
+        >
           <span className="navbar-toggler-icon" />
         </button>
 
@@ -33,17 +31,12 @@ export default function Navbar() {
             </li>
             <li className="nav-item">
               <NavLink className="nav-link" to="/about-us">
-                About us
+                About Us
               </NavLink>
             </li>
             <li className="nav-item">
-              <NavLink className="nav-link" to="/showcase">
-                Showcase
-              </NavLink>
-            </li>
-            <li className="nav-item">
-              <NavLink className="nav-link" to="/customize">
-                Customize
+              <NavLink className="nav-link" to="/showcase-customize">
+                Create your Animation
               </NavLink>
             </li>
             <li className="nav-item">
@@ -65,9 +58,12 @@ export default function Navbar() {
             )}
             {!api.isLoggedIn() && (
               <li>
-
-                <a className="github-login-link" href={api.service.defaults.baseURL + "/github-login"}>Login with Github</a>
-
+                <a
+                  className="github-login-link"
+                  href={api.service.defaults.baseURL + '/github-login'}
+                >
+                  Login with Github
+                </a>
               </li>
             )}
             {api.isLoggedIn() && (

@@ -1,19 +1,19 @@
-import React, { useState, useEffect } from "react";
-import AddEffect from "../AddEffect";
-import CustomizeForm from "../CustomizeForm";
-import CodeSnippetModal from "../CodeSnippetModal";
-import CustomizeBox from "../CustomizeBox";
-import api from "../../api";
+import React, { useState, useEffect } from 'react';
+import AddEffect from '../AddEffect';
+import CustomizeForm from '../CustomizeForm';
+import CodeSnippetModal from '../CodeSnippetModal';
+import CustomizeBox from '../CustomizeBox';
+import api from '../../api';
 
-export default function Customize({ location }) {
+export default function Customize({ likedEffects }) {
   /*********************************
    * States
    *********************************/
   const [parallaxData, setParallaxData] = useState(null);
-  // TO DO: clear location.state after data was read
+  // TODO: clear location.state after data was read
   // location.state is not defined when accessing via navbar
-  const [likes, setLikes] = useState(location.state ? location.state.likes : []);
-  console.log("TCL: Customize -> likes", likes);
+  const [likes, setLikes] = useState(likedEffects);
+  console.log('TCL: Customize -> likes', likes);
 
   /*********************************
    * Effect
@@ -22,7 +22,7 @@ export default function Customize({ location }) {
     if (likes.length === 0) {
       return;
     }
-    let likesUrl = likes.join("-");
+    let likesUrl = likes.join('-');
     api.getManyParallaxData(likesUrl).then(res => {
       setParallaxData(res);
     });
