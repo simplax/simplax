@@ -12,7 +12,7 @@ const ShowcaseCustomize = () => {
   /*********************************
    * Event Handler
    *********************************/
-  const handlePageClick = () => {
+  const handleCustomizeClick = () => {
     setIsShowcase(!isShowcase);
   };
 
@@ -24,33 +24,26 @@ const ShowcaseCustomize = () => {
     setLikes(likesTemp);
   };
 
+  const handleShowCaseClick = (updatedLikeStatus) => {
+    setIsShowcase(!isShowcase)
+    setLikes(updatedLikeStatus)
+  }
+
   /*********************************
    * Render
    *********************************/
   if (isShowcase) {
     return (
       <div>
-        <Showcase onLikeClick={handleLikeClick} likes={likes} />
-        <button
-          type="button"
-          onClick={handlePageClick}
-          className="btn btn-customize"
-        >
-          Customize
-        </button>
+        <Showcase onLikeClick={handleLikeClick} likes={likes} onCustomizeClick={handleCustomizeClick} />
+
       </div>
     );
   } else {
     return (
       <div>
-        <Customize likedEffects={likes} />
-        <button
-          type="button"
-          onClick={handlePageClick}
-          className="btn btn-customize"
-        >
-          Showcase
-        </button>
+        <Customize likedEffects={likes} onShowCaseClick={handleShowCaseClick} />
+
       </div>
     );
   }

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import api from "../api";
 
-export default function AddEffect({ likes, onAddEffect }) {
+export default function AddEffect({ likedEffect, onAddEffect }) {
   /*********************************
    * States
    *********************************/
@@ -13,10 +13,10 @@ export default function AddEffect({ likes, onAddEffect }) {
    *********************************/
   useEffect(() => {
     api.getAllParallaxData().then(allPlxData => {
-      setParallaxData(allPlxData.filter(data => !likes.includes(data._id)));
-      setEffect(allPlxData.filter(data => !likes.includes(data._id))[0]._id);
+      setParallaxData(allPlxData.filter(data => !likedEffect.includes(data._id)));
+      setEffect(allPlxData.filter(data => !likedEffect.includes(data._id))[0]._id);
     });
-  }, [likes]);
+  }, [likedEffect]);
 
   /*********************************
    * Event Handler

@@ -7,7 +7,7 @@ import CategoryNavbar from '../CategoryNavbar';
 import TextTranslateX from '../animations/TextTranslateX';
 import TextTranslateY from '../animations/TextTranslateY';
 
-const Showcase = ({ onLikeClick, likes }) => {
+const Showcase = ({ onLikeClick, likes, onCustomizeClick }) => {
   /*********************************
    * States
    *********************************/
@@ -198,6 +198,15 @@ const Showcase = ({ onLikeClick, likes }) => {
       <div className="property-text">
         <TextTranslateX text={property} isEnter={propertyAnimation} />
       </div>
+
+      <button
+        type="button"
+
+        className="btn btn-customize"
+        onClick={onCustomizeClick}
+      >
+        Customize
+        </button>
     </div>
   );
 };
