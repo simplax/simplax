@@ -1,7 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
-import api from '../../api';
 import Plx from 'react-plx';
+import { useInView } from 'react-intersection-observer';
+
+import api from '../../api';
 import ShowcaseBox from '../ShowcaseBox';
 import CategoryNavbar from '../CategoryNavbar';
 import TextTranslateX from '../animations/TextTranslateX';
@@ -16,6 +18,11 @@ const Showcase = ({ onLikeClick, likes, onCustomizeClick }) => {
   const [plxDataFilter, setPlxDataFilter] = useState(null);
   const [property, setProperty] = useState('');
   const [propertyAnimation, setPropertyAnimation] = useState(false);
+
+  /*********************************
+   * Intersection Observer
+   *********************************/
+  const [ref, inView] = useInView();
 
   /*********************************
    * Effects
@@ -38,6 +45,10 @@ const Showcase = ({ onLikeClick, likes, onCustomizeClick }) => {
       setPlxDataFilter(filters);
     });
   }, []);
+
+  useEffect(() => {
+    console.log('category navbar inView:', inView);
+  }, [inView]);
 
   /*********************************
    * Event Handler
@@ -118,7 +129,10 @@ const Showcase = ({ onLikeClick, likes, onCustomizeClick }) => {
       </div>
 
       {/* Category Navbar */}
-      <CategoryNavbar />
+      <div ref={ref} className="sticky-navbar">
+        <CategoryNavbar />
+      </div>
+      <div className="scroll-down-container" />
 
       {/* Transform */}
       <div className="category-container">

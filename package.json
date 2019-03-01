@@ -12,7 +12,6 @@
     "node": "8.9.4"
   },
   "dependencies": {
-    "bootstrap": "^4.3.1",
-    "react-intersection-observer": "^8.10.0"
+    "bootstrap": "^4.3.1"
   }
 }
