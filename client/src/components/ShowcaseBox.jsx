@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Plx from 'react-plx';
 
-const ShowcaseBox = props => {
+const ShowcaseBox = ({ data, onLikeClick, likes, onPlxStart, onPlxEnd }) => {
   /*******************************************
    * Get data from props and set parallaxData
    *******************************************/
@@ -19,7 +19,7 @@ const ShowcaseBox = props => {
     category,
     property,
     unit
-  } = props.data;
+  } = data;
 
   const parallaxData = [
     {
@@ -55,10 +55,15 @@ const ShowcaseBox = props => {
   ];
 
   /*********************************
+   * State
+   *********************************/
+  const [textEnter, setTextEnter] = useState(false);
+
+  /*********************************
    * functions
    *********************************/
   const likeClassName = () => {
-    return props.likes.includes(_id)
+    return likes.includes(_id)
       ? 'like fas fa-heart fa-2x'
       : 'unlike fas fa-heart fa-2x';
   };
@@ -67,16 +72,20 @@ const ShowcaseBox = props => {
    * render
    *********************************/
   return (
-    <div className="showcase__scroll-container">
-      <div className="showcase__box-container">
-        <h5>{property}</h5>
-        <div>
-          <Plx parallaxData={parallaxData}>
-            <div className="showcase__box" />
-          </Plx>
-        </div>
-        <i className={likeClassName()} onClick={() => props.onLikeClick(_id)} />
-      </div>
+    <div className="showcase-box-container">
+      <Plx
+        parallaxData={parallaxData}
+        onPlxStart={() => {
+          onPlxStart(property);
+        }}
+        onPlxEnd={() => {
+          onPlxEnd(property);
+        }}
+      >
+        <div className="showcase-box" />
+      </Plx>
+
+      <i className={likeClassName()} onClick={() => onLikeClick(_id)} />
     </div>
   );
 };

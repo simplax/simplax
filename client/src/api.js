@@ -116,6 +116,20 @@ export default {
     return service
       .delete("/blogposts/" + BlogId)
       .then(res => res.data)
-      .catch(errHandler);
-  }
+      .catch(errHandler)
+
+  },
+
+  userDetail() {
+    return service
+      .get('loggedin')
+      .then(res => {
+        let user = res.data
+        localStorage.setItem('user', JSON.stringify(user))
+        console.log(localStorage.getItem('user'))
+        return user
+      })
+  },
+
+
 };

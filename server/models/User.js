@@ -4,8 +4,8 @@ const Schema = mongoose.Schema;
 const userSchema = new Schema(
   {
     _github: Number,
-    githubName: String,
-    githubUsername: String
+    githubUsername: String,
+
   },
   {
     timestamps: {

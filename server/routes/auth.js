@@ -94,6 +94,8 @@ router.post('/login-with-passport-local-strategy', (req, res, next) => {
   })(req, res, next)
 })
 
+
+
 router.get(
   "/github-login",
   passport.authenticate('github')
@@ -101,15 +103,22 @@ router.get(
 
 router.get(
   "/github-login/callback",
-  passport.authenticate("github", { failureRedirect: "/github-login" }),
+  passport.authenticate('github', { failureRedirect: "/login" }),
   (req, res, next) => {
-    res.redirect(process.env.FRONTEND_URI + "/github-login/callback");
-  }
-)
+    res.redirect(process.env.FRONTEND_URI + "/success-login");
+  });
+
 
 router.get("/logout", (req, res) => {
   req.logout()
   res.json({ message: 'You are out!' })
 })
+
+router.get('/loggedin', (req, res, next) => {
+  console.log(req.user)
+  res.json(req.user)
+})
+
+
 
 module.exports = router
