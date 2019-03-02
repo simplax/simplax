@@ -23,6 +23,7 @@ const Showcase = ({ onLikeClick, likes, onCustomizeClick }) => {
   // componentDidMount
   // GET all parallaxData and filter by category
   useEffect(() => {
+
     api.getAllParallaxData().then(allPlxData => {
       let transforms = allPlxData.filter(data => {
         return data.category === 'Transform';

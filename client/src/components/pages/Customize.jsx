@@ -19,6 +19,11 @@ export default function Customize({ likedEffects, onShowCaseClick }) {
    * Effect
    *********************************/
   useEffect(() => {
+    setLikedEffect(api.getSessionStorage())
+  }, [])
+
+  useEffect(() => {
+
     if (likedEffect.length === 0) {
       return;
     }
@@ -35,11 +40,13 @@ export default function Customize({ likedEffects, onShowCaseClick }) {
     const likedEffectTemp = [...likedEffect];
     likedEffectTemp.push(id);
     setLikedEffect(likedEffectTemp);
+    api.setSessionStorage(likedEffectTemp)
   }
   function handleCloseEffect(id) {
     const likedEffectTemp = [...likedEffect];
     likedEffectTemp.splice(likedEffectTemp.indexOf(id), 1);
     setLikedEffect(likedEffectTemp);
+    api.setSessionStorage(likedEffectTemp)
   }
 
   /*********************************

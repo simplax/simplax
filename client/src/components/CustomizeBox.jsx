@@ -66,7 +66,6 @@ export default function CustomizeBox({ parallaxDataSelection }) {
           <Plx parallaxData={parallaxData}>
             <div className="showcase-box" />
           </Plx>
-          <div className='scrolldown-container'></div>
         </div>
       </div>
     </div>

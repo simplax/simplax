@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Showcase from './Showcase';
 import Customize from './Customize';
+import api from '../../api';
 
 const ShowcaseCustomize = () => {
   /*********************************
@@ -8,6 +9,14 @@ const ShowcaseCustomize = () => {
    *********************************/
   const [isShowcase, setIsShowcase] = useState(true);
   const [likes, setLikes] = useState([]);
+
+  /*********************************
+   * Effect
+   *********************************/
+  useEffect(() => {
+    setLikes(api.getSessionStorage())
+
+  }, [])
 
   /*********************************
    * Event Handler
@@ -22,11 +31,13 @@ const ShowcaseCustomize = () => {
       ? likesTemp.splice(likesTemp.indexOf(id), 1)
       : likesTemp.push(id);
     setLikes(likesTemp);
+    api.setSessionStorage(likesTemp)
   };
 
   const handleShowCaseClick = (updatedLikeStatus) => {
     setIsShowcase(!isShowcase)
     setLikes(updatedLikeStatus)
+    // api.setSessionStorage(updatedLikeStatus)
   }
 
   /*********************************
