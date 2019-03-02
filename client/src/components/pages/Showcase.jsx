@@ -170,7 +170,7 @@ const Showcase = ({ onLikeClick, likes, onCustomizeClick }) => {
   /*********************************
    * Scrollable Anchor Configuration
    *********************************/
-  configureAnchors({ offset: viewportHeight / 2.5, scrollDuration: 800 });
+  configureAnchors({ offset: viewportHeight / 2.5, scrollDuration: 1000 });
 
   /*********************************
    * Render
