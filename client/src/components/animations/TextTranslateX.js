@@ -21,7 +21,7 @@ const TextTranslateX = ({ text, isEnter }) => {
     <div className="TextTranslateX">
       <div>
         {trail.map(({ x, opacity }, index) => (
-          <animated.h4
+          <animated.h5
             key={index}
             className="TextTranslateX__text"
             style={{
@@ -30,7 +30,7 @@ const TextTranslateX = ({ text, isEnter }) => {
             }}
           >
             {textArr[index]}
-          </animated.h4>
+          </animated.h5>
         ))}
       </div>
     </div>

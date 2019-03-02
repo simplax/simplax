@@ -18,7 +18,7 @@
 // Variables
 // --------------------
 $primary: #ff8410;
-$primary-light: #ffb731;
+$primary-light: #fd912c;
 $primary-super-light: #ff9c5b;
 $secondary: #ff4040;
 $secondary-light: #ff6e6e;
@@ -150,7 +150,7 @@ body {
     padding-bottom: 0.2rem;
   }
   ul {
-    margin: 0.4rem 12rem;
+    margin: 0.4rem 18rem;
     width: 100%;
     display: flex;
     justify-content: space-around;
@@ -279,5 +279,7 @@ body {
 .property-text {
   position: fixed;
   top: 50vh;
-  left: 10vw;
+  letter-spacing: 0.1rem;
+  color: $primary;
 }
+
