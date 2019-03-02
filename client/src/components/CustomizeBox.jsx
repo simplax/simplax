@@ -2,58 +2,61 @@ import React from "react";
 import Plx from "react-plx";
 
 export default function CustomizeBox({ parallaxDataSelection }) {
-  const parallaxData = [];
+  let parallaxData = [];
+
+  if (parallaxDataSelection) {
+    const {
+      _id,
+      start,
+      startOffsetIn,
+      startOffsetOut,
+      end,
+      endOffsetIn,
+      endOffsetOut,
+      easing,
+      startValue,
+      endValue,
+      category,
+      property,
+      unit
+    } = parallaxDataSelection[0];
+
+    parallaxData = [
+      {
+        start,
+        startOffset: startOffsetIn,
+        end,
+        endOffset: endOffsetIn,
+        easing,
+        properties: []
+      },
+      {
+        start,
+        startOffset: startOffsetOut,
+        end,
+        endOffset: endOffsetOut,
+        easing,
+        properties: []
+      }
+    ];
+  }
 
   if (parallaxDataSelection) {
     parallaxDataSelection.forEach(data => {
-      const {
-        _id,
-        start,
-        startOffsetIn,
-        startOffsetOut,
-        end,
-        endOffsetIn,
-        endOffsetOut,
-        easing,
+      const { startValue, endValue, property, unit } = data;
+
+      parallaxData[0].properties.push({
         startValue,
         endValue,
-        category,
         property,
         unit
-      } = data;
-
-      parallaxData.push(
-        {
-          start,
-          startOffset: startOffsetIn,
-          end,
-          endOffset: endOffsetIn,
-          easing,
-          properties: [
-            {
-              startValue,
-              endValue,
-              property,
-              unit
-            }
-          ]
-        },
-        {
-          start,
-          startOffset: startOffsetOut,
-          end,
-          endOffset: endOffsetOut,
-          easing,
-          properties: [
-            {
-              startValue: endValue,
-              endValue: startValue,
-              property,
-              unit
-            }
-          ]
-        }
-      );
+      });
+      parallaxData[1].properties.push({
+        startValue: endValue,
+        endValue: startValue,
+        property,
+        unit
+      });
     });
   }
 
