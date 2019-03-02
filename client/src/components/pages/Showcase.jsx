@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Link } from 'react-router-dom';
 import Plx from 'react-plx';
 import { useInView } from 'react-intersection-observer';
 import ScrollableAnchor, { configureAnchors } from 'react-scrollable-anchor';
@@ -13,13 +12,20 @@ const Showcase = ({ onLikeClick, likes, onCustomizeClick }) => {
   /*********************************
    * States
    *********************************/
+  // fix
   const [plxDataTransform, setPlxDataTransform] = useState(null);
   const [plxDataColors, setPlxDataColors] = useState(null);
   const [plxDataFilter, setPlxDataFilter] = useState(null);
+  const [transformProps, setTransformProps] = useState([]);
+  const [colorsProps, setColorsProps] = useState([]);
+  const [cssFilterProps, setCSSFilterProps] = useState([]);
+  const [viewportHeight, setViewportHeight] = useState(0);
+
+  // update
   const [property, setProperty] = useState('');
   const [propertyAnimation, setPropertyAnimation] = useState(false);
   const [category, setCategory] = useState('');
-  const [viewportHeight, setViewportHeight] = useState(0);
+
   // Intersection Observer
   const [categoryNavRef, categoryNavInView] = useInView({});
 
@@ -32,18 +38,47 @@ const Showcase = ({ onLikeClick, likes, onCustomizeClick }) => {
     setViewportHeight(window.innerHeight);
 
     api.getAllParallaxData().then(allPlxData => {
-      let transforms = allPlxData.filter(data => {
+      // transform
+      let transformsPlx = allPlxData.filter(data => {
         return data.category === 'transform';
       });
-      setPlxDataTransform(transforms);
-      let colors = allPlxData.filter(data => {
+      let transformsProps = allPlxData
+        .filter(data => {
+          return data.category === 'transform';
+        })
+        .map(data => {
+          return data.property;
+        });
+      setPlxDataTransform(transformsPlx);
+      setTransformProps(transformsProps);
+
+      // colors
+      let colorsPlx = allPlxData.filter(data => {
         return data.category === 'colors';
       });
-      setPlxDataColors(colors);
-      let filters = allPlxData.filter(data => {
+      let colorsProps = allPlxData
+        .filter(data => {
+          return data.category === 'colors';
+        })
+        .map(data => {
+          return data.property;
+        });
+      setPlxDataColors(colorsPlx);
+      setColorsProps(colorsProps);
+
+      // css-filter
+      let filtersPlx = allPlxData.filter(data => {
         return data.category === 'css-filter';
       });
-      setPlxDataFilter(filters);
+      let filtersProps = allPlxData
+        .filter(data => {
+          return data.category === 'css-filter';
+        })
+        .map(data => {
+          return data.property;
+        });
+      setPlxDataFilter(filtersPlx);
+      setCSSFilterProps(filtersProps);
     });
   }, []);
 
@@ -75,6 +110,20 @@ const Showcase = ({ onLikeClick, likes, onCustomizeClick }) => {
     setCategory(nextCategory);
     setProperty('');
     setPropertyAnimation(false);
+  };
+  /*********************************
+   * Functions
+   *********************************/
+  // set all properties to category navbar
+  const setPropertyNames = category => {
+    switch (category) {
+      case 'transform':
+        return transformProps;
+      case 'colors':
+        return colorsProps;
+      case 'css-filter':
+        return cssFilterProps;
+    }
   };
 
   /*********************************
@@ -144,7 +193,13 @@ const Showcase = ({ onLikeClick, likes, onCustomizeClick }) => {
 
       {/* Category Navbar */}
       <div ref={categoryNavRef} className="container-50vh" />
-      {!categoryNavInView && <CategoryNavbar categoryActive={category} />}
+      {!categoryNavInView && (
+        <CategoryNavbar
+          categoryActive={category}
+          properties={setPropertyNames(category)}
+          propertyActive={property}
+        />
+      )}
       <div className="container-100vh" />
 
       {/* Transform */}
