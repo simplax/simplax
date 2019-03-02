@@ -1,7 +1,13 @@
 import React, { useState } from 'react';
 import Plx from 'react-plx';
 
-const ShowcaseBox = ({ data, onLikeClick, likes, onPlxStart, onPlxEnd }) => {
+const ShowcaseBox = ({
+  data,
+  onLikeClick,
+  likes,
+  onPropertyPlxStart,
+  onPropertyPlxEnd
+}) => {
   /*******************************************
    * Get data from props and set parallaxData
    *******************************************/
@@ -63,7 +69,6 @@ const ShowcaseBox = ({ data, onLikeClick, likes, onPlxStart, onPlxEnd }) => {
    * functions
    *********************************/
   const likeClassName = () => {
-
     return likes.includes(_id)
       ? 'like fas fa-heart fa-2x'
       : 'unlike fas fa-heart fa-2x';
@@ -77,10 +82,10 @@ const ShowcaseBox = ({ data, onLikeClick, likes, onPlxStart, onPlxEnd }) => {
       <Plx
         parallaxData={parallaxData}
         onPlxStart={() => {
-          onPlxStart(property);
+          onPropertyPlxStart(property);
         }}
         onPlxEnd={() => {
-          onPlxEnd(property);
+          onPropertyPlxEnd(property);
         }}
       >
         <div className="showcase-box" />

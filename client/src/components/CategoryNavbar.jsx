@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import Plx from 'react-plx';
-import CategoryTranslateY from './animations/CategoryTranslateY';
+import TextTranslateY from './animations/TextTranslateY';
 
-const CategoryNavbar = () => {
+const CategoryNavbar = ({ categoryActive }) => {
   return (
     <div className="CategoryNavbar">
       <nav className="navbar navbar-dark navbar-expand-lg">
@@ -21,13 +21,40 @@ const CategoryNavbar = () => {
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav">
             <li className="nav-item">
-              <CategoryTranslateY category="TRANSFORM" linkTo="#transform" />
+              <a
+                href="#transform"
+                className={
+                  categoryActive === 'transform'
+                    ? 'nav-link category-active'
+                    : 'nav-link'
+                }
+              >
+                <TextTranslateY category="TRANSFORM" />
+              </a>
             </li>
             <li className="nav-item">
-              <CategoryTranslateY category="COLORS" linkTo="#colors" />
+              <a
+                href="#colors"
+                className={
+                  categoryActive === 'colors'
+                    ? 'nav-link category-active'
+                    : 'nav-link'
+                }
+              >
+                <TextTranslateY category="COLORS" />
+              </a>
             </li>
             <li className="nav-item">
-              <CategoryTranslateY category="CSS-FILTER" linkTo="#css-filter" />
+              <a
+                href="#css-filter"
+                className={
+                  categoryActive === 'css-filter'
+                    ? 'nav-link category-active'
+                    : 'nav-link'
+                }
+              >
+                <TextTranslateY category="CSS-FILTER" />
+              </a>
             </li>
           </ul>
         </div>
