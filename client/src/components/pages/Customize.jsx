@@ -26,8 +26,10 @@ export default function Customize({ likedEffects, onShowCaseClick }) {
     if (likedEffect.length === 0) {
       return;
     }
+
     let likedEffectUrl = likedEffect.join("-");
     api.getManyParallaxData(likedEffectUrl).then(res => {
+      console.log("TCL: Customize -> res", res);
       setParallaxDataDefault(res);
 
       /*********************************
@@ -82,6 +84,8 @@ export default function Customize({ likedEffects, onShowCaseClick }) {
 
       setParallaxData(parallaxDataTmp);
     });
+
+    return () => setParallaxData([]);
   }, [likedEffect]);
 
   /*********************************
@@ -106,6 +110,22 @@ export default function Customize({ likedEffects, onShowCaseClick }) {
     const index = modifiedEffectsTmp.findIndex(obj => obj.property === property);
     modifiedEffectsTmp.splice(index, 1);
     setModifiedEffects(modifiedEffectsTmp);
+
+    // reset parallaxData
+
+    const indexProperties = parallaxData[0].properties.findIndex(obj => obj.property === property);
+    const indexDefaultProperties = parallaxDataDefault.findIndex(obj => obj.property === property);
+    let parallaxDataTmp = [...parallaxData];
+    parallaxDataTmp[0].properties[indexProperties].startValue =
+      parallaxDataDefault[indexDefaultProperties].startValue;
+    parallaxDataTmp[0].properties[indexProperties].endValue =
+      parallaxDataDefault[indexDefaultProperties].endValue;
+    parallaxDataTmp[1].properties[indexProperties].startValue =
+      parallaxDataDefault[indexDefaultProperties].endValue;
+    parallaxDataTmp[1].properties[indexProperties].endValue =
+      parallaxDataDefault[indexDefaultProperties].startValue;
+
+    setParallaxData(parallaxDataTmp);
   }
 
   function handleModifyEffect(property, values) {
@@ -129,6 +149,7 @@ export default function Customize({ likedEffects, onShowCaseClick }) {
     parallaxDataTmp[0].properties[indexProperties].endValue = values[1];
     parallaxDataTmp[1].properties[indexProperties].startValue = values[1];
     parallaxDataTmp[1].properties[indexProperties].endValue = values[0];
+
     setParallaxData(parallaxDataTmp);
   }
 
