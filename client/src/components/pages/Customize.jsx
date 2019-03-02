@@ -5,6 +5,8 @@ import CodeSnippetModal from "../CodeSnippetModal";
 import CustomizeBox from "../CustomizeBox";
 import api from "../../api";
 
+let parallaxDataCode = [];
+
 export default function Customize({ likedEffects, onShowCaseClick }) {
   /*********************************
    * States
@@ -68,7 +70,7 @@ export default function Customize({ likedEffects, onShowCaseClick }) {
   /*********************************
    * Converting parallax data to usable code for snippet and modal
    *********************************/
-  let parallaxDataCode = [];
+
   if (parallaxData.length !== 0) {
     const {
       _id,
@@ -141,6 +143,7 @@ export default function Customize({ likedEffects, onShowCaseClick }) {
       }
     });
   }
+  console.log("TCL: Customize -> parallaxDataCode", parallaxDataCode);
 
   /*********************************
    * Render

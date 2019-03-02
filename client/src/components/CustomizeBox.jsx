@@ -2,7 +2,7 @@ import React from "react";
 import Plx from "react-plx";
 
 export default function CustomizeBox({ parallaxDataCode }) {
-
+  console.log("TCL: CustomizeBox -> parallaxDataCode", parallaxDataCode);
 
   /*********************************
    * render

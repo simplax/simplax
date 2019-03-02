@@ -16,7 +16,7 @@ export default function CustomizeForm({ data, onModifedValue, onCloseEffect }) {
         <div className="row">
           <div className="col-7 d-flex flex-column justify-content-center">
             <label>{property}</label>
-            {category === "Colors" ? (
+            {category === "colors" ? (
               <div className="input-group">
                 <input
                   className="form-control"
@@ -30,7 +30,6 @@ export default function CustomizeForm({ data, onModifedValue, onCloseEffect }) {
                   value={values[1]}
                   onChange={e => setValues([values[0], e.target.value])}
                 />
-                {values[0] + "and" + values[1]}
               </div>
             ) : (
               <Range

@@ -1,6 +1,6 @@
 const parallaxData = [
   {
-    category: "Transform",
+    category: "transform",
     property: "scale",
     startValue: 1,
     endValue: 1.5,
@@ -16,7 +16,7 @@ const parallaxData = [
     easing: "easeInSine"
   },
   {
-    category: "Transform",
+    category: "transform",
     property: "rotate",
     startValue: 0,
     endValue: 45,
@@ -32,12 +32,10 @@ const parallaxData = [
     easing: "easeInSine"
   },
   {
-    category: "Colors",
+    category: "colors",
     property: "backgroundColor",
     startValue: "#ffdf28",
     endValue: "#4094e9",
-    minValue: "#000000",
-    maxValue: "#ffffff",
     unit: "",
     start: "self",
     startOffsetIn: "10vw",
@@ -48,12 +46,10 @@ const parallaxData = [
     easing: "easeInSine"
   },
   {
-    category: "CSS Filter",
+    category: "css-filter",
     property: "opacity",
-    startValue: 0.1,
-    endValue: 0.9,
-    minValue: 0,
-    maxValue: 1,
+    startValue: 0,
+    endValue: 1,
     unit: "",
     start: "self",
     startOffsetIn: "10vw",
@@ -64,7 +60,7 @@ const parallaxData = [
     easing: "easeInSine"
   },
   {
-    category: "CSS Filter",
+    category: "css-filter",
     property: "blur",
     startValue: 0,
     endValue: 5,

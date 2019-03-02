@@ -5,7 +5,7 @@ const parallaxDataSchema = new Schema(
   {
     category: {
       type: String,
-      enum: ["Transform", "Colors", "CSS Filter"],
+      enum: ["transform", "colors", "css-filter"],
       required: true
     },
     property: {
@@ -21,12 +21,10 @@ const parallaxDataSchema = new Schema(
       required: true
     },
     minValue: {
-      type: Schema.Types.Mixed,
-      required: true
+      type: Schema.Types.Mixed
     },
     maxValue: {
-      type: Schema.Types.Mixed,
-      required: true
+      type: Schema.Types.Mixed
     },
     unit: {
       type: String,
