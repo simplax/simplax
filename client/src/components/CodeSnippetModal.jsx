@@ -2,6 +2,7 @@ import React, { useRef } from "react";
 
 export default function CodeSnipppetModal({ parallaxDataCode }) {
   const codeSnippetValue = useRef(null);
+  console.log(parallaxDataCode)
 
   let propertiesArrayEnter = parallaxDataCode[0].properties.map((property) => {
     return `
