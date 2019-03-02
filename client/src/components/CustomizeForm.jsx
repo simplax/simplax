@@ -5,8 +5,12 @@ import "rc-slider/assets/index.css";
 const createSliderWithTooltip = Slider.createSliderWithTooltip;
 const Range = createSliderWithTooltip(Slider.Range);
 
-export default function CustomizeForm({ start, end, property, unit, onCloseEffect, _id }) {
-  const [values, setValues] = useState([start, end]);
+export default function CustomizeForm({ data, onCloseEffect }) {
+  const { _id, category, property, startValue, endValue, minValue, maxValue, unit } = data;
+
+  const [values, setValues] = useState([startValue, endValue]);
+  const [start, setStart] = useState(startValue);
+  const [end, setEnd] = useState(endValue);
 
   return (
     <div className="CustomizeForm">
@@ -14,15 +18,32 @@ export default function CustomizeForm({ start, end, property, unit, onCloseEffec
         <div className="row">
           <div className="col-7 d-flex flex-column justify-content-center">
             <label>{property}</label>
-            <Range
-              step={0.1}
-              min={start}
-              max={end}
-              value={values}
-              onChange={e => setValues([...e])}
-              allowCross={false}
-              tipFormatter={value => `${value} ${unit}`}
-            />
+            {category === "Colors" ? (
+              <div className="input-group">
+                <input
+                  className="form-control"
+                  type="color"
+                  value={start}
+                  onChange={e => setStart(e.target.value)}
+                />
+                <input
+                  className="form-control"
+                  type="color"
+                  value={end}
+                  onChange={e => setEnd(e.target.value)}
+                />
+              </div>
+            ) : (
+              <Range
+                step={maxValue / 10}
+                min={minValue}
+                max={maxValue}
+                value={values}
+                onChange={e => setValues([...e])}
+                // allowCross={false}
+                tipFormatter={value => `${value} ${unit}`}
+              />
+            )}
           </div>
           <div className="col-5">
             <button className="btn btn-outline-info btn-block btn-sm">Mute</button>

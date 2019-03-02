@@ -1,11 +1,11 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const parallaxDataSchema = new Schema(
   {
     category: {
       type: String,
-      enum: ['Transform', 'Colors', 'CSS Filter'],
+      enum: ["Transform", "Colors", "CSS Filter"],
       required: true
     },
     property: {
@@ -20,13 +20,21 @@ const parallaxDataSchema = new Schema(
       type: Schema.Types.Mixed,
       required: true
     },
+    minValue: {
+      type: Schema.Types.Mixed,
+      required: true
+    },
+    maxValue: {
+      type: Schema.Types.Mixed,
+      required: true
+    },
     unit: {
       type: String,
-      default: ''
+      default: ""
     },
     start: {
       type: String,
-      default: 'self',
+      default: "self",
       required: true
     },
     startOffsetIn: {
@@ -39,7 +47,7 @@ const parallaxDataSchema = new Schema(
     },
     end: {
       type: String,
-      default: 'self',
+      default: "self",
       required: true
     },
     endOffsetIn: {
@@ -52,16 +60,16 @@ const parallaxDataSchema = new Schema(
     },
     easing: {
       type: String,
-      default: 'easeInSine'
+      default: "easeInSine"
     }
   },
   {
     timestamps: {
-      createdAt: 'created_at',
-      updatedAt: 'updated_at'
+      createdAt: "created_at",
+      updatedAt: "updated_at"
     }
   }
 );
 
-const ParallaxData = mongoose.model('ParallaxData', parallaxDataSchema);
+const ParallaxData = mongoose.model("ParallaxData", parallaxDataSchema);
 module.exports = ParallaxData;
