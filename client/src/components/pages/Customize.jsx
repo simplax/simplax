@@ -18,7 +18,9 @@ export default function Customize({ likedEffects, onShowCaseClick }) {
    * Effect
    *********************************/
   useEffect(() => {
-    setLikedEffect(api.getSessionStorage())
+    if (api.getSessionStorage())
+      setLikedEffect(api.getSessionStorage())
+    else setLikedEffect([])
   }, [])
 
   useEffect(() => {
@@ -68,22 +70,22 @@ export default function Customize({ likedEffects, onShowCaseClick }) {
               {likedEffect.length === 0
                 ? null
                 : parallaxData.map(data => (
-                    <CustomizeForm
-                      key={data._id}
-                      id={data._id}
-                      property={data.property}
-                      unit={data.unit}
-                      start={data.startValue}
-                      end={data.endValue}
-                      onCloseEffect={handleCloseEffect}
-                    />
-                  ))}
+                  <CustomizeForm
+                    key={data._id}
+                    id={data._id}
+                    property={data.property}
+                    unit={data.unit}
+                    start={data.startValue}
+                    end={data.endValue}
+                    onCloseEffect={handleCloseEffect}
+                  />
+                ))}
             </div>
-            <CodeSnippetModal />
           </div>
 
           <div className="col" />
         </div>
+        <CodeSnippetModal />
 
         <div className="customize-container">
           <div className="scroll-down-container">

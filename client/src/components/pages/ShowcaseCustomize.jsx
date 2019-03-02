@@ -14,7 +14,9 @@ const ShowcaseCustomize = () => {
    * Effect
    *********************************/
   useEffect(() => {
-    setLikes(api.getSessionStorage())
+    if (api.getSessionStorage())
+      setLikes(api.getSessionStorage())
+    else setLikes([])
 
   }, [])
 
