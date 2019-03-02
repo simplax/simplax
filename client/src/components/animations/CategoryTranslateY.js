@@ -1,17 +1,17 @@
-// category fade in from top to bottom
+// category link fade in from top to bottom
 // Take two props:
-// category: string, text that you want to animate
-// fromTop: boolean, true if text enters from top to bottom
+// category: string, category name that you want to animate
+// linkTo: string, href
 // ** note that this funtion doesn't have isEnter prop
 
 import React, { useState } from 'react';
 import { useTrail, animated } from 'react-spring';
 
-const CategoryTranslateY = ({ text }) => {
-  const textArr = text.split('');
+const CategoryTranslateY = ({ category, linkTo }) => {
+  const categoryArr = category.split('');
 
-  const config = { mass: 3, tension: 2000, friction: 100 };
-  const trail = useTrail(textArr.length, {
+  const config = { mass: 6, tension: 2000, friction: 150 };
+  const trail = useTrail(categoryArr.length, {
     config,
     opacity: 1,
     y: 0,
@@ -19,19 +19,19 @@ const CategoryTranslateY = ({ text }) => {
   });
 
   return (
-    <div className="TextTranslateY">
-      <a className="nav-link" href="#">
+    <div className="categoryTranslateY">
+      <a className="nav-link" href={linkTo}>
         {trail.map(({ y, opacity }, index) => (
           <animated.span
             key={index}
-            className="TextTranslateY__text"
+            className="categoryTranslateY__category"
             href="#"
             style={{
               opacity,
               transform: y.interpolate(y => `translateY(${y}px)`)
             }}
           >
-            {textArr[index]}
+            {categoryArr[index]}
           </animated.span>
         ))}
       </a>
