@@ -5,26 +5,25 @@ import CodeSnippetModal from "../CodeSnippetModal";
 import CustomizeBox from "../CustomizeBox";
 import api from "../../api";
 
+let parallaxDataCode = [];
+
 export default function Customize({ likedEffects, onShowCaseClick }) {
   /*********************************
    * States
    *********************************/
-  const [parallaxData, setParallaxData] = useState(null);
-  // TODO: clear location.state after data was read
-  // location.state is not defined when accessing via navbar
+  const [parallaxData, setParallaxData] = useState([]);
   const [likedEffect, setLikedEffect] = useState(likedEffects);
+  const [modifiedValues, setModifiedValues] = useState([]);
 
   /*********************************
    * Effect
    *********************************/
   useEffect(() => {
-    if (api.getSessionStorage())
-      setLikedEffect(api.getSessionStorage())
-    else setLikedEffect([])
-  }, [])
+    if (api.getSessionStorage()) setLikedEffect(api.getSessionStorage());
+    else setLikedEffect([]);
+  }, []);
 
   useEffect(() => {
-
     if (likedEffect.length === 0) {
       return;
     }
@@ -41,20 +40,38 @@ export default function Customize({ likedEffects, onShowCaseClick }) {
     const likedEffectTemp = [...likedEffect];
     likedEffectTemp.push(id);
     setLikedEffect(likedEffectTemp);
-    api.setSessionStorage(likedEffectTemp)
+    api.setSessionStorage(likedEffectTemp);
   }
+
   function handleCloseEffect(id) {
     const likedEffectTemp = [...likedEffect];
     likedEffectTemp.splice(likedEffectTemp.indexOf(id), 1);
     setLikedEffect(likedEffectTemp);
-    api.setSessionStorage(likedEffectTemp)
+    api.setSessionStorage(likedEffectTemp);
+  }
+
+  function handleModifiedValue(property, values) {
+    const modifiedValuesTmp = [...modifiedValues];
+
+    const index = modifiedValuesTmp.findIndex(obj => obj.property === property);
+
+    if (index === -1) {
+      modifiedValuesTmp.push({
+        property,
+        values
+      });
+    } else {
+      modifiedValuesTmp[index].values = values;
+    }
+
+    setModifiedValues(modifiedValuesTmp);
   }
 
   /*********************************
-  * Converting parallax data to usable code for snippet and modal
-  *********************************/
-  let parallaxDataCode = []
-  if (parallaxData) {
+   * Converting parallax data to usable code for snippet and modal
+   *********************************/
+
+  if (parallaxData.length !== 0) {
     const {
       _id,
       start,
@@ -69,7 +86,7 @@ export default function Customize({ likedEffects, onShowCaseClick }) {
       category,
       property,
       unit
-    } = parallaxData[0]
+    } = parallaxData[0];
 
     parallaxDataCode = [
       {
@@ -88,27 +105,45 @@ export default function Customize({ likedEffects, onShowCaseClick }) {
         easing,
         properties: []
       }
-    ]
+    ];
+  }
+
+  if (parallaxData) {
     parallaxData.forEach(data => {
       const { startValue, endValue, property, unit } = data;
 
-      parallaxDataCode[0].properties.push({
-        startValue,
-        endValue,
-        property,
-        unit
-      });
-      parallaxDataCode[1].properties.push({
-        startValue: endValue,
-        endValue: startValue,
-        property,
-        unit
-      });
-    })
+      const indexModifiedValues = modifiedValues.findIndex(obj => obj.property === data.property);
 
+      if (indexModifiedValues === -1) {
+        parallaxDataCode[0].properties.push({
+          startValue,
+          endValue,
+          property,
+          unit
+        });
+        parallaxDataCode[1].properties.push({
+          startValue: endValue,
+          endValue: startValue,
+          property,
+          unit
+        });
+      } else {
+        parallaxDataCode[0].properties.push({
+          startValue: modifiedValues[indexModifiedValues].values[0],
+          endValue: modifiedValues[indexModifiedValues].values[1],
+          property,
+          unit
+        });
+        parallaxDataCode[1].properties.push({
+          startValue: modifiedValues[indexModifiedValues].values[1],
+          endValue: modifiedValues[indexModifiedValues].values[0],
+          property,
+          unit
+        });
+      }
+    });
   }
-
-
+  console.log("TCL: Customize -> parallaxDataCode", parallaxDataCode);
 
   /*********************************
    * Render
@@ -126,21 +161,18 @@ export default function Customize({ likedEffects, onShowCaseClick }) {
         <div className="row ml-md-3 sticky-top-md">
           <div className="col-12 col-md-3 sidebar">
             <div className="">
-              {console.log('new' + parallaxDataCode[0].properties[0])}
               <AddEffect likedEffect={likedEffect} onAddEffect={handleAddEffect} />
               {likedEffect.length === 0
                 ? null
                 : parallaxData.map(data => (
-                  <CustomizeForm
-                    key={data._id}
-                    id={data._id}
-                    property={data.property}
-                    unit={data.unit}
-                    start={data.startValue}
-                    end={data.endValue}
-                    onCloseEffect={handleCloseEffect}
-                  />
-                ))}
+                    <CustomizeForm
+                      key={data._id}
+                      id={data._id}
+                      data={data}
+                      onModifedValue={handleModifiedValue}
+                      onCloseEffect={handleCloseEffect}
+                    />
+                  ))}
             </div>
           </div>
 
@@ -152,7 +184,6 @@ export default function Customize({ likedEffects, onShowCaseClick }) {
           <div className="scroll-down-container">
             <h2>Scroll Down</h2>
           </div>
-          {console.log(parallaxData)}
           <CustomizeBox parallaxDataCode={parallaxDataCode} />
           <div className="scroll-down-container" />
         </div>

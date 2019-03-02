@@ -75,8 +75,8 @@ export default {
       .catch(errHandler);
   },
   /****************************************
-     * CRUD operation for blogpost
-  *****************************************/
+   * CRUD operation for blogpost
+   *****************************************/
   postBlogPost(data) {
     return service
       .post("/blogposts", data)
@@ -109,23 +109,20 @@ export default {
     return service
       .delete("/blogposts/" + BlogId)
       .then(res => res.data)
-      .catch(errHandler)
-
+      .catch(errHandler);
   },
 
   /****************************************
-     * Getting information of logged in user
-  *****************************************/
+   * Getting information of logged in user
+   *****************************************/
 
   userDetail() {
-    return service
-      .get('loggedin')
-      .then(res => {
-        let user = res.data
-        localStorage.setItem('user', JSON.stringify(user))
-        console.log(localStorage.getItem('user'))
-        return user
-      })
+    return service.get("loggedin").then(res => {
+      let user = res.data;
+      localStorage.setItem("user", JSON.stringify(user));
+      console.log(localStorage.getItem("user"));
+      return user;
+    });
   },
   isLoggedIn() {
     return localStorage.getItem("user") != null;
@@ -137,17 +134,15 @@ export default {
     return JSON.parse(localStorage.getItem("user"));
   },
 
-
   /****************************************
-     * Storing informations on session storage for non logged in users
-  *****************************************/
+   * Storing informations on session storage for non logged in users
+   *****************************************/
 
   setSessionStorage(likedEffect) {
-    return sessionStorage.setItem('likedEffect', JSON.stringify(likedEffect))
+    return sessionStorage.setItem("likedEffect", JSON.stringify(likedEffect));
   },
 
   getSessionStorage() {
-    return JSON.parse(sessionStorage.getItem('likedEffect'))
+    return JSON.parse(sessionStorage.getItem("likedEffect"));
   }
-
 };
