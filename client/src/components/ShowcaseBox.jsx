@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Plx from 'react-plx';
+import ScrollableAnchor from 'react-scrollable-anchor';
 
 const ShowcaseBox = ({
   data,
@@ -61,11 +62,6 @@ const ShowcaseBox = ({
   ];
 
   /*********************************
-   * State
-   *********************************/
-  const [textEnter, setTextEnter] = useState(false);
-
-  /*********************************
    * functions
    *********************************/
   const likeClassName = () => {
@@ -78,21 +74,23 @@ const ShowcaseBox = ({
    * render
    *********************************/
   return (
-    <div className="showcase-box-container">
-      <Plx
-        parallaxData={parallaxData}
-        onPlxStart={() => {
-          onPropertyPlxStart(property, category);
-        }}
-        onPlxEnd={() => {
-          onPropertyPlxEnd(property);
-        }}
-      >
-        <div className="showcase-box" />
-      </Plx>
+    <ScrollableAnchor id={property}>
+      <div className="showcase-box-container">
+        <Plx
+          parallaxData={parallaxData}
+          onPlxStart={() => {
+            onPropertyPlxStart(property, category);
+          }}
+          onPlxEnd={() => {
+            onPropertyPlxEnd(property);
+          }}
+        >
+          <div className="showcase-box" />
+        </Plx>
 
-      <i className={likeClassName()} onClick={() => onLikeClick(_id)} />
-    </div>
+        <i className={likeClassName()} onClick={() => onLikeClick(_id)} />
+      </div>
+    </ScrollableAnchor>
   );
 };
 

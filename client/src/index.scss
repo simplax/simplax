@@ -22,6 +22,7 @@ $primary-light: #ffb731;
 $primary-super-light: #ff9c5b;
 $secondary: #ff4040;
 $secondary-light: #ff6e6e;
+$secondary-super-light: #ff9898;
 $grey: #a3a3a3;
 $dark: #202020;
 
@@ -137,12 +138,14 @@ body {
 // --------------------
 // Category Navbar
 // --------------------
-.CategoryNavbar {
-  background-color: $dark;
-  width: 100%;
+.sticky-navbar {
   position: sticky;
   top: 0;
   z-index: 1;
+}
+.CategoryNavbar {
+  background-color: $dark;
+
   ul {
     margin: 0.4rem 12rem;
     width: 100%;
@@ -150,11 +153,10 @@ body {
     justify-content: space-around;
   }
   .nav-link {
-    display: inline-block;
     letter-spacing: 0.2rem;
     transition-property: all;
     transition-duration: 0.6s;
-    padding: 0.3rem;
+    padding: 0.4rem;
     border-radius: 10px;
   }
   .nav-link:hover {
@@ -163,6 +165,35 @@ body {
   .category-active {
     color: $primary !important;
     box-shadow: 0 0 1.5rem $primary-super-light;
+  }
+}
+
+// --------------------
+// Property Navbar
+// --------------------
+.PropertyNavbar {
+  background-color: $dark;
+  transition-property: border-bottom;
+  transition-duration: 1s;
+  .navbar.navbar-dark.navbar-expand-lg {
+    padding: 0;
+  }
+  ul {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+  }
+  .nav-link {
+    letter-spacing: 0.1rem;
+    transition-property: all;
+    transition-duration: 0.6s;
+  }
+  .nav-link:hover {
+    color: $primary-super-light !important;
+  }
+
+  .property-active {
+    color: lighten($primary, 5%) !important;
   }
 }
 
