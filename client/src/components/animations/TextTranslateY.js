@@ -4,7 +4,7 @@
 // linkTo: string, href
 // ** note that this funtion doesn't have isEnter prop
 
-import React, { useState } from 'react';
+import React from 'react';
 import { useTrail, animated } from 'react-spring';
 
 const TextTranslateY = ({ category }) => {

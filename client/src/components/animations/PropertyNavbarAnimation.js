@@ -3,7 +3,7 @@
 // text: string, text that you want to animate
 // isEnter: boolean, determine text enter or exit
 
-import React from 'react';
+import React, { useState } from 'react';
 import { useTrail, animated } from 'react-spring';
 
 const TextTranslateX = ({ text, isEnter }) => {
