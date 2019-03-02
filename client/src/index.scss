@@ -18,10 +18,10 @@
 // Variables
 // --------------------
 $primary: #ff8410;
-$secondary: #ff4040;
 $primary-light: #ffb731;
+$primary-super-light: #ff9c5b;
+$secondary: #ff4040;
 $secondary-light: #ff6e6e;
-$light: #ffebcd;
 $grey: #a3a3a3;
 $dark: #202020;
 
@@ -41,6 +41,10 @@ body {
 // --------------------
 .link:hover {
   text-decoration: none;
+}
+
+.container-50vh {
+  height: 50vh;
 }
 
 .scroll-down-container {
@@ -81,6 +85,19 @@ body {
 }
 
 // --------------------
+// Customize
+// --------------------
+.Customize {
+  @include media-breakpoint-up(md) {
+    .sticky-top-md {
+      position: sticky;
+      z-index: 1020;
+      top: 3.5rem;
+    }
+  }
+}
+
+// --------------------
 // CodeSnipppetModal
 // --------------------
 .CodeSnipppetModal {
@@ -114,6 +131,31 @@ body {
 }
 
 // --------------------
+// Category Navbar
+// --------------------
+.CategoryNavbar {
+  background-color: $dark;
+  width: 100%;
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  ul {
+    margin: 0.2rem 12rem;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+  }
+  .nav-link {
+    letter-spacing: 0.2rem;
+    transition-property: all;
+    transition-duration: 0.6s;
+  }
+  .nav-link:hover {
+    color: $primary-super-light !important;
+  }
+}
+
+// --------------------
 // Style for CustomizeForm component
 .CustomizeForm {
   .code-snippet-modal {
@@ -141,15 +183,12 @@ body {
   right: 5vw;
   transition-property: all;
   transition-duration: 0.3s;
+  z-index: 2;
 }
 .btn-customize:hover {
   transform: translateY(-2px);
   color: $light;
-  background-image: linear-gradient(
-    -45deg,
-    darken($secondary, 30%),
-    darken($primary, 10%)
-  );
+  background-image: linear-gradient(-45deg, darken($secondary, 30%), darken($primary, 10%));
   box-shadow: 0px 0px 15px rgba($primary, 0.7);
 }
 .btn-customize:active {
@@ -177,7 +216,6 @@ body {
 // --------------------
 .TextTranslateY {
   .TextTranslateY__text {
-    margin-left: 2px;
     display: inline-block;
   }
 }

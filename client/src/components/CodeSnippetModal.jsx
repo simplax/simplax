@@ -43,7 +43,7 @@ class Example extends Component {
     <div className="CodeSnipppetModal">
       <button
         type="button"
-        className="btn btn-info fixed-bottom mb-5 ml-5"
+        className="btn btn-info"
         data-toggle="modal"
         data-target="#codeSnippetModal">
         Show code snippet

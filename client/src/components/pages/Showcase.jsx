@@ -1,11 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
-import api from '../../api';
 import Plx from 'react-plx';
+import { useInView } from 'react-intersection-observer';
+
+import api from '../../api';
 import ShowcaseBox from '../ShowcaseBox';
 import CategoryNavbar from '../CategoryNavbar';
 import TextTranslateX from '../animations/TextTranslateX';
-import TextTranslateY from '../animations/TextTranslateY';
+
 
 const Showcase = ({ onLikeClick, likes, onCustomizeClick }) => {
   /*********************************
@@ -16,6 +18,11 @@ const Showcase = ({ onLikeClick, likes, onCustomizeClick }) => {
   const [plxDataFilter, setPlxDataFilter] = useState(null);
   const [property, setProperty] = useState('');
   const [propertyAnimation, setPropertyAnimation] = useState(false);
+
+  /*********************************
+   * Intersection Observer
+   *********************************/
+  const [categoryNavRef, categoryNavInView] = useInView({});
 
   /*********************************
    * Effects
@@ -119,7 +126,9 @@ const Showcase = ({ onLikeClick, likes, onCustomizeClick }) => {
       </div>
 
       {/* Category Navbar */}
-      <CategoryNavbar />
+      <div ref={categoryNavRef} className="container-50vh" />
+      {!categoryNavInView && <CategoryNavbar />}
+      <div className="scroll-down-container" />
 
       {/* Transform */}
       <div className="category-container">
@@ -202,12 +211,11 @@ const Showcase = ({ onLikeClick, likes, onCustomizeClick }) => {
 
       <button
         type="button"
-
         className="btn btn-customize"
         onClick={onCustomizeClick}
       >
         Customize
-        </button>
+      </button>
     </div>
   );
 };

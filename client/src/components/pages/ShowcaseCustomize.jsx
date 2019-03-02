@@ -21,6 +21,7 @@ const ShowcaseCustomize = () => {
   /*********************************
    * Event Handler
    *********************************/
+  // FIXME: change to handlePageClick 
   const handleCustomizeClick = () => {
     setIsShowcase(!isShowcase);
   };
