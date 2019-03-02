@@ -1,12 +1,9 @@
 import React, { useRef, useState, useEffect } from "react";
 
 export default function CodeSnipppetModal({ parallaxDataCode }) {
-  console.log("TCL: CodeSnipppetModal -> parallaxDataCode", parallaxDataCode);
   const codeSnippetValue = useRef(null);
-  console.log(parallaxDataCode)
 
-  const [textState, setTextState] = useState('Loading...')
-
+  const [textState, setTextState] = useState("Loading...");
 
   if (parallaxDataCode.length !== 0) {
     const propertiesArrayEnter = parallaxDataCode[0].properties.map(property => {
@@ -68,8 +65,6 @@ export default function CodeSnipppetModal({ parallaxDataCode }) {
   }`;
   }
 
-
-
   function copyToClipboard(e) {
     codeSnippetValue.current.select();
     document.execCommand("copy");
@@ -83,8 +78,7 @@ export default function CodeSnipppetModal({ parallaxDataCode }) {
         className="btn btn-info"
         data-toggle="modal"
         data-target="#codeSnippetModal"
-        onClick={() => setTextState(code)}
-      >
+        onClick={() => setTextState(code)}>
         Show code snippet
       </button>
 
@@ -108,7 +102,13 @@ export default function CodeSnipppetModal({ parallaxDataCode }) {
             <div className="modal-body">
               <pre>{textState}</pre>
 
-              <textarea className="hidden" rows="0" ref={codeSnippetValue} value={textState} />
+              <textarea
+                className="hidden"
+                rows="0"
+                ref={codeSnippetValue}
+                value={textState}
+                readOnly
+              />
             </div>
 
             <div className="modal-footer">

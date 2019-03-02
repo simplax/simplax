@@ -5,7 +5,7 @@ export default function AddEffect({ likedEffect, onAddEffect }) {
   /*********************************
    * States
    *********************************/
-  const [effect, setEffect] = useState(null);
+  const [effect, setEffect] = useState("");
   const [parallaxData, setParallaxData] = useState(null);
 
   /*********************************
