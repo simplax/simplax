@@ -14,6 +14,7 @@ export default function Customize({ likedEffects, onShowCaseClick }) {
   const [parallaxData, setParallaxData] = useState([]);
   const [likedEffect, setLikedEffect] = useState(likedEffects);
   const [modifiedValues, setModifiedValues] = useState([]);
+  console.log('TCL: Customize -> modifiedValues', modifiedValues)
 
   /*********************************
    * Effect
@@ -165,14 +166,14 @@ export default function Customize({ likedEffects, onShowCaseClick }) {
               {likedEffect.length === 0
                 ? null
                 : parallaxData.map(data => (
-                    <CustomizeForm
-                      key={data._id}
-                      id={data._id}
-                      data={data}
-                      onModifedValue={handleModifiedValue}
-                      onCloseEffect={handleCloseEffect}
-                    />
-                  ))}
+                  <CustomizeForm
+                    key={data._id}
+                    id={data._id}
+                    data={data}
+                    onModifedValue={handleModifiedValue}
+                    onCloseEffect={handleCloseEffect}
+                  />
+                ))}
             </div>
           </div>
 
