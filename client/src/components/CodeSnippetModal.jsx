@@ -4,7 +4,6 @@ export default function CodeSnipppetModal({ parallaxDataCode }) {
   const codeSnippetValue = useRef(null);
 
   const code = JSON.stringify(parallaxDataCode);
-  console.log('TCL: CodeSnipppetModal -> JSON.stringify(parallaxDataCode)', JSON.stringify(parallaxDataCode))
 
   function copyToClipboard(e) {
     codeSnippetValue.current.select();

@@ -5,12 +5,10 @@ import "rc-slider/assets/index.css";
 const createSliderWithTooltip = Slider.createSliderWithTooltip;
 const Range = createSliderWithTooltip(Slider.Range);
 
-export default function CustomizeForm({ data, onCloseEffect }) {
+export default function CustomizeForm({ data, onModifedValue, onCloseEffect }) {
   const { _id, category, property, startValue, endValue, minValue, maxValue, unit } = data;
 
   const [values, setValues] = useState([startValue, endValue]);
-  const [start, setStart] = useState(startValue);
-  const [end, setEnd] = useState(endValue);
 
   return (
     <div className="CustomizeForm">
@@ -23,15 +21,16 @@ export default function CustomizeForm({ data, onCloseEffect }) {
                 <input
                   className="form-control"
                   type="color"
-                  value={start}
-                  onChange={e => setStart(e.target.value)}
+                  value={values[0]}
+                  onChange={e => setValues([e.target.value, values[1]])}
                 />
                 <input
                   className="form-control"
                   type="color"
-                  value={end}
-                  onChange={e => setEnd(e.target.value)}
+                  value={values[1]}
+                  onChange={e => setValues([values[0], e.target.value])}
                 />
+                {values[0] + "and" + values[1]}
               </div>
             ) : (
               <Range
@@ -46,6 +45,11 @@ export default function CustomizeForm({ data, onCloseEffect }) {
             )}
           </div>
           <div className="col-5">
+            <button
+              className="btn btn-outline-info btn-block btn-sm"
+              onClick={() => onModifedValue(property, values)}>
+              Apply
+            </button>
             <button className="btn btn-outline-info btn-block btn-sm">Mute</button>
             <button className="btn btn-info btn-block btn-sm" onClick={() => onCloseEffect(_id)}>
               Remove
