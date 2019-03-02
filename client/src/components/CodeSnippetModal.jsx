@@ -1,10 +1,12 @@
-import React, { useRef } from "react";
+import React, { useRef, useState, useEffect } from "react";
 
 export default function CodeSnipppetModal({ parallaxDataCode }) {
   console.log("TCL: CodeSnipppetModal -> parallaxDataCode", parallaxDataCode);
   const codeSnippetValue = useRef(null);
+  console.log(parallaxDataCode)
 
-  let code = "Loading...";
+  const [textState, setTextState] = useState('Loading...')
+
 
   if (parallaxDataCode.length !== 0) {
     const propertiesArrayEnter = parallaxDataCode[0].properties.map(property => {
@@ -26,7 +28,7 @@ export default function CodeSnipppetModal({ parallaxDataCode }) {
             unit: ${property.unit}
           }`;
     });
-    code = `import React, { Component } from 'react';
+    var code = `import React, { Component } from 'react';
   import Plx from 'react-plx';
     
   // An array of parallax effects to be applied - see below for detail
@@ -66,6 +68,8 @@ export default function CodeSnipppetModal({ parallaxDataCode }) {
   }`;
   }
 
+
+
   function copyToClipboard(e) {
     codeSnippetValue.current.select();
     document.execCommand("copy");
@@ -78,7 +82,9 @@ export default function CodeSnipppetModal({ parallaxDataCode }) {
         type="button"
         className="btn btn-info"
         data-toggle="modal"
-        data-target="#codeSnippetModal">
+        data-target="#codeSnippetModal"
+        onClick={() => setTextState(code)}
+      >
         Show code snippet
       </button>
 
@@ -100,9 +106,9 @@ export default function CodeSnipppetModal({ parallaxDataCode }) {
               </button>
             </div>
             <div className="modal-body">
-              <pre>{code}</pre>
+              <pre>{textState}</pre>
 
-              <textarea className="hidden" rows="0" ref={codeSnippetValue} defaultValue={code} />
+              <textarea className="hidden" rows="0" ref={codeSnippetValue} value={textState} />
             </div>
 
             <div className="modal-footer">

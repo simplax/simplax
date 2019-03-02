@@ -299,3 +299,4 @@ const Showcase = ({ onLikeClick, likes, onCustomizeClick }) => {
 };
 
 export default Showcase;
+
