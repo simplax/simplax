@@ -33,15 +33,15 @@ const Showcase = ({ onLikeClick, likes, onCustomizeClick }) => {
 
     api.getAllParallaxData().then(allPlxData => {
       let transforms = allPlxData.filter(data => {
-        return data.category === 'Transform';
+        return data.category === 'transform';
       });
       setPlxDataTransform(transforms);
       let colors = allPlxData.filter(data => {
-        return data.category === 'Colors';
+        return data.category === 'colors';
       });
       setPlxDataColors(colors);
       let filters = allPlxData.filter(data => {
-        return data.category === 'CSS Filter';
+        return data.category === 'css-filter';
       });
       setPlxDataFilter(filters);
     });
@@ -54,9 +54,10 @@ const Showcase = ({ onLikeClick, likes, onCustomizeClick }) => {
   /*********************************
    * Event Handler
    *********************************/
-  const handlePropertyPlxStart = property => {
+  const handlePropertyPlxStart = (property, category) => {
     setProperty(property);
     setPropertyAnimation(true);
+    setCategory(category);
   };
 
   const handlePropertyPlxEnd = property => {

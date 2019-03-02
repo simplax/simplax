@@ -82,7 +82,7 @@ const ShowcaseBox = ({
       <Plx
         parallaxData={parallaxData}
         onPlxStart={() => {
-          onPropertyPlxStart(property);
+          onPropertyPlxStart(property, category);
         }}
         onPlxEnd={() => {
           onPropertyPlxEnd(property);
