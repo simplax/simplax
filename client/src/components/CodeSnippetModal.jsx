@@ -1,37 +1,10 @@
 import React, { useRef } from "react";
 
-export default function CodeSnipppetModal() {
+export default function CodeSnipppetModal({ parallaxDataCode }) {
   const codeSnippetValue = useRef(null);
 
-  const code = `import React, { Component } from 'react';
-import Plx from 'react-plx';
-  
-// An array of parallax effects to be applied - see below for detail
-const parallaxData = [
-  {
-    start: 0,
-    end: 500,
-    properties: [
-      {
-        startValue: 1,
-        endValue: 2,
-        property: 'scale',
-      },
-    ],
-  },
-];
- 
-class Example extends Component {
-  render() {
-    return (
-      <Plx
-      parallaxData={ parallaxData }
-      >
-        /* Your content */
-        </Plx>
-    );
-  }
-}`;
+  const code = JSON.stringify(parallaxDataCode);
+  console.log('TCL: CodeSnipppetModal -> JSON.stringify(parallaxDataCode)', JSON.stringify(parallaxDataCode))
 
   function copyToClipboard(e) {
     codeSnippetValue.current.select();
