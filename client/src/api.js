@@ -19,15 +19,6 @@ export default {
 
   // This method is synchronous and returns true or false
   // To know if the user is connected, we just check if we have a value for localStorage.getItem('user')
-  isLoggedIn() {
-    return localStorage.getItem("user") != null;
-  },
-
-  // This method returns the user from the localStorage
-  // Be careful, the value is the one when the user logged in for the last time
-  getLocalStorageUser() {
-    return JSON.parse(localStorage.getItem("user"));
-  },
 
   // This method signs up and logs in the user
   signup(userInfo) {
@@ -83,7 +74,9 @@ export default {
       .then(res => res.data)
       .catch(errHandler);
   },
-
+  /****************************************
+     * CRUD operation for blogpost
+  *****************************************/
   postBlogPost(data) {
     return service
       .post("/blogposts", data)
@@ -120,6 +113,10 @@ export default {
 
   },
 
+  /****************************************
+     * Getting information of logged in user
+  *****************************************/
+
   userDetail() {
     return service
       .get('loggedin')
@@ -130,6 +127,27 @@ export default {
         return user
       })
   },
+  isLoggedIn() {
+    return localStorage.getItem("user") != null;
+  },
 
+  // This method returns the user from the localStorage
+  // Be careful, the value is the one when the user logged in for the last time
+  getLocalStorageUser() {
+    return JSON.parse(localStorage.getItem("user"));
+  },
+
+
+  /****************************************
+     * Storing informations on session storage for non logged in users
+  *****************************************/
+
+  setSessionStorage(likedEffect) {
+    return sessionStorage.setItem('likedEffect', JSON.stringify(likedEffect))
+  },
+
+  getSessionStorage() {
+    return JSON.parse(sessionStorage.getItem('likedEffect'))
+  }
 
 };

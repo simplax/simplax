@@ -63,6 +63,7 @@ const ShowcaseBox = ({ data, onLikeClick, likes, onPlxStart, onPlxEnd }) => {
    * functions
    *********************************/
   const likeClassName = () => {
+
     return likes.includes(_id)
       ? 'like fas fa-heart fa-2x'
       : 'unlike fas fa-heart fa-2x';

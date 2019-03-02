@@ -18,6 +18,13 @@ export default function Customize({ likedEffects, onShowCaseClick }) {
    * Effect
    *********************************/
   useEffect(() => {
+    if (api.getSessionStorage())
+      setLikedEffect(api.getSessionStorage())
+    else setLikedEffect([])
+  }, [])
+
+  useEffect(() => {
+
     if (likedEffect.length === 0) {
       return;
     }
@@ -34,11 +41,13 @@ export default function Customize({ likedEffects, onShowCaseClick }) {
     const likedEffectTemp = [...likedEffect];
     likedEffectTemp.push(id);
     setLikedEffect(likedEffectTemp);
+    api.setSessionStorage(likedEffectTemp)
   }
   function handleCloseEffect(id) {
     const likedEffectTemp = [...likedEffect];
     likedEffectTemp.splice(likedEffectTemp.indexOf(id), 1);
     setLikedEffect(likedEffectTemp);
+    api.setSessionStorage(likedEffectTemp)
   }
 
   /*********************************
@@ -61,22 +70,22 @@ export default function Customize({ likedEffects, onShowCaseClick }) {
               {likedEffect.length === 0
                 ? null
                 : parallaxData.map(data => (
-                    <CustomizeForm
-                      key={data._id}
-                      id={data._id}
-                      property={data.property}
-                      unit={data.unit}
-                      start={data.startValue}
-                      end={data.endValue}
-                      onCloseEffect={handleCloseEffect}
-                    />
-                  ))}
+                  <CustomizeForm
+                    key={data._id}
+                    id={data._id}
+                    property={data.property}
+                    unit={data.unit}
+                    start={data.startValue}
+                    end={data.endValue}
+                    onCloseEffect={handleCloseEffect}
+                  />
+                ))}
             </div>
-            <CodeSnippetModal />
           </div>
 
           <div className="col" />
         </div>
+        <CodeSnippetModal />
 
         <div className="customize-container">
           <div className="scroll-down-container">
