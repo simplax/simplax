@@ -2,8 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import Plx from 'react-plx';
 import { useInView } from 'react-intersection-observer';
-import ScrollableAnchor from 'react-scrollable-anchor';
-import { configureAnchors } from 'react-scrollable-anchor';
+import ScrollableAnchor, { configureAnchors } from 'react-scrollable-anchor';
 
 import api from '../../api';
 import ShowcaseBox from '../ShowcaseBox';
@@ -19,6 +18,7 @@ const Showcase = ({ onLikeClick, likes, onCustomizeClick }) => {
   const [plxDataFilter, setPlxDataFilter] = useState(null);
   const [property, setProperty] = useState('');
   const [propertyAnimation, setPropertyAnimation] = useState(false);
+  const [category, setCategory] = useState('');
   const [viewportHeight, setViewportHeight] = useState(0);
   // Intersection Observer
   const [categoryNavRef, categoryNavInView] = useInView({});
@@ -33,34 +33,46 @@ const Showcase = ({ onLikeClick, likes, onCustomizeClick }) => {
 
     api.getAllParallaxData().then(allPlxData => {
       let transforms = allPlxData.filter(data => {
-        return data.category === 'Transform';
+        return data.category === 'transform';
       });
       setPlxDataTransform(transforms);
       let colors = allPlxData.filter(data => {
-        return data.category === 'Colors';
+        return data.category === 'colors';
       });
       setPlxDataColors(colors);
       let filters = allPlxData.filter(data => {
-        return data.category === 'CSS Filter';
+        return data.category === 'css-filter';
       });
       setPlxDataFilter(filters);
     });
   }, []);
 
+  useEffect(() => {
+    if (categoryNavInView) setCategory('');
+  }, [categoryNavInView]);
+
   /*********************************
    * Event Handler
    *********************************/
-  const handlePlxStart = property => {
+  const handlePropertyPlxStart = (property, category) => {
     setProperty(property);
     setPropertyAnimation(true);
+    setCategory(category);
   };
 
-  const handlePlxEnd = property => {
+  const handlePropertyPlxEnd = property => {
     setProperty(property);
     setPropertyAnimation(false);
   };
 
-  const handleCategoryPlxStart = property => {
+  const handleCategoryPlxStart = category => {
+    setCategory(category);
+    setProperty('');
+    setPropertyAnimation(false);
+  };
+
+  const handleCategoryPlxEnd = nextCategory => {
+    setCategory(nextCategory);
     setProperty('');
     setPropertyAnimation(false);
   };
@@ -132,15 +144,15 @@ const Showcase = ({ onLikeClick, likes, onCustomizeClick }) => {
 
       {/* Category Navbar */}
       <div ref={categoryNavRef} className="container-50vh" />
-      {!categoryNavInView && <CategoryNavbar />}
+      {!categoryNavInView && <CategoryNavbar categoryActive={category} />}
       <div className="container-100vh" />
 
       {/* Transform */}
-      <ScrollableAnchor id={'transform'}>
+      <ScrollableAnchor id="transform">
         <div className="category-container">
           <Plx
             parallaxData={categoryParallaxData}
-            onPlxStart={handleCategoryPlxStart}
+            onPlxStart={() => handleCategoryPlxStart('transform')}
           >
             <h2 className="category">TRANSFORM</h2>
           </Plx>
@@ -153,8 +165,8 @@ const Showcase = ({ onLikeClick, likes, onCustomizeClick }) => {
               key={data._id}
               data={data}
               onLikeClick={onLikeClick}
-              onPlxStart={handlePlxStart}
-              onPlxEnd={handlePlxEnd}
+              onPropertyPlxStart={handlePropertyPlxStart}
+              onPropertyPlxEnd={handlePropertyPlxEnd}
               likes={likes}
             />
           );
@@ -162,11 +174,11 @@ const Showcase = ({ onLikeClick, likes, onCustomizeClick }) => {
       </div>
 
       {/* Colors */}
-      <ScrollableAnchor id={'colors'}>
+      <ScrollableAnchor id="colors">
         <div className="category-container">
           <Plx
             parallaxData={categoryParallaxData}
-            onPlxStart={handleCategoryPlxStart}
+            onPlxStart={() => handleCategoryPlxStart('colors')}
           >
             <h2 className="category">COLORS</h2>
           </Plx>
@@ -179,8 +191,8 @@ const Showcase = ({ onLikeClick, likes, onCustomizeClick }) => {
               key={data._id}
               data={data}
               onLikeClick={onLikeClick}
-              onPlxStart={handlePlxStart}
-              onPlxEnd={handlePlxEnd}
+              onPropertyPlxStart={handlePropertyPlxStart}
+              onPropertyPlxEnd={handlePropertyPlxEnd}
               likes={likes}
             />
           );
@@ -188,11 +200,11 @@ const Showcase = ({ onLikeClick, likes, onCustomizeClick }) => {
       </div>
 
       {/* CSS Filter */}
-      <ScrollableAnchor id={'css-filter'}>
+      <ScrollableAnchor id="css-filter">
         <div className="category-container">
           <Plx
             parallaxData={categoryParallaxData}
-            onPlxStart={handleCategoryPlxStart}
+            onPlxStart={() => handleCategoryPlxStart('css-filter')}
           >
             <h2 className="category">CSS FILTER</h2>
           </Plx>
@@ -205,8 +217,8 @@ const Showcase = ({ onLikeClick, likes, onCustomizeClick }) => {
               key={data._id}
               data={data}
               onLikeClick={onLikeClick}
-              onPlxStart={handlePlxStart}
-              onPlxEnd={handlePlxEnd}
+              onPropertyPlxStart={handlePropertyPlxStart}
+              onPropertyPlxEnd={handlePropertyPlxEnd}
               likes={likes}
             />
           );
