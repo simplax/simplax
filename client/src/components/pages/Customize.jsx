@@ -89,9 +89,6 @@ export default function Customize({ likedEffects, onShowCaseClick }) {
         properties: []
       }
     ]
-  }
-
-  if (parallaxData) {
     parallaxData.forEach(data => {
       const { startValue, endValue, property, unit } = data;
 
@@ -108,7 +105,10 @@ export default function Customize({ likedEffects, onShowCaseClick }) {
         unit
       });
     })
+
   }
+
+
 
   /*********************************
    * Render
@@ -126,7 +126,7 @@ export default function Customize({ likedEffects, onShowCaseClick }) {
         <div className="row ml-md-3 sticky-top-md">
           <div className="col-12 col-md-3 sidebar">
             <div className="">
-              {console.log('new' + parallaxDataCode)}
+              {console.log('new' + parallaxDataCode[0].properties[0])}
               <AddEffect likedEffect={likedEffect} onAddEffect={handleAddEffect} />
               {likedEffect.length === 0
                 ? null

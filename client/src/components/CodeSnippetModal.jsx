@@ -3,8 +3,64 @@ import React, { useRef } from "react";
 export default function CodeSnipppetModal({ parallaxDataCode }) {
   const codeSnippetValue = useRef(null);
 
-  const code = JSON.stringify(parallaxDataCode);
-  console.log('TCL: CodeSnipppetModal -> JSON.stringify(parallaxDataCode)', JSON.stringify(parallaxDataCode))
+  let propertiesArrayEnter = parallaxDataCode[0].properties.map((property) => {
+    return `
+        {
+          startValue: ${property.startValue},
+          endValue: ${property.endValue},
+          property: ${property.property},
+          unit: ${property.unit}
+        }`
+  })
+
+  let propertiesArrayLeave = parallaxDataCode[1].properties.map((property) => {
+    return `
+        {
+          startValue: ${property.startValue},
+          endValue: ${property.endValue},
+          property: ${property.property},
+          unit: ${property.unit}
+        }`
+  })
+
+  const code = `import React, { Component } from 'react';
+import Plx from 'react-plx';
+  
+// An array of parallax effects to be applied - see below for detail
+parallaxData = [
+      {
+        start: ${parallaxDataCode[0].start},
+        startOffset: ${parallaxDataCode[0].startOffset},
+        end: ${parallaxDataCode[0].end},
+        endOffset: ${parallaxDataCode[0].endOffset},
+        easing: ${parallaxDataCode[0].easing},
+        properties: [
+            ${propertiesArrayEnter}
+          ]
+      },
+      {
+        start: ${parallaxDataCode[1].start},
+        startOffset: ${parallaxDataCode[1].startOffset},
+        end: ${parallaxDataCode[1].end},
+        endOffset: ${parallaxDataCode[1].endOffset},
+        easing: ${parallaxDataCode[1].easing},
+        properties: [
+            ${propertiesArrayLeave}
+        ]
+      }
+    ]
+
+class Example extends Component {
+  render() {
+    return (
+      <Plx
+      parallaxData={ parallaxData }
+      >
+        /* Your content */
+        </Plx>
+    );
+  }
+}`;
 
   function copyToClipboard(e) {
     codeSnippetValue.current.select();
@@ -40,7 +96,9 @@ export default function CodeSnipppetModal({ parallaxDataCode }) {
               </button>
             </div>
             <div className="modal-body">
+
               <pre>{code}</pre>
+
               <textarea className="hidden" rows="0" ref={codeSnippetValue} defaultValue={code} />
             </div>
 
