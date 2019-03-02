@@ -51,6 +51,66 @@ export default function Customize({ likedEffects, onShowCaseClick }) {
   }
 
   /*********************************
+  * Converting parallax data to usable code for snippet and modal
+  *********************************/
+  let parallaxDataCode = []
+  if (parallaxData) {
+    const {
+      _id,
+      start,
+      startOffsetIn,
+      startOffsetOut,
+      end,
+      endOffsetIn,
+      endOffsetOut,
+      easing,
+      startValue,
+      endValue,
+      category,
+      property,
+      unit
+    } = parallaxData[0]
+
+    parallaxDataCode = [
+      {
+        start,
+        startOffset: startOffsetIn,
+        end,
+        endOffset: endOffsetIn,
+        easing,
+        properties: []
+      },
+      {
+        start,
+        startOffset: startOffsetOut,
+        end,
+        endOffset: endOffsetOut,
+        easing,
+        properties: []
+      }
+    ]
+  }
+
+  if (parallaxData) {
+    parallaxData.forEach(data => {
+      const { startValue, endValue, property, unit } = data;
+
+      parallaxDataCode[0].properties.push({
+        startValue,
+        endValue,
+        property,
+        unit
+      });
+      parallaxDataCode[1].properties.push({
+        startValue: endValue,
+        endValue: startValue,
+        property,
+        unit
+      });
+    })
+  }
+
+  /*********************************
    * Render
    *********************************/
   if (!parallaxData && likedEffect.length !== 0) {
@@ -66,6 +126,7 @@ export default function Customize({ likedEffects, onShowCaseClick }) {
         <div className="row ml-md-3 sticky-top-md">
           <div className="col-12 col-md-3 sidebar">
             <div className="">
+              {console.log('new' + parallaxDataCode)}
               <AddEffect likedEffect={likedEffect} onAddEffect={handleAddEffect} />
               {likedEffect.length === 0
                 ? null
@@ -85,14 +146,14 @@ export default function Customize({ likedEffects, onShowCaseClick }) {
 
           <div className="col" />
         </div>
-        <CodeSnippetModal />
+        <CodeSnippetModal parallaxDataCode={parallaxDataCode} />
 
         <div className="customize-container">
           <div className="scroll-down-container">
             <h2>Scroll Down</h2>
           </div>
           {console.log(parallaxData)}
-          <CustomizeBox parallaxDataSelection={parallaxData} />
+          <CustomizeBox parallaxDataCode={parallaxDataCode} />
           <div className="scroll-down-container" />
         </div>
 
