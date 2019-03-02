@@ -5,9 +5,15 @@ import "rc-slider/assets/index.css";
 const createSliderWithTooltip = Slider.createSliderWithTooltip;
 const Range = createSliderWithTooltip(Slider.Range);
 
-export default function CustomizeForm({ data, onModifedValue, onCloseEffect }) {
+export default function CustomizeForm({ data, onModifyEffect, onResetEffect, onCloseEffect }) {
   const { _id, category, property, startValue, endValue, minValue, maxValue, unit } = data;
 
+  let step = maxValue / 10;
+  if (unit === "deg") {
+    step = 5;
+  } else if (property === "scale") {
+    step = 0.1;
+  }
   const [values, setValues] = useState([startValue, endValue]);
 
   return (
@@ -22,34 +28,73 @@ export default function CustomizeForm({ data, onModifedValue, onCloseEffect }) {
                   className="form-control"
                   type="color"
                   value={values[0]}
-                  onChange={e => setValues([e.target.value, values[1]])}
+                  onChange={e => {
+                    setValues([e.target.value, values[1]]);
+                    onModifyEffect(property, values);
+                  }}
                 />
                 <input
                   className="form-control"
                   type="color"
                   value={values[1]}
-                  onChange={e => setValues([values[0], e.target.value])}
+                  onChange={e => {
+                    setValues([values[0], e.target.value]);
+                    onModifyEffect(property, values);
+                  }}
                 />
               </div>
             ) : (
-              <Range
-                step={maxValue / 10}
-                min={minValue}
-                max={maxValue}
-                value={values}
-                onChange={e => setValues([...e])}
-                // allowCross={false}
-                tipFormatter={value => `${value} ${unit}`}
-              />
+              <div>
+                <Range
+                  step={step}
+                  min={minValue}
+                  max={maxValue}
+                  value={values}
+                  onChange={e => {
+                    setValues([...e]);
+                    onModifyEffect(property, values);
+                  }}
+                  // allowCross={false}
+                  tipFormatter={value => `${value} ${unit}`}
+                />
+                <div className="input-group">
+                  <input
+                    step={step}
+                    min={minValue}
+                    max={maxValue}
+                    className="form-control"
+                    type="number"
+                    value={values[0]}
+                    onChange={e => {
+                      setValues([Number(e.target.value), values[1]]);
+                      onModifyEffect(property, values);
+                    }}
+                  />
+                  <input
+                    step={step}
+                    min={minValue}
+                    max={maxValue}
+                    className="form-control"
+                    type="number"
+                    value={values[1]}
+                    onChange={e => {
+                      setValues([values[0], Number(e.target.value)]);
+                      onModifyEffect(property, values);
+                    }}
+                  />
+                </div>
+              </div>
             )}
           </div>
           <div className="col-5">
             <button
               className="btn btn-outline-info btn-block btn-sm"
-              onClick={() => onModifedValue(property, values)}>
-              Apply
+              onClick={() => {
+                onResetEffect(property);
+                setValues([startValue, endValue]);
+              }}>
+              Reset
             </button>
-            <button className="btn btn-outline-info btn-block btn-sm">Mute</button>
             <button className="btn btn-info btn-block btn-sm" onClick={() => onCloseEffect(_id)}>
               Remove
             </button>

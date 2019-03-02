@@ -1,7 +1,6 @@
 import React, { useRef } from "react";
 
 export default function CodeSnipppetModal({ parallaxDataCode }) {
-  console.log("TCL: CodeSnipppetModal -> parallaxDataCode", parallaxDataCode);
   const codeSnippetValue = useRef(null);
 
   let code = "Loading...";
