@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Plx from 'react-plx';
-import TextTranslateY from './animations/TextTranslateY';
+import CategoryTranslateY from './animations/CategoryTranslateY';
 
 const CategoryNavbar = () => {
   return (
@@ -21,13 +21,13 @@ const CategoryNavbar = () => {
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav">
             <li className="nav-item">
-              <TextTranslateY text="Transform" />
+              <CategoryTranslateY category="TRANSFORM" linkTo="#transform" />
             </li>
             <li className="nav-item">
-              <TextTranslateY text="Colors" />
+              <CategoryTranslateY category="COLORS" linkTo="#colors" />
             </li>
             <li className="nav-item">
-              <TextTranslateY text="CSS Filter" />
+              <CategoryTranslateY category="CSS-FILTER" linkTo="#css-filter" />
             </li>
           </ul>
         </div>

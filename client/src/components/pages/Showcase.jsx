@@ -2,12 +2,13 @@ import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import Plx from 'react-plx';
 import { useInView } from 'react-intersection-observer';
+import ScrollableAnchor from 'react-scrollable-anchor';
+import { configureAnchors } from 'react-scrollable-anchor';
 
 import api from '../../api';
 import ShowcaseBox from '../ShowcaseBox';
 import CategoryNavbar from '../CategoryNavbar';
 import TextTranslateX from '../animations/TextTranslateX';
-
 
 const Showcase = ({ onLikeClick, likes, onCustomizeClick }) => {
   /*********************************
@@ -18,10 +19,8 @@ const Showcase = ({ onLikeClick, likes, onCustomizeClick }) => {
   const [plxDataFilter, setPlxDataFilter] = useState(null);
   const [property, setProperty] = useState('');
   const [propertyAnimation, setPropertyAnimation] = useState(false);
-
-  /*********************************
-   * Intersection Observer
-   *********************************/
+  const [viewportHeight, setViewportHeight] = useState(0);
+  // Intersection Observer
   const [categoryNavRef, categoryNavInView] = useInView({});
 
   /*********************************
@@ -30,6 +29,7 @@ const Showcase = ({ onLikeClick, likes, onCustomizeClick }) => {
   // componentDidMount
   // GET all parallaxData and filter by category
   useEffect(() => {
+    setViewportHeight(window.innerHeight);
 
     api.getAllParallaxData().then(allPlxData => {
       let transforms = allPlxData.filter(data => {
@@ -107,6 +107,11 @@ const Showcase = ({ onLikeClick, likes, onCustomizeClick }) => {
   ];
 
   /*********************************
+   * Scrollable Anchor Configuration
+   *********************************/
+  configureAnchors({ offset: viewportHeight / 2.5, scrollDuration: 800 });
+
+  /*********************************
    * Render
    *********************************/
   if (!plxDataTransform || !plxDataColors || !plxDataFilter) {
@@ -128,17 +133,19 @@ const Showcase = ({ onLikeClick, likes, onCustomizeClick }) => {
       {/* Category Navbar */}
       <div ref={categoryNavRef} className="container-50vh" />
       {!categoryNavInView && <CategoryNavbar />}
-      <div className="scroll-down-container" />
+      <div className="container-100vh" />
 
       {/* Transform */}
-      <div className="category-container">
-        <Plx
-          parallaxData={categoryParallaxData}
-          onPlxStart={handleCategoryPlxStart}
-        >
-          <h2 className="category">TRANSFORM</h2>
-        </Plx>
-      </div>
+      <ScrollableAnchor id={'transform'}>
+        <div className="category-container">
+          <Plx
+            parallaxData={categoryParallaxData}
+            onPlxStart={handleCategoryPlxStart}
+          >
+            <h2 className="category">TRANSFORM</h2>
+          </Plx>
+        </div>
+      </ScrollableAnchor>
       <div>
         {plxDataTransform.map(data => {
           return (
@@ -155,14 +162,16 @@ const Showcase = ({ onLikeClick, likes, onCustomizeClick }) => {
       </div>
 
       {/* Colors */}
-      <div className="category-container">
-        <Plx
-          parallaxData={categoryParallaxData}
-          onPlxStart={handleCategoryPlxStart}
-        >
-          <h2 className="category">COLORS</h2>
-        </Plx>
-      </div>
+      <ScrollableAnchor id={'colors'}>
+        <div className="category-container">
+          <Plx
+            parallaxData={categoryParallaxData}
+            onPlxStart={handleCategoryPlxStart}
+          >
+            <h2 className="category">COLORS</h2>
+          </Plx>
+        </div>
+      </ScrollableAnchor>
       <div>
         {plxDataColors.map(data => {
           return (
@@ -179,14 +188,16 @@ const Showcase = ({ onLikeClick, likes, onCustomizeClick }) => {
       </div>
 
       {/* CSS Filter */}
-      <div className="category-container">
-        <Plx
-          parallaxData={categoryParallaxData}
-          onPlxStart={handleCategoryPlxStart}
-        >
-          <h2 className="category">CSS FILTER</h2>
-        </Plx>
-      </div>
+      <ScrollableAnchor id={'css-filter'}>
+        <div className="category-container">
+          <Plx
+            parallaxData={categoryParallaxData}
+            onPlxStart={handleCategoryPlxStart}
+          >
+            <h2 className="category">CSS FILTER</h2>
+          </Plx>
+        </div>
+      </ScrollableAnchor>
       <div>
         {plxDataFilter.map(data => {
           return (

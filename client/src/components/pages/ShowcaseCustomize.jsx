@@ -40,7 +40,6 @@ const ShowcaseCustomize = () => {
   const handleShowCaseClick = (updatedLikeStatus) => {
     setIsShowcase(!isShowcase)
     setLikes(updatedLikeStatus)
-    // api.setSessionStorage(updatedLikeStatus)
   }
 
   /*********************************
