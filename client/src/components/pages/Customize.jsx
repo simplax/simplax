@@ -173,15 +173,15 @@ export default function Customize({ likedEffects, onShowCaseClick }) {
               {likedEffect.length === 0
                 ? null
                 : parallaxDataDefault.map(data => (
-                    <CustomizeForm
-                      key={data._id}
-                      id={data._id}
-                      data={data}
-                      onModifyEffect={handleModifyEffect}
-                      onResetEffect={handleResetEffect}
-                      onCloseEffect={handleCloseEffect}
-                    />
-                  ))}
+                  <CustomizeForm
+                    key={data._id}
+                    id={data._id}
+                    data={data}
+                    onModifyEffect={handleModifyEffect}
+                    onResetEffect={handleResetEffect}
+                    onCloseEffect={handleCloseEffect}
+                  />
+                ))}
             </div>
           </div>
 
