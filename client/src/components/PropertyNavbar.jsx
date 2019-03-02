@@ -1,4 +1,5 @@
 import React from 'react';
+import PropertyNavbarAnimation from './animations/PropertyNavbarAnimation';
 
 const PropertyNavbar = ({ properties, propertyActive }) => {
   return (
@@ -35,18 +36,6 @@ const PropertyNavbar = ({ properties, propertyActive }) => {
                   </li>
                 );
               })}
-            {/* <li className="nav-item">
-              <a
-                href="#transform"
-                className={
-                  categoryActive === 'transform'
-                    ? 'nav-link category-active'
-                    : 'nav-link'
-                }
-              >
-                <TextTranslateY category="TRANSFORM" />
-              </a>
-            </li> */}
           </ul>
         </div>
       </nav>

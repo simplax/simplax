@@ -7,6 +7,7 @@ const ParallaxData = require('../models/ParallaxData');
  *********************************/
 router.get('/', (req, res, next) => {
   ParallaxData.find()
+    .sort({ property: 1 })
     .then(allParallaxData => {
       res.json(allParallaxData);
     })
