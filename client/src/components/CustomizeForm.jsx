@@ -37,6 +37,10 @@ export default function CustomizeForm({
     endValueModified ? endValueModified : endValue
   ]);
 
+  useEffect(() => {
+    onModifyEffect(property, values);
+  }, [values]);
+
   /*********************************
    * Render
    *********************************/
@@ -54,7 +58,6 @@ export default function CustomizeForm({
                   value={values[0]}
                   onChange={e => {
                     setValues([e.target.value, values[1]]);
-                    onModifyEffect(property, values);
                   }}
                 />
                 <input
@@ -63,7 +66,6 @@ export default function CustomizeForm({
                   value={values[1]}
                   onChange={e => {
                     setValues([values[0], e.target.value]);
-                    onModifyEffect(property, values);
                   }}
                 />
               </div>
@@ -76,7 +78,6 @@ export default function CustomizeForm({
                   value={values}
                   onChange={e => {
                     setValues([...e]);
-                    onModifyEffect(property, values);
                   }}
                   // allowCross={false}
                   tipFormatter={value => `${value} ${unit}`}
@@ -91,7 +92,6 @@ export default function CustomizeForm({
                     value={values[0]}
                     onChange={e => {
                       setValues([Number(e.target.value), values[1]]);
-                      onModifyEffect(property, values);
                     }}
                   />
                   <input
@@ -103,7 +103,6 @@ export default function CustomizeForm({
                     value={values[1]}
                     onChange={e => {
                       setValues([values[0], Number(e.target.value)]);
-                      onModifyEffect(property, values);
                     }}
                   />
                 </div>
