@@ -5,6 +5,8 @@ import CodeSnippetModal from "../CodeSnippetModal";
 import CustomizeBox from "../CustomizeBox";
 import api from "../../api";
 
+// QUESTION: is likedEffects props neccessary?
+
 export default function Customize({ likedEffects, onShowCaseClick }) {
   /*********************************
    * States
@@ -17,11 +19,25 @@ export default function Customize({ likedEffects, onShowCaseClick }) {
   /*********************************
    * Effect
    *********************************/
+  // Get data from sessionStorage
   useEffect(() => {
-    if (api.getSessionStorage()) setLikedEffect(api.getSessionStorage());
-    else setLikedEffect([]);
+    if (api.getSessionStorage("likedEffect")) {
+      setLikedEffect(api.getSessionStorage("likedEffect"));
+    } else {
+      setLikedEffect([]);
+    }
   }, []);
 
+  // Get data from sessionStorage
+  useEffect(() => {
+    if (api.getSessionStorage("modifiedEffect")) {
+      setModifiedEffects(api.getSessionStorage("modifiedEffect"));
+    } else {
+      setModifiedEffects([]);
+    }
+  }, []);
+
+  // Get data from db
   useEffect(() => {
     if (likedEffect.length === 0) {
       return;
@@ -29,13 +45,11 @@ export default function Customize({ likedEffects, onShowCaseClick }) {
 
     let likedEffectUrl = likedEffect.join("-");
     api.getManyParallaxData(likedEffectUrl).then(res => {
-      console.log("TCL: Customize -> res", res);
       setParallaxDataDefault(res);
 
       /*********************************
-       * Converting parallax data to usable code for snippet and modal
+       * Converting parallax data to usable code for snippet and box
        *********************************/
-
       let parallaxDataTmp = [];
 
       const {
@@ -88,6 +102,81 @@ export default function Customize({ likedEffects, onShowCaseClick }) {
     return () => setParallaxData([]);
   }, [likedEffect]);
 
+  // update parallaxData
+  useEffect(() => {
+    if (likedEffect.length === 0) {
+      return;
+    }
+
+    let likedEffectUrl = likedEffect.join("-");
+    api.getManyParallaxData(likedEffectUrl).then(res => {
+      /*********************************
+       * Converting parallax data to usable code for snippet and box
+       *********************************/
+      let parallaxDataTmp = [];
+
+      const {
+        start,
+        startOffsetIn,
+        startOffsetOut,
+        end,
+        endOffsetIn,
+        endOffsetOut,
+        easing
+      } = res[0];
+
+      parallaxDataTmp = [
+        {
+          start,
+          startOffset: startOffsetIn,
+          end,
+          endOffset: endOffsetIn,
+          easing,
+          properties: []
+        },
+        {
+          start,
+          startOffset: startOffsetOut,
+          end,
+          endOffset: endOffsetOut,
+          easing,
+          properties: []
+        }
+      ];
+
+      res.forEach(data => {
+        parallaxDataTmp[0].properties.push({
+          startValue: data.startValue,
+          endValue: data.endValue,
+          property: data.property,
+          unit: data.unit
+        });
+        parallaxDataTmp[1].properties.push({
+          startValue: data.endValue,
+          endValue: data.startValue,
+          property: data.property,
+          unit: data.unit
+        });
+      });
+
+      // update parallaxData
+
+      modifiedEffects.forEach(modEffect => {
+        const indexProperties = parallaxDataTmp[0].properties.findIndex(
+          obj => obj.property === modEffect.property
+        );
+        if (indexProperties !== -1) {
+          parallaxDataTmp[0].properties[indexProperties].startValue = modEffect.values[0];
+          parallaxDataTmp[0].properties[indexProperties].endValue = modEffect.values[1];
+          parallaxDataTmp[1].properties[indexProperties].startValue = modEffect.values[1];
+          parallaxDataTmp[1].properties[indexProperties].endValue = modEffect.values[0];
+        }
+      });
+
+      setParallaxData(parallaxDataTmp);
+    });
+  }, [modifiedEffects]);
+
   /*********************************
    * Event Handler
    *********************************/
@@ -95,37 +184,13 @@ export default function Customize({ likedEffects, onShowCaseClick }) {
     const likedEffectTemp = [...likedEffect];
     likedEffectTemp.push(id);
     setLikedEffect(likedEffectTemp);
-    api.setSessionStorage(likedEffectTemp);
+    api.setSessionStorage("likedEffect", likedEffectTemp);
   }
-
   function handleCloseEffect(id) {
     const likedEffectTemp = [...likedEffect];
     likedEffectTemp.splice(likedEffectTemp.indexOf(id), 1);
     setLikedEffect(likedEffectTemp);
-    api.setSessionStorage(likedEffectTemp);
-  }
-
-  function handleResetEffect(property) {
-    const modifiedEffectsTmp = [...modifiedEffects];
-    const index = modifiedEffectsTmp.findIndex(obj => obj.property === property);
-    modifiedEffectsTmp.splice(index, 1);
-    setModifiedEffects(modifiedEffectsTmp);
-
-    // reset parallaxData
-
-    const indexProperties = parallaxData[0].properties.findIndex(obj => obj.property === property);
-    const indexDefaultProperties = parallaxDataDefault.findIndex(obj => obj.property === property);
-    let parallaxDataTmp = [...parallaxData];
-    parallaxDataTmp[0].properties[indexProperties].startValue =
-      parallaxDataDefault[indexDefaultProperties].startValue;
-    parallaxDataTmp[0].properties[indexProperties].endValue =
-      parallaxDataDefault[indexDefaultProperties].endValue;
-    parallaxDataTmp[1].properties[indexProperties].startValue =
-      parallaxDataDefault[indexDefaultProperties].endValue;
-    parallaxDataTmp[1].properties[indexProperties].endValue =
-      parallaxDataDefault[indexDefaultProperties].startValue;
-
-    setParallaxData(parallaxDataTmp);
+    api.setSessionStorage("likedEffect", likedEffectTemp);
   }
 
   function handleModifyEffect(property, values) {
@@ -140,31 +205,14 @@ export default function Customize({ likedEffects, onShowCaseClick }) {
       modifiedEffectsTmp[index].values = values;
     }
     setModifiedEffects(modifiedEffectsTmp);
-
-    // update parallaxData
-
-    const indexProperties = parallaxData[0].properties.findIndex(obj => obj.property === property);
-    let parallaxDataTmp = [...parallaxData];
-    parallaxDataTmp[0].properties[indexProperties].startValue = values[0];
-    parallaxDataTmp[0].properties[indexProperties].endValue = values[1];
-    parallaxDataTmp[1].properties[indexProperties].startValue = values[1];
-    parallaxDataTmp[1].properties[indexProperties].endValue = values[0];
-
-    // console.log('TCL: handleModifyEffect -> modifiedEffectsTmp', modifiedEffectsTmp)
-    setParallaxData(parallaxDataTmp);
-    console.log('TCL: handleModifyEffect -> parallaxDataTmp', parallaxDataTmp)
-
-
+    api.setSessionStorage("modifiedEffect", modifiedEffectsTmp);
   }
-
-  function handleSave() {
-    if (api.getLocalStorageUser()) {
-      let data = { _owner: api.getLocalStorageUser() }
-      api.postSavedProfile(data)
-
-    } else {
-      console.log('please log in to save')
-    }
+  function handleResetEffect(property) {
+    const modifiedEffectsTmp = [...modifiedEffects];
+    const index = modifiedEffectsTmp.findIndex(obj => obj.property === property);
+    modifiedEffectsTmp.splice(index, 1);
+    setModifiedEffects(modifiedEffectsTmp);
+    api.setSessionStorage("modifiedEffect", modifiedEffectsTmp);
   }
 
   /*********************************
@@ -191,6 +239,7 @@ export default function Customize({ likedEffects, onShowCaseClick }) {
                     key={data._id}
                     id={data._id}
                     data={data}
+                    modifiedEffects={modifiedEffects}
                     onModifyEffect={handleModifyEffect}
                     onResetEffect={handleResetEffect}
                     onCloseEffect={handleCloseEffect}
@@ -202,7 +251,6 @@ export default function Customize({ likedEffects, onShowCaseClick }) {
           <div className="col" />
         </div>
         <CodeSnippetModal parallaxDataCode={parallaxData} />
-        <button className="btn btn-info" onClick={handleSave}>save</button>
 
         <div className="customize-container">
           <div className="scroll-down-container">

@@ -18,7 +18,7 @@
 // Variables
 // --------------------
 $primary: #ff8410;
-$primary-light: #ffb731;
+$primary-light: #fd912c;
 $primary-super-light: #ff9c5b;
 $secondary: #ff4040;
 $secondary-light: #ff6e6e;
@@ -70,7 +70,7 @@ body {
   width: 20vw;
   height: 20vw;
   background-image: linear-gradient(-45deg, $secondary-light, $primary-light);
-  border: 2px solid white;
+  border: 3px solid white;
 }
 
 .btn,
@@ -150,7 +150,7 @@ body {
     padding-bottom: 0.2rem;
   }
   ul {
-    margin: 0.4rem 12rem;
+    margin: 0.6rem 18rem;
     width: 100%;
     display: flex;
     justify-content: space-around;
@@ -164,6 +164,9 @@ body {
   }
   .nav-link:hover {
     color: $primary-super-light !important;
+  }
+  .nav-link:visited {
+    color: $grey;
   }
   .category-active {
     color: $primary !important;
@@ -186,16 +189,19 @@ body {
     justify-content: space-around;
   }
   .nav-link {
+    font-size: 0.8rem;
     letter-spacing: 0.1rem;
     transition-property: all;
     transition-duration: 0.5s;
-    font-size: 0.8rem;
   }
   .nav-link:hover {
     color: $primary-super-light !important;
   }
+  .nav-link:active {
+    color: $grey;
+  }
   .nav-link:visited {
-    color: none;
+    color: $grey;
   }
 
   .property-active {
@@ -279,5 +285,6 @@ body {
 .property-text {
   position: fixed;
   top: 50vh;
-  left: 10vw;
+  letter-spacing: 0.15rem;
+  color: $primary;
 }

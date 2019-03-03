@@ -1,19 +1,40 @@
 // Props: properties, array of property names
 
-import React, { useState } from 'react';
+import React from 'react';
 import { useTrail, animated } from 'react-spring';
 
-const PropertyNavbarAnimation = ({ properties }) => {
-  const config = { mass: 1, tension: 2000, friction: 100 };
+const PropertyNavbarAnimation = ({ properties, propertyActive }) => {
+  const config = { mass: 1, tension: 3000, friction: 100 };
   const trail = useTrail(properties.length, {
     config,
+    from: { opacity: 0, xy: [0, 50] },
     opacity: 1,
-    x: 0,
-    y: 0,
-    scale: 1,
-    from: { opacity: 0, x: -20, y: -20, scale: 1.5 }
+    xy: [0, 0]
   });
 
+  return (
+    <ul className="navbar-nav">
+      {trail.map(({ opacity, xy }, index) => (
+        <li className="nav-item">
+          <animated.a
+            href={`#${properties[index]}`}
+            key={index}
+            className={
+              properties[index] === propertyActive
+                ? 'property-active nav-link'
+                : 'nav-link'
+            }
+            style={{
+              transform: xy.interpolate((x, y) => `translate(${x}px, ${y}px)`),
+              opacity
+            }}
+          >
+            {properties[index]}
+          </animated.a>
+        </li>
+      ))}
+    </ul>
+  );
 };
 
 export default PropertyNavbarAnimation;

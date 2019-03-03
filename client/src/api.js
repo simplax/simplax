@@ -138,13 +138,13 @@ export default {
    * Storing informations on session storage for non logged in users
    *****************************************/
 
-  setSessionStorage(likedEffect) {
-    return sessionStorage.setItem("likedEffect", JSON.stringify(likedEffect));
+  setSessionStorage(name, val) {
+    return sessionStorage.setItem(name, JSON.stringify(val));
   },
 
-  getSessionStorage() {
-    return JSON.parse(sessionStorage.getItem("likedEffect"));
-  },
+  // getSessionStorage() {
+  //   return JSON.parse(sessionStorage.getItem("likedEffect"));
+  // },
 
   /****************************************
    * CRUD operation for user saved customize profile
@@ -186,4 +186,15 @@ export default {
 
 
 
+  // setSessionStorage(likedEffect) {
+  //   return sessionStorage.setItem("likedEffect", JSON.stringify(likedEffect));
+  // },
+
+  getSessionStorage(name) {
+    return JSON.parse(sessionStorage.getItem(name));
+  }
+
+  // getSessionStorage() {
+  //   return JSON.parse(sessionStorage.getItem("likedEffect"));
+  // }
 };
