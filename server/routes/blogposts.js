@@ -4,7 +4,7 @@ const BlogPost = require('../models/BlogPost')
 const router = express.Router();
 const { isLoggedIn } = require('../middlewares')
 
-router.get('/', (req, res, next) => {
+router.get('/', isLoggedIn, (req, res, next) => {
   BlogPost.find()
     .then(blogposts => {
       res.json(blogposts)

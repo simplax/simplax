@@ -150,7 +150,21 @@ export default function Customize({ likedEffects, onShowCaseClick }) {
     parallaxDataTmp[1].properties[indexProperties].startValue = values[1];
     parallaxDataTmp[1].properties[indexProperties].endValue = values[0];
 
+    // console.log('TCL: handleModifyEffect -> modifiedEffectsTmp', modifiedEffectsTmp)
     setParallaxData(parallaxDataTmp);
+    console.log('TCL: handleModifyEffect -> parallaxDataTmp', parallaxDataTmp)
+
+
+  }
+
+  function handleSave() {
+    if (api.getLocalStorageUser()) {
+      let data = { _owner: api.getLocalStorageUser() }
+      api.postSavedProfile(data)
+
+    } else {
+      console.log('please log in to save')
+    }
   }
 
   /*********************************
@@ -188,6 +202,7 @@ export default function Customize({ likedEffects, onShowCaseClick }) {
           <div className="col" />
         </div>
         <CodeSnippetModal parallaxDataCode={parallaxData} />
+        <button className="btn btn-info" onClick={handleSave}>save</button>
 
         <div className="customize-container">
           <div className="scroll-down-container">

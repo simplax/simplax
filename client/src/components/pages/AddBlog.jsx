@@ -61,12 +61,11 @@ export default class AddBlog extends React.Component {
 
   handleChange(value) {
     this.setState({ text: value });
-    console.log(this.state.text);
   }
 
   handleClick(e) {
     e.preventDefault();
-    console.log(this.state.text);
+
     let data = { title: this.state.title, blogContent: this.state.text };
     api
       .postBlogPost(data)

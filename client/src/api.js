@@ -144,5 +144,46 @@ export default {
 
   getSessionStorage() {
     return JSON.parse(sessionStorage.getItem("likedEffect"));
-  }
+  },
+
+  /****************************************
+   * CRUD operation for user saved customize profile
+   *****************************************/
+  getSavedProfile() {
+    return service
+      .get('/savedProfiles')
+      .then(res => res.data)
+      .catch(errHandler)
+  },
+
+  postSavedProfile(data) {
+    return service
+      .post('/savedProfiles', data)
+      .then(res => res.data)
+      .catch(errHandler)
+  },
+
+  updateSavedProfile(id, data) {
+    return service
+      .put("/savedProfiles/" + id, data)
+      .then(res => res.data)
+      .catch(errHandler);
+  },
+
+  getSavedProfileDetail(BlogId) {
+    return service
+      .get("/savedProfiles/" + BlogId)
+      .then(res => res.data)
+      .catch(errHandler);
+  },
+
+  deleteSavedProfile(BlogId) {
+    return service
+      .delete("/savedProfiles/" + BlogId)
+      .then(res => res.data)
+      .catch(errHandler);
+  },
+
+
+
 };
