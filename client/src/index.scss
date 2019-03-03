@@ -25,7 +25,6 @@ $secondary-light: #ff6e6e;
 $secondary-super-light: #ff9898;
 $grey: #a3a3a3;
 $dark: #202020;
-
 // --------------------
 // Body
 // --------------------
@@ -76,8 +75,8 @@ body {
 .btn,
 .btn:hover,
 .btn:focus,
-.btn:active {
-  outline: none;
+.btn:active .btn:visited {
+  outline: none !important;
 }
 
 // --------------------
@@ -118,6 +117,15 @@ body {
 // Showcase
 // --------------------
 .Showcase {
+  .fa-heart {
+    margin-left: 20vw;
+    cursor: pointer;
+    transition-property: all;
+    transition-duration: 0.8s;
+  }
+  // .fa-heart:hover {
+  //   transform: translateY(-20px);
+  // }
   .unlike {
     color: $grey;
   }
@@ -132,6 +140,14 @@ body {
   }
   .category {
     letter-spacing: 0.4rem;
+  }
+  .box-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .showcase-box {
+    margin-left: 15vw;
   }
 }
 

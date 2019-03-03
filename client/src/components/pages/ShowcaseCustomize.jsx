@@ -14,16 +14,13 @@ const ShowcaseCustomize = () => {
    * Effect
    *********************************/
   useEffect(() => {
-    if (api.getSessionStorage())
-      setLikes(api.getSessionStorage())
-    else setLikes([])
-
-  }, [])
+    if (api.getSessionStorage()) setLikes(api.getSessionStorage());
+    else setLikes([]);
+  }, []);
 
   /*********************************
    * Event Handler
    *********************************/
-  // FIXME: change to handlePageClick 
   const handleCustomizeClick = () => {
     setIsShowcase(!isShowcase);
   };
@@ -34,13 +31,13 @@ const ShowcaseCustomize = () => {
       ? likesTemp.splice(likesTemp.indexOf(id), 1)
       : likesTemp.push(id);
     setLikes(likesTemp);
-    api.setSessionStorage(likesTemp)
+    api.setSessionStorage(likesTemp);
   };
 
-  const handleShowCaseClick = (updatedLikeStatus) => {
-    setIsShowcase(!isShowcase)
-    setLikes(updatedLikeStatus)
-  }
+  const handleShowCaseClick = updatedLikeStatus => {
+    setIsShowcase(!isShowcase);
+    setLikes(updatedLikeStatus);
+  };
 
   /*********************************
    * Render
@@ -48,15 +45,17 @@ const ShowcaseCustomize = () => {
   if (isShowcase) {
     return (
       <div>
-        <Showcase onLikeClick={handleLikeClick} likes={likes} onCustomizeClick={handleCustomizeClick} />
-
+        <Showcase
+          onLikeClick={handleLikeClick}
+          likes={likes}
+          onCustomizeClick={handleCustomizeClick}
+        />
       </div>
     );
   } else {
     return (
       <div>
         <Customize likedEffects={likes} onShowCaseClick={handleShowCaseClick} />
-
       </div>
     );
   }
