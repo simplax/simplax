@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
-import Showcase from './Showcase';
-import Customize from './Customize';
-import api from '../../api';
+import React, { useState, useEffect } from "react";
+import Showcase from "./Showcase";
+import Customize from "./Customize";
+import api from "../../api";
 
 const ShowcaseCustomize = () => {
   /*********************************
@@ -14,33 +14,30 @@ const ShowcaseCustomize = () => {
    * Effect
    *********************************/
   useEffect(() => {
-    if (api.getSessionStorage())
-      setLikes(api.getSessionStorage())
-    else setLikes([])
-
-  }, [])
+    if (api.getSessionStorage("likedEffect")) setLikes(api.getSessionStorage("likedEffect"));
+    else setLikes([]);
+  }, []);
 
   /*********************************
    * Event Handler
    *********************************/
-  // FIXME: change to handlePageClick 
+  // FIXME: change to handlePageClick
   const handleCustomizeClick = () => {
     setIsShowcase(!isShowcase);
   };
 
   const handleLikeClick = id => {
     const likesTemp = [...likes];
-    likesTemp.includes(id)
-      ? likesTemp.splice(likesTemp.indexOf(id), 1)
-      : likesTemp.push(id);
+    likesTemp.includes(id) ? likesTemp.splice(likesTemp.indexOf(id), 1) : likesTemp.push(id);
     setLikes(likesTemp);
-    api.setSessionStorage(likesTemp)
+    // api.setSessionStorage(likesTemp)
+    api.setSessionStorage("likedEffect", likesTemp);
   };
 
-  const handleShowCaseClick = (updatedLikeStatus) => {
-    setIsShowcase(!isShowcase)
-    setLikes(updatedLikeStatus)
-  }
+  const handleShowCaseClick = updatedLikeStatus => {
+    setIsShowcase(!isShowcase);
+    setLikes(updatedLikeStatus);
+  };
 
   /*********************************
    * Render
@@ -48,15 +45,17 @@ const ShowcaseCustomize = () => {
   if (isShowcase) {
     return (
       <div>
-        <Showcase onLikeClick={handleLikeClick} likes={likes} onCustomizeClick={handleCustomizeClick} />
-
+        <Showcase
+          onLikeClick={handleLikeClick}
+          likes={likes}
+          onCustomizeClick={handleCustomizeClick}
+        />
       </div>
     );
   } else {
     return (
       <div>
         <Customize likedEffects={likes} onShowCaseClick={handleShowCaseClick} />
-
       </div>
     );
   }
