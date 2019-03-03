@@ -18,25 +18,12 @@ const PropertyNavbar = ({ properties, propertyActive }) => {
         </button>
 
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul className="navbar-nav">
-            {properties &&
-              properties.map(property => {
-                return (
-                  <li className="nav-item">
-                    <a
-                      href={`#${property}`}
-                      className={
-                        property === propertyActive
-                          ? 'property-active nav-link'
-                          : 'nav-link'
-                      }
-                    >
-                      {property}
-                    </a>
-                  </li>
-                );
-              })}
-          </ul>
+          {properties && (
+            <PropertyNavbarAnimation
+              properties={properties}
+              propertyActive={propertyActive}
+            />
+          )}
         </div>
       </nav>
     </div>
