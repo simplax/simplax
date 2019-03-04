@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 
 import AddEffect from "../AddEffect";
 import CustomizeForm from "../CustomizeForm";
 import CodeSnippetModal from "../CodeSnippetModal";
 import CustomizeBox from "../CustomizeBox";
-import Save from '../Save';
-import Load from '../Load';
+import Save from "../Save";
+import Load from "../Load";
 import api from "../../api";
 
 // QUESTION: is likedEffects props neccessary?
@@ -45,12 +45,9 @@ export default function Customize() {
   // get saved profile
   useEffect(() => {
     if (api.getSavedProfile()) {
-      api.getSavedProfile()
-        .then(profile => setSavedProfile(profile))
-    }
-    else setSavedProfile([])
-  }, [])
-
+      api.getSavedProfile().then(profile => setSavedProfile(profile));
+    } else setSavedProfile([]);
+  }, []);
 
   // Get data from db
   useEffect(() => {
@@ -212,7 +209,6 @@ export default function Customize() {
     modifiedEffectsTmp.splice(index, 1);
     setModifiedEffects(modifiedEffectsTmp);
     api.setSessionStorage("modifiedEffect", modifiedEffectsTmp);
-
   }
 
   function handleModifyEffect(property, values) {
@@ -228,9 +224,7 @@ export default function Customize() {
     }
     setModifiedEffects(modifiedEffectsTmp);
     api.setSessionStorage("modifiedEffect", modifiedEffectsTmp);
-    console.log('TCL: handleModifyEffect -> modifiedEffect', modifiedEffects)
-
-
+    console.log("TCL: handleModifyEffect -> modifiedEffect", modifiedEffects);
   }
   function handleResetEffect(property) {
     const modifiedEffectsTmp = [...modifiedEffects];
@@ -238,39 +232,31 @@ export default function Customize() {
     modifiedEffectsTmp.splice(index, 1);
     setModifiedEffects(modifiedEffectsTmp);
     api.setSessionStorage("modifiedEffect", modifiedEffectsTmp);
-
   }
 
   function handleLoad(title) {
-    api.getSavedProfileDetail(title)
-      .then(data => {
-
-        let modifiedTmp = data.savedprofile.modifiedEffects
-        setModifiedEffects(modifiedTmp)
-        api.setSessionStorage("modifiedEffect", modifiedTmp)
-        let likedTmp = data.savedprofile.likedEffects
-        setLikedEffects(likedTmp)
-        api.setSessionStorage('likedEffects', likedTmp)
-
-      }
-
-      )
-
+    api.getSavedProfileDetail(title).then(data => {
+      let modifiedTmp = data.savedprofile.modifiedEffects;
+      setModifiedEffects(modifiedTmp);
+      api.setSessionStorage("modifiedEffect", modifiedTmp);
+      let likedTmp = data.savedprofile.likedEffects;
+      setLikedEffects(likedTmp);
+      api.setSessionStorage("likedEffects", likedTmp);
+    });
   }
 
   function handleSave(data) {
-    api.postSavedProfile(data)
+    api
+      .postSavedProfile(data)
 
       .then(() => {
-        console.log('saved!')
-        api.getSavedProfile()
-          .then(profile => { setSavedProfile(profile) })
+        console.log("saved!");
+        api.getSavedProfile().then(profile => {
+          setSavedProfile(profile);
+        });
       })
-      .catch(err => { })
-
-
+      .catch(err => {});
   }
-
 
   /*********************************
    * Render
@@ -285,31 +271,50 @@ export default function Customize() {
   return (
     <div className="Customize">
       <div className="container-fluid">
-        <div className="row ml-md-3 sticky-top-md">
-          <div className="col-12 col-md-3 sidebar">
-            <div className="">
+        <button
+          class="btn btn-primary btn-toggle-sidebar"
+          type="button"
+          data-toggle="collapse"
+          data-target="#collapseSidebar"
+          aria-expanded="false">
+          Show Sidebar
+        </button>
+        <div className="row bg-primary">
+          <div
+            className="col-12 col-md-3 collapse bg-light rounded sidebar-container"
+            id="collapseSidebar">
+            <div>
+              <Load onLoad={handleLoad} saved={savedProfile} />
+              <Save
+                modifiedEffects={modifiedEffects}
+                likedEffects={likedEffects}
+                onSave={handleSave}
+              />
               <AddEffect likedEffects={likedEffects} onAddEffect={handleAddEffect} />
-              {likedEffects.length === 0
-                ? null
-                : parallaxDataDefault.map(data => (
-                  <CustomizeForm
-                    key={data._id}
-                    id={data._id}
-                    data={data}
-                    modifiedEffects={modifiedEffects}
-                    onModifyEffect={handleModifyEffect}
-                    onResetEffect={handleResetEffect}
-                    onCloseEffect={handleCloseEffect}
-                  />
-                ))}
+              <div className="rounded shadow customize-sidebar">
+                {likedEffects.length === 0
+                  ? null
+                  : parallaxDataDefault.map(data => (
+                      <CustomizeForm
+                        key={data._id}
+                        id={data._id}
+                        data={data}
+                        modifiedEffects={modifiedEffects}
+                        onModifyEffect={handleModifyEffect}
+                        onResetEffect={handleResetEffect}
+                        onCloseEffect={handleCloseEffect}
+                      />
+                    ))}
+              </div>
             </div>
+            <CodeSnippetModal parallaxDataCode={parallaxData} />
           </div>
-
-          <div className="col" />
+          <div className="col">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores id culpa magnam dolor
+            sapiente in quae nemo atque ex perferendis, voluptas harum praesentium rerum accusantium
+            velit quia consequatur amet ullam!
+          </div>
         </div>
-        <CodeSnippetModal parallaxDataCode={parallaxData} />
-        <Save modifiedEffects={modifiedEffects} likedEffects={likedEffects} onSave={handleSave} />
-        <Load onLoad={handleLoad} saved={savedProfile} />
 
         <div className="customize-container">
           <div className="scroll-down-container">
@@ -319,7 +324,9 @@ export default function Customize() {
           <div className="scroll-down-container" />
         </div>
 
-        <Link to="/explore" className="btn btn-customize">Explore</Link>
+        <Link to="/explore" className="btn btn-customize">
+          Explore
+        </Link>
       </div>
     </div>
   );

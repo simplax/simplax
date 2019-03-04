@@ -107,12 +107,22 @@ body {
 // --------------------
 // Customize
 // --------------------
-.Customize {
-  @include media-breakpoint-up(md) {
-    .sticky-top-md {
-      position: sticky;
-      z-index: 1020;
-      top: 3.5rem;
+@include media-breakpoint-up(md) {
+  .Customize {
+    .btn-toggle-sidebar {
+      display: none;
+    }
+    .sidebar-container {
+      height: calc(100vh - 56px);
+      display: block;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .customize-sidebar {
+      height: calc(100vh - 284px);
+      overflow-x: hidden;
+      overflow-y: auto;
     }
   }
 }
