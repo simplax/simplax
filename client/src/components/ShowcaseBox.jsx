@@ -2,14 +2,13 @@ import React, { useState, useEffect } from 'react';
 import Plx from 'react-plx';
 import ScrollableAnchor from 'react-scrollable-anchor';
 
-import LikeIcon from '../components/animations/LikeIcon';
-
 const ShowcaseBox = ({
   data,
   onLikeClick,
   likedEffects,
   onPropertyPlxStart,
-  onPropertyPlxEnd
+  onPropertyPlxEnd,
+  isColor
 }) => {
   /*******************************************
    * Get data from props and set parallaxData
@@ -80,6 +79,7 @@ const ShowcaseBox = ({
       <div className="showcase-box-container">
         <div className="box-container">
           <Plx
+            className={isColor ? 'showcase-box--color' : 'showcase-box'}
             parallaxData={parallaxData}
             onPlxStart={() => {
               onPropertyPlxStart(property, category);
@@ -88,7 +88,7 @@ const ShowcaseBox = ({
               onPropertyPlxEnd(property);
             }}
           >
-            <div className="showcase-box" />
+            <div className="showcase-box-inner"><h4 className="showcase-box-text">Simplax</h4></div>
           </Plx>
 
           <i className={likeClassName()} onClick={() => onLikeClick(_id)} />
