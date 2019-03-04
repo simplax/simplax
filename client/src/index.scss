@@ -18,14 +18,25 @@
 // Variables
 // --------------------
 // OLD
-$primary: #ff8410;
-$primary-light: #fd912c;
-$primary-super-light: #ff9c5b;
-$secondary: #ff4040;
-$secondary-light: #ff6e6e;
-$secondary-super-light: #ff9898;
+// $primary: #ff8410;
+// $primary-light: #fd912c;
+// $primary-super-light: #ff9c5b;
+// $secondary: #ff4040;
+// $secondary-light: #ff6e6e;
+// $secondary-super-light: #ff9898;
+// $grey: #a3a3a3;
+// $dark: #202020;
+
+// NEW
+$primary: #ffcb59;
+$primary-dark: #ff8c49;
+$primary-super-dark: #ff4b51;
+$secondary: #d76d77;
+$secondary-dark: #703873;
+$secondary-super-dark: #412071;
+$light: #fbeed7;
 $grey: #a3a3a3;
-$dark: #202020;
+$dark: #1f1f1f;
 
 // VERSION 1
 // --------------------
@@ -86,7 +97,12 @@ body {
 .showcase-box {
   width: 20vw;
   height: 20vw;
-  background-image: linear-gradient(-45deg, $secondary-light, $primary-light);
+  background-image: linear-gradient(
+    -60deg,
+    $secondary-super-dark,
+    $secondary,
+    $primary
+  );
   border: 3px solid white;
 }
 
@@ -207,7 +223,7 @@ body {
 }
 .CategoryNavbar {
   .navbar.navbar-dark.navbar-expand-lg {
-    padding-top: 0.3rem;
+    padding-top: 0.5rem;
     padding-bottom: 0;
   }
   ul {
@@ -217,19 +233,21 @@ body {
     justify-content: space-around;
   }
   .nav-link {
+    border-radius: 10px;
     letter-spacing: 0.2rem;
     transition-property: all;
     transition-duration: 0.6s;
     padding: 0.4rem;
   }
   .nav-link:hover {
-    color: $primary-super-light !important;
+    color: darken($light, 10%) !important;
   }
   .nav-link:visited {
     color: $grey;
   }
   .category-active {
     color: $primary !important;
+    box-shadow: 0 0 30px $primary;
   }
 }
 
@@ -253,17 +271,13 @@ body {
     transition-duration: 0.5s;
   }
   .nav-link:hover {
-    color: $primary-super-light !important;
-  }
-  .nav-link:active {
-    color: $grey;
+    color: darken($light, 10%) !important;
   }
   .nav-link:visited {
     color: $grey;
   }
-
   .property-active {
-    color: lighten($primary, 5%) !important;
+    color: $primary !important;
     border-bottom: 1px solid $primary;
   }
 }
@@ -288,7 +302,7 @@ body {
   color: white;
   padding: 0.6rem 1rem;
   border-radius: 15px;
-  background-image: linear-gradient(-45deg, $secondary, $primary);
+  background-image: linear-gradient(-45deg, $primary-super-dark, $primary-dark);
   border: 1px solid $white;
   box-shadow: 0px 0px 50px rgba(lighten($primary, 30%), 0.7);
   position: fixed;
@@ -345,5 +359,5 @@ body {
   position: fixed;
   top: 50vh;
   letter-spacing: 0.15rem;
-  color: $primary;
+  color: $light;
 }
