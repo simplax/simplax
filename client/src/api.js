@@ -163,9 +163,9 @@ export default {
       .catch(errHandler)
   },
 
-  updateSavedProfile(id, data) {
+  updateSavedProfile(title, data) {
     return service
-      .put("/savedProfiles/" + id, data)
+      .put("/savedProfiles/" + title, data)
       .then(res => res.data)
       .catch(errHandler);
   },
