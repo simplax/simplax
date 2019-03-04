@@ -64,7 +64,6 @@ const CategoryNavbar = ({ categoryActive, properties, propertyActive }) => {
           </div>
         </nav>
       </div>
-
       <PropertyNavbar properties={properties} propertyActive={propertyActive} />
     </div>
   );
