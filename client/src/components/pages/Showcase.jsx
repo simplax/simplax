@@ -83,7 +83,10 @@ const Showcase = ({ onLikeClick, likes, onCustomizeClick }) => {
   }, []);
 
   useEffect(() => {
-    if (categoryNavInView) setCategory('');
+    if (categoryNavInView) {
+      setCategory('');
+      setProperty('');
+    }
   }, [categoryNavInView]);
 
   /*********************************
@@ -106,11 +109,6 @@ const Showcase = ({ onLikeClick, likes, onCustomizeClick }) => {
     setPropertyAnimation(false);
   };
 
-  const handleCategoryPlxEnd = nextCategory => {
-    setCategory(nextCategory);
-    setProperty('');
-    setPropertyAnimation(false);
-  };
   /*********************************
    * Functions
    *********************************/
@@ -287,6 +285,7 @@ const Showcase = ({ onLikeClick, likes, onCustomizeClick }) => {
         <TextTranslateX text={property} isEnter={propertyAnimation} />
       </div>
 
+      {/* Customize Button */}
       <button
         type="button"
         className="btn btn-customize"
@@ -299,4 +298,3 @@ const Showcase = ({ onLikeClick, likes, onCustomizeClick }) => {
 };
 
 export default Showcase;
-

@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import Plx from 'react-plx';
 import ScrollableAnchor from 'react-scrollable-anchor';
 
+import LikeIcon from '../components/animations/LikeIcon';
+
 const ShowcaseBox = ({
   data,
   onLikeClick,
@@ -76,19 +78,21 @@ const ShowcaseBox = ({
   return (
     <ScrollableAnchor id={property}>
       <div className="showcase-box-container">
-        <Plx
-          parallaxData={parallaxData}
-          onPlxStart={() => {
-            onPropertyPlxStart(property, category);
-          }}
-          onPlxEnd={() => {
-            onPropertyPlxEnd(property);
-          }}
-        >
-          <div className="showcase-box" />
-        </Plx>
+        <div className="box-container">
+          <Plx
+            parallaxData={parallaxData}
+            onPlxStart={() => {
+              onPropertyPlxStart(property, category);
+            }}
+            onPlxEnd={() => {
+              onPropertyPlxEnd(property);
+            }}
+          >
+            <div className="showcase-box" />
+          </Plx>
 
-        <i className={likeClassName()} onClick={() => onLikeClick(_id)} />
+          <i className={likeClassName()} onClick={() => onLikeClick(_id)} />
+        </div>
       </div>
     </ScrollableAnchor>
   );
