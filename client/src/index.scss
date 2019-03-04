@@ -11,8 +11,8 @@
 // <Button color="danger">Danger!</Button>
 // ----------------------------------------
 
-@import "../node_modules/bootstrap/scss/bootstrap.scss";
-@import url("https://fonts.googleapis.com/css?family=Poppins");
+@import '../node_modules/bootstrap/scss/bootstrap.scss';
+@import url('https://fonts.googleapis.com/css?family=Poppins');
 
 // --------------------
 // Variables
@@ -33,6 +33,7 @@ $dark: #202020;
 // $secondary: #69779b;
 // $light: #f0ece2;
 // $dark: #010101;
+// $grey: #a3a3a3;
 
 // VERSION 2
 // --------------------
@@ -40,6 +41,7 @@ $dark: #202020;
 // $secondary: #ffba5a;
 // $light: #fbeed7;
 // $dark: #5d5d5a;
+// $grey: #a3a3a3;
 
 // --------------------
 // Body
@@ -47,7 +49,7 @@ $dark: #202020;
 body {
   margin: 0;
   padding: 0;
-  font-family: "Poppins", sans-serif;
+  font-family: 'Poppins', sans-serif;
   background-color: $dark;
   color: $white;
 }
@@ -86,6 +88,25 @@ body {
   height: 20vw;
   background-image: linear-gradient(-45deg, $secondary-light, $primary-light);
   border: 3px solid white;
+}
+
+.showcase-box-inner {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.showcase-box--color {
+  width: 20vw;
+  height: 20vw;
+  background: transparent;
+  border: 6px solid white;
+}
+
+.showcase-box-text {
+  letter-spacing: 0.1rem;
 }
 
 .btn,
@@ -270,7 +291,11 @@ body {
 .btn-customize:hover {
   transform: translateY(-2px);
   color: $light;
-  background-image: linear-gradient(-45deg, darken($secondary, 30%), darken($primary, 10%));
+  background-image: linear-gradient(
+    -45deg,
+    darken($secondary, 30%),
+    darken($primary, 10%)
+  );
   box-shadow: 0px 0px 15px rgba($primary, 0.7);
 }
 .btn-customize:active {
@@ -288,8 +313,9 @@ body {
   top: 50vh;
   left: 10vw;
   .TextTranslateX__text {
-    margin-left: 2px;
+    margin-left: 1px;
     display: inline-block;
+    font-size: 1rem;
   }
 }
 
