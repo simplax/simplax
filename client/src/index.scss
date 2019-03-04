@@ -11,12 +11,13 @@
 // <Button color="danger">Danger!</Button>
 // ----------------------------------------
 
-@import '../node_modules/bootstrap/scss/bootstrap.scss';
-@import url('https://fonts.googleapis.com/css?family=Poppins');
+@import "../node_modules/bootstrap/scss/bootstrap.scss";
+@import url("https://fonts.googleapis.com/css?family=Poppins");
 
 // --------------------
 // Variables
 // --------------------
+// OLD
 $primary: #ff8410;
 $primary-light: #fd912c;
 $primary-super-light: #ff9c5b;
@@ -25,13 +26,28 @@ $secondary-light: #ff6e6e;
 $secondary-super-light: #ff9898;
 $grey: #a3a3a3;
 $dark: #202020;
+
+// VERSION 1
+// --------------------
+// $primary: #acdbdf;
+// $secondary: #69779b;
+// $light: #f0ece2;
+// $dark: #010101;
+
+// VERSION 2
+// --------------------
+// $primary: #ff7657;
+// $secondary: #ffba5a;
+// $light: #fbeed7;
+// $dark: #5d5d5a;
+
 // --------------------
 // Body
 // --------------------
 body {
   margin: 0;
   padding: 0;
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   background-color: $dark;
   color: $white;
 }
@@ -254,11 +270,7 @@ body {
 .btn-customize:hover {
   transform: translateY(-2px);
   color: $light;
-  background-image: linear-gradient(
-    -45deg,
-    darken($secondary, 30%),
-    darken($primary, 10%)
-  );
+  background-image: linear-gradient(-45deg, darken($secondary, 30%), darken($primary, 10%));
   box-shadow: 0px 0px 15px rgba($primary, 0.7);
 }
 .btn-customize:active {
