@@ -20,10 +20,7 @@ export default function CustomizeForm({
   if (modifiedEffects && modifiedEffects.find(obj => obj.property === property)) {
     const index = modifiedEffects.findIndex(obj => obj.property === property);
     var startValueModified = modifiedEffects[index].values[0];
-    console.log('TCL: modifiedEffects[index].values[0]', modifiedEffects[index].values[0])
-
     var endValueModified = modifiedEffects[index].values[1];
-    console.log('TCL: modifiedEffects[index].values[1]', modifiedEffects[index].values[1])
   }
   let step = maxValue / 20;
   if (unit === "deg") {
@@ -39,6 +36,10 @@ export default function CustomizeForm({
     startValueModified ? startValueModified : startValue,
     endValueModified ? endValueModified : endValue
   ]);
+
+  useEffect(() => {
+    onModifyEffect(property, values);
+  }, [values]);
 
   /*********************************
    * Render
@@ -57,7 +58,6 @@ export default function CustomizeForm({
                   value={values[0]}
                   onChange={e => {
                     setValues([e.target.value, values[1]]);
-                    onModifyEffect(property, values);
                   }}
                 />
                 <input
@@ -66,7 +66,6 @@ export default function CustomizeForm({
                   value={values[1]}
                   onChange={e => {
                     setValues([values[0], e.target.value]);
-                    onModifyEffect(property, values);
                   }}
                 />
               </div>
@@ -79,7 +78,6 @@ export default function CustomizeForm({
                     value={values}
                     onChange={e => {
                       setValues([...e]);
-                      onModifyEffect(property, values);
                     }}
                     // allowCross={false}
                     tipFormatter={value => `${value} ${unit}`}
@@ -94,7 +92,6 @@ export default function CustomizeForm({
                       value={values[0]}
                       onChange={e => {
                         setValues([Number(e.target.value), values[1]]);
-                        onModifyEffect(property, values);
                       }}
                     />
                     <input
@@ -106,7 +103,6 @@ export default function CustomizeForm({
                       value={values[1]}
                       onChange={e => {
                         setValues([values[0], Number(e.target.value)]);
-                        onModifyEffect(property, values);
                       }}
                     />
                   </div>
@@ -122,7 +118,7 @@ export default function CustomizeForm({
               }}>
               Reset
             </button>
-            <button className="btn btn-info btn-block btn-sm" onClick={() => onCloseEffect(_id)}>
+            <button className="btn btn-info btn-block btn-sm" onClick={() => onCloseEffect(_id, property)}>
               Remove
             </button>
           </div>

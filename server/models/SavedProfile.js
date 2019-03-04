@@ -14,8 +14,13 @@ const savedProfileSchema = new Schema({
     unique: true
   },
 
-  parallaxDataCode: {
-    type: String,
+  modifiedEffects: {
+    type: Array,
+    required: true
+  },
+
+  likedEffects: {
+    type: Array,
     required: true
   }
 })

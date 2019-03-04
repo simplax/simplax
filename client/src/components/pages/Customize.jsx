@@ -3,6 +3,8 @@ import AddEffect from "../AddEffect";
 import CustomizeForm from "../CustomizeForm";
 import CodeSnippetModal from "../CodeSnippetModal";
 import CustomizeBox from "../CustomizeBox";
+import Save from '../Save';
+import Load from '../Load';
 import api from "../../api";
 
 // QUESTION: is likedEffects props neccessary?
@@ -15,6 +17,7 @@ export default function Customize({ likedEffects, onShowCaseClick }) {
   const [parallaxData, setParallaxData] = useState(parallaxDataDefault);
   const [likedEffect, setLikedEffect] = useState(likedEffects);
   const [modifiedEffects, setModifiedEffects] = useState([]);
+  const [savedProfile, setSavedProfile] = useState([]);
 
   /*********************************
    * Effect
@@ -36,6 +39,16 @@ export default function Customize({ likedEffects, onShowCaseClick }) {
       setModifiedEffects([]);
     }
   }, []);
+
+  // get saved profile
+  useEffect(() => {
+    if (api.getSavedProfile()) {
+      api.getSavedProfile()
+        .then(profile => setSavedProfile(profile))
+    }
+    else setSavedProfile([])
+  }, [])
+
 
   // Get data from db
   useEffect(() => {
@@ -186,11 +199,18 @@ export default function Customize({ likedEffects, onShowCaseClick }) {
     setLikedEffect(likedEffectTemp);
     api.setSessionStorage("likedEffect", likedEffectTemp);
   }
-  function handleCloseEffect(id) {
+  function handleCloseEffect(id, property) {
     const likedEffectTemp = [...likedEffect];
     likedEffectTemp.splice(likedEffectTemp.indexOf(id), 1);
     setLikedEffect(likedEffectTemp);
     api.setSessionStorage("likedEffect", likedEffectTemp);
+
+    const modifiedEffectsTmp = [...modifiedEffects];
+    const index = modifiedEffectsTmp.findIndex(obj => obj.property === property);
+    modifiedEffectsTmp.splice(index, 1);
+    setModifiedEffects(modifiedEffectsTmp);
+    api.setSessionStorage("modifiedEffect", modifiedEffectsTmp);
+
   }
 
   function handleModifyEffect(property, values) {
@@ -206,6 +226,9 @@ export default function Customize({ likedEffects, onShowCaseClick }) {
     }
     setModifiedEffects(modifiedEffectsTmp);
     api.setSessionStorage("modifiedEffect", modifiedEffectsTmp);
+    console.log('TCL: handleModifyEffect -> modifiedEffect', modifiedEffects)
+
+
   }
   function handleResetEffect(property) {
     const modifiedEffectsTmp = [...modifiedEffects];
@@ -213,7 +236,39 @@ export default function Customize({ likedEffects, onShowCaseClick }) {
     modifiedEffectsTmp.splice(index, 1);
     setModifiedEffects(modifiedEffectsTmp);
     api.setSessionStorage("modifiedEffect", modifiedEffectsTmp);
+
   }
+
+  function handleLoad(title) {
+    api.getSavedProfileDetail(title)
+      .then(data => {
+
+        let modifiedTmp = data.savedprofile.modifiedEffects
+        setModifiedEffects(modifiedTmp)
+        api.setSessionStorage("modifiedEffect", modifiedTmp)
+        let likedTmp = data.savedprofile.likedEffects
+        setLikedEffect(likedTmp)
+        api.setSessionStorage('likedEffect', likedTmp)
+
+      }
+
+      )
+
+  }
+
+  function handleSave(data) {
+    api.postSavedProfile(data)
+
+      .then(() => {
+        console.log('saved!')
+        api.getSavedProfile()
+          .then(profile => { setSavedProfile(profile) })
+      })
+      .catch(err => { })
+
+
+  }
+
 
   /*********************************
    * Render
@@ -251,6 +306,8 @@ export default function Customize({ likedEffects, onShowCaseClick }) {
           <div className="col" />
         </div>
         <CodeSnippetModal parallaxDataCode={parallaxData} />
+        <Save modifiedEffects={modifiedEffects} likedEffects={likedEffect} onSave={handleSave} />
+        <Load onLoad={handleLoad} saved={savedProfile} />
 
         <div className="customize-container">
           <div className="scroll-down-container">

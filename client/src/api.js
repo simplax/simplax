@@ -170,16 +170,16 @@ export default {
       .catch(errHandler);
   },
 
-  getSavedProfileDetail(BlogId) {
+  getSavedProfileDetail(Id) {
     return service
-      .get("/savedProfiles/" + BlogId)
+      .get("/savedProfiles/" + Id)
       .then(res => res.data)
       .catch(errHandler);
   },
 
-  deleteSavedProfile(BlogId) {
+  deleteSavedProfile(Id) {
     return service
-      .delete("/savedProfiles/" + BlogId)
+      .delete("/savedProfiles/" + Id)
       .then(res => res.data)
       .catch(errHandler);
   },
