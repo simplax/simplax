@@ -70,46 +70,46 @@ export default function CustomizeForm({
                 />
               </div>
             ) : (
-                <div>
-                  <Range
+              <div>
+                <Range
+                  step={step}
+                  min={minValue}
+                  max={maxValue}
+                  value={values}
+                  onChange={e => {
+                    setValues([...e]);
+                  }}
+                  // allowCross={false}
+                  tipFormatter={value => `${value} ${unit}`}
+                />
+                <div className="input-group">
+                  <input
                     step={step}
                     min={minValue}
                     max={maxValue}
-                    value={values}
+                    className="form-control"
+                    type="number"
+                    value={values[0]}
                     onChange={e => {
-                      setValues([...e]);
+                      setValues([Number(e.target.value), values[1]]);
                     }}
-                    // allowCross={false}
-                    tipFormatter={value => `${value} ${unit}`}
                   />
-                  <div className="input-group">
-                    <input
-                      step={step}
-                      min={minValue}
-                      max={maxValue}
-                      className="form-control"
-                      type="number"
-                      value={values[0]}
-                      onChange={e => {
-                        setValues([Number(e.target.value), values[1]]);
-                      }}
-                    />
-                    <input
-                      step={step}
-                      min={minValue}
-                      max={maxValue}
-                      className="form-control"
-                      type="number"
-                      value={values[1]}
-                      onChange={e => {
-                        setValues([values[0], Number(e.target.value)]);
-                      }}
-                    />
-                  </div>
+                  <input
+                    step={step}
+                    min={minValue}
+                    max={maxValue}
+                    className="form-control"
+                    type="number"
+                    value={values[1]}
+                    onChange={e => {
+                      setValues([values[0], Number(e.target.value)]);
+                    }}
+                  />
                 </div>
-              )}
+              </div>
+            )}
           </div>
-          <div className="col-5">
+          <div className="col-5 d-flex flex-column justify-content-center">
             <button
               className="btn btn-outline-info btn-block btn-sm"
               onClick={() => {
@@ -118,7 +118,9 @@ export default function CustomizeForm({
               }}>
               Reset
             </button>
-            <button className="btn btn-info btn-block btn-sm" onClick={() => onCloseEffect(_id, property)}>
+            <button
+              className="btn btn-info btn-block btn-sm"
+              onClick={() => onCloseEffect(_id, property)}>
               Remove
             </button>
           </div>

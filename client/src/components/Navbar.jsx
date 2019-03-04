@@ -1,12 +1,12 @@
-import React, { useEffect, useState } from 'react';
-import { NavLink } from 'react-router-dom';
-import api from '../api';
+import React, { useEffect, useState } from "react";
+import { NavLink } from "react-router-dom";
+import api from "../api";
 
 export default function Navbar() {
   useEffect(() => {});
   return (
     <div className="Navbar">
-      <nav className="navbar navbar-expand-lg navbar-dark bg-transparent container">
+      <nav className="navbar navbar-expand-md navbar-dark bg-transparent container">
         <NavLink className="navbar-brand" exact to="/">
           Simplax Logo
         </NavLink>
@@ -17,8 +17,7 @@ export default function Navbar() {
           data-target="#navbarToggler"
           aria-controls="navbarToggler"
           aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
+          aria-label="Toggle navigation">
           <span className="navbar-toggler-icon" />
         </button>
 
@@ -58,8 +57,7 @@ export default function Navbar() {
               <li>
                 <a
                   className="github-login-link"
-                  href={api.service.defaults.baseURL + '/github-login'}
-                >
+                  href={api.service.defaults.baseURL + "/github-login"}>
                   Login with Github
                 </a>
               </li>

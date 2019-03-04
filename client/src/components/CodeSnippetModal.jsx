@@ -73,14 +73,16 @@ export default function CodeSnipppetModal({ parallaxDataCode }) {
 
   return (
     <div className="CodeSnipppetModal">
-      <button
-        type="button"
-        className="btn btn-info"
-        data-toggle="modal"
-        data-target="#codeSnippetModal"
-        onClick={() => setTextState(code)}>
-        Show code snippet
-      </button>
+      <div className="p-2 mb-1 bg-light text-dark rounded">
+        <button
+          type="button"
+          className="btn btn-info"
+          data-toggle="modal"
+          data-target="#codeSnippetModal"
+          onClick={() => setTextState(code)}>
+          Code snippet
+        </button>
+      </div>
 
       <div
         className="modal fade text-dark"
