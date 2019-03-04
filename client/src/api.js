@@ -143,7 +143,7 @@ export default {
   },
 
   // getSessionStorage() {
-  //   return JSON.parse(sessionStorage.getItem("likedEffect"));
+  //   return JSON.parse(sessionStorage.getItem("likedEffects"));
   // },
 
   /****************************************
@@ -186,8 +186,8 @@ export default {
 
 
 
-  // setSessionStorage(likedEffect) {
-  //   return sessionStorage.setItem("likedEffect", JSON.stringify(likedEffect));
+  // setSessionStorage(likedEffects) {
+  //   return sessionStorage.setItem("likedEffects", JSON.stringify(likedEffects));
   // },
 
   getSessionStorage(name) {
@@ -195,6 +195,6 @@ export default {
   }
 
   // getSessionStorage() {
-  //   return JSON.parse(sessionStorage.getItem("likedEffect"));
+  //   return JSON.parse(sessionStorage.getItem("likedEffects"));
   // }
 };

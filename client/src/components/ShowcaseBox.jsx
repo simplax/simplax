@@ -7,7 +7,7 @@ import LikeIcon from '../components/animations/LikeIcon';
 const ShowcaseBox = ({
   data,
   onLikeClick,
-  likes,
+  likedEffects,
   onPropertyPlxStart,
   onPropertyPlxEnd
 }) => {
@@ -67,7 +67,7 @@ const ShowcaseBox = ({
    * functions
    *********************************/
   const likeClassName = () => {
-    return likes.includes(_id)
+    return likedEffects.includes(_id)
       ? 'like fas fa-heart fa-2x'
       : 'unlike fas fa-heart fa-2x';
   };

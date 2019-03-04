@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from "react";
-import { NavLink } from "react-router-dom";
-import api from "../api";
+import React, { useEffect, useState } from 'react';
+import { NavLink } from 'react-router-dom';
+import api from '../api';
 
 export default function Navbar() {
   useEffect(() => {});
@@ -17,7 +17,8 @@ export default function Navbar() {
           data-target="#navbarToggler"
           aria-controls="navbarToggler"
           aria-expanded="false"
-          aria-label="Toggle navigation">
+          aria-label="Toggle navigation"
+        >
           <span className="navbar-toggler-icon" />
         </button>
 
@@ -34,8 +35,13 @@ export default function Navbar() {
               </NavLink>
             </li>
             <li className="nav-item">
-              <NavLink className="nav-link" to="/showcase-customize">
-                Create your Animation
+              <NavLink className="nav-link" to="/explore">
+                Explore
+              </NavLink>
+            </li>
+            <li className="nav-item">
+              <NavLink className="nav-link" to="/customize">
+                Customize
               </NavLink>
             </li>
             <li className="nav-item">
@@ -52,7 +58,8 @@ export default function Navbar() {
               <li>
                 <a
                   className="github-login-link"
-                  href={api.service.defaults.baseURL + "/github-login"}>
+                  href={api.service.defaults.baseURL + '/github-login'}
+                >
                   Login with Github
                 </a>
               </li>

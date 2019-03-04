@@ -3,7 +3,8 @@ import { Route, Switch } from "react-router-dom";
 import Navbar from "./Navbar";
 import Home from "./pages/Home";
 // import AboutUs from "./pages/AboutUs";
-import ShowcaseCustomize from "./pages/ShowcaseCustomize";
+import Showcase from "./pages/Showcase";
+import Customize from "./pages/Customize";
 // import Blog from "./pages/Blog";
 import Secret from "./pages/Secret";
 import Login from "./pages/Login";
@@ -19,7 +20,8 @@ export default function App() {
       <Switch>
         <Route path="/" exact component={Home} />
         {/* <Route path="/about-us" component={AboutUs} /> */}
-        <Route path="/showcase-customize" component={ShowcaseCustomize} />
+        <Route path="/explore" component={Showcase} />
+        <Route path="/customize" component={Customize} />
         <Route path="/login" component={Login} />
         <Route path="/success-login" component={SuccessLogin} />
         <Route path="/secret" component={Secret} />

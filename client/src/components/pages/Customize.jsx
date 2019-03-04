@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react";
+import { Link } from 'react-router-dom';
+
 import AddEffect from "../AddEffect";
 import CustomizeForm from "../CustomizeForm";
 import CodeSnippetModal from "../CodeSnippetModal";
@@ -9,13 +11,13 @@ import api from "../../api";
 
 // QUESTION: is likedEffects props neccessary?
 
-export default function Customize({ likedEffects, onShowCaseClick }) {
+export default function Customize() {
   /*********************************
    * States
    *********************************/
   const [parallaxDataDefault, setParallaxDataDefault] = useState([]);
   const [parallaxData, setParallaxData] = useState(parallaxDataDefault);
-  const [likedEffect, setLikedEffect] = useState(likedEffects);
+  const [likedEffects, setLikedEffects] = useState([]);
   const [modifiedEffects, setModifiedEffects] = useState([]);
   const [savedProfile, setSavedProfile] = useState([]);
 
@@ -24,10 +26,10 @@ export default function Customize({ likedEffects, onShowCaseClick }) {
    *********************************/
   // Get data from sessionStorage
   useEffect(() => {
-    if (api.getSessionStorage("likedEffect")) {
-      setLikedEffect(api.getSessionStorage("likedEffect"));
+    if (api.getSessionStorage("likedEffects")) {
+      setLikedEffects(api.getSessionStorage("likedEffects"));
     } else {
-      setLikedEffect([]);
+      setLikedEffects([]);
     }
   }, []);
 
@@ -52,11 +54,11 @@ export default function Customize({ likedEffects, onShowCaseClick }) {
 
   // Get data from db
   useEffect(() => {
-    if (likedEffect.length === 0) {
+    if (likedEffects.length === 0) {
       return;
     }
 
-    let likedEffectUrl = likedEffect.join("-");
+    let likedEffectUrl = likedEffects.join("-");
     api.getManyParallaxData(likedEffectUrl).then(res => {
       setParallaxDataDefault(res);
 
@@ -113,15 +115,15 @@ export default function Customize({ likedEffects, onShowCaseClick }) {
     });
 
     return () => setParallaxData([]);
-  }, [likedEffect]);
+  }, [likedEffects]);
 
   // update parallaxData
   useEffect(() => {
-    if (likedEffect.length === 0) {
+    if (likedEffects.length === 0) {
       return;
     }
 
-    let likedEffectUrl = likedEffect.join("-");
+    let likedEffectUrl = likedEffects.join("-");
     api.getManyParallaxData(likedEffectUrl).then(res => {
       /*********************************
        * Converting parallax data to usable code for snippet and box
@@ -194,16 +196,16 @@ export default function Customize({ likedEffects, onShowCaseClick }) {
    * Event Handler
    *********************************/
   function handleAddEffect(id) {
-    const likedEffectTemp = [...likedEffect];
+    const likedEffectTemp = [...likedEffects];
     likedEffectTemp.push(id);
-    setLikedEffect(likedEffectTemp);
-    api.setSessionStorage("likedEffect", likedEffectTemp);
+    setLikedEffects(likedEffectTemp);
+    api.setSessionStorage("likedEffects", likedEffectTemp);
   }
   function handleCloseEffect(id, property) {
-    const likedEffectTemp = [...likedEffect];
+    const likedEffectTemp = [...likedEffects];
     likedEffectTemp.splice(likedEffectTemp.indexOf(id), 1);
-    setLikedEffect(likedEffectTemp);
-    api.setSessionStorage("likedEffect", likedEffectTemp);
+    setLikedEffects(likedEffectTemp);
+    api.setSessionStorage("likedEffects", likedEffectTemp);
 
     const modifiedEffectsTmp = [...modifiedEffects];
     const index = modifiedEffectsTmp.findIndex(obj => obj.property === property);
@@ -247,8 +249,8 @@ export default function Customize({ likedEffects, onShowCaseClick }) {
         setModifiedEffects(modifiedTmp)
         api.setSessionStorage("modifiedEffect", modifiedTmp)
         let likedTmp = data.savedprofile.likedEffects
-        setLikedEffect(likedTmp)
-        api.setSessionStorage('likedEffect', likedTmp)
+        setLikedEffects(likedTmp)
+        api.setSessionStorage('likedEffects', likedTmp)
 
       }
 
@@ -273,7 +275,7 @@ export default function Customize({ likedEffects, onShowCaseClick }) {
   /*********************************
    * Render
    *********************************/
-  if (!parallaxData && likedEffect.length !== 0) {
+  if (!parallaxData && likedEffects.length !== 0) {
     return (
       <div className="Customize scroll-down-container">
         <h2>Loading...</h2>
@@ -286,8 +288,8 @@ export default function Customize({ likedEffects, onShowCaseClick }) {
         <div className="row ml-md-3 sticky-top-md">
           <div className="col-12 col-md-3 sidebar">
             <div className="">
-              <AddEffect likedEffect={likedEffect} onAddEffect={handleAddEffect} />
-              {likedEffect.length === 0
+              <AddEffect likedEffects={likedEffects} onAddEffect={handleAddEffect} />
+              {likedEffects.length === 0
                 ? null
                 : parallaxDataDefault.map(data => (
                   <CustomizeForm
@@ -306,7 +308,7 @@ export default function Customize({ likedEffects, onShowCaseClick }) {
           <div className="col" />
         </div>
         <CodeSnippetModal parallaxDataCode={parallaxData} />
-        <Save modifiedEffects={modifiedEffects} likedEffects={likedEffect} onSave={handleSave} />
+        <Save modifiedEffects={modifiedEffects} likedEffects={likedEffects} onSave={handleSave} />
         <Load onLoad={handleLoad} saved={savedProfile} />
 
         <div className="customize-container">
@@ -317,12 +319,7 @@ export default function Customize({ likedEffects, onShowCaseClick }) {
           <div className="scroll-down-container" />
         </div>
 
-        <button
-          type="button"
-          className="btn btn-customize"
-          onClick={() => onShowCaseClick(likedEffect)}>
-          Showcase
-        </button>
+        <Link to="/explore" className="btn btn-customize">Explore</Link>
       </div>
     </div>
   );

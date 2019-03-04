@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { Link } from 'react-router-dom';
 import Plx from 'react-plx';
 import { useInView } from 'react-intersection-observer';
 import ScrollableAnchor, { configureAnchors } from 'react-scrollable-anchor';
@@ -8,7 +9,7 @@ import ShowcaseBox from '../ShowcaseBox';
 import CategoryNavbar from '../CategoryNavbar';
 import TextTranslateX from '../animations/TextTranslateX';
 
-const Showcase = ({ onLikeClick, likes, onCustomizeClick }) => {
+const Showcase = () => {
   /*********************************
    * States
    *********************************/
@@ -19,6 +20,7 @@ const Showcase = ({ onLikeClick, likes, onCustomizeClick }) => {
   const [transformProps, setTransformProps] = useState([]);
   const [colorsProps, setColorsProps] = useState([]);
   const [cssFilterProps, setCSSFilterProps] = useState([]);
+  const [likedEffects, setLikedEffects] = useState([]);
   const [viewportHeight, setViewportHeight] = useState(0);
 
   // update
@@ -83,6 +85,12 @@ const Showcase = ({ onLikeClick, likes, onCustomizeClick }) => {
   }, []);
 
   useEffect(() => {
+    if (api.getSessionStorage('likedEffects'))
+      setLikedEffects(api.getSessionStorage('likedEffects'));
+    else setLikedEffects([]);
+  }, []);
+
+  useEffect(() => {
     if (categoryNavInView) {
       setCategory('');
       setProperty('');
@@ -109,6 +117,14 @@ const Showcase = ({ onLikeClick, likes, onCustomizeClick }) => {
     setPropertyAnimation(false);
   };
 
+  const handleLikeClick = id => {
+    const likesTemp = [...likedEffects];
+    likesTemp.includes(id)
+      ? likesTemp.splice(likesTemp.indexOf(id), 1)
+      : likesTemp.push(id);
+    setLikedEffects(likesTemp);
+    api.setSessionStorage('likedEffects', likesTemp);
+  };
   /*********************************
    * Functions
    *********************************/
@@ -217,10 +233,10 @@ const Showcase = ({ onLikeClick, likes, onCustomizeClick }) => {
             <ShowcaseBox
               key={data._id}
               data={data}
-              onLikeClick={onLikeClick}
+              onLikeClick={handleLikeClick}
               onPropertyPlxStart={handlePropertyPlxStart}
               onPropertyPlxEnd={handlePropertyPlxEnd}
-              likes={likes}
+              likedEffects={likedEffects}
             />
           );
         })}
@@ -243,10 +259,10 @@ const Showcase = ({ onLikeClick, likes, onCustomizeClick }) => {
             <ShowcaseBox
               key={data._id}
               data={data}
-              onLikeClick={onLikeClick}
+              onLikeClick={handleLikeClick}
               onPropertyPlxStart={handlePropertyPlxStart}
               onPropertyPlxEnd={handlePropertyPlxEnd}
-              likes={likes}
+              likedEffects={likedEffects}
             />
           );
         })}
@@ -269,10 +285,10 @@ const Showcase = ({ onLikeClick, likes, onCustomizeClick }) => {
             <ShowcaseBox
               key={data._id}
               data={data}
-              onLikeClick={onLikeClick}
+              onLikeClick={handleLikeClick}
               onPropertyPlxStart={handlePropertyPlxStart}
               onPropertyPlxEnd={handlePropertyPlxEnd}
-              likes={likes}
+              likedEffects={likedEffects}
             />
           );
         })}
@@ -286,13 +302,9 @@ const Showcase = ({ onLikeClick, likes, onCustomizeClick }) => {
       </div>
 
       {/* Customize Button */}
-      <button
-        type="button"
-        className="btn btn-customize"
-        onClick={onCustomizeClick}
-      >
+      <Link to="/customize" className="btn btn-customize">
         Customize
-      </button>
+      </Link>
     </div>
   );
 };

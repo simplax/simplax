@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from "react";
-import api from "../api";
+import React, { useState, useEffect } from 'react';
+import api from '../api';
 
-export default function AddEffect({ likedEffect, onAddEffect }) {
+export default function AddEffect({ likedEffects, onAddEffect }) {
   /*********************************
    * States
    *********************************/
-  const [effect, setEffect] = useState("");
+  const [effect, setEffect] = useState('');
   const [parallaxData, setParallaxData] = useState(null);
 
   /*********************************
@@ -13,10 +13,14 @@ export default function AddEffect({ likedEffect, onAddEffect }) {
    *********************************/
   useEffect(() => {
     api.getAllParallaxData().then(allPlxData => {
-      setParallaxData(allPlxData.filter(data => !likedEffect.includes(data._id)));
-      setEffect(allPlxData.filter(data => !likedEffect.includes(data._id))[0]._id);
+      setParallaxData(
+        allPlxData.filter(data => !likedEffects.includes(data._id))
+      );
+      setEffect(
+        allPlxData.filter(data => !likedEffects.includes(data._id))[0]._id
+      );
     });
-  }, [likedEffect]);
+  }, [likedEffects]);
 
   /*********************************
    * Event Handler
@@ -40,7 +44,8 @@ export default function AddEffect({ likedEffect, onAddEffect }) {
             <select
               className="custom-select"
               value={effect}
-              onChange={e => setEffect(e.target.value)}>
+              onChange={e => setEffect(e.target.value)}
+            >
               {parallaxData.map(data => (
                 <option key={data._id} value={data._id}>
                   {data.property}
@@ -52,7 +57,8 @@ export default function AddEffect({ likedEffect, onAddEffect }) {
             <button
               disabled={parallaxData.length === 0 ? true : false}
               className="btn btn-info btn-block btn-sm"
-              onClick={() => onAddEffect(effect)}>
+              onClick={() => onAddEffect(effect)}
+            >
               Add
             </button>
           </div>
