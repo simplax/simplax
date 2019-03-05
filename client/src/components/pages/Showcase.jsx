@@ -1,4 +1,5 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import Plx from 'react-plx';
 import { useInView } from 'react-intersection-observer';
 import ScrollableAnchor, { configureAnchors } from 'react-scrollable-anchor';
@@ -201,13 +202,18 @@ const Showcase = () => {
   }
   return (
     <div id="Showcase" className="Showcase">
+      <img
+        className="background-img-explore"
+        src="/images/background-explore.svg"
+        alt="background image"
+      />
+
       {/* Scroll Down */}
-      <div className="scroll-down-container">
+      <div ref={categoryNavRef} className="scroll-down-container">
         <ScrollDownOrUp isScrollDown={true} />
       </div>
 
       {/* Category Navbar */}
-      <div ref={categoryNavRef} className="container-50vh" />
       {!categoryNavInView && (
         <CategoryNavbar
           categoryActive={category}
@@ -215,7 +221,8 @@ const Showcase = () => {
           propertyActive={property}
         />
       )}
-      <div className="container-100vh" />
+
+      <div className="container-50vh" />
 
       {/* Transform */}
       <ScrollableAnchor id="transform">
@@ -311,9 +318,10 @@ const Showcase = () => {
       <BackToTopIcon />
 
       {/* Customize Button */}
-      {/* <Link to="/customize" className="btn btn-customize">
-        Customize
-      </Link> */}
+      <Link to="/customize" className="customize-icon-link link">
+        <i className="fas fa-wrench  customize-icon" />
+        <span>Customize</span>
+      </Link>
     </div>
   );
 };
