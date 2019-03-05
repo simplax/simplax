@@ -26,6 +26,7 @@ export default function Customize() {
   const [savedProfile, setSavedProfile] = useState([]);
   const [loadedFile, setLoadedFile] = useState(null);
   const [remove, setRemove] = useState([]);
+  const [showSaveState,setShowSaveState] = useState(false);
   // const [loadTitle, setLoadTitle] = useState(null)
 
   /*********************************
@@ -449,7 +450,7 @@ export default function Customize() {
         </div>
 
         <div className="customize-container">
-         
+        
           <CustomizeBox parallaxDataCode={parallaxData} />
           <div className="scroll-down-container" />
         </div>

@@ -26,17 +26,17 @@ export default function Save({ modifiedEffects, likedEffects, onSave, loadedFile
     <div className="Save">
       <div className="p-2 mb-1 rounded">
         <div className="row">
-          <div className="col-7">
+          <div className="col-7 pt-1">
             <input
-              className="form-control"
+              className="form-control bg-dark text-light"
               type="text"
               onChange={e => handleChange(e)}
               value={newtitle}
             />
           </div>
           <div className="col-5 d-flex flex-column justify-content-center">
-            <button className="btn btn-info" onClick={e => onSave(data)}>
-              Save
+            <button className="btn-lg border-0 bg-dark text-secondary fas fa-save" onClick={e => onSave(data)}>
+
             </button>
           </div>
         </div>
