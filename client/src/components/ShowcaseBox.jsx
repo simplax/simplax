@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import Plx from 'react-plx';
 import ScrollableAnchor from 'react-scrollable-anchor';
 import LikeIconsss from '../components/animations/LikeIconsss';
@@ -68,9 +68,13 @@ const ShowcaseBox = ({
    *********************************/
   const likeClassName = () => {
     if (likedEffects.includes(_id)) {
-      return isColor ? 'like far fa-heart fa-3x' : 'like fas fa-heart fa-3x'
+      return isColor && property !== 'backgroundColor'
+        ? 'like far fa-heart fa-3x'
+        : 'like fas fa-heart fa-3x';
     } else {
-      return isColor ? 'unlike far fa-heart fa-3x' : 'unlike fas fa-heart fa-3x'
+      return isColor && property !== 'backgroundColor'
+        ? 'unlike far fa-heart fa-3x'
+        : 'unlike fas fa-heart fa-3x';
     }
   };
 
@@ -102,7 +106,7 @@ const ShowcaseBox = ({
           </Plx>
         </div>
 
-        {likeAnimation() && <LikeIconsss/>}
+        {likeAnimation() && <LikeIconsss />}
       </div>
     </ScrollableAnchor>
   );

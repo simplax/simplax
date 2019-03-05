@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Link } from 'react-router-dom';
 import Plx from 'react-plx';
 import { useInView } from 'react-intersection-observer';
 import ScrollableAnchor, { configureAnchors } from 'react-scrollable-anchor';
@@ -8,6 +7,8 @@ import api from '../../api';
 import ShowcaseBox from '../ShowcaseBox';
 import CategoryNavbar from '../CategoryNavbar';
 import TextTranslateX from '../animations/TextTranslateX';
+import BackToTopIcon from '../animations/BackToTopIcon';
+import ScrollDownOrUp from '../animations/ScrollDownOrUp';
 
 const Showcase = () => {
   /*********************************
@@ -184,7 +185,7 @@ const Showcase = () => {
   /*********************************
    * Scrollable Anchor Configuration
    *********************************/
-  configureAnchors({ offset: viewportHeight / 2.5, scrollDuration: 1200 });
+  configureAnchors({ offset: viewportHeight / 2.5, scrollDuration: 800 });
 
   /*********************************
    * Render
@@ -202,7 +203,7 @@ const Showcase = () => {
     <div id="Showcase" className="Showcase">
       {/* Scroll Down */}
       <div className="scroll-down-container">
-        <h2>Scroll Down</h2>
+        <ScrollDownOrUp isScrollDown={true} />
       </div>
 
       {/* Category Navbar */}
@@ -229,6 +230,33 @@ const Showcase = () => {
       </ScrollableAnchor>
       <div>
         {plxDataTransform.map(data => {
+          return (
+            <ShowcaseBox
+              key={data._id}
+              data={data}
+              onLikeClick={handleLikeClick}
+              onPropertyPlxStart={handlePropertyPlxStart}
+              onPropertyPlxEnd={handlePropertyPlxEnd}
+              likedEffects={likedEffects}
+              isColor={false}
+            />
+          );
+        })}
+      </div>
+
+      {/* CSS Filter */}
+      <ScrollableAnchor id="css-filter">
+        <div className="category-container">
+          <Plx
+            parallaxData={categoryParallaxData}
+            onPlxStart={() => handleCategoryPlxStart('css-filter')}
+          >
+            <h2 className="category">CSS FILTER</h2>
+          </Plx>
+        </div>
+      </ScrollableAnchor>
+      <div>
+        {plxDataFilter.map(data => {
           return (
             <ShowcaseBox
               key={data._id}
@@ -270,44 +298,22 @@ const Showcase = () => {
         })}
       </div>
 
-      {/* CSS Filter */}
-      <ScrollableAnchor id="css-filter">
-        <div className="category-container">
-          <Plx
-            parallaxData={categoryParallaxData}
-            onPlxStart={() => handleCategoryPlxStart('css-filter')}
-          >
-            <h2 className="category">CSS FILTER</h2>
-          </Plx>
-        </div>
-      </ScrollableAnchor>
-      <div>
-        {plxDataFilter.map(data => {
-          return (
-            <ShowcaseBox
-              key={data._id}
-              data={data}
-              onLikeClick={handleLikeClick}
-              onPropertyPlxStart={handlePropertyPlxStart}
-              onPropertyPlxEnd={handlePropertyPlxEnd}
-              likedEffects={likedEffects}
-              isColor={false}
-            />
-          );
-        })}
+      <div className="scroll-down-container">
+        <ScrollDownOrUp isScrollDown={false} />
       </div>
-
-      <div className="scroll-down-container" />
 
       {/* Display Property Name */}
       <div className="property-text">
         <TextTranslateX text={property} isEnter={propertyAnimation} />
       </div>
 
+      {/* Back To Top Button */}
+      <BackToTopIcon />
+
       {/* Customize Button */}
-      <Link to="/customize" className="btn btn-customize">
+      {/* <Link to="/customize" className="btn btn-customize">
         Customize
-      </Link>
+      </Link> */}
     </div>
   );
 };

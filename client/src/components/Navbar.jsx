@@ -1,12 +1,13 @@
-import React, { useEffect, useState } from "react";
-import { NavLink } from "react-router-dom";
-import api from "../api";
+import React, { useEffect, useState } from 'react';
+import { NavLink } from 'react-router-dom';
+import api from '../api';
+import ScrollableAnchor from 'react-scrollable-anchor';
 
 export default function Navbar() {
   useEffect(() => {});
   return (
     <div className="Navbar">
-      <nav className="navbar navbar-expand-md navbar-dark bg-transparent container">
+      <nav className="navbar navbar-expand-md navbar-dark">
         <NavLink className="navbar-brand" exact to="/">
           Simplax Logo
         </NavLink>
@@ -17,13 +18,14 @@ export default function Navbar() {
           data-target="#navbarToggler"
           aria-controls="navbarToggler"
           aria-expanded="false"
-          aria-label="Toggle navigation">
+          aria-label="Toggle navigation"
+        >
           <span className="navbar-toggler-icon" />
         </button>
 
         <div className="collapse navbar-collapse" id="navbarToggler">
-          <ul className="navbar-nav mr-auto mt-2 mt-lg-0">
-            <li className="nav-item">
+          <ul className="navbar-nav mt-2 mt-lg-0">
+            <li className="nav-item home-link">
               <NavLink className="nav-link" exact to="/">
                 Home
               </NavLink>
@@ -54,10 +56,11 @@ export default function Navbar() {
               </NavLink>
             </li>
             {!api.isLoggedIn() && (
-              <li>
+              <li className="nav-item github-login-link">
                 <a
-                  className="github-login-link"
-                  href={api.service.defaults.baseURL + "/github-login"}>
+                  className="nav-link"
+                  href={api.service.defaults.baseURL + '/github-login'}
+                >
                   Login with Github
                 </a>
               </li>
