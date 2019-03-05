@@ -7,7 +7,7 @@ export default function Navbar() {
   useEffect(() => {});
   return (
     <div className="Navbar">
-      <nav className="navbar navbar-expand-md navbar-dark bg-transparent container">
+      <nav className="navbar navbar-expand-md navbar-dark bg-transparent container justify-content-center">
         <NavLink className="navbar-brand" exact to="/">
           Simplax Logo
         </NavLink>

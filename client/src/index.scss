@@ -142,40 +142,17 @@ body {
   }
 }
 
-// --------------------
-// Customize
-// --------------------
-@include media-breakpoint-up(md) {
-  .Customize {
-    .btn-toggle-sidebar {
-      display: none;
-    }
-    .sidebar-container {
-      height: calc(100vh - 56px);
-      display: block;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-    }
-    .customize-sidebar {
-      height: calc(100vh - 284px);
-      overflow-x: hidden;
-      overflow-y: auto;
-    }
+//------------- Main Navbar -------------
+.Navbar {
+  position: fixed;
+  top: 0;
+  .navbar {
+
   }
 }
 
-// --------------------
-// CodeSnipppetModal
-// --------------------
-.CodeSnipppetModal {
-  .hidden {
-    position: absolute;
-    opacity: 0.01;
-    height: 0;
-    overflow: hidden;
-  }
-}
+
+//------------- Showcase Component -------------
 
 // --------------------
 // Category Navbar
@@ -287,8 +264,45 @@ body {
   }
 }
 
+// --------- Customize Component ----------
+
 // --------------------
-// Style for CustomizeForm component
+// Customize
+// --------------------
+@include media-breakpoint-up(md) {
+  .Customize {
+    .btn-toggle-sidebar {
+      display: none;
+    }
+    .sidebar-container {
+      position: fixed;
+      top: 56px;
+      height: calc(100vh - 56px);
+      display: block;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .customize-sidebar {
+      height: calc(100vh - 284px);
+      overflow-x: hidden;
+      overflow-y: auto;
+    }
+  }
+}
+
+// --------------------
+// CodeSnipppetModal
+// --------------------
+.CodeSnipppetModal {
+  .hidden {
+    position: absolute;
+    opacity: 0.01;
+    height: 0;
+    overflow: hidden;
+  }
+}
+
 .CustomizeForm {
   .code-snippet-modal {
     position: fixed;
