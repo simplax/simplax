@@ -1,26 +1,4 @@
 import React, { useState, useEffect } from "react";
-import Slider, { createSliderWithTooltip } from "rc-slider";
-import Tooltip from "rc-tooltip";
-import "rc-slider/assets/index.css";
-
-// const createSliderWithTooltip = Slider.createSliderWithTooltip;
-const Range = createSliderWithTooltip(Slider.Range);
-
-const Handle = Slider.Handle;
-
-const handle = props => {
-  const { value, dragging, index, ...restProps } = props;
-  return (
-    <Tooltip
-      prefixCls="rc-slider-tooltip"
-      overlay={value}
-      visible={dragging}
-      placement="top"
-      key={index}>
-      <Handle value={value} {...restProps} />
-    </Tooltip>
-  );
-};
 
 export default function CustomizeForm({
   data,
@@ -39,11 +17,10 @@ export default function CustomizeForm({
     var startValueModified = modifiedEffects[index].values[0];
     var endValueModified = modifiedEffects[index].values[1];
   }
-  let step = maxValue / 20;
+  // let step = maxValue / 100;
+  let step = "any";
   if (unit === "deg") {
     step = 5;
-  } else if (property === "scale") {
-    step = 0.1;
   }
 
   /*********************************
@@ -53,9 +30,6 @@ export default function CustomizeForm({
     startValueModified ? startValueModified : startValue,
     endValueModified ? endValueModified : endValue
   ]);
-  const [crossed, setCrossed] = useState(undefined);
-  const [decreasing, setDecreasing] = useState(false);
-  const [valBefore, setValBefore] = useState([]);
 
   useEffect(() => {
     onModifyEffect(property, values);
@@ -66,131 +40,70 @@ export default function CustomizeForm({
    *********************************/
   return (
     <div className="CustomizeForm">
-      <div className="p-2 mb-1 bg-light text-dark rounded">
-        <div className="row">
-          <div className="col-7 d-flex flex-column justify-content-center">
-            <label>{property}</label>
-            {category === "colors" ? (
-              <div className="input-group">
-                <input
-                  className="form-control"
-                  type="color"
-                  value={values[0]}
-                  onChange={e => {
-                    setValues([e.target.value, values[1]]);
-                  }}
-                />
-                <input
-                  className="form-control"
-                  type="color"
-                  value={values[1]}
-                  onChange={e => {
-                    setValues([values[0], e.target.value]);
-                  }}
-                />
-              </div>
-            ) : (
-              <div>
-                <Range
-                  step={step}
-                  min={minValue}
-                  max={maxValue}
-                  value={values}
-                  onBeforeChange={e => {
-                    setValBefore(e);
-                    values[0] > values[1] ? setCrossed(true) : setCrossed(false);
-                  }}
-                  onChange={e => {
-                    console.log("TCL: values", values);
-                    console.log("TCL: e", e);
-
-                    // if (direction detection is needed) {
-                    //   setDecreasing(true);
-                    // }
-
-                    // console.log("TCL: decreasing", decreasing);
-                    // if (decreasing) {
-                    //   if (values[1] === valBefore[0]) {
-                    //     setCrossed(true);
-                    //     console.log("TCL: crossed", crossed);
-                    //   }
-                    //   crossed ? setValues([valBefore[0], e[0]]) : setValues([e[0], e[1]]);
-                    // } else {
-                    //   if (values[0] === valBefore[1]) {
-                    //     setCrossed(true);
-                    //     console.log("TCL: crossed", crossed);
-                    //   }
-                    //   crossed ? setValues([e[1], valBefore[1]]) : setValues([e[0], e[1]]);
-                    // }
-
-                    setValues([...e]);
-                  }}
-                  onAfterChange={e => {
-                    values[0] > values[1] ? setCrossed(true) : setCrossed(false);
-                    setDecreasing(false);
-                  }}
-                  tipFormatter={value => `${value} ${unit}`}
-                  handle={handle}
-                  handleStyle={[
-                    {
-                      borderRadius: 4,
-                      height: 14,
-                      width: 18,
-                      marginTop: -5,
-                      // marginLeft: 0,
-                      backgroundColor: "blue"
-                    },
-                    {
-                      borderRadius: 4,
-                      height: 14,
-                      width: 18,
-                      marginTop: -5
-                      // marginLeft: -16
-                    }
-                  ]}
-                />
-                <div className="input-group">
-                  <input
-                    step={step}
-                    min={minValue}
-                    max={maxValue}
-                    className="form-control"
-                    type="number"
-                    value={values[0]}
-                    onChange={e => {
-                      setValues([Number(e.target.value), values[1]]);
-                    }}
-                  />
-                  <input
-                    step={step}
-                    min={minValue}
-                    max={maxValue}
-                    className="form-control"
-                    type="number"
-                    value={values[1]}
-                    onChange={e => {
-                      setValues([values[0], Number(e.target.value)]);
-                    }}
-                  />
+      <div className="pl-2 pr-2 mb-2">
+        <label className="mb-0">{property}</label>
+        <div className="d-flex justify-content-between align-items-center">
+          {category === "colors" ? (
+            <div className="input-group w-75">
+              <input
+                className="form-control bg-dark text-light"
+                type="color"
+                value={values[0]}
+                onChange={e => {
+                  setValues([e.target.value, values[1]]);
+                }}
+              />
+              <input
+                className="form-control bg-dark text-light"
+                type="color"
+                value={values[1]}
+                onChange={e => {
+                  setValues([values[0], e.target.value]);
+                }}
+              />
+            </div>
+          ) : (
+            <div className="input-group w-75">
+              <input
+                step={step}
+                min={minValue}
+                max={maxValue}
+                className="form-control bg-dark text-light"
+                type="number"
+                value={values[0]}
+                onChange={e => {
+                  setValues([Number(e.target.value), values[1]]);
+                }}
+              />
+              <input
+                step={step}
+                min={minValue}
+                max={maxValue}
+                className="form-control bg-dark text-light"
+                type="number"
+                value={values[1]}
+                onChange={e => {
+                  setValues([values[0], Number(e.target.value)]);
+                }}
+              />
+              {unit ? (
+                <div className="input-group-append">
+                  <span className="input-group-text bg-light">{unit}</span>
                 </div>
-              </div>
-            )}
-          </div>
-          <div className="col-5 d-flex flex-column justify-content-center">
-            <button
-              className="btn btn-outline-info btn-block btn-sm"
-              onClick={() => {
-                onResetEffect(property);
-                setValues([startValue, endValue]);
-              }}>
-              Reset
-            </button>
-            <button
-              className="btn btn-info btn-block btn-sm"
-              onClick={() => onCloseEffect(_id, property)}>
-              Remove
-            </button>
-          </div>
+              ) : null}
+            </div>
+          )}
+          <button
+            className="btn-lg border-0 bg-dark text-primary fas fa-redo-alt"
+            onClick={() => {
+              onResetEffect(property);
+              setValues([startValue, endValue]);
+            }}
+          />
+          <button
+            className="btn-lg border-0 bg-dark text-secondary fas fa-trash-alt"
+            onClick={() => onCloseEffect(_id, property)}
+          />
         </div>
       </div>
     </div>

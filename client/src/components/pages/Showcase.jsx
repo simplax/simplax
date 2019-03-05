@@ -8,6 +8,7 @@ import ShowcaseBox from '../ShowcaseBox';
 import CategoryNavbar from '../CategoryNavbar';
 import TextTranslateX from '../animations/TextTranslateX';
 import BackToTopIcon from '../animations/BackToTopIcon';
+import ScrollDownOrUp from '../animations/ScrollDownOrUp';
 
 const Showcase = () => {
   /*********************************
@@ -202,7 +203,7 @@ const Showcase = () => {
     <div id="Showcase" className="Showcase">
       {/* Scroll Down */}
       <div className="scroll-down-container">
-        <h2>Scroll Down</h2>
+        <ScrollDownOrUp isScrollDown={true} />
       </div>
 
       {/* Category Navbar */}
@@ -298,7 +299,7 @@ const Showcase = () => {
       </div>
 
       <div className="scroll-down-container">
-        <h2>Scroll Up</h2>
+        <ScrollDownOrUp isScrollDown={false} />
       </div>
 
       {/* Display Property Name */}
