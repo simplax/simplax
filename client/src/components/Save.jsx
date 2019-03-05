@@ -1,16 +1,23 @@
 import React, { useState, useEffect } from "react";
 import api from "../api";
 
-export default function Save({ modifiedEffects, likedEffects, onSave }) {
-  const [title, setTitle] = useState("");
+export default function Save({ modifiedEffects, likedEffects, onSave, loadedFile }) {
+  const [newtitle, setNewTitle] = useState(loadedFile && loadedFile.savedprofile.title ? loadedFile.savedprofile.title : 'name me!');
+
+  useEffect(() => {
+    if (loadedFile && loadedFile.savedprofile.title)
+      setNewTitle(loadedFile.savedprofile.title)
+    else
+      setNewTitle('name me!')
+  }, [loadedFile])
 
   function handleChange(e) {
-    setTitle(e.target.value);
+    setNewTitle(e.target.value);
   }
 
   let data = {
     _owner: api.getLocalStorageUser(),
-    title: title,
+    title: newtitle,
     modifiedEffects: modifiedEffects,
     likedEffects: likedEffects
   };
@@ -24,7 +31,7 @@ export default function Save({ modifiedEffects, likedEffects, onSave }) {
               className="form-control"
               type="text"
               onChange={e => handleChange(e)}
-              placeholder={"name me!"}
+              value={newtitle}
             />
           </div>
           <div className="col-5 d-flex flex-column justify-content-center">

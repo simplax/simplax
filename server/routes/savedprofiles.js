@@ -44,9 +44,9 @@ router.delete('/:id', (req, res, next) => {
     .catch(err => next(err))
 })
 
-router.put('/:id', (req, res, next) => {
+router.put('/:title', (req, res, next) => {
   let { _owner, title, modifiedEffects, likedEffects } = req.body
-  SavedProfile.findByIdAndUpdate(req.params.id, { _owner, title, modifiedEffects, likedEffects })
+  SavedProfile.findOneAndUpdate({ title: req.params.title }, { _owner, title, modifiedEffects, likedEffects })
     .then(savedprofile => {
       res.json({
         savedprofile

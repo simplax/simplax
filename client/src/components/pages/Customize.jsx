@@ -20,6 +20,10 @@ export default function Customize() {
   const [likedEffects, setLikedEffects] = useState([]);
   const [modifiedEffects, setModifiedEffects] = useState([]);
   const [savedProfile, setSavedProfile] = useState([]);
+  const [loadedFile, setLoadedFile] = useState(null);
+  const [remove, setRemove] = useState([]);
+  // const [loadTitle, setLoadTitle] = useState(null)
+
 
   /*********************************
    * Effect
@@ -233,28 +237,77 @@ export default function Customize() {
     api.setSessionStorage("modifiedEffect", modifiedEffectsTmp);
   }
 
-  function handleLoad(title) {
-    api.getSavedProfileDetail(title).then(data => {
-      let modifiedTmp = data.savedprofile.modifiedEffects;
-      setModifiedEffects(modifiedTmp);
-      api.setSessionStorage("modifiedEffect", modifiedTmp);
-      let likedTmp = data.savedprofile.likedEffects;
-      setLikedEffects(likedTmp);
-      api.setSessionStorage("likedEffects", likedTmp);
-    });
+  function handleLoad(id) {
+    if (id !== 'instruction') {
+      api.getSavedProfileDetail(id).then(data => {
+
+        if (data.length !== 0) {
+          let modifiedTmp = data.savedprofile.modifiedEffects;
+          setModifiedEffects(modifiedTmp);
+          api.setSessionStorage("modifiedEffect", modifiedTmp);
+          let likedTmp = data.savedprofile.likedEffects;
+          setLikedEffects(likedTmp);
+          api.setSessionStorage("likedEffects", likedTmp);
+          let dataTmp = data
+          setLoadedFile(dataTmp)
+          console.log(dataTmp)
+        }
+        else return
+      });
+    }
   }
 
   function handleSave(data) {
-    api
-      .postSavedProfile(data)
+    api.getSavedProfile()
+      .then(savedprofiles => {
+        console.log(savedprofiles)
+        let verifyTmp = savedprofiles.findIndex((savedprofile) => {
+          return savedprofile.title === data.title
+        })
 
-      .then(() => {
-        console.log("saved!");
-        api.getSavedProfile().then(profile => {
-          setSavedProfile(profile);
-        });
+        if (verifyTmp === -1) {
+          api
+            .postSavedProfile(data)
+
+            .then(() => {
+              console.log("saved!");
+              api.getSavedProfile().then(profile => {
+                setSavedProfile(profile);
+              });
+            })
+            .catch(err => { });
+        } else api.updateSavedProfile(data.title, data)
       })
-      .catch(err => {});
+  }
+
+  // function handleLoadChange(title) {
+  //   setLoadTitle(title)
+  // }
+
+  function handleDelete(id) {
+    //   if (loadedFile && id !== loadedFile.savedprofile._id) {
+    //     api.deleteSavedProfile(loadTitle)
+    //       .then(() => { console.log('first case') })
+
+    //   } else 
+    if (loadedFile && id === loadedFile.savedprofile._id) {
+      api.deleteSavedProfile(id)
+        .then(() => {
+          setLikedEffects([])
+          setModifiedEffects([])
+          api.setSessionStorage('modifiedEffects', [])
+          api.setSessionStorage("likedEffects", [])
+          setRemove([])
+        })
+
+    } else api.deleteSavedProfile(id)
+      .then(() => {
+        setLikedEffects([])
+        setModifiedEffects([])
+        api.setSessionStorage('modifiedEffects', [])
+        api.setSessionStorage("likedEffects", [])
+        setRemove([])
+      })
   }
 
   /*********************************
@@ -283,27 +336,29 @@ export default function Customize() {
             className="col-12 col-md-3 collapse bg-light rounded sidebar-container"
             id="collapseSidebar">
             <div>
-              <Load onLoad={handleLoad} saved={savedProfile} />
+              <Load onLoad={handleLoad} saved={savedProfile} onDelete={handleDelete} remove={remove} />
               <Save
                 modifiedEffects={modifiedEffects}
                 likedEffects={likedEffects}
                 onSave={handleSave}
+                loadedFile={loadedFile}
               />
+
               <AddEffect likedEffects={likedEffects} onAddEffect={handleAddEffect} />
               <div className="rounded shadow customize-sidebar">
                 {likedEffects.length === 0
                   ? null
                   : parallaxDataDefault.map(data => (
-                      <CustomizeForm
-                        key={data._id}
-                        id={data._id}
-                        data={data}
-                        modifiedEffects={modifiedEffects}
-                        onModifyEffect={handleModifyEffect}
-                        onResetEffect={handleResetEffect}
-                        onCloseEffect={handleCloseEffect}
-                      />
-                    ))}
+                    <CustomizeForm
+                      key={data._id}
+                      id={data._id}
+                      data={data}
+                      modifiedEffects={modifiedEffects}
+                      onModifyEffect={handleModifyEffect}
+                      onResetEffect={handleResetEffect}
+                      onCloseEffect={handleCloseEffect}
+                    />
+                  ))}
               </div>
             </div>
             <CodeSnippetModal parallaxDataCode={parallaxData} />

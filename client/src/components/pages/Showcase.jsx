@@ -184,7 +184,7 @@ const Showcase = () => {
   /*********************************
    * Scrollable Anchor Configuration
    *********************************/
-  configureAnchors({ offset: viewportHeight / 2.5, scrollDuration: 1000 });
+  configureAnchors({ offset: viewportHeight / 2.5, scrollDuration: 1200 });
 
   /*********************************
    * Render
@@ -237,6 +237,7 @@ const Showcase = () => {
               onPropertyPlxStart={handlePropertyPlxStart}
               onPropertyPlxEnd={handlePropertyPlxEnd}
               likedEffects={likedEffects}
+              isColor={false}
             />
           );
         })}
@@ -263,6 +264,7 @@ const Showcase = () => {
               onPropertyPlxStart={handlePropertyPlxStart}
               onPropertyPlxEnd={handlePropertyPlxEnd}
               likedEffects={likedEffects}
+              isColor={true}
             />
           );
         })}
@@ -289,6 +291,7 @@ const Showcase = () => {
               onPropertyPlxStart={handlePropertyPlxStart}
               onPropertyPlxEnd={handlePropertyPlxEnd}
               likedEffects={likedEffects}
+              isColor={false}
             />
           );
         })}
