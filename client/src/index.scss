@@ -34,7 +34,7 @@ $primary-super-dark: #ff4b51;
 $secondary: #d76d77;
 $secondary-dark: #703873;
 $secondary-super-dark: #412071;
-$light: #fbeed7;
+$light: darken(#fbeed7, 10%);
 $grey: #a3a3a3;
 $dark: #1f1f1f;
 
@@ -205,7 +205,7 @@ body {
     padding: 0.4rem;
   }
   .nav-link:hover {
-    color: darken($light, 10%) !important;
+    color: #fbeed7 !important;
   }
   .nav-link:visited {
     color: $grey;
@@ -235,7 +235,7 @@ body {
     transition-duration: 0.5s;
   }
   .nav-link:hover {
-    color: darken($light, 10%) !important;
+    color: #fbeed7 !important;
   }
   .nav-link:visited {
     color: $grey;
