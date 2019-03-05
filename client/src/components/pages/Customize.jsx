@@ -50,13 +50,11 @@ export default function Customize() {
   }, []);
 
   useEffect(() => {
-
-
-    window.addEventListener('scroll', function scrollHandler() {
+    window.addEventListener("scroll", function scrollHandler() {
       const windowTop = document.documentElement.scrollTop;
       const windowBottom = document.documentElement.scrollTop + window.innerHeight;
       const documentBottom = document.body.clientHeight;
-      const buffer = window.innerHeight * 0.22 * 1.5
+      const buffer = window.innerHeight * 0.22 * 1.5;
 
       // const documentTop = 872;
 
@@ -66,19 +64,16 @@ export default function Customize() {
 
       if (documentBottom >= windowBottom) {
         window.scrollTo(0, windowBottom + buffer);
-      }
-      else if (windowTop >= window.innerHeight + buffer) {
-        console.log(true)
+      } else if (windowTop >= window.innerHeight + buffer) {
+        console.log(true);
         window.scrollTo(0, 0);
       }
 
-      return (() => { window.removeEventListener('scroll', scrollHandler) })
+      return () => {
+        window.removeEventListener("scroll", scrollHandler);
+      };
     });
-
-
-  }, [])
-
-
+  }, []);
 
   // get saved profile
   useEffect(() => {
@@ -98,7 +93,6 @@ export default function Customize() {
       setParallaxDataTransformDefault(res.filter(data => data.category === "transform"));
       setParallaxDataCssFilterDefault(res.filter(data => data.category === "css-filter"));
       setParallaxDataColorsDefault(res.filter(data => data.category === "colors"));
-
 
       /*********************************
        * Converting parallax data to usable code for snippet and box
@@ -314,7 +308,7 @@ export default function Customize() {
               setSavedProfile(profile);
             });
           })
-          .catch(err => { });
+          .catch(err => {});
       } else api.updateSavedProfile(data.title, data);
     });
   }
@@ -346,8 +340,6 @@ export default function Customize() {
         setRemove([]);
       });
   }
-
-
 
   /*********************************
    * Render
@@ -429,36 +421,39 @@ export default function Customize() {
               </div>
             </div>
             <CodeSnippetModal parallaxDataCode={parallaxData} />
-            {api.checkUser() && <Load onLoad={handleLoad} saved={savedProfile} onDelete={handleDelete} remove={remove} />}
-            {api.checkUser() ? <Save
-              modifiedEffects={modifiedEffects}
-              likedEffects={likedEffects}
-              onSave={handleSave}
-              loadedFile={loadedFile}
-            /> : <a
-              className="github-login-link btn btn-success"
-              href={api.service.defaults.baseURL + "/github-login"}>
-                <i className="fab fa-2x fa-github"></i> Save
-                </a>}
+            {api.checkUser() && (
+              <Load
+                onLoad={handleLoad}
+                saved={savedProfile}
+                onDelete={handleDelete}
+                remove={remove}
+              />
+            )}
+            {api.checkUser() ? (
+              <Save
+                modifiedEffects={modifiedEffects}
+                likedEffects={likedEffects}
+                onSave={handleSave}
+                loadedFile={loadedFile}
+              />
+            ) : (
+              <a
+                className="github-login-link btn btn-success"
+                href={api.service.defaults.baseURL + "/github-login"}>
+                <i className="fab fa-2x fa-github" /> Save
+              </a>
+            )}
           </div>
-          
         </div>
-
         <div className="customize-container">
-         
           <CustomizeBox parallaxDataCode={parallaxData} />
           <div className="scroll-down-container" />
         </div>
-
         <Link to="/explore" className="btn btn-customize">
           Explore
         </Link>
-Collapse
-        
-        
-        
-        
+        Collapse
+      </div>
     </div>
-    </div >
   );
 }
