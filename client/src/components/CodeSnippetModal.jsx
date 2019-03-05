@@ -1,51 +1,55 @@
-import React, { useRef, useState, useEffect } from "react";
+import React, { useRef, useState, useEffect } from 'react';
 
 export default function CodeSnipppetModal({ parallaxDataCode }) {
   const codeSnippetValue = useRef(null);
 
-  const [textState, setTextState] = useState("Loading...");
+  const [textState, setTextState] = useState('Loading...');
 
   if (parallaxDataCode.length !== 0) {
-    const propertiesArrayEnter = parallaxDataCode[0].properties.map(property => {
-      return `
+    const propertiesArrayEnter = parallaxDataCode[0].properties.map(
+      property => {
+        return `
           {
-            startValue: ${property.startValue},
-            endValue: ${property.endValue},
-            property: ${property.property},
-            unit: ${property.unit}
+            startValue: '${property.startValue}',
+            endValue: '${property.endValue}',
+            property: '${property.property}',
+            unit: '${property.unit}'
           }`;
-    });
+      }
+    );
 
-    const propertiesArrayLeave = parallaxDataCode[1].properties.map(property => {
-      return `
+    const propertiesArrayLeave = parallaxDataCode[1].properties.map(
+      property => {
+        return `
           {
-            startValue: ${property.startValue},
-            endValue: ${property.endValue},
-            property: ${property.property},
-            unit: ${property.unit}
+            startValue: '${property.startValue}',
+            endValue: '${property.endValue}',
+            property: '${property.property}',
+            unit: '${property.unit}'
           }`;
-    });
+      }
+    );
     var code = `import React, { Component } from 'react';
   import Plx from 'react-plx';
     
   // An array of parallax effects to be applied - see below for detail
   parallaxData = [
         {
-          start: ${parallaxDataCode[0].start},
-          startOffset: ${parallaxDataCode[0].startOffset},
-          end: ${parallaxDataCode[0].end},
-          endOffset: ${parallaxDataCode[0].endOffset},
-          easing: ${parallaxDataCode[0].easing},
+          start: '${parallaxDataCode[0].start}',
+          startOffset: '${parallaxDataCode[0].startOffset}',
+          end: '${parallaxDataCode[0].end}',
+          endOffset: '${parallaxDataCode[0].endOffset}',
+          easing: '${parallaxDataCode[0].easing}',
           properties: [
               ${propertiesArrayEnter}
             ]
         },
         {
-          start: ${parallaxDataCode[1].start},
-          startOffset: ${parallaxDataCode[1].startOffset},
-          end: ${parallaxDataCode[1].end},
-          endOffset: ${parallaxDataCode[1].endOffset},
-          easing: ${parallaxDataCode[1].easing},
+          start: '${parallaxDataCode[1].start}',
+          startOffset: '${parallaxDataCode[1].startOffset}',
+          end: '${parallaxDataCode[1].end}',
+          endOffset: '${parallaxDataCode[1].endOffset}',
+          easing: '${parallaxDataCode[1].easing}',
           properties: [
               ${propertiesArrayLeave}
           ]
@@ -67,19 +71,22 @@ export default function CodeSnipppetModal({ parallaxDataCode }) {
 
   function copyToClipboard(e) {
     codeSnippetValue.current.select();
-    document.execCommand("copy");
+    document.execCommand('copy');
     e.target.focus(); // not show text selection
   }
 
   return (
-    <div className="CodeSnipppetModal">
-      <div className="p-2 mb-1 rounded">
+    <div className="CodeSnippetModal">
+      <div className="code-snippet-container" />
+
+      {/* <div className="p-2 mb-1 rounded">
         <button
           type="button"
           className="btn btn-info"
           data-toggle="modal"
           data-target="#codeSnippetModal"
-          onClick={() => setTextState(code)}>
+          onClick={() => setTextState(code)}
+        >
           Code snippet
         </button>
       </div>
@@ -90,14 +97,23 @@ export default function CodeSnipppetModal({ parallaxDataCode }) {
         tabIndex="-1"
         role="dialog"
         aria-labelledby="codeSnippet"
-        aria-hidden="true">
+        aria-hidden="true"
+      >
         <div
           className="modal-dialog modal-xl modal-dialog-scrollable modal-dialog-centered"
-          role="document">
+          role="document"
+        >
           <div className="modal-content">
             <div className="modal-header">
-              <h5 className="modal-title">Code snippet for your awesome React app!</h5>
-              <button type="button" className="close" data-dismiss="modal" aria-label="Close">
+              <h5 className="modal-title">
+                Code snippet for your awesome React app!
+              </h5>
+              <button
+                type="button"
+                className="close"
+                data-dismiss="modal"
+                aria-label="Close"
+              >
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
@@ -114,10 +130,14 @@ export default function CodeSnipppetModal({ parallaxDataCode }) {
             </div>
 
             <div className="modal-footer">
-              <button type="button" className="btn btn-outline-info" data-dismiss="modal">
+              <button
+                type="button"
+                className="btn btn-outline-info"
+                data-dismiss="modal"
+              >
                 Close
               </button>
-              {document.queryCommandSupported("copy") && (
+              {document.queryCommandSupported('copy') && (
                 <div>
                   <button className="btn btn-info" onClick={copyToClipboard}>
                     Copy to Clipboard
@@ -127,7 +147,7 @@ export default function CodeSnipppetModal({ parallaxDataCode }) {
             </div>
           </div>
         </div>
-      </div>
+      </div> */}
     </div>
   );
 }
