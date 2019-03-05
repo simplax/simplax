@@ -70,6 +70,13 @@ body {
 // --------------------
 // Reusable
 // --------------------
+i {
+  transition: all;
+  transition-duration: 0.6s;
+}
+i:hover {
+  cursor: pointer;
+}
 .link:hover {
   text-decoration: none;
 }
@@ -88,7 +95,6 @@ body {
   justify-content: center;
   align-items: center;
 }
-
 .showcase-box-container {
   height: 150vh;
   display: flex;
@@ -339,7 +345,8 @@ body {
     }
     .sidebar-container {
       position: fixed;
-      // top: 56px;
+      bottom: 0;
+      padding: 0.5rem;
       height: calc(100vh - 56px);
       display: block;
       display: flex;
@@ -350,8 +357,6 @@ body {
       height: calc(100vh - 284px);
       overflow-x: hidden;
       overflow-y: auto;
-    }
-    .code-snippet-icon {
     }
   }
 }
@@ -369,22 +374,72 @@ body {
 // }
 
 .CodeSnippetModal {
-  height: 80vh;
+  .hidden {
+    position: absolute;
+    opacity: 0.01;
+    height: 0;
+    overflow: hidden;
+  }
+  height: 100%;
   width: 100vw;
   position: absolute;
-  top: 0;
   left: 0;
-  background-color: rgba($dark, 0.75);
+  background-color: rgba($dark, 0.8);
   display: flex;
   justify-content: center;
   align-items: center;
   z-index: 5000;
   .code-snippet-container {
-    height: 90%;
-    width: 80%;
+    margin: 2rem;
+    height: 80vh;
+    width: 70vw;
     background-color: $dark;
-    border: 1px solid white;
+    border: 2px solid $secondary;
     border-radius: 10px;
+    .code-snippet-title {
+      padding-left: 2rem;
+      display: flex;
+      align-items: center;
+      height: 10vh;
+      h5 {
+        color: pink;
+        font-size: 1rem;
+        letter-spacing: 0.08rem;
+        margin: 0;
+      }
+      .icons {
+        margin-left: auto;
+      }
+      .fa-paste {
+        color: $grey-light;
+        margin-right: 1.5rem;
+      }
+      .fa-paste:hover {
+        transform: translateY(-2px);
+        color: lighten($grey-light, 10%);
+      }
+      .fa-times-circle {
+        color: $primary-super-dark;
+        margin-right: 1.5rem;
+      }
+      .fa-times-circle:hover {
+        transform: translateY(-2px);
+        color: lighten($primary-super-dark, 10%);
+      }
+    }
+    .code-snippet-seperator {
+      height: 3px;
+      background-image: linear-gradient(90deg, $secondary, $secondary-dark);
+    }
+    .code-snippet-body {
+      height: 70vh;
+      overflow: scroll;
+      padding: 1rem;
+      background-color: $dark;
+      pre span {
+        color: darken(white, 10%);
+      }
+    }
   }
 }
 

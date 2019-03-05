@@ -59,41 +59,32 @@ export default function Customize() {
   }, []);
 
   // window scroll
-  useEffect(() => {
-    function scrollHandler() {
-      const windowTop = document.documentElement.scrollTop;
-      const windowBottom =
-        document.documentElement.scrollTop + window.innerHeight;
-      const documentBottom = document.body.clientHeight;
-      const buffer = window.innerHeight * 0.22 * 1.5
-    
+  // useEffect(() => {
+  //   function scrollHandler() {
+  //     const windowTop = document.documentElement.scrollTop;
+  //     const windowBottom =
+  //       document.documentElement.scrollTop + window.innerHeight;
+  //     const documentBottom = document.body.clientHeight;
+  //     const buffer = window.innerHeight * 0.22 * 1.5
 
-      if (documentBottom >= windowBottom) {
-        window.scrollTo(0, windowBottom + buffer);
-      }
-      else if (windowTop >= window.innerHeight + buffer) {
+  //     if (documentBottom >= windowBottom) {
+  //       window.scrollTo(0, windowBottom + buffer);
+  //     }
+  //     else if (windowTop >= window.innerHeight + buffer) {
 
-        window.scrollTo(0, 0+ buffer*0.6);
-      }
+  //       window.scrollTo(0, 0+ buffer*0.6);
+  //     }
 
-    }
+  //   }
 
-    function hi(){
-      console.log('hi')
-    }
+  // window.addEventListener('scroll',scrollHandler );
 
-    window.addEventListener('scroll',scrollHandler );
-    window.addEventListener('mousedown',hi );
+  //     return (() => {
+  //       console.log("window.removeEventListener")
+  //       window.removeEventListener('scroll', scrollHandler)
+  //     })
 
-      return (() => { 
-        console.log("window.removeEventListener")
-        window.removeEventListener('scroll', scrollHandler) 
-      })
-
-  }, [])
-  
-
-
+  // }, [])
 
   // get saved profile
   useEffect(() => {
@@ -398,7 +389,7 @@ export default function Customize() {
     );
   }
   return (
-    <div className="Customize" >
+    <div className="Customize">
       <div className="container-fluid">
         <button
           className="btn btn-primary btn-toggle-sidebar"
@@ -472,7 +463,10 @@ export default function Customize() {
             {/* Generate code snippet */}
             <i className="fas fa-code" onClick={handleCodeSnippetClick} />
             {showCodeSnippet && (
-              <CodeSnippetModal parallaxDataCode={parallaxData} />
+              <CodeSnippetModal
+                parallaxDataCode={parallaxData}
+                onCloseClick={handleCodeSnippetClick}
+              />
             )}
 
             {api.checkUser() && (
@@ -500,14 +494,16 @@ export default function Customize() {
             )}
           </div>
         </div>
-        <div className="customize-container">
-          <CustomizeBox parallaxDataCode={parallaxData} />
-          <div className="scroll-down-container" />
-        </div>
+        {!showCodeSnippet && (
+          <div className="customize-container">
+            <CustomizeBox parallaxDataCode={parallaxData} />
+            <div className="scroll-down-container" />
+          </div>
+        )}
+
         <Link to="/explore" className="btn btn-customize">
           Explore
         </Link>
-        Collapse
       </div>
     </div>
   );
