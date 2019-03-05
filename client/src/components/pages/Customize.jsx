@@ -228,7 +228,6 @@ export default function Customize() {
     }
     setModifiedEffects(modifiedEffectsTmp);
     api.setSessionStorage("modifiedEffect", modifiedEffectsTmp);
-    console.log("TCL: handleModifyEffect -> modifiedEffect", modifiedEffects);
   }
   function handleResetEffect(property) {
     const modifiedEffectsTmp = [...modifiedEffects];
