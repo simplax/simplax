@@ -34,19 +34,7 @@ const CategoryNavbar = ({ categoryActive, properties, propertyActive }) => {
                   <TextTranslateY category="TRANSFORM" />
                 </a>
               </li>
-              {/* Colors */}
-              <li className="nav-item">
-                <a
-                  href="#colors"
-                  className={
-                    categoryActive === 'colors'
-                      ? 'nav-link category-active'
-                      : 'nav-link'
-                  }
-                >
-                  <TextTranslateY category="COLORS" />
-                </a>
-              </li>
+
               {/* CSS-Filter */}
               <li className="nav-item">
                 <a
@@ -58,6 +46,20 @@ const CategoryNavbar = ({ categoryActive, properties, propertyActive }) => {
                   }
                 >
                   <TextTranslateY category="CSS-FILTER" />
+                </a>
+              </li>
+
+              {/* Colors */}
+              <li className="nav-item">
+                <a
+                  href="#colors"
+                  className={
+                    categoryActive === 'colors'
+                      ? 'nav-link category-active'
+                      : 'nav-link'
+                  }
+                >
+                  <TextTranslateY category="COLORS" />
                 </a>
               </li>
             </ul>

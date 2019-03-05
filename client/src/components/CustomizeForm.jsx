@@ -1,9 +1,26 @@
 import React, { useState, useEffect } from "react";
-import Slider from "rc-slider";
+import Slider, { createSliderWithTooltip } from "rc-slider";
+import Tooltip from "rc-tooltip";
 import "rc-slider/assets/index.css";
 
-const createSliderWithTooltip = Slider.createSliderWithTooltip;
+// const createSliderWithTooltip = Slider.createSliderWithTooltip;
 const Range = createSliderWithTooltip(Slider.Range);
+
+const Handle = Slider.Handle;
+
+const handle = props => {
+  const { value, dragging, index, ...restProps } = props;
+  return (
+    <Tooltip
+      prefixCls="rc-slider-tooltip"
+      overlay={value}
+      visible={dragging}
+      placement="top"
+      key={index}>
+      <Handle value={value} {...restProps} />
+    </Tooltip>
+  );
+};
 
 export default function CustomizeForm({
   data,
@@ -36,6 +53,9 @@ export default function CustomizeForm({
     startValueModified ? startValueModified : startValue,
     endValueModified ? endValueModified : endValue
   ]);
+  const [crossed, setCrossed] = useState(undefined);
+  const [decreasing, setDecreasing] = useState(false);
+  const [valBefore, setValBefore] = useState([]);
 
   useEffect(() => {
     onModifyEffect(property, values);
@@ -76,11 +96,58 @@ export default function CustomizeForm({
                   min={minValue}
                   max={maxValue}
                   value={values}
+                  onBeforeChange={e => {
+                    setValBefore(e);
+                    values[0] > values[1] ? setCrossed(true) : setCrossed(false);
+                  }}
                   onChange={e => {
+                    console.log("TCL: values", values);
+                    console.log("TCL: e", e);
+
+                    // if (direction detection is needed) {
+                    //   setDecreasing(true);
+                    // }
+
+                    // console.log("TCL: decreasing", decreasing);
+                    // if (decreasing) {
+                    //   if (values[1] === valBefore[0]) {
+                    //     setCrossed(true);
+                    //     console.log("TCL: crossed", crossed);
+                    //   }
+                    //   crossed ? setValues([valBefore[0], e[0]]) : setValues([e[0], e[1]]);
+                    // } else {
+                    //   if (values[0] === valBefore[1]) {
+                    //     setCrossed(true);
+                    //     console.log("TCL: crossed", crossed);
+                    //   }
+                    //   crossed ? setValues([e[1], valBefore[1]]) : setValues([e[0], e[1]]);
+                    // }
+
                     setValues([...e]);
                   }}
-                  // allowCross={false}
+                  onAfterChange={e => {
+                    values[0] > values[1] ? setCrossed(true) : setCrossed(false);
+                    setDecreasing(false);
+                  }}
                   tipFormatter={value => `${value} ${unit}`}
+                  handle={handle}
+                  handleStyle={[
+                    {
+                      borderRadius: 4,
+                      height: 14,
+                      width: 18,
+                      marginTop: -5,
+                      // marginLeft: 0,
+                      backgroundColor: "blue"
+                    },
+                    {
+                      borderRadius: 4,
+                      height: 14,
+                      width: 18,
+                      marginTop: -5
+                      // marginLeft: -16
+                    }
+                  ]}
                 />
                 <div className="input-group">
                   <input

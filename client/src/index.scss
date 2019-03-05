@@ -34,7 +34,7 @@ $primary-super-dark: #ff4b51;
 $secondary: #d76d77;
 $secondary-dark: #703873;
 $secondary-super-dark: #412071;
-$light: #fbeed7;
+$light: darken(#fbeed7, 10%);
 $grey: #a3a3a3;
 $dark: #1f1f1f;
 
@@ -95,8 +95,8 @@ body {
 }
 
 .showcase-box {
-  width: 20vw;
-  height: 20vw;
+  width: 22vw;
+  height: 22vw;
   background-image: linear-gradient(
     -60deg,
     $secondary-super-dark,
@@ -106,19 +106,20 @@ body {
   border: 3px solid white;
 }
 
+.showcase-box--color {
+  width: 22vw;
+  height: 22vw;
+  background: transparent;
+  border: 6px solid white;
+}
+
 .showcase-box-inner {
   width: 100%;
   height: 100%;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-}
-
-.showcase-box--color {
-  width: 20vw;
-  height: 20vw;
-  background: transparent;
-  border: 6px solid white;
 }
 
 .showcase-box-text {
@@ -141,81 +142,18 @@ body {
   }
 }
 
-// --------------------
-// Customize
-// --------------------
-@include media-breakpoint-up(md) {
-  .Customize {
-    .btn-toggle-sidebar {
-      display: none;
-    }
-    .sidebar-container {
-      height: calc(100vh - 56px);
-      display: block;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-    }
-    .customize-sidebar {
-      height: calc(100vh - 284px);
-      overflow-x: hidden;
-      overflow-y: auto;
-    }
+//------------- Main Navbar -------------
+.Navbar {
+  position: fixed;
+  top: 0;
+  z-index:1000;
+  .navbar {
+
   }
 }
 
-// --------------------
-// Loop scroll
-// --------------------
 
-
-// --------------------
-// CodeSnipppetModal
-// --------------------
-.CodeSnipppetModal {
-  .hidden {
-    position: absolute;
-    opacity: 0.01;
-    height: 0;
-    overflow: hidden;
-  }
-}
-
-// --------------------
-// Showcase
-// --------------------
-.Showcase {
-  // .fa-heart:hover {
-  //   transform: translateY(-20px);
-  // }
-  .unlike {
-    color: $grey;
-  }
-  .like {
-    color: $secondary;
-  }
-  .category-container {
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: flex-end;
-  }
-  .category {
-    letter-spacing: 0.4rem;
-  }
-  .box-container {
-    width: 100%;
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-  }
-  .fa-heart {
-    margin: 0 18vw;
-    cursor: pointer;
-    transition-property: all;
-    transition-duration: 0.5s;
-  }
-}
+//------------- Showcase Component -------------
 
 // --------------------
 // Category Navbar
@@ -245,14 +183,13 @@ body {
     padding: 0.4rem;
   }
   .nav-link:hover {
-    color: darken($light, 10%) !important;
+    color: #fbeed7 !important;
   }
   .nav-link:visited {
     color: $grey;
   }
   .category-active {
-    color: $primary !important;
-    box-shadow: 0 0 30px $primary;
+    color: $light !important;
   }
 }
 
@@ -276,19 +213,97 @@ body {
     transition-duration: 0.5s;
   }
   .nav-link:hover {
-    color: darken($light, 10%) !important;
+    color: #fbeed7 !important;
   }
   .nav-link:visited {
     color: $grey;
   }
   .property-active {
-    color: $primary !important;
-    border-bottom: 1px solid $primary;
+    color: $light !important;
+    border-bottom: 1px solid $light;
   }
 }
 
 // --------------------
-// Style for CustomizeForm component
+// Showcase
+// --------------------
+.Showcase {
+  .fas.unlike {
+    color: $dark;
+  }
+  .fas.like {
+    color: $light;
+  }
+  .far.unlike {
+    color: white;
+  }
+  .far.like {
+    color: $secondary;
+  }
+  .fa-heart {
+    margin-top: 1rem;
+  }
+  .category-container {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+  }
+  .category {
+    letter-spacing: 0.4rem;
+  }
+  .box-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .fa-heart {
+    cursor: pointer;
+    transition-property: all;
+    transition-duration: 0.5s;
+  }
+}
+
+// --------- Customize Component ----------
+
+// --------------------
+// Customize
+// --------------------
+@include media-breakpoint-up(md) {
+  .Customize {
+    .btn-toggle-sidebar {
+      display: none;
+    }
+    .sidebar-container {
+      position: fixed;
+      top: 56px;
+      height: calc(100vh - 56px);
+      display: block;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .customize-sidebar {
+      height: calc(100vh - 284px);
+      overflow-x: hidden;
+      overflow-y: auto;
+    }
+  }
+}
+
+// --------------------
+// CodeSnipppetModal
+// --------------------
+.CodeSnipppetModal {
+  .hidden {
+    position: absolute;
+    opacity: 0.01;
+    height: 0;
+    overflow: hidden;
+  }
+}
+
 .CustomizeForm {
   .code-snippet-modal {
     position: fixed;
@@ -302,35 +317,35 @@ body {
 // --------------------
 // Customize Button
 // --------------------
-.btn-customize {
-  letter-spacing: 1px;
-  color: white;
-  padding: 0.6rem 1rem;
-  border-radius: 15px;
-  background-image: linear-gradient(-45deg, $primary-super-dark, $primary-dark);
-  border: 1px solid $white;
-  box-shadow: 0px 0px 50px rgba(lighten($primary, 30%), 0.7);
-  position: fixed;
-  bottom: 30px;
-  right: 5vw;
-  transition-property: all;
-  transition-duration: 0.3s;
-  z-index: 2;
-}
-.btn-customize:hover {
-  transform: translateY(-2px);
-  color: $light;
-  background-image: linear-gradient(
-    -45deg,
-    darken($secondary, 30%),
-    darken($primary, 10%)
-  );
-  box-shadow: 0px 0px 15px rgba($primary, 0.7);
-}
-.btn-customize:active {
-  transform: translateY(-1px);
-  box-shadow: 0px 0px 30px rgba($primary, 0.7);
-}
+// .btn-customize {
+//   letter-spacing: 1px;
+//   color: white;
+//   padding: 0.6rem 1rem;
+//   border-radius: 15px;
+//   background-image: linear-gradient(-45deg, $primary-super-dark, $primary-dark);
+//   border: 1px solid $white;
+//   box-shadow: 0px 0px 50px rgba(lighten($primary, 30%), 0.7);
+//   position: fixed;
+//   bottom: 30px;
+//   right: 5vw;
+//   transition-property: all;
+//   transition-duration: 0.3s;
+//   z-index: 2;
+// }
+// .btn-customize:hover {
+//   transform: translateY(-2px);
+//   color: $light;
+//   background-image: linear-gradient(
+//     -45deg,
+//     darken($secondary, 30%),
+//     darken($primary, 10%)
+//   );
+//   box-shadow: 0px 0px 15px rgba($primary, 0.7);
+// }
+// .btn-customize:active {
+//   transform: translateY(-1px);
+//   box-shadow: 0px 0px 30px rgba($primary, 0.7);
+// }
 
 //------------- Animationsssssssssssss -------------
 
@@ -365,4 +380,148 @@ body {
   top: 50vh;
   letter-spacing: 0.15rem;
   color: $light;
+}
+
+// --------------------
+// LikeIconsssssss
+// --------------------
+.LikeIconsss {
+  width: 100vw;
+  height: 100vh;
+  z-index: -1;
+  position: absolute;
+  left: 0;
+  .fa-heart {
+    position: absolute;
+    opacity: 0;
+    animation-name: LikeIconsAnimation;
+    animation-iteration-count: infinite;
+  }
+  #like-1 {
+    left: 70%;
+    top: 20%;
+    animation-duration: 4s;
+  }
+  #like-2 {
+    left: 40%;
+    top: 15%;
+    animation-delay: 0.2s;
+    animation-duration: 4.2s;
+  }
+  #like-3 {
+    left: 30%;
+    top: 30%;
+    animation-delay: 0.4s;
+    animation-duration: 4.4s;
+  }
+  #like-4 {
+    left: 75%;
+    top: 60%;
+    animation-delay: 0.6s;
+    animation-duration: 4.6s;
+  }
+  #like-5 {
+    left: 65%;
+    top: 45%;
+    animation-delay: 0.8s;
+    animation-duration: 4.8s;
+  }
+  #like-6 {
+    left: 25%;
+    top: 80%;
+    animation-delay: 1s;
+    animation-duration: 5s;
+  }
+  #like-7 {
+    left: 55%;
+    top: 25%;
+    animation-delay: 1.2s;
+    animation-duration: 5.2s;
+  }
+  #like-8 {
+    left: 70%;
+    top: 80%;
+    animation-delay: 0.1s;
+    animation-duration: 4s;
+  }
+  #like-9 {
+    left: 60%;
+    top: 88%;
+    animation-delay: 0.3s;
+    animation-duration: 4.5s;
+  }
+  #like-10 {
+    left: 68%;
+    top: 95%;
+    animation-delay: 0.5s;
+    animation-duration: 4.8s;
+  }
+  #like-10 {
+    left: 45%;
+    top: 40%;
+    animation-delay: 0.7s;
+    animation-duration: 4s;
+  }
+}
+
+.back-to-top-container {
+  display: inline-block;
+  cursor: pointer;
+  #back-to-top-1 {
+    position: fixed;
+    top: 50vh;
+    right: 3vw;
+    color: #bea984;
+    animation-name: backToTop;
+    animation-duration: 8s;
+    animation-iteration-count: infinite;
+  }
+  #back-to-top-2 {
+    position: fixed;
+    top: 51.5vh;
+    right: 3vw;
+    color: #bea984;
+    animation-name: backToTop;
+    animation-duration: 8s;
+    animation-iteration-count: infinite;
+  }
+}
+
+@keyframes LikeIconsAnimation {
+  0% {
+    opacity: 0;
+    color: rgba(pink, 0.5);
+    transform: translateY(0px);
+  }
+  50% {
+    opacity: 1;
+    color: rgba(#b9505b, 0.5);
+    transform: translateY(-5px);
+  }
+  100% {
+    opacity: 0;
+    color: rgba(pink, 0.5);
+    transform: translateY(0px);
+  }
+}
+
+@keyframes backToTop {
+  0% {
+    transform: translateY(0px);
+  }
+  3% {
+    transform: translateY(-5px);
+  }
+  6% {
+    transform: translateY(0px);
+  }
+  9% {
+    transform: translateY(-5px);
+  }
+  12% {
+    transform: translate(0px)
+  }
+  100% {
+    opacity: 0.8;
+  }
 }

@@ -46,6 +46,36 @@ export default function Customize() {
     }
   }, []);
 
+  useEffect(() => {
+
+
+    window.addEventListener('scroll', function scrollHandler() {
+      const windowTop = document.documentElement.scrollTop;
+      const windowBottom = document.documentElement.scrollTop + window.innerHeight;
+      const documentBottom = document.body.clientHeight;
+      const buffer = window.innerHeight * 0.22 * 1.5
+
+      // const documentTop = 872;
+
+      console.log(`top: ${windowTop}`);
+      console.log(`bottom: ${document.documentElement.scrollTop}` + `${window.innerHeight}`);
+      console.log(`document bottom: ${document.body.clientHeight}`);
+
+      if (documentBottom >= windowBottom) {
+        window.scrollTo(0, windowBottom + buffer);
+      }
+      else if (windowTop >= window.innerHeight + buffer) {
+        console.log(true)
+        window.scrollTo(0, 0);
+      }
+
+      return (() => { window.removeEventListener('scroll', scrollHandler) })
+    });
+
+
+  }, [])
+
+
 
   // get saved profile
   useEffect(() => {
@@ -63,6 +93,7 @@ export default function Customize() {
     let likedEffectUrl = likedEffects.join("-");
     api.getManyParallaxData(likedEffectUrl).then(res => {
       setParallaxDataDefault(res);
+
 
       /*********************************
        * Converting parallax data to usable code for snippet and box
@@ -229,7 +260,6 @@ export default function Customize() {
     }
     setModifiedEffects(modifiedEffectsTmp);
     api.setSessionStorage("modifiedEffect", modifiedEffectsTmp);
-
   }
   function handleResetEffect(property) {
     const modifiedEffectsTmp = [...modifiedEffects];
