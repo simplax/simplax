@@ -90,6 +90,8 @@ const Showcase = () => {
     if (api.getSessionStorage('likedEffects'))
       setLikedEffects(api.getSessionStorage('likedEffects'));
     else setLikedEffects([]);
+
+
   }, []);
 
   useEffect(() => {

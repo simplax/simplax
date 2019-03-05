@@ -25,7 +25,7 @@ export default function CustomizeBox({ parallaxDataCode }) {
 
         >
           <div className="showcase-box-inner"><h4 className="showcase-box-text">Simplax</h4></div>
-          {console.log(parallaxDataCode)}
+
         </Plx>
 
       </div>

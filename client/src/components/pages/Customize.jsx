@@ -60,34 +60,40 @@ export default function Customize() {
 
   // window scroll
   useEffect(() => {
-    window.addEventListener('scroll', function scrollHandler() {
+    function scrollHandler() {
       const windowTop = document.documentElement.scrollTop;
       const windowBottom =
         document.documentElement.scrollTop + window.innerHeight;
       const documentBottom = document.body.clientHeight;
-      const buffer = window.innerHeight * 0.22 * 1.5;
-
-      // const documentTop = 872;
-
-      console.log(`top: ${windowTop}`);
-      console.log(
-        `bottom: ${document.documentElement.scrollTop}` +
-          `${window.innerHeight}`
-      );
-      console.log(`document bottom: ${document.body.clientHeight}`);
+      const buffer = window.innerHeight * 0.22 * 1.5
+    
 
       if (documentBottom >= windowBottom) {
         window.scrollTo(0, windowBottom + buffer);
-      } else if (windowTop >= window.innerHeight + buffer) {
-        console.log(true);
-        window.scrollTo(0, 0);
+      }
+      else if (windowTop >= window.innerHeight + buffer) {
+
+        window.scrollTo(0, 0+ buffer*0.6);
       }
 
-      return () => {
-        window.removeEventListener('scroll', scrollHandler);
-      };
-    });
-  }, []);
+    }
+
+    function hi(){
+      console.log('hi')
+    }
+
+    window.addEventListener('scroll',scrollHandler );
+    window.addEventListener('mousedown',hi );
+
+      return (() => { 
+        console.log("window.removeEventListener")
+        window.removeEventListener('scroll', scrollHandler) 
+      })
+
+  }, [])
+  
+
+
 
   // get saved profile
   useEffect(() => {
@@ -392,7 +398,7 @@ export default function Customize() {
     );
   }
   return (
-    <div className="Customize">
+    <div className="Customize" >
       <div className="container-fluid">
         <button
           className="btn btn-primary btn-toggle-sidebar"
