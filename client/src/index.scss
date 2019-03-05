@@ -11,9 +11,20 @@
 // <Button color="danger">Danger!</Button>
 // ----------------------------------------
 
-@import '../node_modules/bootstrap/scss/bootstrap.scss';
-@import url('https://fonts.googleapis.com/css?family=Poppins');
-@import url('https://fonts.googleapis.com/css?family=Roboto');
+// NEW
+$primary: #ffcb59;
+$primary-dark: #ff8c49;
+$primary-super-dark: #ff4b51;
+$secondary: #d76d77;
+$secondary-dark: #703873;
+$secondary-super-dark: #412071;
+$light: darken(#fbeed7, 10%);
+$gray: #a3a3a3;
+$dark: #1f1f1f;
+
+@import "../node_modules/bootstrap/scss/bootstrap.scss";
+@import url("https://fonts.googleapis.com/css?family=Poppins");
+@import url("https://fonts.googleapis.com/css?family=Roboto");
 
 // --------------------
 // Variables
@@ -25,20 +36,8 @@
 // $secondary: #ff4040;
 // $secondary-light: #ff6e6e;
 // $secondary-super-light: #ff9898;
-// $grey: #a3a3a3;
+// $gray: #a3a3a3;
 // $dark: #202020;
-
-// NEW
-$primary: #ffcb59;
-$primary-dark: #ff8c49;
-$primary-super-dark: #ff4b51;
-$secondary: #d76d77;
-$secondary-dark: #703873;
-$secondary-super-dark: #412071;
-$light: darken(#fbeed7, 10%);
-$grey-light: #bea984;
-$grey: #a3a3a3;
-$dark: #1f1f1f;
 
 // VERSION 1
 // --------------------
@@ -46,7 +45,7 @@ $dark: #1f1f1f;
 // $secondary: #69779b;
 // $light: #f0ece2;
 // $dark: #010101;
-// $grey: #a3a3a3;
+// $gray: #a3a3a3;
 
 // VERSION 2
 // --------------------
@@ -54,7 +53,7 @@ $dark: #1f1f1f;
 // $secondary: #ffba5a;
 // $light: #fbeed7;
 // $dark: #5d5d5a;
-// $grey: #a3a3a3;
+// $gray: #a3a3a3;
 
 // --------------------
 // Body
@@ -62,7 +61,7 @@ $dark: #1f1f1f;
 body {
   margin: 0;
   padding: 0;
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   background-color: $dark;
   color: $white;
 }
@@ -99,12 +98,7 @@ body {
 .showcase-box {
   width: 22vw;
   height: 22vw;
-  background-image: linear-gradient(
-    -60deg,
-    $secondary-super-dark,
-    $secondary,
-    $primary
-  );
+  background-image: linear-gradient(-60deg, $secondary-super-dark, $secondary, $primary);
   border: 3px solid white;
   z-index: 1;
 }
@@ -166,7 +160,7 @@ body {
     .nav-item {
       margin: 0 0.5rem;
       .nav-link {
-        font-family: 'Roboto', sans-serif;
+        font-family: "Roboto", sans-serif;
         font-size: 0.9rem;
         letter-spacing: 0.07rem;
       }
@@ -217,7 +211,7 @@ body {
     color: #fbeed7 !important;
   }
   .nav-link:visited {
-    color: $grey;
+    color: $gray;
   }
   .category-active {
     color: $light !important;
@@ -248,7 +242,7 @@ body {
     color: #fbeed7 !important;
   }
   .nav-link:visited {
-    color: $grey;
+    color: $gray;
   }
   .property-active {
     color: $light !important;
@@ -575,7 +569,7 @@ body {
 
   .chevron:before,
   .chevron:after {
-    content: ' ';
+    content: " ";
     position: absolute;
     top: 0;
     height: 100%;
@@ -618,7 +612,7 @@ body {
 
   .chevron:before,
   .chevron:after {
-    content: ' ';
+    content: " ";
     position: absolute;
     top: 0;
     height: 100%;

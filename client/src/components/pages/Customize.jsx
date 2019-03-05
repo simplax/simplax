@@ -9,21 +9,24 @@ import Save from "../Save";
 import Load from "../Load";
 import api from "../../api";
 
-// QUESTION: is likedEffects props neccessary?
+// TO DO
+//    - change icon color on hover
+//    - group effects
 
 export default function Customize() {
   /*********************************
    * States
    *********************************/
-  const [parallaxDataDefault, setParallaxDataDefault] = useState([]);
-  const [parallaxData, setParallaxData] = useState(parallaxDataDefault);
+  const [parallaxDataTransformDefault, setParallaxDataTransformDefault] = useState([]);
+  const [parallaxDataCssFilterDefault, setParallaxDataCssFilterDefault] = useState([]);
+  const [parallaxDataColorsDefault, setParallaxDataColorsDefault] = useState([]);
+  const [parallaxData, setParallaxData] = useState([]);
   const [likedEffects, setLikedEffects] = useState([]);
   const [modifiedEffects, setModifiedEffects] = useState([]);
   const [savedProfile, setSavedProfile] = useState([]);
   const [loadedFile, setLoadedFile] = useState(null);
   const [remove, setRemove] = useState([]);
   // const [loadTitle, setLoadTitle] = useState(null)
-
 
   /*********************************
    * Effect
@@ -46,6 +49,37 @@ export default function Customize() {
     }
   }, []);
 
+  useEffect(() => {
+
+
+    window.addEventListener('scroll', function scrollHandler() {
+      const windowTop = document.documentElement.scrollTop;
+      const windowBottom = document.documentElement.scrollTop + window.innerHeight;
+      const documentBottom = document.body.clientHeight;
+      const buffer = window.innerHeight * 0.22 * 1.5
+
+      // const documentTop = 872;
+
+      console.log(`top: ${windowTop}`);
+      console.log(`bottom: ${document.documentElement.scrollTop}` + `${window.innerHeight}`);
+      console.log(`document bottom: ${document.body.clientHeight}`);
+
+      if (documentBottom >= windowBottom) {
+        window.scrollTo(0, windowBottom + buffer);
+      }
+      else if (windowTop >= window.innerHeight + buffer) {
+        console.log(true)
+        window.scrollTo(0, 0);
+      }
+
+      return (() => { window.removeEventListener('scroll', scrollHandler) })
+    });
+
+
+  }, [])
+
+
+
   // get saved profile
   useEffect(() => {
     if (api.getSavedProfile()) {
@@ -61,7 +95,10 @@ export default function Customize() {
 
     let likedEffectUrl = likedEffects.join("-");
     api.getManyParallaxData(likedEffectUrl).then(res => {
-      setParallaxDataDefault(res);
+      setParallaxDataTransformDefault(res.filter(data => data.category === "transform"));
+      setParallaxDataCssFilterDefault(res.filter(data => data.category === "css-filter"));
+      setParallaxDataColorsDefault(res.filter(data => data.category === "colors"));
+
 
       /*********************************
        * Converting parallax data to usable code for snippet and box
@@ -115,7 +152,12 @@ export default function Customize() {
       setParallaxData(parallaxDataTmp);
     });
 
-    return () => setParallaxData([]);
+    return () => {
+      setParallaxData([]);
+      setParallaxDataTransformDefault([]);
+      setParallaxDataCssFilterDefault([]);
+      setParallaxDataColorsDefault([]);
+    };
   }, [likedEffects]);
 
   // update parallaxData
@@ -238,9 +280,8 @@ export default function Customize() {
   }
 
   function handleLoad(id) {
-    if (id !== 'instruction') {
+    if (id !== "instruction") {
       api.getSavedProfileDetail(id).then(data => {
-
         if (data.length !== 0) {
           let modifiedTmp = data.savedprofile.modifiedEffects;
           setModifiedEffects(modifiedTmp);
@@ -248,36 +289,34 @@ export default function Customize() {
           let likedTmp = data.savedprofile.likedEffects;
           setLikedEffects(likedTmp);
           api.setSessionStorage("likedEffects", likedTmp);
-          let dataTmp = data
-          setLoadedFile(dataTmp)
-          console.log(dataTmp)
-        }
-        else return
+          let dataTmp = data;
+          setLoadedFile(dataTmp);
+          console.log(dataTmp);
+        } else return;
       });
     }
   }
 
   function handleSave(data) {
-    api.getSavedProfile()
-      .then(savedprofiles => {
-        console.log(savedprofiles)
-        let verifyTmp = savedprofiles.findIndex((savedprofile) => {
-          return savedprofile.title === data.title
-        })
+    api.getSavedProfile().then(savedprofiles => {
+      console.log(savedprofiles);
+      let verifyTmp = savedprofiles.findIndex(savedprofile => {
+        return savedprofile.title === data.title;
+      });
 
-        if (verifyTmp === -1) {
-          api
-            .postSavedProfile(data)
+      if (verifyTmp === -1) {
+        api
+          .postSavedProfile(data)
 
-            .then(() => {
-              console.log("saved!");
-              api.getSavedProfile().then(profile => {
-                setSavedProfile(profile);
-              });
-            })
-            .catch(err => { });
-        } else api.updateSavedProfile(data.title, data)
-      })
+          .then(() => {
+            console.log("saved!");
+            api.getSavedProfile().then(profile => {
+              setSavedProfile(profile);
+            });
+          })
+          .catch(err => { });
+      } else api.updateSavedProfile(data.title, data);
+    });
   }
 
   // function handleLoadChange(title) {
@@ -289,31 +328,36 @@ export default function Customize() {
     //     api.deleteSavedProfile(loadTitle)
     //       .then(() => { console.log('first case') })
 
-    //   } else 
+    //   } else
     if (loadedFile && id === loadedFile.savedprofile._id) {
-      api.deleteSavedProfile(id)
-        .then(() => {
-          setLikedEffects([])
-          setModifiedEffects([])
-          api.setSessionStorage('modifiedEffects', [])
-          api.setSessionStorage("likedEffects", [])
-          setRemove([])
-        })
-
-    } else api.deleteSavedProfile(id)
-      .then(() => {
-        setLikedEffects([])
-        setModifiedEffects([])
-        api.setSessionStorage('modifiedEffects', [])
-        api.setSessionStorage("likedEffects", [])
-        setRemove([])
-      })
+      api.deleteSavedProfile(id).then(() => {
+        setLikedEffects([]);
+        setModifiedEffects([]);
+        api.setSessionStorage("modifiedEffects", []);
+        api.setSessionStorage("likedEffects", []);
+        setRemove([]);
+      });
+    } else
+      api.deleteSavedProfile(id).then(() => {
+        setLikedEffects([]);
+        setModifiedEffects([]);
+        api.setSessionStorage("modifiedEffects", []);
+        api.setSessionStorage("likedEffects", []);
+        setRemove([]);
+      });
   }
+
+
 
   /*********************************
    * Render
    *********************************/
-  if (!parallaxData && likedEffects.length !== 0) {
+  if (
+    !parallaxData ||
+    !parallaxDataTransformDefault ||
+    !parallaxDataCssFilterDefault ||
+    !parallaxDataColorsDefault
+  ) {
     return (
       <div className="Customize scroll-down-container">
         <h2>Loading...</h2>
@@ -324,56 +368,84 @@ export default function Customize() {
     <div className="Customize">
       <div className="container-fluid">
         <button
-          class="btn btn-primary btn-toggle-sidebar"
+          className="btn btn-primary btn-toggle-sidebar"
           type="button"
           data-toggle="collapse"
           data-target="#collapseSidebar"
           aria-expanded="false">
           Show Sidebar
         </button>
-        <div className="row bg-primary">
-          <div
-            className="col-12 col-md-3 collapse bg-light rounded sidebar-container"
-            id="collapseSidebar">
+        <div className="row pl-4">
+          <div className="col-12 col-md-3 collapse rounded sidebar-container" id="collapseSidebar">
             <div>
-              <Load onLoad={handleLoad} saved={savedProfile} onDelete={handleDelete} remove={remove} />
-              <Save
-                modifiedEffects={modifiedEffects}
-                likedEffects={likedEffects}
-                onSave={handleSave}
-                loadedFile={loadedFile}
-              />
-
               <AddEffect likedEffects={likedEffects} onAddEffect={handleAddEffect} />
-              <div className="rounded shadow customize-sidebar">
-                {likedEffects.length === 0
-                  ? null
-                  : parallaxDataDefault.map(data => (
-                    <CustomizeForm
-                      key={data._id}
-                      id={data._id}
-                      data={data}
-                      modifiedEffects={modifiedEffects}
-                      onModifyEffect={handleModifyEffect}
-                      onResetEffect={handleResetEffect}
-                      onCloseEffect={handleCloseEffect}
-                    />
-                  ))}
+              <div className="customize-sidebar">
+                <h5>Customize effect</h5>
+                {parallaxDataTransformDefault.length === 0 ? null : (
+                  <div className="mb-4">
+                    {parallaxDataTransformDefault.map(data => (
+                      <CustomizeForm
+                        key={data._id}
+                        id={data._id}
+                        data={data}
+                        modifiedEffects={modifiedEffects}
+                        onModifyEffect={handleModifyEffect}
+                        onResetEffect={handleResetEffect}
+                        onCloseEffect={handleCloseEffect}
+                      />
+                    ))}
+                  </div>
+                )}
+                {parallaxDataCssFilterDefault.length === 0 ? null : (
+                  <div className="mb-4">
+                    {parallaxDataCssFilterDefault.map(data => (
+                      <CustomizeForm
+                        key={data._id}
+                        id={data._id}
+                        data={data}
+                        modifiedEffects={modifiedEffects}
+                        onModifyEffect={handleModifyEffect}
+                        onResetEffect={handleResetEffect}
+                        onCloseEffect={handleCloseEffect}
+                      />
+                    ))}
+                  </div>
+                )}
+                {parallaxDataColorsDefault.length === 0 ? null : (
+                  <div className="">
+                    {parallaxDataColorsDefault.map(data => (
+                      <CustomizeForm
+                        key={data._id}
+                        id={data._id}
+                        data={data}
+                        modifiedEffects={modifiedEffects}
+                        onModifyEffect={handleModifyEffect}
+                        onResetEffect={handleResetEffect}
+                        onCloseEffect={handleCloseEffect}
+                      />
+                    ))}
+                  </div>
+                )}
               </div>
             </div>
             <CodeSnippetModal parallaxDataCode={parallaxData} />
+            {api.checkUser() && <Load onLoad={handleLoad} saved={savedProfile} onDelete={handleDelete} remove={remove} />}
+            {api.checkUser() ? <Save
+              modifiedEffects={modifiedEffects}
+              likedEffects={likedEffects}
+              onSave={handleSave}
+              loadedFile={loadedFile}
+            /> : <a
+              className="github-login-link btn btn-success"
+              href={api.service.defaults.baseURL + "/github-login"}>
+                <i className="fab fa-2x fa-github"></i> Save
+                </a>}
           </div>
-          <div className="col">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores id culpa magnam dolor
-            sapiente in quae nemo atque ex perferendis, voluptas harum praesentium rerum accusantium
-            velit quia consequatur amet ullam!
-          </div>
+          
         </div>
 
         <div className="customize-container">
-          <div className="scroll-down-container">
-            <h2>Scroll Down</h2>
-          </div>
+         
           <CustomizeBox parallaxDataCode={parallaxData} />
           <div className="scroll-down-container" />
         </div>
@@ -381,7 +453,12 @@ export default function Customize() {
         <Link to="/explore" className="btn btn-customize">
           Explore
         </Link>
-      </div>
+Collapse
+        
+        
+        
+        
     </div>
+    </div >
   );
 }
