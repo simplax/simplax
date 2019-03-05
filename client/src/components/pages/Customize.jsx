@@ -46,6 +46,7 @@ export default function Customize() {
     }
   }, []);
 
+
   // get saved profile
   useEffect(() => {
     if (api.getSavedProfile()) {
@@ -228,7 +229,7 @@ export default function Customize() {
     }
     setModifiedEffects(modifiedEffectsTmp);
     api.setSessionStorage("modifiedEffect", modifiedEffectsTmp);
-    console.log("TCL: handleModifyEffect -> modifiedEffect", modifiedEffects);
+
   }
   function handleResetEffect(property) {
     const modifiedEffectsTmp = [...modifiedEffects];
@@ -311,6 +312,8 @@ export default function Customize() {
       })
   }
 
+
+
   /*********************************
    * Render
    *********************************/
@@ -332,18 +335,22 @@ export default function Customize() {
           aria-expanded="false">
           Show Sidebar
         </button>
-        <div className="row bg-primary">
+        <div className="row ">
           <div
             className="col-12 col-md-3 collapse bg-light rounded sidebar-container"
             id="collapseSidebar">
             <div>
-              <Load onLoad={handleLoad} saved={savedProfile} onDelete={handleDelete} remove={remove} />
-              <Save
+              {api.checkUser() && <Load onLoad={handleLoad} saved={savedProfile} onDelete={handleDelete} remove={remove} />}
+              {api.checkUser() ? <Save
                 modifiedEffects={modifiedEffects}
                 likedEffects={likedEffects}
                 onSave={handleSave}
                 loadedFile={loadedFile}
-              />
+              /> : <a
+                className="github-login-link btn btn-success"
+                href={api.service.defaults.baseURL + "/github-login"}>
+                  <i className="fab fa-2x fa-github"></i> Save
+                </a>}
 
               <AddEffect likedEffects={likedEffects} onAddEffect={handleAddEffect} />
               <div className="rounded shadow customize-sidebar">
@@ -364,20 +371,16 @@ export default function Customize() {
             </div>
             <CodeSnippetModal parallaxDataCode={parallaxData} />
           </div>
-          <div className="col">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores id culpa magnam dolor
-            sapiente in quae nemo atque ex perferendis, voluptas harum praesentium rerum accusantium
-            velit quia consequatur amet ullam!
+          <div className="col loop-container" >
+
+            <div className="customize-container">
+
+              <CustomizeBox parallaxDataCode={parallaxData} />
+              <div className="scroll-down-container" />
+            </div>
           </div>
         </div>
 
-        <div className="customize-container">
-          <div className="scroll-down-container">
-            <h2>Scroll Down</h2>
-          </div>
-          <CustomizeBox parallaxDataCode={parallaxData} />
-          <div className="scroll-down-container" />
-        </div>
 
         <Link to="/explore" className="btn btn-customize">
           Explore

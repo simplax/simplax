@@ -134,6 +134,12 @@ export default {
     return JSON.parse(localStorage.getItem("user"));
   },
 
+  checkUser() {
+    if (localStorage.getItem("user") === null) return false
+    else return true
+
+  },
+
   /****************************************
    * Storing informations on session storage for non logged in users
    *****************************************/

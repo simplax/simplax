@@ -9,7 +9,7 @@ export default class SuccessLogin extends Component {
       .userDetail()
       .then(data => {
 
-        this.props.history.push("/");
+        this.props.history.push("/customize");
       })
       .catch(err => console.log(err));
   }
