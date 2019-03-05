@@ -26,6 +26,7 @@ export default function Customize() {
   const [savedProfile, setSavedProfile] = useState([]);
   const [loadedFile, setLoadedFile] = useState(null);
   const [remove, setRemove] = useState([]);
+  const [showCodeSnippet, setShowCodeSnippet] = useState(false);
   // const [loadTitle, setLoadTitle] = useState(null)
 
   /*********************************
@@ -49,30 +50,32 @@ export default function Customize() {
     }
   }, []);
 
+  // window scroll
   useEffect(() => {
-    window.addEventListener("scroll", function scrollHandler() {
+    function scrollHandler() {
       const windowTop = document.documentElement.scrollTop;
       const windowBottom = document.documentElement.scrollTop + window.innerHeight;
       const documentBottom = document.body.clientHeight;
       const buffer = window.innerHeight * 0.22 * 1.5;
 
-      // const documentTop = 872;
-
-      console.log(`top: ${windowTop}`);
-      console.log(`bottom: ${document.documentElement.scrollTop}` + `${window.innerHeight}`);
-      console.log(`document bottom: ${document.body.clientHeight}`);
-
       if (documentBottom >= windowBottom) {
         window.scrollTo(0, windowBottom + buffer);
       } else if (windowTop >= window.innerHeight + buffer) {
-        console.log(true);
-        window.scrollTo(0, 0);
+        window.scrollTo(0, 0 + buffer * 0.6);
       }
+    }
 
-      return () => {
-        window.removeEventListener("scroll", scrollHandler);
-      };
-    });
+    function hi() {
+      console.log("hi");
+    }
+
+    window.addEventListener("scroll", scrollHandler);
+    window.addEventListener("mousedown", hi);
+
+    return () => {
+      console.log("window.removeEventListener");
+      window.removeEventListener("scroll", scrollHandler);
+    };
   }, []);
 
   // get saved profile
@@ -212,7 +215,6 @@ export default function Customize() {
       });
 
       // update parallaxData
-
       modifiedEffects.forEach(modEffect => {
         const indexProperties = parallaxDataTmp[0].properties.findIndex(
           obj => obj.property === modEffect.property
@@ -238,6 +240,7 @@ export default function Customize() {
     setLikedEffects(likedEffectTemp);
     api.setSessionStorage("likedEffects", likedEffectTemp);
   }
+
   function handleCloseEffect(id, property) {
     const likedEffectTemp = [...likedEffects];
     likedEffectTemp.splice(likedEffectTemp.indexOf(id), 1);
@@ -265,6 +268,7 @@ export default function Customize() {
     setModifiedEffects(modifiedEffectsTmp);
     api.setSessionStorage("modifiedEffect", modifiedEffectsTmp);
   }
+
   function handleResetEffect(property) {
     const modifiedEffectsTmp = [...modifiedEffects];
     const index = modifiedEffectsTmp.findIndex(obj => obj.property === property);
@@ -339,6 +343,10 @@ export default function Customize() {
         api.setSessionStorage("likedEffects", []);
         setRemove([]);
       });
+  }
+
+  function handleCodeSnippetClick() {
+    setShowCodeSnippet(!showCodeSnippet);
   }
 
   /*********************************
@@ -420,7 +428,11 @@ export default function Customize() {
                 )}
               </div>
             </div>
-            <CodeSnippetModal parallaxDataCode={parallaxData} />
+
+            {/* Generate code snippet */}
+            <i className="fas fa-code" onClick={handleCodeSnippetClick} />
+            {showCodeSnippet && <CodeSnippetModal parallaxDataCode={parallaxData} />}
+
             {api.checkUser() && (
               <Load
                 onLoad={handleLoad}

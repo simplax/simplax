@@ -19,6 +19,7 @@ $secondary: #d76d77;
 $secondary-dark: #703873;
 $secondary-super-dark: #412071;
 $light: darken(#fbeed7, 10%);
+$grey-light: #dbc8a6;
 $gray: #a3a3a3;
 $dark: #1f1f1f;
 
@@ -102,6 +103,7 @@ body {
   height: 22vw;
   background-image: linear-gradient(-60deg, $secondary-super-dark, $secondary, $primary);
   border: 3px solid white;
+  z-index: 1;
 }
 
 .showcase-box--color {
@@ -109,6 +111,7 @@ body {
   height: 22vw;
   background: transparent;
   border: 6px solid white;
+  z-index: 1;
 }
 
 .showcase-box-inner {
@@ -253,6 +256,7 @@ body {
 .PropertyNavbar {
   .navbar.navbar-dark.navbar-expand-lg {
     padding-top: 0;
+    padding-bottom: 0;
   }
   ul {
     margin: 0 4.5rem;
@@ -282,6 +286,16 @@ body {
 // Showcase
 // --------------------
 .Showcase {
+  .background-img-explore {
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    z-index: -1000;
+  }
+  .scroll-down-container {
+    height: 50vh;
+    align-items: flex-end;
+  }
   .fas.unlike {
     color: $dark;
   }
@@ -317,6 +331,26 @@ body {
     transition-property: all;
     transition-duration: 0.5s;
   }
+  .customize-icon-link {
+    position: fixed;
+    bottom: 5vh;
+    right: 3vw;
+    color: $secondary;
+    display: flex;
+    align-items: center;
+    transition: all 0.7s;
+    span {
+      font-size: 0.9rem;
+      letter-spacing: 0.05rem;
+    }
+    .customize-icon {
+      animation: customizeIconAnimation 7s infinite;
+      margin-right: 10px;
+    }
+  }
+  .customize-icon-link:hover {
+    color: lighten($secondary, 12%);
+  }
 }
 
 // --------- Customize Component ----------
@@ -331,7 +365,7 @@ body {
     }
     .sidebar-container {
       position: fixed;
-      top: 56px;
+      // top: 56px;
       height: calc(100vh - 56px);
       display: block;
       display: flex;
@@ -343,18 +377,40 @@ body {
       overflow-x: hidden;
       overflow-y: auto;
     }
+    .code-snippet-icon {
+    }
   }
 }
 
 // --------------------
 // CodeSnipppetModal
 // --------------------
-.CodeSnipppetModal {
-  .hidden {
-    position: absolute;
-    opacity: 0.01;
-    height: 0;
-    overflow: hidden;
+// .CodeSnipppetModal {
+//   .hidden {
+//     position: absolute;
+//     opacity: 0.01;
+//     height: 0;
+//     overflow: hidden;
+//   }
+// }
+
+.CodeSnippetModal {
+  height: 80vh;
+  width: 100vw;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: rgba($dark, 0.75);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 5000;
+  .code-snippet-container {
+    height: 90%;
+    width: 80%;
+    background-color: $dark;
+    border: 1px solid white;
+    border-radius: 10px;
   }
 }
 
@@ -433,7 +489,7 @@ body {
   position: fixed;
   top: 50vh;
   letter-spacing: 0.15rem;
-  color: $light;
+  color: $grey-light;
 }
 
 // --------------------
@@ -528,18 +584,18 @@ body {
     position: fixed;
     top: 50vh;
     right: 3vw;
-    color: #bea984;
+    color: lighten($grey-light, 5%);
     animation-name: backToTop;
-    animation-duration: 8s;
+    animation-duration: 15s;
     animation-iteration-count: infinite;
   }
   #back-to-top-2 {
     position: fixed;
     top: 51.5vh;
     right: 3vw;
-    color: #bea984;
+    color: $grey-light;
     animation-name: backToTop;
-    animation-duration: 8s;
+    animation-duration: 15s;
     animation-iteration-count: infinite;
   }
 }
@@ -554,15 +610,15 @@ body {
     height: 5px;
     opacity: 0;
     transform: scale3d(0.5, 0.5, 0.5);
-    animation: moveDown 3s infinite;
+    animation: moveDown 3s 0.5s infinite;
   }
 
   .chevron:first-child {
-    animation: moveDown 3s 1s infinite;
+    animation: moveDown 3s 1.5s infinite;
   }
 
   .chevron:nth-child(2) {
-    animation: moveDown 3s 2s infinite;
+    animation: moveDown 3s 2.5s infinite;
   }
 
   .chevron:before,
@@ -702,5 +758,32 @@ body {
   100% {
     opacity: 0;
     transform: translateY(-55px) scale3d(0.5, 0.5, 0.5);
+  }
+}
+
+@keyframes customizeIconAnimation {
+  0% {
+    transform: rotate(0deg);
+  }
+  5% {
+    transform: rotate(-30deg);
+  }
+  10% {
+    transform: rotate(0deg);
+  }
+  29% {
+    transform: rotate(0deg);
+  }
+  30% {
+    transform: rotate(-15deg);
+  }
+  33% {
+    transform: rotate(0deg);
+  }
+  36% {
+    transform: rotate(-15deg);
+  }
+  40% {
+    transform: rotate(0deg);
   }
 }
