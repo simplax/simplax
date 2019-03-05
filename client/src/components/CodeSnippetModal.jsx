@@ -73,7 +73,7 @@ export default function CodeSnipppetModal({ parallaxDataCode }) {
 
   return (
     <div className="CodeSnipppetModal">
-      <div className="p-2 mb-1 bg-light text-dark rounded">
+      <div className="p-2 mb-1 rounded">
         <button
           type="button"
           className="btn btn-info"

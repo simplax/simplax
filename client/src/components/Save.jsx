@@ -2,14 +2,14 @@ import React, { useState, useEffect } from "react";
 import api from "../api";
 
 export default function Save({ modifiedEffects, likedEffects, onSave, loadedFile }) {
-  const [newtitle, setNewTitle] = useState(loadedFile && loadedFile.savedprofile.title ? loadedFile.savedprofile.title : 'name me!');
+  const [newtitle, setNewTitle] = useState(
+    loadedFile && loadedFile.savedprofile.title ? loadedFile.savedprofile.title : "name me!"
+  );
 
   useEffect(() => {
-    if (loadedFile && loadedFile.savedprofile.title)
-      setNewTitle(loadedFile.savedprofile.title)
-    else
-      setNewTitle('name me!')
-  }, [loadedFile])
+    if (loadedFile && loadedFile.savedprofile.title) setNewTitle(loadedFile.savedprofile.title);
+    else setNewTitle("name me!");
+  }, [loadedFile]);
 
   function handleChange(e) {
     setNewTitle(e.target.value);
@@ -24,7 +24,7 @@ export default function Save({ modifiedEffects, likedEffects, onSave, loadedFile
 
   return (
     <div className="Save">
-      <div className="p-2 mb-1 bg-light text-dark rounded">
+      <div className="p-2 mb-1 rounded">
         <div className="row">
           <div className="col-7">
             <input

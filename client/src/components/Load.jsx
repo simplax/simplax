@@ -11,11 +11,9 @@ export default function Load({ onLoad, saved, onDelete, remove }) {
       if (data.length !== 0) {
         setSavedProfile(data);
         setTitle(data[0]._id);
-      }
-      else {
+      } else {
         setSavedProfile([]);
-        setTitle('');
-
+        setTitle("");
       }
     });
   }, []);
@@ -30,13 +28,11 @@ export default function Load({ onLoad, saved, onDelete, remove }) {
     api.getSavedProfile().then(data => {
       setSavedProfile(data);
     });
-  }, [remove])
-
-
+  }, [remove]);
 
   return (
     <div className="Load">
-      <div className="p-2 mb-1 bg-light text-dark rounded">
+      <div className="p-2 mb-1 rounded">
         <div className="row">
           <div className="col-7">
             <select
@@ -45,9 +41,9 @@ export default function Load({ onLoad, saved, onDelete, remove }) {
               id=""
               value={title}
               onChange={e => {
-                setTitle(e.target.value)
+                setTitle(e.target.value);
 
-                onLoad(e.target.value)
+                onLoad(e.target.value);
               }}>
               <option value="instruction">Load your file</option>
               {savedProfile.map(profile => {
@@ -60,8 +56,9 @@ export default function Load({ onLoad, saved, onDelete, remove }) {
             </select>
           </div>
           <div className="col-5 d-flex flex-column justify-content-center">
-
-            <button onClick={() => onDelete(title)} className="btn btn-info">D</button>
+            <button onClick={() => onDelete(title)} className="btn btn-info">
+              D
+            </button>
           </div>
         </div>
       </div>
