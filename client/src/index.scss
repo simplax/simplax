@@ -219,7 +219,6 @@ i:hover {
 }
 
 //------------- Showcase Component -------------
-
 // --------------------
 // Category Navbar
 // --------------------
@@ -287,6 +286,22 @@ i:hover {
   .property-active {
     color: $light !important;
     border-bottom: 1px solid $light;
+  }
+}
+
+.navbar-toggler-label {
+  margin-left: 0.6rem;
+  letter-spacing: 0.06rem;
+  color: $grey-light;
+}
+
+@include media-breakpoint-down(md) {
+  .CategoryNavbar,
+  .PropertyNavbar {
+    .navbar-toggler {
+      width: 160px;
+      margin: 0.2rem 0;
+    }
   }
 }
 
@@ -367,8 +382,12 @@ i:hover {
 // --------------------
 .Customize {
   .toggle-btn {
-    top: 60px;
     position: fixed;
+    top: 59.2px;
+    right: 5vw;
+    z-index: 2000;
+    background-color: $dark;
+    // width: 100%;
     cursor: pointer;
     i {
       margin-right: 10px;
@@ -380,6 +399,23 @@ i:hover {
     flex-direction: column;
     justify-content: space-between;
   }
+  .effect-container {
+    border-bottom: 2px solid $light;
+  }
+  .save-btn {
+    i {
+      margin-right: 10px;
+    }
+  }
+  .code-btn {
+    position: fixed;
+    bottom: 5vw;
+    right: 5vw;
+    cursor: pointer;
+    i {
+      margin-right: 10px;
+    }
+  }
 }
 
 @include media-breakpoint-up(md) {
@@ -388,6 +424,7 @@ i:hover {
       display: none;
     }
     .sidebar-container {
+      margin-left: 2.5vw;
       margin-top: 0;
       top: 80px;
       position: fixed;
@@ -395,14 +432,15 @@ i:hover {
       display: block;
       height: calc(100vh - 80px);
 
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
+      // display: flex;
+      // flex-direction: column;
+      // justify-content: space-between;
     }
     .effect-container {
-      height: calc(100vh - 284px);
+      height: calc(100vh - 304px);
       overflow-x: hidden;
       overflow-y: auto;
+      border-bottom: 2px solid $light;
     }
   }
 }

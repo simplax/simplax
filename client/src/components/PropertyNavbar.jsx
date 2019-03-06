@@ -9,15 +9,16 @@ const PropertyNavbar = ({ properties, propertyActive }) => {
           className="navbar-toggler"
           type="button"
           data-toggle="collapse"
-          data-target="#navbarSupportedContent"
+          data-target="#navbarSupportedContent2"
           aria-controls="navbarSupportedContent"
           aria-expanded="false"
           aria-label="Toggle navigation"
         >
           <span className="navbar-toggler-icon" />
+          <span className="navbar-toggler-label">Property</span>
         </button>
 
-        <div className="collapse navbar-collapse" id="navbarSupportedContent">
+        <div className="collapse navbar-collapse" id="navbarSupportedContent2">
           {properties && (
             <PropertyNavbarAnimation
               properties={properties}
