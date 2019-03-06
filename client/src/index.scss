@@ -27,7 +27,7 @@ $grey-light: #dbc8a6;
 
 @import '../node_modules/bootstrap/scss/bootstrap.scss';
 @import url('https://fonts.googleapis.com/css?family=Poppins');
-@import url('https://fonts.googleapis.com/css?family=Roboto');
+@import url('https://fonts.googleapis.com/css?family=Roboto:100,300,400');
 
 // --------------------
 // Variables
@@ -277,13 +277,18 @@ i:hover {
   .landing {
     height: 100vh;
     width: 100vw;
+    .landing-background-1 {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+    }
     .landing-logo-container {
       height: 18vh;
       margin: 0 3rem;
       position: absolute;
       top: 50%;
       left: 10%;
-      transform: translateY(-70%);
+      transform: translateY(-78%);
       .landing-logo {
         position: absolute;
         width: 15vw;
@@ -314,6 +319,7 @@ i:hover {
       width: 80%;
       height: 100%;
       display: flex;
+      flex-direction: column;
       justify-content: center;
       align-items: center;
       .landing-title {
@@ -321,6 +327,19 @@ i:hover {
         display: inline-block;
         margin-right: 0.3rem;
       }
+      .landing-quote-container {
+        width: 50%;
+        margin-top: 0.5%;
+        margin-left: auto;
+        margin-right: 45px;
+        .landing-quote {
+          color: $gray;
+          font-size: 0.87rem;
+          font-weight: 100;
+          letter-spacing: 0.1rem;
+        }
+      }
+
       #title-1 {
         animation: titleShine1 1s 4.5s;
       }
