@@ -11,7 +11,6 @@ import api from "../../api";
 
 // TO DO
 //    - change icon color on hover
-//    - group effects
 
 export default function Customize() {
   /*********************************
@@ -27,12 +26,16 @@ export default function Customize() {
   const [loadedFile, setLoadedFile] = useState(null);
   const [remove, setRemove] = useState([]);
   const [showCodeSnippet, setShowCodeSnippet] = useState(false);
+  const [showSidebar, setShowSidebar] = useState(false);
+  const [width, setWidth] = useState(window.innerWidth);
   // const [loadTitle, setLoadTitle] = useState(null)
+
+  const breakPointSidebar = 768;
 
   /*********************************
    * Effect
    *********************************/
-  // Get data from sessionStorage
+  // get data from sessionStorage
   useEffect(() => {
     if (api.getSessionStorage("likedEffects")) {
       setLikedEffects(api.getSessionStorage("likedEffects"));
@@ -41,7 +44,7 @@ export default function Customize() {
     }
   }, []);
 
-  // Get data from sessionStorage
+  // get data from sessionStorage
   useEffect(() => {
     if (api.getSessionStorage("modifiedEffect")) {
       setModifiedEffects(api.getSessionStorage("modifiedEffect"));
@@ -65,18 +68,20 @@ export default function Customize() {
       }
     }
 
+    if (width >= breakPointSidebar || !showSidebar) {
+      window.addEventListener("scroll", scrollHandler);
+    }
+
     function hi() {
       console.log("hi");
     }
-
-    window.addEventListener("scroll", scrollHandler);
     window.addEventListener("mousedown", hi);
 
     return () => {
       console.log("window.removeEventListener");
       window.removeEventListener("scroll", scrollHandler);
     };
-  }, []);
+  }, [showSidebar, width]);
 
   // get saved profile
   useEffect(() => {
@@ -85,7 +90,7 @@ export default function Customize() {
     } else setSavedProfile([]);
   }, []);
 
-  // Get data from db
+  // get data from db
   useEffect(() => {
     if (likedEffects.length === 0) {
       return;
@@ -231,9 +236,21 @@ export default function Customize() {
     });
   }, [modifiedEffects]);
 
+  // get window size
+  useEffect(() => {
+    window.addEventListener("resize", handleResize);
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  });
+
   /*********************************
    * Event Handler
    *********************************/
+  function handleResize() {
+    setWidth(window.innerWidth);
+  }
+
   function handleAddEffect(id) {
     const likedEffectTemp = [...likedEffects];
     likedEffectTemp.push(id);
@@ -367,105 +384,110 @@ export default function Customize() {
   return (
     <div className="Customize">
       <div className="container-fluid">
-        <button
-          className="btn btn-primary btn-toggle-sidebar"
-          type="button"
-          data-toggle="collapse"
-          data-target="#collapseSidebar"
-          aria-expanded="false">
-          Show Sidebar
-        </button>
-        <div className="row pl-4">
-          <div className="col-12 col-md-3 collapse rounded sidebar-container" id="collapseSidebar">
-            <div>
-              <AddEffect likedEffects={likedEffects} onAddEffect={handleAddEffect} />
-              <div className="customize-sidebar">
-                <h5>Customize effect</h5>
-                {parallaxDataTransformDefault.length === 0 ? null : (
-                  <div className="mb-4">
-                    {parallaxDataTransformDefault.map(data => (
-                      <CustomizeForm
-                        key={data._id}
-                        id={data._id}
-                        data={data}
-                        modifiedEffects={modifiedEffects}
-                        onModifyEffect={handleModifyEffect}
-                        onResetEffect={handleResetEffect}
-                        onCloseEffect={handleCloseEffect}
-                      />
-                    ))}
-                  </div>
-                )}
-                {parallaxDataCssFilterDefault.length === 0 ? null : (
-                  <div className="mb-4">
-                    {parallaxDataCssFilterDefault.map(data => (
-                      <CustomizeForm
-                        key={data._id}
-                        id={data._id}
-                        data={data}
-                        modifiedEffects={modifiedEffects}
-                        onModifyEffect={handleModifyEffect}
-                        onResetEffect={handleResetEffect}
-                        onCloseEffect={handleCloseEffect}
-                      />
-                    ))}
-                  </div>
-                )}
-                {parallaxDataColorsDefault.length === 0 ? null : (
-                  <div className="">
-                    {parallaxDataColorsDefault.map(data => (
-                      <CustomizeForm
-                        key={data._id}
-                        id={data._id}
-                        data={data}
-                        modifiedEffects={modifiedEffects}
-                        onModifyEffect={handleModifyEffect}
-                        onResetEffect={handleResetEffect}
-                        onCloseEffect={handleCloseEffect}
-                      />
-                    ))}
-                  </div>
-                )}
+        <div onClick={() => setShowSidebar(!showSidebar)} className="toggle-btn text-secondary">
+          <i className="fas fa-wrench" />
+          <span>Customize</span>
+        </div>
+
+        <div className="row">
+          {/*  */}
+          {width >= breakPointSidebar || showSidebar ? (
+            <div className="col-12 col-md-3 sidebar-container">
+              <div>
+                <AddEffect likedEffects={likedEffects} onAddEffect={handleAddEffect} />
+                <div className="effect-container">
+                  <h5>Customize effect</h5>
+                  {parallaxDataTransformDefault.length === 0 ? null : (
+                    <div className="mb-4">
+                      {parallaxDataTransformDefault.map(data => (
+                        <CustomizeForm
+                          key={data._id}
+                          id={data._id}
+                          data={data}
+                          modifiedEffects={modifiedEffects}
+                          onModifyEffect={handleModifyEffect}
+                          onResetEffect={handleResetEffect}
+                          onCloseEffect={handleCloseEffect}
+                        />
+                      ))}
+                    </div>
+                  )}
+                  {parallaxDataCssFilterDefault.length === 0 ? null : (
+                    <div className="mb-4">
+                      {parallaxDataCssFilterDefault.map(data => (
+                        <CustomizeForm
+                          key={data._id}
+                          id={data._id}
+                          data={data}
+                          modifiedEffects={modifiedEffects}
+                          onModifyEffect={handleModifyEffect}
+                          onResetEffect={handleResetEffect}
+                          onCloseEffect={handleCloseEffect}
+                        />
+                      ))}
+                    </div>
+                  )}
+                  {parallaxDataColorsDefault.length === 0 ? null : (
+                    <div className="">
+                      {parallaxDataColorsDefault.map(data => (
+                        <CustomizeForm
+                          key={data._id}
+                          id={data._id}
+                          data={data}
+                          modifiedEffects={modifiedEffects}
+                          onModifyEffect={handleModifyEffect}
+                          onResetEffect={handleResetEffect}
+                          onCloseEffect={handleCloseEffect}
+                        />
+                      ))}
+                    </div>
+                  )}
+                </div>
               </div>
+
+              <i className="fas fa-code" onClick={handleCodeSnippetClick} />
+              {showCodeSnippet && <CodeSnippetModal parallaxDataCode={parallaxData} />}
+
+              {api.checkUser() && (
+                <Load
+                  onLoad={handleLoad}
+                  saved={savedProfile}
+                  onDelete={handleDelete}
+                  remove={remove}
+                />
+              )}
+              {api.checkUser() ? (
+                <Save
+                  modifiedEffects={modifiedEffects}
+                  likedEffects={likedEffects}
+                  onSave={handleSave}
+                  loadedFile={loadedFile}
+                />
+              ) : (
+                <a
+                  className="github-login-link btn btn-success"
+                  href={api.service.defaults.baseURL + "/github-login"}>
+                  <i className="fab fa-2x fa-github" /> Save
+                </a>
+              )}
             </div>
+          ) : null}
+          {/*  */}
+        </div>
 
-            {/* Generate code snippet */}
-            <i className="fas fa-code" onClick={handleCodeSnippetClick} />
-            {showCodeSnippet && <CodeSnippetModal parallaxDataCode={parallaxData} />}
-
-            {api.checkUser() && (
-              <Load
-                onLoad={handleLoad}
-                saved={savedProfile}
-                onDelete={handleDelete}
-                remove={remove}
-              />
-            )}
-            {api.checkUser() ? (
-              <Save
-                modifiedEffects={modifiedEffects}
-                likedEffects={likedEffects}
-                onSave={handleSave}
-                loadedFile={loadedFile}
-              />
-            ) : (
-              <a
-                className="github-login-link btn btn-success"
-                href={api.service.defaults.baseURL + "/github-login"}>
-                <i className="fab fa-2x fa-github" /> Save
-              </a>
-            )}
+        {width >= breakPointSidebar || !showSidebar ? (
+          <div className="customize-container">
+            <CustomizeBox parallaxDataCode={parallaxData} />
+            <div className="scroll-down-container" />
           </div>
-        </div>
-        <div className="customize-container">
-          <CustomizeBox parallaxDataCode={parallaxData} />
-          <div className="scroll-down-container" />
-        </div>
-        <Link to="/explore" className="btn btn-customize">
-          Explore
-        </Link>
-        Collapse
+        ) : null}
       </div>
     </div>
   );
 }
+
+// true && ... => ...
+// false && ... => false
+
+// false || ... => ...
+// true || ... => true
