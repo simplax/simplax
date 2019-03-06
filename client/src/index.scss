@@ -100,6 +100,7 @@ i:hover {
   align-items: center;
 }
 .showcase-box-container {
+  // margin-left: 350px;
   height: 150vh;
   display: flex;
   justify-content: center;
@@ -107,16 +108,16 @@ i:hover {
 }
 
 .showcase-box {
-  width: 22vw;
-  height: 22vw;
+  width: 44vw;
+  height: 44vw;
   background-image: linear-gradient(-60deg, $secondary-super-dark, $secondary, $primary);
   border: 3px solid white;
   z-index: 1;
 }
 
 .showcase-box--color {
-  width: 22vw;
-  height: 22vw;
+  width: 44vw;
+  height: 44vw;
   background: transparent;
   border: 6px solid white;
   z-index: 1;
@@ -129,6 +130,25 @@ i:hover {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  h4 {
+    font-size: 1rem;
+  }
+}
+
+@include media-breakpoint-up(md) {
+  .showcase-box {
+    width: 22vw;
+    height: 22vw;
+  }
+  .showcase-box--color {
+    width: 22vw;
+    height: 22vw;
+  }
+  .showcase-box-inner {
+    h4 {
+      font-size: 1.5rem;
+    }
+  }
 }
 
 .showcase-box-text {

@@ -10,7 +10,6 @@ import Load from "../Load";
 import api from "../../api";
 
 // TO DO
-//    - box: margin/responsive text size
 //    - z-index customize mobile
 //    - modal
 //    - input field arrows/append (responsive?)
@@ -236,20 +235,20 @@ export default function Customize() {
     });
   }, [modifiedEffects]);
 
-  // get window size
+  // get window and sidebar width
   useEffect(() => {
+    function handleResize() {
+      setWidth(window.innerWidth);
+    }
     window.addEventListener("resize", handleResize);
     return () => {
       window.removeEventListener("resize", handleResize);
     };
-  });
+  }, [width]);
 
   /*********************************
    * Event Handler
    *********************************/
-  function handleResize() {
-    setWidth(window.innerWidth);
-  }
 
   function handleAddEffect(id) {
     const likedEffectTemp = [...likedEffects];
@@ -382,7 +381,7 @@ export default function Customize() {
         <div className="row">
           {/* S I D E B A R */}
           {width >= breakPointSidebar || showSidebar ? (
-            <div className="col-12 col-md-3 sidebar-container">
+            <div id="sidebar" className="col-12 col-md-3 sidebar-container">
               <div>
                 <div className="pl-2 pr-2 pb-4">
                   <h5>Add effect</h5>
@@ -455,12 +454,14 @@ export default function Customize() {
                     loadedFile={loadedFile}
                   />
                 ) : (
-                  <a
-                    className="save-btn link btn-lg p-0 bg-dark text-white"
-                    href={api.service.defaults.baseURL + "/github-login"}>
-                    <i className="fab fa-github" />
-                    <span>Save</span>
-                  </a>
+                  <div className="d-flex justify-content-center">
+                    <a
+                      className="save-btn link btn-lg p-0 bg-dark text-white"
+                      href={api.service.defaults.baseURL + "/github-login"}>
+                      <i className="fab fa-github" />
+                      <span>Save</span>
+                    </a>
+                  </div>
                 )}
               </div>
             </div>
@@ -469,7 +470,7 @@ export default function Customize() {
         </div>
 
         {(width >= breakPointSidebar || !showSidebar) && !showCodeSnippet ? (
-          <div className="customize-container">
+          <div>
             <CustomizeBox parallaxDataCode={parallaxData} />
             <div className="scroll-down-container" />
           </div>
@@ -484,9 +485,3 @@ export default function Customize() {
     </div>
   );
 }
-
-// true && ... => ...
-// false && ... => false
-
-// false || ... => ...
-// true || ... => true
