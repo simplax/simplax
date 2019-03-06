@@ -161,7 +161,7 @@ i:hover {
     .nav-item {
       margin: 0 0.5rem;
       .nav-link {
-        font-family: 'Roboto', sans-serif;
+        font-family: "Roboto", sans-serif;
         font-size: 0.9rem;
         letter-spacing: 0.07rem;
         transition-property: all;
@@ -183,10 +183,10 @@ i:hover {
     }
   }
 
-  .profile-image{
+  .profile-image {
     width: 4vw;
     border-radius: 50%;
-    border:1px solid white;
+    border: 1px solid white;
     animation: profileIconAnimation 25s infinite;
     animation-timing-function: ease-out;
   }
@@ -230,8 +230,6 @@ i:hover {
   .category-active {
     color: $light !important;
   }
-
-  
 }
 
 // --------------------
@@ -343,8 +341,12 @@ i:hover {
 // --------------------
 .Customize {
   .toggle-btn {
-    top: 60px;
     position: fixed;
+    top: 59.2px;
+    right: 5vw;
+    z-index: 2000;
+    background-color: $dark;
+    // width: 100%;
     cursor: pointer;
     i {
       margin-right: 10px;
@@ -356,6 +358,23 @@ i:hover {
     flex-direction: column;
     justify-content: space-between;
   }
+  .effect-container {
+    border-bottom: 2px solid $light;
+  }
+  .save-btn {
+    i {
+      margin-right: 10px;
+    }
+  }
+  .code-btn {
+    position: fixed;
+    bottom: 5vw;
+    right: 5vw;
+    cursor: pointer;
+    i {
+      margin-right: 10px;
+    }
+  }
 }
 @include media-breakpoint-up(md) {
   .Customize {
@@ -363,6 +382,7 @@ i:hover {
       display: none;
     }
     .sidebar-container {
+      margin-left: 2.5vw;
       margin-top: 0;
       top: 80px;
       position: fixed;
@@ -370,14 +390,15 @@ i:hover {
       display: block;
       height: calc(100vh - 80px);
 
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
+      // display: flex;
+      // flex-direction: column;
+      // justify-content: space-between;
     }
     .effect-container {
-      height: calc(100vh - 284px);
+      height: calc(100vh - 304px);
       overflow-x: hidden;
       overflow-y: auto;
+      border-bottom: 2px solid $light;
     }
   }
 }
@@ -830,64 +851,54 @@ i:hover {
 }
 
 @keyframes profileIconAnimation {
-0% {
-  transform: rotate(0deg);
-  border:1px solid $secondary;
-}
-15% {
-  transform: rotate(360deg);
-  border:1px solid white;
-}
+  0% {
+    transform: rotate(0deg);
+    border: 1px solid $secondary;
+  }
+  15% {
+    transform: rotate(360deg);
+    border: 1px solid white;
+  }
 
-50% {
-  transform: rotate(360deg);
-  border:1px solid $secondary;
-}
+  50% {
+    transform: rotate(360deg);
+    border: 1px solid $secondary;
+  }
 
-65% {
-  transform: rotate(0deg);
-  border:1px solid white;
-}
+  65% {
+    transform: rotate(0deg);
+    border: 1px solid white;
+  }
 
-100% {
-  transform: rotate(0deg);
-  border:1px solid $secondary;
-}
-
-
+  100% {
+    transform: rotate(0deg);
+    border: 1px solid $secondary;
+  }
 }
 
 // --------- Blog component ----------
-.blog-block{
-  color:black;
+.blog-block {
+  color: black;
   border-radius: 10px;
-  background-image: linear-gradient(
-    -60deg,
-    $light,
-    $white,
-    
-  );
+  background-image: linear-gradient(-60deg, $light, $white);
   box-shadow: 14px 13px 21px -5px #726650;
 
-  h3{
+  h3 {
     font-weight: 500;
-    color:#726650;
-
+    color: #726650;
   }
 
-  button{
-    border:none;
+  button {
+    border: none;
     background-color: transparent;
     color: #726650;
-    
   }
 
-  .fa-pencil-alt{
+  .fa-pencil-alt {
     color: #726650;
   }
 
-  .button-position{
-    margin-left:auto;
+  .button-position {
+    margin-left: auto;
   }
-  
 }
