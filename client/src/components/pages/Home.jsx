@@ -34,6 +34,11 @@ const Home = () => {
         </div>
         <div className="landing-title-container">
           <LandingTitle />
+          <div className="landing-quote-container">
+            <p className="landing-quote">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit.
+            </p>
+          </div>
         </div>
       </div>
     </div>
