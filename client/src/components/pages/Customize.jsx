@@ -11,6 +11,9 @@ import api from "../../api";
 
 // TO DO
 //    - change icon color on hover
+//    - input field arrows/append
+//    - z-index customize mobile
+//    - margin/responisve text size box
 
 export default function Customize() {
   /*********************************
@@ -28,7 +31,6 @@ export default function Customize() {
   const [showCodeSnippet, setShowCodeSnippet] = useState(false);
   const [showSidebar, setShowSidebar] = useState(false);
   const [width, setWidth] = useState(window.innerWidth);
-  // const [loadTitle, setLoadTitle] = useState(null)
 
   const breakPointSidebar = 768;
 
