@@ -18,7 +18,7 @@ export default function CustomizeBox({ parallaxDataCode }) {
         setWidthSidebar(0);
         console.log('incorrect')
       }
-    }, 500)
+    }, 100)
 
 
   });
