@@ -34,9 +34,9 @@ export default function Load({ onLoad, saved, onDelete, remove }) {
     <div className="Load">
       <div className="p-2 mb-1 rounded">
         <div className="row">
-          <div className="col-7">
+          <div className="col-7 pt-1">
             <select
-              className="custom-select"
+              className="custom-select bg-dark text-light"
               name=""
               id=""
               value={title}
@@ -56,8 +56,8 @@ export default function Load({ onLoad, saved, onDelete, remove }) {
             </select>
           </div>
           <div className="col-5 d-flex flex-column justify-content-center">
-            <button onClick={() => onDelete(title)} className="btn btn-info">
-              D
+            <button onClick={() => onDelete(title)} className="btn-lg border-0 bg-dark text-secondary fas fa-trash-alt">
+
             </button>
           </div>
         </div>

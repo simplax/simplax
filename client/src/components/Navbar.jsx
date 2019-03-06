@@ -4,7 +4,7 @@ import api from '../api';
 import ScrollableAnchor from 'react-scrollable-anchor';
 
 export default function Navbar() {
-  useEffect(() => {});
+  useEffect(() => { });
   return (
     <div className="Navbar">
       <nav className="navbar navbar-expand-md navbar-dark">
@@ -61,13 +61,21 @@ export default function Navbar() {
                   className="nav-link"
                   href={api.service.defaults.baseURL + '/github-login'}
                 >
-                  Login with Github
+                  <i class="fab fa-3x fa-github"></i>
                 </a>
               </li>
             )}
             {api.isLoggedIn() && (
-              <NavLink className="nav-link" to="/" onClick={() => api.logout()}>
-                Logout
+              <li className='nav-item github-login-link'>
+                <NavLink className="nav-link " to="/" onClick={() => api.logout()}>
+                  Logout
+              </NavLink>
+              </li>
+
+            )}
+            {api.isLoggedIn() && (
+              <NavLink className="nav-link" to="/customize" onClick={() => api.logout()}>
+                <img src={api.getLocalStorageUser().imageUrl} alt="" className='profile-image' />
               </NavLink>
             )}
           </ul>

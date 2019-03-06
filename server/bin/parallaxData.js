@@ -19,7 +19,7 @@ const parallaxData = [
     category: 'transform',
     property: 'translateX',
     startValue: 0,
-    endValue: 30,
+    endValue: 25,
     minValue: 0,
     maxValue: 100,
     unit: 'vw',
