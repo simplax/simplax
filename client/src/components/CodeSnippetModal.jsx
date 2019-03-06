@@ -1,9 +1,7 @@
 import React, { useRef, useState, useEffect } from 'react';
 
-export default function CodeSnipppetModal({ parallaxDataCode }) {
+export default function CodeSnipppetModal({ parallaxDataCode, onCloseClick }) {
   const codeSnippetValue = useRef(null);
-
-  const [textState, setTextState] = useState('Loading...');
 
   if (parallaxDataCode.length !== 0) {
     const propertiesArrayEnter = parallaxDataCode[0].properties.map(
@@ -77,77 +75,27 @@ export default function CodeSnipppetModal({ parallaxDataCode }) {
 
   return (
     <div className="CodeSnippetModal">
-      <div className="code-snippet-container" />
-
-      {/* <div className="p-2 mb-1 rounded">
-        <button
-          type="button"
-          className="btn btn-info"
-          data-toggle="modal"
-          data-target="#codeSnippetModal"
-          onClick={() => setTextState(code)}
-        >
-          Code snippet
-        </button>
-      </div>
-
-      <div
-        className="modal fade text-dark"
-        id="codeSnippetModal"
-        tabIndex="-1"
-        role="dialog"
-        aria-labelledby="codeSnippet"
-        aria-hidden="true"
-      >
-        <div
-          className="modal-dialog modal-xl modal-dialog-scrollable modal-dialog-centered"
-          role="document"
-        >
-          <div className="modal-content">
-            <div className="modal-header">
-              <h5 className="modal-title">
-                Code snippet for your awesome React app!
-              </h5>
-              <button
-                type="button"
-                className="close"
-                data-dismiss="modal"
-                aria-label="Close"
-              >
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div className="modal-body">
-              <pre>{textState}</pre>
-
-              <textarea
-                className="hidden"
-                rows="0"
-                ref={codeSnippetValue}
-                value={textState}
-                readOnly
-              />
-            </div>
-
-            <div className="modal-footer">
-              <button
-                type="button"
-                className="btn btn-outline-info"
-                data-dismiss="modal"
-              >
-                Close
-              </button>
-              {document.queryCommandSupported('copy') && (
-                <div>
-                  <button className="btn btn-info" onClick={copyToClipboard}>
-                    Copy to Clipboard
-                  </button>
-                </div>
-              )}
-            </div>
+      <div className="code-snippet-container">
+        <div className="code-snippet-title">
+          <h5>Code snippet for your awesome React app!</h5>
+          <div className="icons">
+            <i className="fas fa-paste fa-2x" onClick={copyToClipboard} />
+            <i className="far fa-times-circle fa-2x" onClick={onCloseClick} />
           </div>
         </div>
-      </div> */}
+        <div className="code-snippet-seperator" />
+        <div className="code-snippet-body">
+          <pre className="pre-text">
+            <span>{code}</span>
+          </pre>
+          <textarea
+            className="hidden"
+            ref={codeSnippetValue}
+            value={code}
+            readOnly
+          />
+        </div>
+      </div>
     </div>
   );
 }

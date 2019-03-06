@@ -72,11 +72,6 @@ export default function Customize() {
       window.addEventListener("scroll", scrollHandler);
     }
 
-    function hi() {
-      console.log("hi");
-    }
-    window.addEventListener("mousedown", hi);
-
     return () => {
       console.log("window.removeEventListener");
       window.removeEventListener("scroll", scrollHandler);
