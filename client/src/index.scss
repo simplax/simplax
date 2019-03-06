@@ -25,9 +25,9 @@ $dark: #1f1f1f;
 $dark-light: lighten(#1f1f1f, 10%);
 $grey-light: #dbc8a6;
 
-@import "../node_modules/bootstrap/scss/bootstrap.scss";
-@import url("https://fonts.googleapis.com/css?family=Poppins");
-@import url("https://fonts.googleapis.com/css?family=Roboto");
+@import '../node_modules/bootstrap/scss/bootstrap.scss';
+@import url('https://fonts.googleapis.com/css?family=Poppins');
+@import url('https://fonts.googleapis.com/css?family=Roboto');
 
 // --------------------
 // Variables
@@ -64,7 +64,7 @@ $grey-light: #dbc8a6;
 body {
   margin: 0;
   padding: 0;
-  font-family: "Roboto", sans-serif;
+  font-family: 'Roboto', sans-serif;
   font-size: 0.9rem;
   letter-spacing: 0.07rem;
   background-color: $dark;
@@ -121,6 +121,14 @@ i:hover {
   background: transparent;
   border: 6px solid white;
   z-index: 1;
+}
+
+@include media-breakpoint-down(md) {
+  .showcase-box,
+  .showcase-box--color {
+    width: 40vw;
+    height: 40vw;
+  }
 }
 
 .showcase-box-inner {
@@ -186,15 +194,15 @@ i:hover {
     .nav-item {
       margin: 0 0.5rem;
       .nav-link {
-        font-family: "Roboto", sans-serif;
         font-size: 0.9rem;
         letter-spacing: 0.07rem;
         transition-property: all;
-        transition-duration: 0.6s;
+        transition-duration: 0.4s;
       }
       .nav-link:hover {
         color: lighten($secondary, 10%);
       }
+
       .active {
         color: $secondary;
         border-bottom: 1px solid $secondary;
@@ -217,8 +225,18 @@ i:hover {
   }
 }
 
-//------------- Showcase Component -------------
+@include media-breakpoint-down(md) {
+  .Navbar {
+    ul.navbar-nav {
+      .home-link,
+      .github-login-link {
+        margin: 0;
+      }
+    }
+  }
+}
 
+//------------- Showcase Component -------------
 // --------------------
 // Category Navbar
 // --------------------
@@ -286,6 +304,22 @@ i:hover {
   .property-active {
     color: $light !important;
     border-bottom: 1px solid $light;
+  }
+}
+
+.navbar-toggler-label {
+  margin-left: 0.6rem;
+  letter-spacing: 0.06rem;
+  color: $grey-light;
+}
+
+@include media-breakpoint-down(md) {
+  .CategoryNavbar,
+  .PropertyNavbar {
+    .navbar-toggler {
+      width: 160px;
+      margin: 0.2rem 0;
+    }
   }
 }
 
@@ -397,6 +431,7 @@ i:hover {
     }
   }
 }
+
 @include media-breakpoint-up(md) {
   .Customize {
     .toggle-btn {
@@ -423,17 +458,6 @@ i:hover {
     }
   }
 }
-
-// CodeSnipppetModal
-// --------------------
-// .CodeSnipppetModal {
-//   .hidden {
-//     position: absolute;
-//     opacity: 0.01;
-//     height: 0;
-//     overflow: hidden;
-//   }
-// }
 
 .CodeSnippetModal {
   .hidden {
@@ -706,7 +730,7 @@ i:hover {
 
   .chevron:before,
   .chevron:after {
-    content: " ";
+    content: ' ';
     position: absolute;
     top: 0;
     height: 100%;
@@ -749,7 +773,7 @@ i:hover {
 
   .chevron:before,
   .chevron:after {
-    content: " ";
+    content: ' ';
     position: absolute;
     top: 0;
     height: 100%;
