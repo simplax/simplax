@@ -221,6 +221,24 @@ i:hover {
   }
 }
 
+//------------- Home Page -------------
+// --------------------
+// Home
+// --------------------
+.Home {
+  .landing {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .landing-title {
+      display: inline-block;
+    }
+  }
+}
+
+.SimplxHome-text
+
 //------------- Showcase Component -------------
 // --------------------
 // Category Navbar
