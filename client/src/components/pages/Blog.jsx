@@ -24,11 +24,15 @@ export default class Blog extends React.Component {
       <div className="Blog">
         <div className="container">
           {this.state.blogs.map(blog => (
-            <div key={blog._id} style={{ border: "1px solid black" }}>
-              {blog.title}
+            <div key={blog._id} className='blog-block mt-3 px-5 py-3'>
+              <h3><i class="fas fa-highlighter pr-3"></i>{blog.title}</h3>
+
               <div dangerouslySetInnerHTML={{ __html: blog.blogContent }} />
-              <Link to={`/edit-blog/${blog._id}`}>Edit</Link>
-              <button onClick={e => this.deleteCountry(blog._id)}>Delete</button>
+              <div className={'button-position'}>
+
+                <Link to={`/edit-blog/${blog._id}`}><i class="fas fa-2x fa-pencil-alt"></i></Link>
+                <button onClick={e => this.deleteCountry(blog._id)}><i class="fas fa-eraser fa-2x"></i></button>
+              </div>
             </div>
           ))}
         </div>

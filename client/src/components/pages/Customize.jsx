@@ -68,7 +68,8 @@ export default function Customize() {
       const windowBottom =
         document.documentElement.scrollTop + window.innerHeight;
       const documentBottom = document.body.clientHeight;
-      const buffer = window.innerHeight * 0.22 * 1.5;
+      const buffer = window.innerHeight * 0.22 * 1.5
+
 
       if (documentBottom >= windowBottom) {
         window.scrollTo(0, windowBottom + buffer);
@@ -349,7 +350,7 @@ export default function Customize() {
               setSavedProfile(profile);
             });
           })
-          .catch(err => {});
+          .catch(err => { });
       } else api.updateSavedProfile(data.title, data);
     });
   }
@@ -495,13 +496,13 @@ export default function Customize() {
                   loadedFile={loadedFile}
                 />
               ) : (
-                <a
-                  className="github-login-link btn btn-success"
-                  href={api.service.defaults.baseURL + '/github-login'}
-                >
-                  <i className="fab fa-2x fa-github" /> Save
+                  <a
+                    className="github-login-link btn btn-success"
+                    href={api.service.defaults.baseURL + '/github-login'}
+                  >
+                    <i className="fab fa-2x fa-github" /> Save
                 </a>
-              )}
+                )}
             </div>
           ) : null}
           {/*  */}

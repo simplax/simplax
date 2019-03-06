@@ -22,6 +22,7 @@ $light: darken(#fbeed7, 10%);
 $grey-light: #dbc8a6;
 $gray: #a3a3a3;
 $dark: #1f1f1f;
+$grey-light: #dbc8a6;
 
 @import "../node_modules/bootstrap/scss/bootstrap.scss";
 @import url("https://fonts.googleapis.com/css?family=Poppins");
@@ -181,6 +182,14 @@ i:hover {
       margin-left: auto;
     }
   }
+
+  .profile-image{
+    width: 4vw;
+    border-radius: 50%;
+    border:1px solid white;
+    animation: profileIconAnimation 25s infinite;
+    animation-timing-function: ease-out;
+  }
 }
 
 //------------- Showcase Component -------------
@@ -221,6 +230,8 @@ i:hover {
   .category-active {
     color: $light !important;
   }
+
+  
 }
 
 // --------------------
@@ -353,10 +364,11 @@ i:hover {
     }
     .sidebar-container {
       margin-top: 0;
-      top: 60px;
+      top: 80px;
       position: fixed;
+      z-index: 2000;
       display: block;
-      height: calc(100vh - 60px);
+      height: calc(100vh - 80px);
 
       display: flex;
       flex-direction: column;
@@ -815,4 +827,67 @@ i:hover {
   40% {
     transform: rotate(0deg);
   }
+}
+
+@keyframes profileIconAnimation {
+0% {
+  transform: rotate(0deg);
+  border:1px solid $secondary;
+}
+15% {
+  transform: rotate(360deg);
+  border:1px solid white;
+}
+
+50% {
+  transform: rotate(360deg);
+  border:1px solid $secondary;
+}
+
+65% {
+  transform: rotate(0deg);
+  border:1px solid white;
+}
+
+100% {
+  transform: rotate(0deg);
+  border:1px solid $secondary;
+}
+
+
+}
+
+// --------- Blog component ----------
+.blog-block{
+  color:black;
+  border-radius: 10px;
+  background-image: linear-gradient(
+    -60deg,
+    $light,
+    $white,
+    
+  );
+  box-shadow: 14px 13px 21px -5px #726650;
+
+  h3{
+    font-weight: 500;
+    color:#726650;
+
+  }
+
+  button{
+    border:none;
+    background-color: transparent;
+    color: #726650;
+    
+  }
+
+  .fa-pencil-alt{
+    color: #726650;
+  }
+
+  .button-position{
+    margin-left:auto;
+  }
+  
 }

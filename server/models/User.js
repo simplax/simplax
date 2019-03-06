@@ -5,6 +5,7 @@ const userSchema = new Schema(
   {
     _github: Number,
     githubUsername: String,
+    imageUrl: String
 
   },
   {
