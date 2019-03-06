@@ -34,7 +34,7 @@ export default function Load({ onLoad, saved, onDelete, remove }) {
     <div className="Load">
       <div className="d-flex justify-content-between align-items-center">
         <select
-          className="custom-select bg-dark text-light"
+          className="custom-select bg-dark-light text-light"
           name=""
           id=""
           value={title}
@@ -43,7 +43,7 @@ export default function Load({ onLoad, saved, onDelete, remove }) {
 
             onLoad(e.target.value);
           }}>
-          <option value="instruction">Load/delete file</option>
+          <option value="instruction">Load/Delete file</option>
           {savedProfile.map(profile => {
             return (
               <option key={profile.title} value={profile._id}>

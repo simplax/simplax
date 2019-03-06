@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { goToTop } from "react-scrollable-anchor";
 
 import AddEffect from "../AddEffect";
 import CustomizeForm from "../CustomizeForm";
@@ -12,8 +12,6 @@ import api from "../../api";
 // TO DO
 //    - box: margin/responsive text size
 //    - z-index customize mobile
-//    - buttons
-//    - load/save
 //    - modal
 //    - input field arrows/append (responsive?)
 //    - change icon color on hover
@@ -73,15 +71,17 @@ export default function Customize() {
       }
     }
 
-    if (width >= breakPointSidebar || !showSidebar) {
+    if ((width >= breakPointSidebar || !showSidebar) && !showCodeSnippet) {
       window.addEventListener("scroll", scrollHandler);
+    } else {
+      goToTop();
     }
 
     return () => {
       console.log("window.removeEventListener");
       window.removeEventListener("scroll", scrollHandler);
     };
-  }, [showSidebar, width]);
+  }, [showCodeSnippet, showSidebar, width]);
 
   // get saved profile
   useEffect(() => {
@@ -438,7 +438,7 @@ export default function Customize() {
                 </div>
               </div>
 
-              <div className="p-2 pb-4">
+              <div className="p-2 pb-4 mt-4">
                 {api.checkUser() && (
                   <Load
                     onLoad={handleLoad}

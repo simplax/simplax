@@ -22,6 +22,7 @@ $light: darken(#fbeed7, 10%);
 $grey-light: #dbc8a6;
 $gray: #a3a3a3;
 $dark: #1f1f1f;
+$dark-light: lighten(#1f1f1f, 10%);
 $grey-light: #dbc8a6;
 
 @import '../node_modules/bootstrap/scss/bootstrap.scss';
@@ -154,9 +155,11 @@ i:hover {
   outline: none !important;
 }
 
-// ----------------------------
-// Main Navbar
-// ----------------------------
+.bg-dark-light {
+  background-color: $dark-light;
+}
+
+//------------- Main Navbar -------------
 .Navbar {
   background-color: $dark;
   position: fixed;
@@ -387,7 +390,6 @@ i:hover {
     right: 5vw;
     z-index: 2000;
     background-color: $dark;
-    // width: 100%;
     cursor: pointer;
     i {
       margin-right: 10px;
@@ -398,9 +400,6 @@ i:hover {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-  }
-  .effect-container {
-    border-bottom: 2px solid $light;
   }
   .save-btn {
     i {
@@ -437,10 +436,10 @@ i:hover {
       // justify-content: space-between;
     }
     .effect-container {
-      height: calc(100vh - 304px);
+      height: calc(100vh - 344px);
       overflow-x: hidden;
       overflow-y: auto;
-      border-bottom: 2px solid $light;
+      // border-bottom: 2px solid $light;
     }
   }
 }
