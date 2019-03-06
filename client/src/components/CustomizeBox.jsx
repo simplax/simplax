@@ -6,17 +6,21 @@ export default function CustomizeBox({ parallaxDataCode }) {
   const breakPointSidebar = 768;
 
   useEffect(() => {
-    document.onload = () => {
+    setTimeout(() => {
       if (window.innerWidth >= breakPointSidebar) {
 
         const { width } = document
           .getElementById('sidebar')
           .getBoundingClientRect();
         setWidthSidebar(width);
+        console.log('correct')
       } else {
         setWidthSidebar(0);
+        console.log('incorrect')
       }
-    }
+    }, 500)
+
+
   });
 
   /*********************************
