@@ -10,11 +10,7 @@ import Load from "../Load";
 import api from "../../api";
 
 // TO DO
-//    - box: margin/responsive text size
-//    - z-index customize mobile
-//    - modal
 //    - input field arrows/append (responsive?)
-//    - change icon color on hover
 
 export default function Customize() {
   /*********************************
@@ -236,20 +232,20 @@ export default function Customize() {
     });
   }, [modifiedEffects]);
 
-  // get window size
+  // get window and sidebar width
   useEffect(() => {
+    function handleResize() {
+      setWidth(window.innerWidth);
+    }
     window.addEventListener("resize", handleResize);
     return () => {
       window.removeEventListener("resize", handleResize);
     };
-  });
+  }, [width]);
 
   /*********************************
    * Event Handler
    *********************************/
-  function handleResize() {
-    setWidth(window.innerWidth);
-  }
 
   function handleAddEffect(id) {
     const likedEffectTemp = [...likedEffects];
@@ -375,14 +371,15 @@ export default function Customize() {
   return (
     <div className="Customize">
       <div className="container-fluid">
-        <div onClick={() => setShowSidebar(!showSidebar)} className="toggle-btn p-2 text-secondary">
+        <div
+          className="btn-icon btn-toggle text-secondary"
+          onClick={() => setShowSidebar(!showSidebar)}>
           <i className="fas fa-wrench" />
-          {/* <span>Sidebar</span> */}
         </div>
         <div className="row">
           {/* S I D E B A R */}
           {width >= breakPointSidebar || showSidebar ? (
-            <div className="col-12 col-md-3 sidebar-container">
+            <div id="sidebar" className="col-12 col-md-3 sidebar-container">
               <div>
                 <div className="pl-2 pr-2 pb-4">
                   <h5>Add effect</h5>
@@ -438,7 +435,7 @@ export default function Customize() {
                 </div>
               </div>
 
-              <div className="p-2 pb-4 mt-4">
+              <div className="p-2 pb-4 mt-5">
                 {api.checkUser() && (
                   <Load
                     onLoad={handleLoad}
@@ -455,12 +452,14 @@ export default function Customize() {
                     loadedFile={loadedFile}
                   />
                 ) : (
-                  <a
-                    className="save-btn link btn-lg p-0 bg-dark text-white"
-                    href={api.service.defaults.baseURL + "/github-login"}>
-                    <i className="fab fa-github" />
-                    <span>Save</span>
-                  </a>
+                  <div className="d-flex justify-content-center">
+                    <a
+                      className="btn-save btn-icon text-white"
+                      href={api.service.defaults.baseURL + "/github-login"}>
+                      <i className="fab fa-github" />
+                      <span>Save</span>
+                    </a>
+                  </div>
                 )}
               </div>
             </div>
@@ -469,14 +468,16 @@ export default function Customize() {
         </div>
 
         {(width >= breakPointSidebar || !showSidebar) && !showCodeSnippet ? (
-          <div className="customize-container">
+          <div>
             <CustomizeBox parallaxDataCode={parallaxData} />
             <div className="scroll-down-container" />
           </div>
         ) : null}
-        <div className="code-btn text-secondary">
-          <i className="fas fa-code" onClick={handleCodeSnippetClick} />
-        </div>
+        {(width >= breakPointSidebar || !showSidebar) && !showCodeSnippet ? (
+          <div className="btn-icon btn-code text-secondary" onClick={handleCodeSnippetClick}>
+            <i className="fas fa-code" onClick={handleCodeSnippetClick} />
+          </div>
+        ) : null}
         {showCodeSnippet && (
           <CodeSnippetModal parallaxDataCode={parallaxData} onCloseClick={handleCodeSnippetClick} />
         )}
@@ -484,9 +485,3 @@ export default function Customize() {
     </div>
   );
 }
-
-// true && ... => ...
-// false && ... => false
-
-// false || ... => ...
-// true || ... => true

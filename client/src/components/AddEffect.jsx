@@ -110,11 +110,12 @@ export default function AddEffect({ likedEffects, onAddEffect }) {
             </optgroup>
           ) : null}
         </select>
-        <button
+        <div
           disabled={effect ? false : true}
-          className="btn-lg border-0 bg-dark text-primary fas fa-plus-circle"
-          onClick={() => onAddEffect(effect)}
-        />
+          className="btn-icon text-primary"
+          onClick={() => onAddEffect(effect)}>
+          <i className="fas fa-plus-circle" />
+        </div>
       </div>
     </div>
   );

@@ -92,17 +92,17 @@ export default function CustomizeForm({
             ) : null}
           </div>
         )}
-        <button
-          className="btn-lg border-0 bg-dark text-primary fas fa-undo-alt"
+        <div
+          className="btn-icon text-primary"
           onClick={() => {
             onResetEffect(property);
             setValues([startValue, endValue]);
-          }}
-        />
-        <button
-          className="btn-lg border-0 bg-dark text-secondary fas fa-times-circle"
-          onClick={() => onCloseEffect(_id, property)}
-        />
+          }}>
+          <i className="fas fa-undo-alt" />
+        </div>
+        <div className="btn-icon text-secondary" onClick={() => onCloseEffect(_id, property)}>
+          <i className="fas fa-times-circle" />
+        </div>
       </div>
     </div>
   );

@@ -52,10 +52,9 @@ export default function Load({ onLoad, saved, onDelete, remove }) {
             );
           })}
         </select>
-        <button
-          onClick={() => onDelete(title)}
-          className="btn-lg border-0 bg-dark text-secondary fas fa-trash-alt"
-        />
+        <div className="btn-icon text-secondary" onClick={() => onDelete(title)}>
+          <i className="fas fa-trash-alt" />
+        </div>
       </div>
     </div>
   );

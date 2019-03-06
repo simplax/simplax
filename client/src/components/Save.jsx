@@ -31,10 +31,9 @@ export default function Save({ modifiedEffects, likedEffects, onSave, loadedFile
           onChange={e => handleChange(e)}
           value={newtitle}
         />
-        <button
-          className="btn-lg border-0 bg-dark text-primary fas fa-save"
-          onClick={e => onSave(data)}
-        />
+        <div className="btn-icon text-primary" onClick={e => onSave(data)}>
+          <i className="fas fa-save" />
+        </div>
       </div>
     </div>
   );
