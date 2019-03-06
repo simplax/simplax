@@ -70,6 +70,12 @@ body {
   background-color: $dark;
   color: $white;
 }
+.background-img-explore {
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  z-index: -1000;
+}
 
 // --------------------
 // Reusable
@@ -361,12 +367,6 @@ i:hover {
 // Showcase
 // --------------------
 .Showcase {
-  .background-img-explore {
-    width: 100%;
-    position: fixed;
-    bottom: 0;
-    z-index: -1000;
-  }
   .scroll-down-container {
     height: 50vh;
     align-items: flex-end;
@@ -611,7 +611,7 @@ i:hover {
 // LikeIconsssssss
 // --------------------
 .LikeIconsss {
-  width: 100vw;
+  width: 95vw;
   height: 100vh;
   z-index: -1;
   position: absolute;

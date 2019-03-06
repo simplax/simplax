@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import Plx from "react-plx";
+import React, { useState, useEffect } from 'react';
+import Plx from 'react-plx';
 
 export default function CustomizeBox({ parallaxDataCode }) {
   const [widthSidebar, setWidthSidebar] = useState(0);
@@ -7,7 +7,9 @@ export default function CustomizeBox({ parallaxDataCode }) {
 
   useEffect(() => {
     if (window.innerWidth >= breakPointSidebar) {
-      const { width } = document.getElementById("sidebar").getBoundingClientRect();
+      const { width } = document
+        .getElementById('sidebar')
+        .getBoundingClientRect();
       setWidthSidebar(width);
     } else {
       setWidthSidebar(0);
@@ -18,15 +20,19 @@ export default function CustomizeBox({ parallaxDataCode }) {
    * render
    *********************************/
   return (
-    <div className="showcase-box-container" style={{ marginLeft: `${widthSidebar}px` }}>
+    <div
+      className="showcase-box-container"
+      style={{ marginLeft: `${widthSidebar}px` }}
+    >
       <div className="box-container">
         <Plx
           className="showcase-box--color"
           parallaxData={parallaxDataCode}
           onPlxStart={() => {}}
-          animateWhenNotInViewport={true}>
+          animateWhenNotInViewport={true}
+        >
           <div className="showcase-box-inner">
-            <h4 className="showcase-box-text">Simplax</h4>
+            <h4 className="showcase-box-text">Simplx</h4>
           </div>
         </Plx>
       </div>

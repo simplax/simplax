@@ -100,7 +100,7 @@ const ShowcaseBox = ({
             }}
           >
             <div className="showcase-box-inner">
-              <h4 className="showcase-box-text">Simplax</h4>
+              <h4 className="showcase-box-text">Simplx</h4>
               <i className={likeClassName()} onClick={() => onLikeClick(_id)} />
             </div>
           </Plx>

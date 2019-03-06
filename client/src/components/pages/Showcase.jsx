@@ -202,11 +202,7 @@ const Showcase = () => {
   }
   return (
     <div id="Showcase" className="Showcase">
-      <img
-        className="background-img-explore"
-        src="/images/background-explore.svg"
-        alt="background image"
-      />
+      
 
       {/* Scroll Down */}
       <div ref={categoryNavRef} className="scroll-down-container">
