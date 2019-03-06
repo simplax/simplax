@@ -20,6 +20,7 @@ passport.use(new GitHubStrategy({
         const newUser = new User({
           _github: profile.id,
           githubUsername: profile.username,
+          imageUrl: profile.photos[0].value
 
         });
 
