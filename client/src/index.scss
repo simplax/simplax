@@ -195,8 +195,6 @@ i:hover {
   text-decoration: none;
   transition-property: all;
   transition-duration: 0.5s;
-
-
 }
 
 .bg-dark-light {
@@ -248,7 +246,7 @@ i:hover {
     }
   }
 
-  .profile-image{
+  .profile-image {
     width: 3.1vw;
     border-radius: 50%;
     border: 1px solid white;
@@ -274,11 +272,7 @@ i:hover {
 // --------------------
 .Home {
   .landing {
-    width: 70%;
     height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     .landing-logo-container {
       height: 18vh;
       margin: 0 3rem;
@@ -309,24 +303,18 @@ i:hover {
   }
 }
 
-// @include media-breakpoint-down(md) {
-//   .Home {
-//     .landing {
-//       .landing-logo-container {
-//         height: 10vw;
-//       }
-//     }
-//   }
-// }
-// @include media-breakpoint-down(sm) {
-//   .Home {
-//     .landing {
-//       .landing-logo-container {
-//         height: 15vw;
-//       }
-//     }
-//   }
-// }
+@include media-breakpoint-down(md) {
+  .Home {
+    .landing {
+      .landing-logo-container {
+        height: 16vh;
+        .landing-logo {
+          width: 20vw;
+        }
+      }
+    }
+  }
+}
 
 //------------- Showcase Component -------------
 // --------------------
@@ -982,93 +970,82 @@ i:hover {
 }
 
 // --------- Blog component ----------
-.blog-container{
+.blog-container {
   margin-top: 80px;
 
-.blog-block{
-  color:black;
-  border-radius: 10px;
-  background-image: linear-gradient(-60deg, $light, $white);
-  box-shadow: 14px 13px 21px -5px #726650;
-}
+  .blog-block {
+    color: black;
+    border-radius: 10px;
+    background-image: linear-gradient(-60deg, $light, $white);
+    box-shadow: 14px 13px 21px -5px #726650;
+  }
   h3 {
     font-weight: 500;
     color: #726650;
   }
 
-  .blog-content{
-  height:0px;
-  opacity: 0;
-  transition-property: height, opacity;
-  transition-duration: 1s, 1s;
-  
-  
-
+  .blog-content {
+    height: 0px;
+    opacity: 0;
+    transition-property: height, opacity;
+    transition-duration: 1s, 1s;
   }
 
-
-  .blog-block:hover .blog-content{
-  animation: blogContentAnimation 1s forwards;
+  .blog-block:hover .blog-content {
+    animation: blogContentAnimation 1s forwards;
   }
 
-  .blog-block:hover .fa-highlighter{
-  animation: highlightAnimation 1s;
+  .blog-block:hover .fa-highlighter {
+    animation: highlightAnimation 1s;
   }
 
-  .blog-block:hover .blog-title{
+  .blog-block:hover .blog-title {
     animation: blogTitleAnimation 1s forwards;
   }
 
   @keyframes blogContentAnimation {
     0% {
-    height:0%;
-    opacity:0;
+      height: 0%;
+      opacity: 0;
     }
 
     50% {
-      height:50%;
-      opacity:0.5;
+      height: 50%;
+      opacity: 0.5;
     }
 
-    100%{
-      height:100%;
-      opacity:1;
+    100% {
+      height: 100%;
+      opacity: 1;
     }
-    
   }
 
   @keyframes highlightAnimation {
-    0%{
+    0% {
       transform: translate(0px);
     }
 
-    50%{
+    50% {
       transform: translate(120px);
-    
     }
 
-    100%{
+    100% {
       transform: translate(-10px);
-      
     }
-
   }
 
   @keyframes blogTitleAnimation {
     0% {
-    // border-bottom: 0;
+      // border-bottom: 0;
     }
 
-    100%{
-    border-bottom: 3px solid $primary-dark;
+    100% {
+      border-bottom: 3px solid $primary-dark;
     }
   }
 
-
-  
-
-  button{
-    border:none;
+  button {
+    border: none;
     background-color: transparent;
     color: #726650;
   }
@@ -1080,6 +1057,4 @@ i:hover {
   .button-position {
     margin-left: auto;
   }
-  
-
 }
