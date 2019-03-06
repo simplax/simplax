@@ -25,9 +25,9 @@ $dark: #1f1f1f;
 $dark-light: lighten(#1f1f1f, 10%);
 $grey-light: #dbc8a6;
 
-@import '../node_modules/bootstrap/scss/bootstrap.scss';
-@import url('https://fonts.googleapis.com/css?family=Poppins');
-@import url('https://fonts.googleapis.com/css?family=Roboto');
+@import "../node_modules/bootstrap/scss/bootstrap.scss";
+@import url("https://fonts.googleapis.com/css?family=Poppins");
+@import url("https://fonts.googleapis.com/css?family=Roboto");
 
 // --------------------
 // Variables
@@ -64,7 +64,7 @@ $grey-light: #dbc8a6;
 body {
   margin: 0;
   padding: 0;
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
   font-size: 0.9rem;
   letter-spacing: 0.07rem;
   background-color: $dark;
@@ -168,6 +168,18 @@ i:hover {
 .btn:focus,
 .btn:active .btn:visited {
   outline: none !important;
+}
+
+.btn-icon {
+  font-size: 1rem;
+  padding: 0.5rem 0.75rem;
+  cursor: pointer;
+  // border: 1px solid $light;
+}
+.btn-icon:hover {
+  transform: translateY(-2px);
+  filter: saturate(2);
+  text-decoration: none;
 }
 
 .bg-dark-light {
@@ -399,16 +411,12 @@ i:hover {
 // Customize
 // --------------------
 .Customize {
-  .toggle-btn {
+  .btn-toggle {
     position: fixed;
     top: 59.2px;
-    right: 5vw;
+    right: 2rem;
     z-index: 2000;
     background-color: $dark;
-    cursor: pointer;
-    i {
-      margin-right: 10px;
-    }
   }
   .sidebar-container {
     margin-top: 100px;
@@ -416,25 +424,22 @@ i:hover {
     flex-direction: column;
     justify-content: space-between;
   }
-  .save-btn {
+  .btn-save {
+    font-size: 1.25rem;
     i {
       margin-right: 10px;
     }
   }
-  .code-btn {
+  .btn-code {
     position: fixed;
-    bottom: 5vw;
-    right: 5vw;
-    cursor: pointer;
-    i {
-      margin-right: 10px;
-    }
+    bottom: 2rem;
+    right: 2rem;
   }
 }
 
 @include media-breakpoint-up(md) {
   .Customize {
-    .toggle-btn {
+    .btn-toggle {
       display: none;
     }
     .sidebar-container {
@@ -483,34 +488,15 @@ i:hover {
     border: 2px solid $secondary;
     border-radius: 10px;
     .code-snippet-title {
-      padding-left: 2rem;
+      padding-left: 1rem;
       display: flex;
       align-items: center;
-      height: 10vh;
+      height: 5vh;
       h5 {
         color: pink;
         font-size: 1rem;
         letter-spacing: 0.08rem;
         margin: 0;
-      }
-      .icons {
-        margin-left: auto;
-      }
-      .fa-paste {
-        color: $grey-light;
-        margin-right: 1.5rem;
-      }
-      .fa-paste:hover {
-        transform: translateY(-2px);
-        color: lighten($grey-light, 10%);
-      }
-      .fa-times-circle {
-        color: $primary-super-dark;
-        margin-right: 1.5rem;
-      }
-      .fa-times-circle:hover {
-        transform: translateY(-2px);
-        color: lighten($primary-super-dark, 10%);
       }
     }
     .code-snippet-seperator {
@@ -518,8 +504,8 @@ i:hover {
       background-image: linear-gradient(90deg, $secondary, $secondary-dark);
     }
     .code-snippet-body {
-      height: 70vh;
-      overflow: scroll;
+      height: 74vh;
+      // overflow: scroll;
       padding: 1rem;
       background-color: $dark;
       pre span {
@@ -730,7 +716,7 @@ i:hover {
 
   .chevron:before,
   .chevron:after {
-    content: ' ';
+    content: " ";
     position: absolute;
     top: 0;
     height: 100%;
@@ -773,7 +759,7 @@ i:hover {
 
   .chevron:before,
   .chevron:after {
-    content: ' ';
+    content: " ";
     position: absolute;
     top: 0;
     height: 100%;

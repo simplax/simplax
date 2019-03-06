@@ -10,10 +10,7 @@ import Load from "../Load";
 import api from "../../api";
 
 // TO DO
-//    - z-index customize mobile
-//    - modal
 //    - input field arrows/append (responsive?)
-//    - change icon color on hover
 
 export default function Customize() {
   /*********************************
@@ -374,9 +371,10 @@ export default function Customize() {
   return (
     <div className="Customize">
       <div className="container-fluid">
-        <div onClick={() => setShowSidebar(!showSidebar)} className="toggle-btn p-2 text-secondary">
+        <div
+          className="btn-icon btn-toggle text-secondary"
+          onClick={() => setShowSidebar(!showSidebar)}>
           <i className="fas fa-wrench" />
-          {/* <span>Sidebar</span> */}
         </div>
         <div className="row">
           {/* S I D E B A R */}
@@ -437,7 +435,7 @@ export default function Customize() {
                 </div>
               </div>
 
-              <div className="p-2 pb-4 mt-4">
+              <div className="p-2 pb-4 mt-5">
                 {api.checkUser() && (
                   <Load
                     onLoad={handleLoad}
@@ -456,7 +454,7 @@ export default function Customize() {
                 ) : (
                   <div className="d-flex justify-content-center">
                     <a
-                      className="save-btn link btn-lg p-0 bg-dark text-white"
+                      className="btn-save btn-icon text-white"
                       href={api.service.defaults.baseURL + "/github-login"}>
                       <i className="fab fa-github" />
                       <span>Save</span>
@@ -475,9 +473,11 @@ export default function Customize() {
             <div className="scroll-down-container" />
           </div>
         ) : null}
-        <div className="code-btn text-secondary">
-          <i className="fas fa-code" onClick={handleCodeSnippetClick} />
-        </div>
+        {(width >= breakPointSidebar || !showSidebar) && !showCodeSnippet ? (
+          <div className="btn-icon btn-code text-secondary" onClick={handleCodeSnippetClick}>
+            <i className="fas fa-code" onClick={handleCodeSnippetClick} />
+          </div>
+        ) : null}
         {showCodeSnippet && (
           <CodeSnippetModal parallaxDataCode={parallaxData} onCloseClick={handleCodeSnippetClick} />
         )}
