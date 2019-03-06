@@ -230,12 +230,12 @@ i:hover {
         transition-duration: 0.4s;
       }
       .nav-link:hover {
-        color: lighten($secondary, 10%);
+        color: lighten($grey-light, 10%);
       }
 
       .active {
-        color: $secondary;
-        border-bottom: 1px solid $secondary;
+        color: $grey-light;
+        border-bottom: 1px solid $grey-light;
       }
     }
     .home-link {
@@ -273,33 +273,166 @@ i:hover {
 .Home {
   .landing {
     height: 100vh;
+    width: 100vw;
     .landing-logo-container {
       height: 18vh;
       margin: 0 3rem;
-      position: relative;
+      position: absolute;
+      top: 50%;
+      left: 10%;
+      transform: translateY(-70%);
       .landing-logo {
         position: absolute;
         width: 15vw;
-      }
-      #layer1 {
-        top: 0;
-      }
-      #layer2 {
-        top: 25%;
-      }
-      #layer3 {
-        top: 50%;
+        opacity: 0;
       }
       #layer4 {
         top: 75%;
+        animation: logoDropDown 0.3s ease-out forwards,
+          logoSpring 3s 0.3s ease-out, logoShine 4s 1.2s;
+      }
+      #layer3 {
+        top: 50%;
+        animation: logoDropDown 0.3s 0.1s ease-out forwards,
+          logoSpring 3s 0.4s ease-out, logoShine 4s 1.2s;
+      }
+      #layer2 {
+        top: 25%;
+        animation: logoDropDown 0.3s 0.2s ease-out forwards,
+          logoSpring 3s 0.5s ease-out, logoShine 4s 1.2s;
+      }
+      #layer1 {
+        top: 0;
+        animation: logoDropDown 0.3s 0.3s ease-out forwards,
+          logoSpring 3s 0.6s ease-out, logoShine 4s 1.2s;
       }
     }
     .landing-title-container {
+      width: 80%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
       .landing-title {
+        color: lighten($light, 10%);
         display: inline-block;
         margin-right: 0.3rem;
       }
+      #title-1 {
+        animation: titleShine1 1s 4.5s;
+      }
+      #title-2 {
+        animation: titleShine1 1s 4.6s;
+      }
+      #title-3 {
+        animation: titleShine2 1s 4.7s;
+      }
+      #title-4 {
+        animation: titleShine2 1s 4.8s;
+      }
+      #title-5 {
+        animation: titleShine3 1s 4.9s;
+      }
+      #title-6 {
+        animation: titleShine3 1s 5s;
+      }
     }
+  }
+}
+
+@keyframes logoDropDown {
+  from {
+    opacity: 0;
+    transform: translateY(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0px);
+  }
+}
+
+@keyframes logoSpring {
+  0% {
+    transform: translateY(0px);
+  }
+  10% {
+    transform: translateY(-20px);
+  }
+  20% {
+    transform: translateY(0px);
+  }
+  30% {
+    transform: translateY(-15px);
+  }
+  40% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+  60% {
+    transform: translateY(0px);
+  }
+  70% {
+    transform: translateY(-5px);
+  }
+  80% {
+    transform: translateY(0px);
+  }
+  90% {
+    transform: translateY(-3px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+@keyframes logoShine {
+  0% {
+    filter: brightness(1);
+  }
+  50% {
+    filter: brightness(0.3);
+  }
+  80% {
+    filter: brightness(2);
+  }
+  100% {
+    filter: brightness(1);
+  }
+}
+
+@keyframes titleShine1 {
+  0% {
+    color: lighten($light, 10%);
+  }
+  60% {
+    color: $primary;
+  }
+  100% {
+    color: lighten($light, 10%);
+  }
+}
+@keyframes titleShine2 {
+  0% {
+    color: lighten($light, 10%);
+  }
+  60% {
+    color: $primary-dark;
+  }
+  100% {
+    color: lighten($light, 10%);
+  }
+}
+@keyframes titleShine3 {
+  0% {
+    color: lighten($light, 10%);
+  }
+  60% {
+    color: $secondary;
+  }
+  100% {
+    color: lighten($light, 10%);
   }
 }
 

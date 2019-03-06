@@ -36,12 +36,10 @@ const Home = () => {
           <LandingTitle />
         </div>
       </div>
-
     </div>
   );
 };
 
 export default Home;
-
 
 // An array of parallax effects to be applied
