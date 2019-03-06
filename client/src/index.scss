@@ -140,6 +140,9 @@ i:hover {
     width: 40vw;
     height: 40vw;
   }
+  .top-logo-container{
+    display:none;
+  }
 }
 
 .showcase-box-inner {
@@ -274,16 +277,59 @@ i:hover {
 // --------------------
 .Home {
   .landing {
+    width: 70%;
     height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    .landing-title {
-      display: inline-block;
-      margin-right: 0.3rem;
+    .landing-logo-container {
+      height: 18vh;
+      margin: 0 3rem;
+      position: relative;
+      .landing-logo {
+        position: absolute;
+        width: 15vw;
+      }
+      #layer1 {
+        top: 0;
+      }
+      #layer2 {
+        top: 25%;
+      }
+      #layer3 {
+        top: 50%;
+      }
+      #layer4 {
+        top: 75%;
+      }
+    }
+    .landing-title-container {
+      .landing-title {
+        display: inline-block;
+        margin-right: 0.3rem;
+      }
     }
   }
 }
+
+// @include media-breakpoint-down(md) {
+//   .Home {
+//     .landing {
+//       .landing-logo-container {
+//         height: 10vw;
+//       }
+//     }
+//   }
+// }
+// @include media-breakpoint-down(sm) {
+//   .Home {
+//     .landing {
+//       .landing-logo-container {
+//         height: 15vw;
+//       }
+//     }
+//   }
+// }
 
 //------------- Showcase Component -------------
 // --------------------
@@ -946,6 +992,10 @@ i:hover {
   color:black;
   border-radius: 10px;
   background-image: linear-gradient(-60deg, $light, $white);
+  box-shadow: 14px 13px 21px -5px #302b21;
+}
+
+.blog-block:hover{
   box-shadow: 14px 13px 21px -5px #726650;
 }
   h3 {
@@ -1040,3 +1090,125 @@ i:hover {
   
 
 }
+
+//----top logo container
+.top-logo-container {
+  height: 60px;
+  margin: 0 3rem;
+  position: absolute;
+  top: 25%;
+  left: 0;
+}
+
+.top-logo-container:hover #layer3Top{
+animation: logoLayerThree 1.5s ease-out;
+}
+
+.top-logo-container:hover #layer2Top{
+animation: logoLayerTwo 1.5s ease-out;
+}
+
+.top-logo-container:hover #layer1Top{
+animation: logoLayerOne 1.5s ease-out;
+}
+
+@keyframes logoLayerThree {
+0%{
+  transform: translate(0,0)
+}
+
+20%{
+  transform: translate(0,20%)
+}
+
+40%{
+  transform: translate(0,-15%)
+}
+
+60%{
+  transform: translate(0,10%)
+}
+
+80%{
+  transform: translate(0,-5%)
+}
+
+100%{
+  transform: translate(0,0)
+}
+}
+
+@keyframes logoLayerTwo {
+0%{
+  transform: translate(0,0)
+}
+
+20%{
+  transform: translate(0,40%)
+}
+
+40%{
+  transform: translate(0,-30%)
+}
+
+60%{
+  transform: translate(0,20%)
+}
+
+80%{
+  transform: translate(0,-10%)
+}
+
+100%{
+  transform: translate(0,0)
+}
+}
+
+@keyframes logoLayerOne {
+0%{
+  transform: translate(0,0)
+}
+
+20%{
+  transform: translate(0,60%)
+}
+
+40%{
+  transform: translate(0,-50%)
+}
+
+60%{
+  transform: translate(0,40%)
+}
+
+80%{
+  transform: translate(0,-30%)
+}
+
+100%{
+  transform: translate(0,0)
+}
+}
+
+  // transform: translateY(-65%);
+  .landing-logoTop {
+    position: absolute;
+    width: 60px;
+  }
+  #layer4Top {
+    top: 45%;
+    // animation: logoDropDown 0.3s forwards;
+  }
+  #layer3Top {
+    top: 30%;
+    // animation: logoDropDown 0.3s 0.1s forwards;
+  }
+  #layer2Top {
+    top: 15%;
+    // animation: logoDropDown 0.3s 0.2s forwards;
+  }
+  #layer1Top {
+    top: 0;
+    // animation: logoDropDown 0.3s 0.3s forwards;
+  }
+

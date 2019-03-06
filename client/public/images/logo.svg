@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="347.679" height="271.586" viewBox="0 0 347.679 271.586">
+  <defs>
+    <style>
+      .cls-1, .cls-2, .cls-3, .cls-4 {
+        stroke: #c9c9c9;
+      }
+
+      .cls-1 {
+        fill: url(#linear-gradient);
+      }
+
+      .cls-2 {
+        fill: url(#linear-gradient-2);
+      }
+
+      .cls-3 {
+        fill: url(#linear-gradient-3);
+      }
+
+      .cls-4 {
+        fill: url(#linear-gradient-4);
+      }
+    </style>
+    <linearGradient id="linear-gradient" y1="0.335" x2="1" y2="0.619" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#703873"/>
+      <stop offset="1" stop-color="#412071" stop-opacity="0.8"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-2" x1="1" y1="0.627" x2="0" y2="0.352" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#d76d77"/>
+      <stop offset="1" stop-color="#71252c" stop-opacity="0.8"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-3" y1="0.34" x2="1" y2="0.615" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#9e2929" stop-opacity="0.8"/>
+      <stop offset="1" stop-color="#ff8c49"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-4" y1="0.334" x2="1" y2="0.609" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#ff6f00"/>
+      <stop offset="1" stop-color="#ffcb59" stop-opacity="0.8"/>
+    </linearGradient>
+  </defs>
+  <g id="Group_1" data-name="Group 1" transform="translate(-76.352 0.524)">
+    <path id="Path_4" data-name="Path 4" class="cls-1" d="M973-141,796.9-100.446,973-20.469,1141.542-67.32Z" transform="translate(-719 291)"/>
+    <path id="Path_3" data-name="Path 3" class="cls-2" d="M973-141,796.9-100.446,973-20.469,1141.542-67.32Z" transform="translate(-719 241)"/>
+    <path id="Path_2" data-name="Path 2" class="cls-3" d="M973-141,796.9-100.446,973-20.469,1141.542-67.32Z" transform="translate(-719 191)"/>
+    <path id="Path_1" data-name="Path 1" class="cls-4" d="M973-141,796.9-100.446,973-20.469,1141.542-67.32Z" transform="translate(-719 141)"/>
+  </g>
+</svg>
