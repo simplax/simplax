@@ -5,6 +5,7 @@ const TextRotateY = ({ char }) => {
   const config = { mass: 5, tension: 300, friction: 20 };
   const props = useSpring({
     config,
+    delay: 1000,
     opacity: 1,
     transform: 'rotateY(0deg)',
     from: { opacity: 0, transform: 'rotateY(180deg)' }

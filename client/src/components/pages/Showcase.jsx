@@ -90,8 +90,6 @@ const Showcase = () => {
     if (api.getSessionStorage('likedEffects'))
       setLikedEffects(api.getSessionStorage('likedEffects'));
     else setLikedEffects([]);
-
-
   }, []);
 
   useEffect(() => {
@@ -307,6 +305,7 @@ const Showcase = () => {
         })}
       </div>
 
+      <div className="container-50vh" />
       <div className="scroll-down-container">
         <ScrollDownOrUp isScrollDown={false} />
       </div>
