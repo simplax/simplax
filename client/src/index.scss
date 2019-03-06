@@ -268,16 +268,59 @@ i:hover {
 // --------------------
 .Home {
   .landing {
+    width: 70%;
     height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    .landing-title {
-      display: inline-block;
-      margin-right: 0.3rem;
+    .landing-logo-container {
+      height: 18vh;
+      margin: 0 3rem;
+      position: relative;
+      .landing-logo {
+        position: absolute;
+        width: 15vw;
+      }
+      #layer1 {
+        top: 0;
+      }
+      #layer2 {
+        top: 25%;
+      }
+      #layer3 {
+        top: 50%;
+      }
+      #layer4 {
+        top: 75%;
+      }
+    }
+    .landing-title-container {
+      .landing-title {
+        display: inline-block;
+        margin-right: 0.3rem;
+      }
     }
   }
 }
+
+// @include media-breakpoint-down(md) {
+//   .Home {
+//     .landing {
+//       .landing-logo-container {
+//         height: 10vw;
+//       }
+//     }
+//   }
+// }
+// @include media-breakpoint-down(sm) {
+//   .Home {
+//     .landing {
+//       .landing-logo-container {
+//         height: 15vw;
+//       }
+//     }
+//   }
+// }
 
 //------------- Showcase Component -------------
 // --------------------

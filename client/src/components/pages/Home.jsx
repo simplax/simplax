@@ -5,7 +5,35 @@ const Home = () => {
   return (
     <div className="Home">
       <div className="landing">
-        <LandingTitle />
+        <div className="landing-logo-container">
+          <img
+            id="layer4"
+            className="landing-logo"
+            src="/images/logo-layer-4.svg"
+            alt="logo"
+          />
+          <img
+            id="layer3"
+            className="landing-logo"
+            src="/images/logo-layer-3.svg"
+            alt="logo"
+          />
+          <img
+            id="layer2"
+            className="landing-logo"
+            src="/images/logo-layer-2.svg"
+            alt="logo"
+          />
+          <img
+            id="layer1"
+            className="landing-logo"
+            src="/images/logo-layer-1.svg"
+            alt="logo"
+          />
+        </div>
+        <div className="landing-title-container">
+          <LandingTitle />
+        </div>
       </div>
     </div>
   );
