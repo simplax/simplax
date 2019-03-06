@@ -352,11 +352,14 @@ export default function Customize() {
   function handleCodeSnippetClick() {
     setShowCodeSnippet(!showCodeSnippet);
 
-    if (!showCodeSnippet)
+  }
+
+  useEffect(() => {
+    if (showCodeSnippet)
       document.body.style.overflow = "hidden";
     else
       document.body.style.overflow = "scroll";
-  }
+  }, [showCodeSnippet])
 
   /*********************************
    * Render
