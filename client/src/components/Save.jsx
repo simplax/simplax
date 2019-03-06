@@ -26,13 +26,13 @@ export default function Save({ modifiedEffects, likedEffects, onSave, loadedFile
     <div className="Save">
       <div className="d-flex justify-content-between align-items-center">
         <input
-          className="form-control bg-dark text-light"
+          className="form-control bg-dark-light text-light"
           type="text"
           onChange={e => handleChange(e)}
           value={newtitle}
         />
         <button
-          className="btn-lg border-0 bg-dark text-secondary fas fa-save"
+          className="btn-lg border-0 bg-dark text-primary fas fa-save"
           onClick={e => onSave(data)}
         />
       </div>
