@@ -29,15 +29,21 @@ import Plx from 'react-plx';
 class Example extends Component {
   render() {
     return (
-      <Plx parallaxData={ parallaxData } >
-        /* Your content */
+    <div>
+      <div style={{ height: '100vh' }} />
+
+      <Plx parallaxData={parallaxData} style={{ height: '20vw', width: "20vw", margin: "auto" }}>
+        Place your content here.
       </Plx>
+
+      <div style={{ height: '100vh' }} />
+    </div>
     );
   }
 }
 
 // An array of parallax effects to be applied
-parallaxData = [
+const parallaxData = [
   {
     start: '${parallaxDataCode[0].start}',
     startOffset: '${parallaxDataCode[0].startOffset}',

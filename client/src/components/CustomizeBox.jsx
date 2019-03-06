@@ -6,14 +6,21 @@ export default function CustomizeBox({ parallaxDataCode }) {
   const breakPointSidebar = 768;
 
   useEffect(() => {
-    if (window.innerWidth >= breakPointSidebar) {
-      const { width } = document
-        .getElementById('sidebar')
-        .getBoundingClientRect();
-      setWidthSidebar(width);
-    } else {
-      setWidthSidebar(0);
-    }
+    setTimeout(() => {
+      if (window.innerWidth >= breakPointSidebar) {
+
+        const { width } = document
+          .getElementById('sidebar')
+          .getBoundingClientRect();
+        setWidthSidebar(width);
+        console.log('correct')
+      } else {
+        setWidthSidebar(0);
+        console.log('incorrect')
+      }
+    }, 500)
+
+
   });
 
   /*********************************
@@ -28,7 +35,7 @@ export default function CustomizeBox({ parallaxDataCode }) {
         <Plx
           className="showcase-box--color"
           parallaxData={parallaxDataCode}
-          onPlxStart={() => {}}
+          onPlxStart={() => { }}
           animateWhenNotInViewport={true}
         >
           <div className="showcase-box-inner">

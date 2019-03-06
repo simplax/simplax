@@ -8,7 +8,7 @@ export default function Navbar() {
     <div className="Navbar">
       <nav className="navbar navbar-expand-md navbar-dark">
         <NavLink className="navbar-brand" exact to="/">
-          Simplax Logo
+          Simplx Logo
         </NavLink>
         <button
           className="navbar-toggler"

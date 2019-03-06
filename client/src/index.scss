@@ -185,12 +185,18 @@ i:hover {
   font-size: 1rem;
   padding: 0.5rem 0.75rem;
   cursor: pointer;
+  transition-property: all;
+  transition-duration: 0.5s;
   // border: 1px solid $light;
 }
 .btn-icon:hover {
   transform: translateY(-2px);
   filter: saturate(2);
   text-decoration: none;
+  transition-property: all;
+  transition-duration: 0.5s;
+
+
 }
 
 .bg-dark-light {
@@ -242,8 +248,8 @@ i:hover {
     }
   }
 
-  .profile-image {
-    width: 4vw;
+  .profile-image{
+    width: 3.1vw;
     border-radius: 50%;
     border: 1px solid white;
     animation: profileIconAnimation 25s infinite;
@@ -976,19 +982,93 @@ i:hover {
 }
 
 // --------- Blog component ----------
-.blog-block {
-  color: black;
+.blog-container{
+  margin-top: 80px;
+
+.blog-block{
+  color:black;
   border-radius: 10px;
   background-image: linear-gradient(-60deg, $light, $white);
   box-shadow: 14px 13px 21px -5px #726650;
-
+}
   h3 {
     font-weight: 500;
     color: #726650;
   }
 
-  button {
-    border: none;
+  .blog-content{
+  height:0px;
+  opacity: 0;
+  transition-property: height, opacity;
+  transition-duration: 1s, 1s;
+  
+  
+
+  }
+
+
+  .blog-block:hover .blog-content{
+  animation: blogContentAnimation 1s forwards;
+  }
+
+  .blog-block:hover .fa-highlighter{
+  animation: highlightAnimation 1s;
+  }
+
+  .blog-block:hover .blog-title{
+    animation: blogTitleAnimation 1s forwards;
+  }
+
+  @keyframes blogContentAnimation {
+    0% {
+    height:0%;
+    opacity:0;
+    }
+
+    50% {
+      height:50%;
+      opacity:0.5;
+    }
+
+    100%{
+      height:100%;
+      opacity:1;
+    }
+    
+  }
+
+  @keyframes highlightAnimation {
+    0%{
+      transform: translate(0px);
+    }
+
+    50%{
+      transform: translate(120px);
+    
+    }
+
+    100%{
+      transform: translate(-10px);
+      
+    }
+
+  }
+
+  @keyframes blogTitleAnimation {
+    0% {
+    // border-bottom: 0;
+    }
+
+    100%{
+    border-bottom: 3px solid $primary-dark;
+    }
+  }
+
+
+  
+
+  button{
+    border:none;
     background-color: transparent;
     color: #726650;
   }
@@ -1000,4 +1080,6 @@ i:hover {
   .button-position {
     margin-left: auto;
   }
+  
+
 }
