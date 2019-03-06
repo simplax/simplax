@@ -46,9 +46,11 @@ export default function Load({ onLoad, saved, onDelete, remove }) {
           <option value="instruction">Load/Delete file</option>
           {savedProfile.map(profile => {
             return (
+              // <optgroup label="Load file">
               <option key={profile.title} value={profile._id}>
                 {profile.title}
               </option>
+              // </optgroup>
             );
           })}
         </select>
