@@ -22,6 +22,7 @@ $light: darken(#fbeed7, 10%);
 $grey-light: #dbc8a6;
 $gray: #a3a3a3;
 $dark: #1f1f1f;
+$dark-light: lighten(#1f1f1f, 10%);
 $grey-light: #dbc8a6;
 
 @import "../node_modules/bootstrap/scss/bootstrap.scss";
@@ -99,6 +100,7 @@ i:hover {
   align-items: center;
 }
 .showcase-box-container {
+  // margin-left: 350px;
   height: 150vh;
   display: flex;
   justify-content: center;
@@ -106,19 +108,27 @@ i:hover {
 }
 
 .showcase-box {
-  width: 22vw;
-  height: 22vw;
+  width: 44vw;
+  height: 44vw;
   background-image: linear-gradient(-60deg, $secondary-super-dark, $secondary, $primary);
   border: 3px solid white;
   z-index: 1;
 }
 
 .showcase-box--color {
-  width: 22vw;
-  height: 22vw;
+  width: 44vw;
+  height: 44vw;
   background: transparent;
   border: 6px solid white;
   z-index: 1;
+}
+
+@include media-breakpoint-down(md) {
+  .showcase-box,
+  .showcase-box--color {
+    width: 40vw;
+    height: 40vw;
+  }
 }
 
 .showcase-box-inner {
@@ -128,6 +138,25 @@ i:hover {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  h4 {
+    font-size: 1rem;
+  }
+}
+
+@include media-breakpoint-up(md) {
+  .showcase-box {
+    width: 22vw;
+    height: 22vw;
+  }
+  .showcase-box--color {
+    width: 22vw;
+    height: 22vw;
+  }
+  .showcase-box-inner {
+    h4 {
+      font-size: 1.5rem;
+    }
+  }
 }
 
 .showcase-box-text {
@@ -139,6 +168,28 @@ i:hover {
 .btn:focus,
 .btn:active .btn:visited {
   outline: none !important;
+}
+
+.btn-icon {
+  font-size: 1rem;
+  padding: 0.5rem 0.75rem;
+  cursor: pointer;
+  transition-property: all;
+  transition-duration: 0.5s;
+  // border: 1px solid $light;
+}
+.btn-icon:hover {
+  transform: translateY(-2px);
+  filter: saturate(2);
+  text-decoration: none;
+  transition-property: all;
+  transition-duration: 0.5s;
+
+
+}
+
+.bg-dark-light {
+  background-color: $dark-light;
 }
 
 //------------- Main Navbar -------------
@@ -161,15 +212,15 @@ i:hover {
     .nav-item {
       margin: 0 0.5rem;
       .nav-link {
-        font-family: 'Roboto', sans-serif;
         font-size: 0.9rem;
         letter-spacing: 0.07rem;
         transition-property: all;
-        transition-duration: 0.6s;
+        transition-duration: 0.4s;
       }
       .nav-link:hover {
         color: lighten($secondary, 10%);
       }
+
       .active {
         color: $secondary;
         border-bottom: 1px solid $secondary;
@@ -186,14 +237,42 @@ i:hover {
   .profile-image{
     width: 3.1vw;
     border-radius: 50%;
-    border:1px solid white;
+    border: 1px solid white;
     animation: profileIconAnimation 25s infinite;
     animation-timing-function: ease-out;
   }
 }
 
-//------------- Showcase Component -------------
+@include media-breakpoint-down(md) {
+  .Navbar {
+    ul.navbar-nav {
+      .home-link,
+      .github-login-link {
+        margin: 0;
+      }
+    }
+  }
+}
 
+//------------- Home Page -------------
+// --------------------
+// Home
+// --------------------
+.Home {
+  .landing {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .landing-title {
+      display: inline-block;
+    }
+  }
+}
+
+.SimplxHome-text
+
+//------------- Showcase Component -------------
 // --------------------
 // Category Navbar
 // --------------------
@@ -230,8 +309,6 @@ i:hover {
   .category-active {
     color: $light !important;
   }
-
-  
 }
 
 // --------------------
@@ -263,6 +340,22 @@ i:hover {
   .property-active {
     color: $light !important;
     border-bottom: 1px solid $light;
+  }
+}
+
+.navbar-toggler-label {
+  margin-left: 0.6rem;
+  letter-spacing: 0.06rem;
+  color: $grey-light;
+}
+
+@include media-breakpoint-down(md) {
+  .CategoryNavbar,
+  .PropertyNavbar {
+    .navbar-toggler {
+      width: 160px;
+      margin: 0.2rem 0;
+    }
   }
 }
 
@@ -342,13 +435,12 @@ i:hover {
 // Customize
 // --------------------
 .Customize {
-  .toggle-btn {
-    top: 60px;
+  .btn-toggle {
     position: fixed;
-    cursor: pointer;
-    i {
-      margin-right: 10px;
-    }
+    top: 59.2px;
+    right: 2rem;
+    z-index: 2000;
+    background-color: $dark;
   }
   .sidebar-container {
     margin-top: 100px;
@@ -356,13 +448,26 @@ i:hover {
     flex-direction: column;
     justify-content: space-between;
   }
+  .btn-save {
+    font-size: 1.25rem;
+    i {
+      margin-right: 10px;
+    }
+  }
+  .btn-code {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+  }
 }
+
 @include media-breakpoint-up(md) {
   .Customize {
-    .toggle-btn {
+    .btn-toggle {
       display: none;
     }
     .sidebar-container {
+      margin-left: 2.5vw;
       margin-top: 0;
       top: 80px;
       position: fixed;
@@ -370,28 +475,18 @@ i:hover {
       display: block;
       height: calc(100vh - 80px);
 
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
+      // display: flex;
+      // flex-direction: column;
+      // justify-content: space-between;
     }
     .effect-container {
-      height: calc(100vh - 284px);
+      height: calc(100vh - 344px);
       overflow-x: hidden;
       overflow-y: auto;
+      // border-bottom: 2px solid $light;
     }
   }
 }
-
-// CodeSnipppetModal
-// --------------------
-// .CodeSnipppetModal {
-//   .hidden {
-//     position: absolute;
-//     opacity: 0.01;
-//     height: 0;
-//     overflow: hidden;
-//   }
-// }
 
 .CodeSnippetModal {
   .hidden {
@@ -417,34 +512,15 @@ i:hover {
     border: 2px solid $secondary;
     border-radius: 10px;
     .code-snippet-title {
-      padding-left: 2rem;
+      padding-left: 1rem;
       display: flex;
       align-items: center;
-      height: 10vh;
+      height: 5vh;
       h5 {
         color: pink;
         font-size: 1rem;
         letter-spacing: 0.08rem;
         margin: 0;
-      }
-      .icons {
-        margin-left: auto;
-      }
-      .fa-paste {
-        color: $grey-light;
-        margin-right: 1.5rem;
-      }
-      .fa-paste:hover {
-        transform: translateY(-2px);
-        color: lighten($grey-light, 10%);
-      }
-      .fa-times-circle {
-        color: $primary-super-dark;
-        margin-right: 1.5rem;
-      }
-      .fa-times-circle:hover {
-        transform: translateY(-2px);
-        color: lighten($primary-super-dark, 10%);
       }
     }
     .code-snippet-seperator {
@@ -452,8 +528,8 @@ i:hover {
       background-image: linear-gradient(90deg, $secondary, $secondary-dark);
     }
     .code-snippet-body {
-      height: 70vh;
-      overflow: scroll;
+      height: 74vh;
+      // overflow: scroll;
       padding: 1rem;
       background-color: $dark;
       pre span {
@@ -830,31 +906,29 @@ i:hover {
 }
 
 @keyframes profileIconAnimation {
-0% {
-  transform: rotate(0deg);
-  border:1px solid $secondary;
-}
-15% {
-  transform: rotate(360deg);
-  border:1px solid white;
-}
+  0% {
+    transform: rotate(0deg);
+    border: 1px solid $secondary;
+  }
+  15% {
+    transform: rotate(360deg);
+    border: 1px solid white;
+  }
 
-50% {
-  transform: rotate(360deg);
-  border:1px solid $secondary;
-}
+  50% {
+    transform: rotate(360deg);
+    border: 1px solid $secondary;
+  }
 
-65% {
-  transform: rotate(0deg);
-  border:1px solid white;
-}
+  65% {
+    transform: rotate(0deg);
+    border: 1px solid white;
+  }
 
-100% {
-  transform: rotate(0deg);
-  border:1px solid $secondary;
-}
-
-
+  100% {
+    transform: rotate(0deg);
+    border: 1px solid $secondary;
+  }
 }
 
 // --------- Blog component ----------
@@ -864,18 +938,12 @@ i:hover {
 .blog-block{
   color:black;
   border-radius: 10px;
-  background-image: linear-gradient(
-    -60deg,
-    $light,
-    $white,
-    
-  );
+  background-image: linear-gradient(-60deg, $light, $white);
   box-shadow: 14px 13px 21px -5px #726650;
 }
-  h3{
+  h3 {
     font-weight: 500;
-    color:#726650;
-
+    color: #726650;
   }
 
   .blog-content{
@@ -953,15 +1021,14 @@ i:hover {
     border:none;
     background-color: transparent;
     color: #726650;
-    
   }
 
-  .fa-pencil-alt{
+  .fa-pencil-alt {
     color: #726650;
   }
 
-  .button-position{
-    margin-left:auto;
+  .button-position {
+    margin-left: auto;
   }
   
 

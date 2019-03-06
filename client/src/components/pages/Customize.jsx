@@ -1,32 +1,24 @@
-import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect } from "react";
+import { goToTop } from "react-scrollable-anchor";
 
-import AddEffect from '../AddEffect';
-import CustomizeForm from '../CustomizeForm';
-import CodeSnippetModal from '../CodeSnippetModal';
-import CustomizeBox from '../CustomizeBox';
-import Save from '../Save';
-import Load from '../Load';
-import api from '../../api';
+import AddEffect from "../AddEffect";
+import CustomizeForm from "../CustomizeForm";
+import CodeSnippetModal from "../CodeSnippetModal";
+import CustomizeBox from "../CustomizeBox";
+import Save from "../Save";
+import Load from "../Load";
+import api from "../../api";
 
 // TO DO
-//    - change icon color on hover
+//    - input field arrows/append (responsive?)
 
 export default function Customize() {
   /*********************************
    * States
    *********************************/
-  const [
-    parallaxDataTransformDefault,
-    setParallaxDataTransformDefault
-  ] = useState([]);
-  const [
-    parallaxDataCssFilterDefault,
-    setParallaxDataCssFilterDefault
-  ] = useState([]);
-  const [parallaxDataColorsDefault, setParallaxDataColorsDefault] = useState(
-    []
-  );
+  const [parallaxDataTransformDefault, setParallaxDataTransformDefault] = useState([]);
+  const [parallaxDataCssFilterDefault, setParallaxDataCssFilterDefault] = useState([]);
+  const [parallaxDataColorsDefault, setParallaxDataColorsDefault] = useState([]);
   const [parallaxData, setParallaxData] = useState([]);
   const [likedEffects, setLikedEffects] = useState([]);
   const [modifiedEffects, setModifiedEffects] = useState([]);
@@ -36,7 +28,6 @@ export default function Customize() {
   const [showCodeSnippet, setShowCodeSnippet] = useState(false);
   const [showSidebar, setShowSidebar] = useState(false);
   const [width, setWidth] = useState(window.innerWidth);
-  // const [loadTitle, setLoadTitle] = useState(null)
 
   const breakPointSidebar = 768;
 
@@ -45,8 +36,8 @@ export default function Customize() {
    *********************************/
   // get data from sessionStorage
   useEffect(() => {
-    if (api.getSessionStorage('likedEffects')) {
-      setLikedEffects(api.getSessionStorage('likedEffects'));
+    if (api.getSessionStorage("likedEffects")) {
+      setLikedEffects(api.getSessionStorage("likedEffects"));
     } else {
       setLikedEffects([]);
     }
@@ -54,8 +45,8 @@ export default function Customize() {
 
   // get data from sessionStorage
   useEffect(() => {
-    if (api.getSessionStorage('modifiedEffect')) {
-      setModifiedEffects(api.getSessionStorage('modifiedEffect'));
+    if (api.getSessionStorage("modifiedEffect")) {
+      setModifiedEffects(api.getSessionStorage("modifiedEffect"));
     } else {
       setModifiedEffects([]);
     }
@@ -65,11 +56,9 @@ export default function Customize() {
   useEffect(() => {
     function scrollHandler() {
       const windowTop = document.documentElement.scrollTop;
-      const windowBottom =
-        document.documentElement.scrollTop + window.innerHeight;
+      const windowBottom = document.documentElement.scrollTop + window.innerHeight;
       const documentBottom = document.body.clientHeight;
-      const buffer = window.innerHeight * 0.22 * 1.5
-
+      const buffer = window.innerHeight * 0.22 * 1.5;
 
       if (documentBottom >= windowBottom) {
         window.scrollTo(0, windowBottom + buffer);
@@ -78,15 +67,17 @@ export default function Customize() {
       }
     }
 
-    if (width >= breakPointSidebar || !showSidebar) {
-      window.addEventListener('scroll', scrollHandler);
+    if ((width >= breakPointSidebar || !showSidebar) && !showCodeSnippet) {
+      window.addEventListener("scroll", scrollHandler);
+    } else {
+      goToTop();
     }
 
     return () => {
-      console.log('window.removeEventListener');
-      window.removeEventListener('scroll', scrollHandler);
+      console.log("window.removeEventListener");
+      window.removeEventListener("scroll", scrollHandler);
     };
-  }, [showSidebar, width]);
+  }, [showCodeSnippet, showSidebar, width]);
 
   // get saved profile
   useEffect(() => {
@@ -101,17 +92,11 @@ export default function Customize() {
       return;
     }
 
-    let likedEffectUrl = likedEffects.join('-');
+    let likedEffectUrl = likedEffects.join("-");
     api.getManyParallaxData(likedEffectUrl).then(res => {
-      setParallaxDataTransformDefault(
-        res.filter(data => data.category === 'transform')
-      );
-      setParallaxDataCssFilterDefault(
-        res.filter(data => data.category === 'css-filter')
-      );
-      setParallaxDataColorsDefault(
-        res.filter(data => data.category === 'colors')
-      );
+      setParallaxDataTransformDefault(res.filter(data => data.category === "transform"));
+      setParallaxDataCssFilterDefault(res.filter(data => data.category === "css-filter"));
+      setParallaxDataColorsDefault(res.filter(data => data.category === "colors"));
 
       /*********************************
        * Converting parallax data to usable code for snippet and box
@@ -179,7 +164,7 @@ export default function Customize() {
       return;
     }
 
-    let likedEffectUrl = likedEffects.join('-');
+    let likedEffectUrl = likedEffects.join("-");
     api.getManyParallaxData(likedEffectUrl).then(res => {
       /*********************************
        * Converting parallax data to usable code for snippet and box
@@ -236,14 +221,10 @@ export default function Customize() {
           obj => obj.property === modEffect.property
         );
         if (indexProperties !== -1) {
-          parallaxDataTmp[0].properties[indexProperties].startValue =
-            modEffect.values[0];
-          parallaxDataTmp[0].properties[indexProperties].endValue =
-            modEffect.values[1];
-          parallaxDataTmp[1].properties[indexProperties].startValue =
-            modEffect.values[1];
-          parallaxDataTmp[1].properties[indexProperties].endValue =
-            modEffect.values[0];
+          parallaxDataTmp[0].properties[indexProperties].startValue = modEffect.values[0];
+          parallaxDataTmp[0].properties[indexProperties].endValue = modEffect.values[1];
+          parallaxDataTmp[1].properties[indexProperties].startValue = modEffect.values[1];
+          parallaxDataTmp[1].properties[indexProperties].endValue = modEffect.values[0];
         }
       });
 
@@ -251,48 +232,44 @@ export default function Customize() {
     });
   }, [modifiedEffects]);
 
-  // get window size
+  // get window and sidebar width
   useEffect(() => {
-    window.addEventListener('resize', handleResize);
+    function handleResize() {
+      setWidth(window.innerWidth);
+    }
+    window.addEventListener("resize", handleResize);
     return () => {
-      window.removeEventListener('resize', handleResize);
+      window.removeEventListener("resize", handleResize);
     };
-  });
+  }, [width]);
 
   /*********************************
    * Event Handler
    *********************************/
-  function handleResize() {
-    setWidth(window.innerWidth);
-  }
 
   function handleAddEffect(id) {
     const likedEffectTemp = [...likedEffects];
     likedEffectTemp.push(id);
     setLikedEffects(likedEffectTemp);
-    api.setSessionStorage('likedEffects', likedEffectTemp);
+    api.setSessionStorage("likedEffects", likedEffectTemp);
   }
 
   function handleCloseEffect(id, property) {
     const likedEffectTemp = [...likedEffects];
     likedEffectTemp.splice(likedEffectTemp.indexOf(id), 1);
     setLikedEffects(likedEffectTemp);
-    api.setSessionStorage('likedEffects', likedEffectTemp);
+    api.setSessionStorage("likedEffects", likedEffectTemp);
 
     const modifiedEffectsTmp = [...modifiedEffects];
-    const index = modifiedEffectsTmp.findIndex(
-      obj => obj.property === property
-    );
+    const index = modifiedEffectsTmp.findIndex(obj => obj.property === property);
     modifiedEffectsTmp.splice(index, 1);
     setModifiedEffects(modifiedEffectsTmp);
-    api.setSessionStorage('modifiedEffect', modifiedEffectsTmp);
+    api.setSessionStorage("modifiedEffect", modifiedEffectsTmp);
   }
 
   function handleModifyEffect(property, values) {
     const modifiedEffectsTmp = [...modifiedEffects];
-    const index = modifiedEffectsTmp.findIndex(
-      obj => obj.property === property
-    );
+    const index = modifiedEffectsTmp.findIndex(obj => obj.property === property);
     if (index === -1) {
       modifiedEffectsTmp.push({
         property,
@@ -302,29 +279,27 @@ export default function Customize() {
       modifiedEffectsTmp[index].values = values;
     }
     setModifiedEffects(modifiedEffectsTmp);
-    api.setSessionStorage('modifiedEffect', modifiedEffectsTmp);
+    api.setSessionStorage("modifiedEffect", modifiedEffectsTmp);
   }
 
   function handleResetEffect(property) {
     const modifiedEffectsTmp = [...modifiedEffects];
-    const index = modifiedEffectsTmp.findIndex(
-      obj => obj.property === property
-    );
+    const index = modifiedEffectsTmp.findIndex(obj => obj.property === property);
     modifiedEffectsTmp.splice(index, 1);
     setModifiedEffects(modifiedEffectsTmp);
-    api.setSessionStorage('modifiedEffect', modifiedEffectsTmp);
+    api.setSessionStorage("modifiedEffect", modifiedEffectsTmp);
   }
 
   function handleLoad(id) {
-    if (id !== 'instruction') {
+    if (id !== "instruction") {
       api.getSavedProfileDetail(id).then(data => {
         if (data.length !== 0) {
           let modifiedTmp = data.savedprofile.modifiedEffects;
           setModifiedEffects(modifiedTmp);
-          api.setSessionStorage('modifiedEffect', modifiedTmp);
+          api.setSessionStorage("modifiedEffect", modifiedTmp);
           let likedTmp = data.savedprofile.likedEffects;
           setLikedEffects(likedTmp);
-          api.setSessionStorage('likedEffects', likedTmp);
+          api.setSessionStorage("likedEffects", likedTmp);
           let dataTmp = data;
           setLoadedFile(dataTmp);
           console.log(dataTmp);
@@ -345,40 +320,31 @@ export default function Customize() {
           .postSavedProfile(data)
 
           .then(() => {
-            console.log('saved!');
+            console.log("saved!");
             api.getSavedProfile().then(profile => {
               setSavedProfile(profile);
             });
           })
-          .catch(err => { });
+          .catch(err => {});
       } else api.updateSavedProfile(data.title, data);
     });
   }
 
-  // function handleLoadChange(title) {
-  //   setLoadTitle(title)
-  // }
-
   function handleDelete(id) {
-    //   if (loadedFile && id !== loadedFile.savedprofile._id) {
-    //     api.deleteSavedProfile(loadTitle)
-    //       .then(() => { console.log('first case') })
-
-    //   } else
     if (loadedFile && id === loadedFile.savedprofile._id) {
       api.deleteSavedProfile(id).then(() => {
         setLikedEffects([]);
         setModifiedEffects([]);
-        api.setSessionStorage('modifiedEffects', []);
-        api.setSessionStorage('likedEffects', []);
+        api.setSessionStorage("modifiedEffects", []);
+        api.setSessionStorage("likedEffects", []);
         setRemove([]);
       });
     } else
       api.deleteSavedProfile(id).then(() => {
         setLikedEffects([]);
         setModifiedEffects([]);
-        api.setSessionStorage('modifiedEffects', []);
-        api.setSessionStorage('likedEffects', []);
+        api.setSessionStorage("modifiedEffects", []);
+        api.setSessionStorage("likedEffects", []);
         setRemove([]);
       });
   }
@@ -406,26 +372,23 @@ export default function Customize() {
     <div className="Customize">
       <div className="container-fluid">
         <div
-          onClick={() => setShowSidebar(!showSidebar)}
-          className="toggle-btn text-secondary"
-        >
+          className="btn-icon btn-toggle text-secondary"
+          onClick={() => setShowSidebar(!showSidebar)}>
           <i className="fas fa-wrench" />
-          <span>Customize</span>
         </div>
-
         <div className="row">
-          {/*  */}
+          {/* S I D E B A R */}
           {width >= breakPointSidebar || showSidebar ? (
-            <div className="col-12 col-md-3 sidebar-container">
+            <div id="sidebar" className="col-12 col-md-3 sidebar-container">
               <div>
-                <AddEffect
-                  likedEffects={likedEffects}
-                  onAddEffect={handleAddEffect}
-                />
-                <div className="effect-container">
+                <div className="pl-2 pr-2 pb-4">
+                  <h5>Add effect</h5>
+                  <AddEffect likedEffects={likedEffects} onAddEffect={handleAddEffect} />
+                </div>
+                <div className="pl-2 pr-2 pb-4 effect-container">
                   <h5>Customize effect</h5>
                   {parallaxDataTransformDefault.length === 0 ? null : (
-                    <div className="mb-4">
+                    <div className="pb-4">
                       {parallaxDataTransformDefault.map(data => (
                         <CustomizeForm
                           key={data._id}
@@ -440,7 +403,7 @@ export default function Customize() {
                     </div>
                   )}
                   {parallaxDataCssFilterDefault.length === 0 ? null : (
-                    <div className="mb-4">
+                    <div className="pb-4">
                       {parallaxDataCssFilterDefault.map(data => (
                         <CustomizeForm
                           key={data._id}
@@ -472,55 +435,53 @@ export default function Customize() {
                 </div>
               </div>
 
-              <i className="fas fa-code" onClick={handleCodeSnippetClick} />
-              {showCodeSnippet && (
-                <CodeSnippetModal
-                  parallaxDataCode={parallaxData}
-                  onCloseClick={handleCodeSnippetClick}
-                />
-              )}
-
-              {api.checkUser() && (
-                <Load
-                  onLoad={handleLoad}
-                  saved={savedProfile}
-                  onDelete={handleDelete}
-                  remove={remove}
-                />
-              )}
-              {api.checkUser() ? (
-                <Save
-                  modifiedEffects={modifiedEffects}
-                  likedEffects={likedEffects}
-                  onSave={handleSave}
-                  loadedFile={loadedFile}
-                />
-              ) : (
-                  <a
-                    className="github-login-link btn btn-success"
-                    href={api.service.defaults.baseURL + '/github-login'}
-                  >
-                    <i className="fab fa-2x fa-github" /> Save
-                </a>
+              <div className="p-2 pb-4 mt-5">
+                {api.checkUser() && (
+                  <Load
+                    onLoad={handleLoad}
+                    saved={savedProfile}
+                    onDelete={handleDelete}
+                    remove={remove}
+                  />
                 )}
+                {api.checkUser() ? (
+                  <Save
+                    modifiedEffects={modifiedEffects}
+                    likedEffects={likedEffects}
+                    onSave={handleSave}
+                    loadedFile={loadedFile}
+                  />
+                ) : (
+                  <div className="d-flex justify-content-center">
+                    <a
+                      className="btn-save btn-icon text-white"
+                      href={api.service.defaults.baseURL + "/github-login"}>
+                      <i className="fab fa-github" />
+                      <span>Save</span>
+                    </a>
+                  </div>
+                )}
+              </div>
             </div>
           ) : null}
           {/*  */}
         </div>
 
         {(width >= breakPointSidebar || !showSidebar) && !showCodeSnippet ? (
-          <div className="customize-container">
+          <div>
             <CustomizeBox parallaxDataCode={parallaxData} />
             <div className="scroll-down-container" />
           </div>
         ) : null}
+        {(width >= breakPointSidebar || !showSidebar) && !showCodeSnippet ? (
+          <div className="btn-icon btn-code text-secondary" onClick={handleCodeSnippetClick}>
+            <i className="fas fa-code" onClick={handleCodeSnippetClick} />
+          </div>
+        ) : null}
+        {showCodeSnippet && (
+          <CodeSnippetModal parallaxDataCode={parallaxData} onCloseClick={handleCodeSnippetClick} />
+        )}
       </div>
     </div>
   );
 }
-
-// true && ... => ...
-// false && ... => false
-
-// false || ... => ...
-// true || ... => true

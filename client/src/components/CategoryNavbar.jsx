@@ -11,15 +11,16 @@ const CategoryNavbar = ({ categoryActive, properties, propertyActive }) => {
             className="navbar-toggler"
             type="button"
             data-toggle="collapse"
-            data-target="#navbarSupportedContent"
+            data-target="#navbarSupportedContent1"
             aria-controls="navbarSupportedContent"
             aria-expanded="false"
             aria-label="Toggle navigation"
           >
             <span className="navbar-toggler-icon" />
+            <span className="navbar-toggler-label">Category</span>
           </button>
 
-          <div className="collapse navbar-collapse" id="navbarSupportedContent">
+          <div className="collapse navbar-collapse" id="navbarSupportedContent1">
             <ul className="navbar-nav">
               {/* Transform */}
               <li className="nav-item">

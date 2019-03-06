@@ -3,12 +3,12 @@ import api from "../api";
 
 export default function Save({ modifiedEffects, likedEffects, onSave, loadedFile }) {
   const [newtitle, setNewTitle] = useState(
-    loadedFile && loadedFile.savedprofile.title ? loadedFile.savedprofile.title : "name me!"
+    loadedFile && loadedFile.savedprofile.title ? loadedFile.savedprofile.title : "Save file"
   );
 
   useEffect(() => {
     if (loadedFile && loadedFile.savedprofile.title) setNewTitle(loadedFile.savedprofile.title);
-    else setNewTitle("name me!");
+    else setNewTitle("Save file");
   }, [loadedFile]);
 
   function handleChange(e) {
@@ -24,21 +24,15 @@ export default function Save({ modifiedEffects, likedEffects, onSave, loadedFile
 
   return (
     <div className="Save">
-      <div className="p-2 mb-1 rounded">
-        <div className="row">
-          <div className="col-7 pt-1">
-            <input
-              className="form-control bg-dark text-light"
-              type="text"
-              onChange={e => handleChange(e)}
-              value={newtitle}
-            />
-          </div>
-          <div className="col-5 d-flex flex-column justify-content-center">
-            <button className="btn-lg border-0 bg-dark text-secondary fas fa-save" onClick={e => onSave(data)}>
-
-            </button>
-          </div>
+      <div className="d-flex justify-content-between align-items-center">
+        <input
+          className="form-control bg-dark-light text-light"
+          type="text"
+          onChange={e => handleChange(e)}
+          value={newtitle}
+        />
+        <div className="btn-icon text-primary" onClick={e => onSave(data)}>
+          <i className="fas fa-save" />
         </div>
       </div>
     </div>

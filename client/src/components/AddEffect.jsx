@@ -77,46 +77,44 @@ export default function AddEffect({ likedEffects, onAddEffect }) {
   }
   return (
     <div className="AddEffect">
-      <div className="pl-2 pr-2 mb-4">
-        <h5>Add effect</h5>
-        <div className="d-flex justify-content-between align-items-center">
-          <select
-            className="custom-select bg-dark text-light"
-            value={effect}
-            onChange={e => setEffect(e.target.value)}>
-            {parallaxDataTransform.length !== 0 ? (
-              <optgroup label="Transform">
-                {parallaxDataTransform.map(effect => (
-                  <option key={effect._id} value={effect._id}>
-                    {effect.property}
-                  </option>
-                ))}
-              </optgroup>
-            ) : null}
-            {parallaxDataCssFilter.length !== 0 ? (
-              <optgroup label="CSS-Filter">
-                {parallaxDataCssFilter.map(effect => (
-                  <option key={effect._id} value={effect._id}>
-                    {effect.property}
-                  </option>
-                ))}
-              </optgroup>
-            ) : null}
-            {parallaxDataColor.length !== 0 ? (
-              <optgroup label="Colors">
-                {parallaxDataColor.map(effect => (
-                  <option key={effect._id} value={effect._id}>
-                    {effect.property}
-                  </option>
-                ))}
-              </optgroup>
-            ) : null}
-          </select>
-          <button
-            disabled={effect ? false : true}
-            className="btn-lg border-0 bg-dark text-primary fas fa-plus"
-            onClick={() => onAddEffect(effect)}
-          />
+      <div className="d-flex justify-content-between align-items-center">
+        <select
+          className="custom-select bg-dark text-light"
+          value={effect}
+          onChange={e => setEffect(e.target.value)}>
+          {parallaxDataTransform.length !== 0 ? (
+            <optgroup label="Transform">
+              {parallaxDataTransform.map(effect => (
+                <option key={effect._id} value={effect._id}>
+                  {effect.property}
+                </option>
+              ))}
+            </optgroup>
+          ) : null}
+          {parallaxDataCssFilter.length !== 0 ? (
+            <optgroup label="CSS-Filter">
+              {parallaxDataCssFilter.map(effect => (
+                <option key={effect._id} value={effect._id}>
+                  {effect.property}
+                </option>
+              ))}
+            </optgroup>
+          ) : null}
+          {parallaxDataColor.length !== 0 ? (
+            <optgroup label="Colors">
+              {parallaxDataColor.map(effect => (
+                <option key={effect._id} value={effect._id}>
+                  {effect.property}
+                </option>
+              ))}
+            </optgroup>
+          ) : null}
+        </select>
+        <div
+          disabled={effect ? false : true}
+          className="btn-icon text-primary"
+          onClick={() => onAddEffect(effect)}>
+          <i className="fas fa-plus-circle" />
         </div>
       </div>
     </div>

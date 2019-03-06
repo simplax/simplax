@@ -40,70 +40,68 @@ export default function CustomizeForm({
    *********************************/
   return (
     <div className="CustomizeForm">
-      <div className="pl-2 pr-2 mb-2">
-        <label className="mb-0">{property}</label>
-        <div className="d-flex justify-content-between align-items-center">
-          {category === "colors" ? (
-            <div className="input-group w-75">
-              <input
-                className="form-control bg-dark text-light"
-                type="color"
-                value={values[0]}
-                onChange={e => {
-                  setValues([e.target.value, values[1]]);
-                }}
-              />
-              <input
-                className="form-control bg-dark text-light"
-                type="color"
-                value={values[1]}
-                onChange={e => {
-                  setValues([values[0], e.target.value]);
-                }}
-              />
-            </div>
-          ) : (
-            <div className="input-group w-75">
-              <input
-                step={step}
-                min={minValue}
-                max={maxValue}
-                className="form-control bg-dark text-light"
-                type="number"
-                value={values[0]}
-                onChange={e => {
-                  setValues([Number(e.target.value), values[1]]);
-                }}
-              />
-              <input
-                step={step}
-                min={minValue}
-                max={maxValue}
-                className="form-control bg-dark text-light"
-                type="number"
-                value={values[1]}
-                onChange={e => {
-                  setValues([values[0], Number(e.target.value)]);
-                }}
-              />
-              {unit ? (
-                <div className="input-group-append">
-                  <span className="input-group-text bg-light">{unit}</span>
-                </div>
-              ) : null}
-            </div>
-          )}
-          <button
-            className="btn-lg border-0 bg-dark text-primary fas fa-redo-alt"
-            onClick={() => {
-              onResetEffect(property);
-              setValues([startValue, endValue]);
-            }}
-          />
-          <button
-            className="btn-lg border-0 bg-dark text-secondary fas fa-trash-alt"
-            onClick={() => onCloseEffect(_id, property)}
-          />
+      <label className="mb-0">{property}</label>
+      <div className="d-flex justify-content-between align-items-center">
+        {category === "colors" ? (
+          <div className="input-group w-75">
+            <input
+              className="form-control bg-dark text-light"
+              type="color"
+              value={values[0]}
+              onChange={e => {
+                setValues([e.target.value, values[1]]);
+              }}
+            />
+            <input
+              className="form-control bg-dark text-light"
+              type="color"
+              value={values[1]}
+              onChange={e => {
+                setValues([values[0], e.target.value]);
+              }}
+            />
+          </div>
+        ) : (
+          <div className="input-group w-75">
+            <input
+              step={step}
+              min={minValue}
+              max={maxValue}
+              className="form-control bg-dark text-light"
+              type="number"
+              value={values[0]}
+              onChange={e => {
+                setValues([Number(e.target.value), values[1]]);
+              }}
+            />
+            <input
+              step={step}
+              min={minValue}
+              max={maxValue}
+              className="form-control bg-dark text-light"
+              type="number"
+              value={values[1]}
+              onChange={e => {
+                setValues([values[0], Number(e.target.value)]);
+              }}
+            />
+            {unit ? (
+              <div className="input-group-append">
+                <span className="input-group-text bg-light">{unit}</span>
+              </div>
+            ) : null}
+          </div>
+        )}
+        <div
+          className="btn-icon text-primary"
+          onClick={() => {
+            onResetEffect(property);
+            setValues([startValue, endValue]);
+          }}>
+          <i className="fas fa-undo-alt" />
+        </div>
+        <div className="btn-icon text-secondary" onClick={() => onCloseEffect(_id, property)}>
+          <i className="fas fa-times-circle" />
         </div>
       </div>
     </div>
