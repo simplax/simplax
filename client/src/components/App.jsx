@@ -16,6 +16,11 @@ import SuccessLogin from './pages/SuccessLogin';
 export default function App() {
   return (
     <div className="App vh-100">
+      <img
+        className="background-img-explore"
+        src="/images/background-explore.svg"
+        alt="background image"
+      />
       <Navbar />
       <Switch>
         <Route path="/" exact component={Home} />

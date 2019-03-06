@@ -90,8 +90,6 @@ const Showcase = () => {
     if (api.getSessionStorage('likedEffects'))
       setLikedEffects(api.getSessionStorage('likedEffects'));
     else setLikedEffects([]);
-
-
   }, []);
 
   useEffect(() => {
@@ -204,11 +202,7 @@ const Showcase = () => {
   }
   return (
     <div id="Showcase" className="Showcase">
-      <img
-        className="background-img-explore"
-        src="/images/background-explore.svg"
-        alt="background image"
-      />
+      
 
       {/* Scroll Down */}
       <div ref={categoryNavRef} className="scroll-down-container">
@@ -307,6 +301,7 @@ const Showcase = () => {
         })}
       </div>
 
+      <div className="container-50vh" />
       <div className="scroll-down-container">
         <ScrollDownOrUp isScrollDown={false} />
       </div>
