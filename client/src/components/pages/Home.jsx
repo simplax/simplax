@@ -1,10 +1,14 @@
-import React from "react";
+import React from 'react';
+import LandingTitle from '../animations/LandingTitle';
 
-export default function Home() {
+const Home = () => {
   return (
     <div className="Home">
-      <div className="container">Home</div>
-
+      <div className="landing">
+        <LandingTitle />
+      </div>
     </div>
   );
-}
+};
+
+export default Home;
