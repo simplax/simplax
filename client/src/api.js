@@ -142,7 +142,7 @@ export default {
 
   isAdmin() {
     if (localStorage.getItem('user') !== null) {
-      if (JSON.parse(localStorage.getItem("user"))._github === 39859424) return true
+      if (JSON.parse(localStorage.getItem("user"))._github === 39859424 || JSON.parse(localStorage.getItem("user"))._github === 29504917) return true
       else return false
     } else return false
 
