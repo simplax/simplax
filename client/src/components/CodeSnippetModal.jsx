@@ -1,99 +1,132 @@
-import React, { useRef, useState, useEffect } from "react";
+import React, { useRef } from "react";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { tomorrow } from "react-syntax-highlighter/dist/esm/styles/prism";
 
 export default function CodeSnipppetModal({ parallaxDataCode, onCloseClick }) {
-  console.log('TCL: CodeSnipppetModal -> parallaxDataCode', parallaxDataCode)
   const codeSnippetValue = useRef(null);
 
   if (parallaxDataCode.length !== 0) {
     const propertiesArrayEnter = parallaxDataCode[0].properties.map(property => {
-      if (property.property === 'color' || property.property === 'backgroundColor' || property.property === 'borderColor' || property.property === 'borderBottomColor' || property.property === 'borderTopColor' || property.property === 'borderLeftColor' || property.property === 'borderRightColor') {
-        console.log('color')
+      if (
+        property.property === "color" ||
+        property.property === "backgroundColor" ||
+        property.property === "borderColor" ||
+        property.property === "borderBottomColor" ||
+        property.property === "borderTopColor" ||
+        property.property === "borderLeftColor" ||
+        property.property === "borderRightColor"
+      ) {
         return `
           {
-            startValue: '${property.startValue}',
-            endValue: '${property.endValue}',
-            property: '${property.property}',
-            unit: '${property.unit}'
+            startValue: "${property.startValue}",
+            endValue: "${property.endValue}",
+            property: "${property.property}",
+            unit: "${property.unit}"
           }`;
-      }
-
-
-      else {
-        console.log('not color')
+      } else {
         return `{
             startValue: ${property.startValue},
             endValue: ${property.endValue},
-            property: ${property.property},
-            unit: '${property.unit}'
-          }`}
+            property: "${property.property}",
+            unit: "${property.unit}"
+          }`;
+      }
     });
 
     const propertiesArrayLeave = parallaxDataCode[1].properties.map(property => {
-      if (property.property === 'color' || property.property === 'backgroundColor' || property.property === 'borderColor' || property.property === 'borderBottomColor' || property.property === 'borderTopColor' || property.property === 'borderLeftColor' || property.property === 'borderRightColor') {
-        console.log('color')
+      if (
+        property.property === "color" ||
+        property.property === "backgroundColor" ||
+        property.property === "borderColor" ||
+        property.property === "borderBottomColor" ||
+        property.property === "borderTopColor" ||
+        property.property === "borderLeftColor" ||
+        property.property === "borderRightColor"
+      ) {
         return `
           {
-            startValue: '${property.startValue}',
-            endValue: '${property.endValue}',
-            property: '${property.property}',
-            unit: '${property.unit}'
+            startValue: "${property.startValue}",
+            endValue: "${property.endValue}",
+            property: "${property.property}",
+            unit: "${property.unit}"
           }`;
-      }
-
-
-      else {
-        console.log('not color')
+      } else {
         return `{
             startValue: ${property.startValue},
             endValue: ${property.endValue},
-            property: ${property.property},
-            unit: '${property.unit}'
-          }`}
+            property: "${property.property}",
+            unit: "${property.unit}"
+          }`;
+      }
     });
-    var code = `import React, { Component } from 'react';
-import Plx from 'react-plx';
-  
-class Example extends Component {
-  render() {
-    return (
-    <div>
-      <div style={{ height: '100vh' }} />
+    var code = `
+import React from "react";
+import Plx from "react-plx";
+import ReactDOM from "react-dom";
 
-      <Plx parallaxData={parallaxData} style={{ height: '20vw', width: "20vw", margin: "auto" }}>
-        Place your content here.
+import "./styles.css";
+  
+function Example() {
+  return (
+    <div>
+      <div style={{ marginTop: "45vh" }}>
+        <h2>Scroll down</h2>
+      </div>
+
+      <div style={{ height: "100vh" }} />
+
+      <Plx
+        parallaxData={parallaxData}
+        style={{
+          height: "20vw",
+          width: "20vw",
+          margin: "auto",
+          border: "2px solid black"
+        }}
+      >
+        {/* Place your content here */}
       </Plx>
 
-      <div style={{ height: '100vh' }} />
+      <div style={{ height: "100vh" }} />
     </div>
-    );
-  }
+  );
 }
 
 // An array of parallax effects to be applied
 const parallaxData = [
   {
-    start: '${parallaxDataCode[0].start}',
-    startOffset: '${parallaxDataCode[0].startOffset}',
-    end: '${parallaxDataCode[0].end}',
-    endOffset: '${parallaxDataCode[0].endOffset}',
-    easing: '${parallaxDataCode[0].easing}',
+    start: "${parallaxDataCode[0].start}",
+    startOffset: "${parallaxDataCode[0].startOffset}",
+    end: "${parallaxDataCode[0].end}",
+    endOffset: "${parallaxDataCode[0].endOffset}",
+    easing: "${parallaxDataCode[0].easing}",
     properties: [
         ${propertiesArrayEnter}
       ]
   },
   {
-    start: '${parallaxDataCode[1].start}',
-    startOffset: '${parallaxDataCode[1].startOffset}',
-    end: '${parallaxDataCode[1].end}',
-    endOffset: '${parallaxDataCode[1].endOffset}',
-    easing: '${parallaxDataCode[1].easing}',
+    start: "${parallaxDataCode[1].start}",
+    startOffset: "${parallaxDataCode[1].startOffset}",
+    end: "${parallaxDataCode[1].end}",
+    endOffset: "${parallaxDataCode[1].endOffset}",
+    easing: "${parallaxDataCode[1].easing}",
     properties: [
         ${propertiesArrayLeave}
     ]
   }
-]`;
+];
+
+function App() {
+  return (
+    <div className="App">
+      <Example />
+    </div>
+  );
+}
+
+const rootElement = document.getElementById("root");
+ReactDOM.render(<App />, rootElement);
+`;
   }
 
   function copyToClipboard(e) {
@@ -106,7 +139,12 @@ const parallaxData = [
     <div className="CodeSnippetModal">
       <div className="code-snippet-container">
         <div className="code-snippet-title d-fley justify-content-between">
-          <h5>Code snippet</h5>
+          <h5 className="hide-on-mobile">Code snippet</h5>
+          <a
+            style={{ textDecoration: "none" }}
+            href="https://codesandbox.io/embed/v64l2l12y7?fontsize=14">
+            Try in Codesandbox
+          </a>
           <div className="d-flex">
             <div className="btn-icon text-primary" onClick={copyToClipboard}>
               <i className="fas fa-paste" />

@@ -25,9 +25,9 @@ $dark: #1f1f1f;
 $dark-light: lighten(#1f1f1f, 10%);
 $grey-light: #dbc8a6;
 
-@import "../node_modules/bootstrap/scss/bootstrap.scss";
-@import url("https://fonts.googleapis.com/css?family=Poppins");
-@import url("https://fonts.googleapis.com/css?family=Roboto:100,300,400");
+@import '../node_modules/bootstrap/scss/bootstrap.scss';
+@import url('https://fonts.googleapis.com/css?family=Poppins');
+@import url('https://fonts.googleapis.com/css?family=Roboto:100,300,400');
 
 // --------------------
 // Variables
@@ -64,7 +64,7 @@ $grey-light: #dbc8a6;
 body {
   margin: 0;
   padding: 0;
-  font-family: "Roboto", sans-serif;
+  font-family: 'Roboto', sans-serif;
   font-size: 0.9rem;
   letter-spacing: 0.07rem;
   background-color: $dark;
@@ -116,7 +116,12 @@ i:hover {
 .showcase-box {
   width: 44vw;
   height: 44vw;
-  background-image: linear-gradient(-60deg, $secondary-super-dark, $secondary, $primary);
+  background-image: linear-gradient(
+    -60deg,
+    $secondary-super-dark,
+    $secondary,
+    $primary
+  );
   border: 3px solid white;
   z-index: 1;
 }
@@ -290,23 +295,23 @@ i:hover {
       }
       #layer4 {
         top: 75%;
-        animation: logoDropDown 0.3s ease-out forwards, logoSpring 3s 0.3s ease-out,
-          logoShine 4s 1.2s;
+        animation: logoDropDown 0.3s ease-out forwards,
+          logoSpring 3s 0.3s ease-out, logoShine 4s 1.2s;
       }
       #layer3 {
         top: 50%;
-        animation: logoDropDown 0.3s 0.1s ease-out forwards, logoSpring 3s 0.4s ease-out,
-          logoShine 4s 1.2s;
+        animation: logoDropDown 0.3s 0.1s ease-out forwards,
+          logoSpring 3s 0.4s ease-out, logoShine 4s 1.2s;
       }
       #layer2 {
         top: 25%;
-        animation: logoDropDown 0.3s 0.2s ease-out forwards, logoSpring 3s 0.5s ease-out,
-          logoShine 4s 1.2s;
+        animation: logoDropDown 0.3s 0.2s ease-out forwards,
+          logoSpring 3s 0.5s ease-out, logoShine 4s 1.2s;
       }
       #layer1 {
         top: 0;
-        animation: logoDropDown 0.3s 0.3s ease-out forwards, logoSpring 3s 0.6s ease-out,
-          logoShine 4s 1.2s;
+        animation: logoDropDown 0.3s 0.3s ease-out forwards,
+          logoSpring 3s 0.6s ease-out, logoShine 4s 1.2s;
       }
     }
     .landing-title-container {
@@ -376,13 +381,13 @@ i:hover {
   // Go-To
   // --------------------
   .go-to {
-    height: 130vh;
+    height: 150vh;
     .GoTo {
       .go-to-title {
         font-size: 1.3rem;
         letter-spacing: 0.3rem;
         color: darken(white, 10%);
-        margin: 5rem 0;
+        margin: 10rem 0;
         text-align: center;
       }
 
@@ -930,6 +935,15 @@ i:hover {
       }
     }
   }
+  // .hide-on-mobile {
+  //   display: none;
+  // }
+}
+
+@include media-breakpoint-down(md) {
+  .hide-on-mobile {
+    display: none;
+  }
 }
 
 // --------- Tutorial Component ----------
@@ -1025,41 +1039,6 @@ i:hover {
     opacity: 1;
   }
 }
-
-//------------- Buttonssss -------------
-
-// --------------------
-// Customize Button
-// --------------------
-// .btn-customize {
-//   letter-spacing: 1px;
-//   color: white;
-//   padding: 0.6rem 1rem;
-//   border-radius: 15px;
-//   background-image: linear-gradient(-45deg, $primary-super-dark, $primary-dark);
-//   border: 1px solid $white;
-//   box-shadow: 0px 0px 50px rgba(lighten($primary, 30%), 0.7);
-//   position: fixed;
-//   bottom: 30px;
-//   right: 5vw;
-//   transition-property: all;
-//   transition-duration: 0.3s;
-//   z-index: 2;
-// }
-// .btn-customize:hover {
-//   transform: translateY(-2px);
-//   color: $light;
-//   background-image: linear-gradient(
-//     -45deg,
-//     darken($secondary, 30%),
-//     darken($primary, 10%)
-//   );
-//   box-shadow: 0px 0px 15px rgba($primary, 0.7);
-// }
-// .btn-customize:active {
-//   transform: translateY(-1px);
-//   box-shadow: 0px 0px 30px rgba($primary, 0.7);
-// }
 
 //------------- Animationsssssssssssss -------------
 
@@ -1227,7 +1206,7 @@ i:hover {
 
   .chevron:before,
   .chevron:after {
-    content: " ";
+    content: ' ';
     position: absolute;
     top: 0;
     height: 100%;
@@ -1270,7 +1249,7 @@ i:hover {
 
   .chevron:before,
   .chevron:after {
-    content: " ";
+    content: ' ';
     position: absolute;
     top: 0;
     height: 100%;
@@ -1634,39 +1613,36 @@ i:hover {
 }
 
 // Tutorial section
-
-
-
-.tutorial-intro-explore{
-width: 25vw;
-height: 25vw;
-background-color: white;
-margin: 0 5vw;
+.Tutorial {
+  .tutorial-intro-container {
+    .intro-container {
+      .content {
+        color: darken(white, 20%);
+        text-align: center;
+        letter-spacing: 0.1rem;
+      }
+    }
+  }
 }
 
-.tutorial-intro-customize{
-width: 25vw;
-height: 25vw;
-background-color: white;
-
+.tutorial-intro-code {
+  width: 25vw;
+  height: 25vw;
+  background-color: white;
+  margin: 0 5vw;
 }
 
-.tutorial-intro-code{
-width: 25vw;
-height: 25vw;
-background-color: white;
-margin: 0 5vw;
-}
+.tutorial-explore-container {
+  padding: 4rem;
 
-.tutorial-explore-container{
-  height: 100vh;
   width: 100vw;
-  background-color: rgba($secondary-super-dark,0.1);
-
-  img{
+  background-color: rgba($gray, 0.1);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  img {
     width: 75vw;
-    padding: 3vw;
-    margin-top: 80px;
+    margin: 0 5rem;
   }
 
   @include media-breakpoint-up(md) {
@@ -1676,15 +1652,25 @@ margin: 0 5vw;
   }
 }
 
-.tutorial-customize-container {
-  height: 100vh;
-  width: 100vw;
-  background-color: rgba($primary-super-dark, 0.1);
+@include media-breakpoint-down(md) {
+  .tutorial-explore-container,
+  .tutorial-customize-container,
+  .tutorial-code-container {
+    display: flex;
+    flex-direction: column;
+    img {
+      width: 50vw;
+    }
+  }
+}
 
-  img{
+.tutorial-customize-container {
+  width: 100vw;
+  background-color: rgba($gray, 0.1);
+
+  img {
     width: 75vw;
     padding: 3vw;
-    margin-top: 80px;
   }
 
   @include media-breakpoint-up(md) {
@@ -1695,13 +1681,10 @@ margin: 0 5vw;
 }
 
 .tutorial-code-container {
-  height: 100vh;
-  width: 100vw;
-  background-color: rgba($primary-dark, 0.1);
-  img{
+  background-color: rgba($gray, 0.1);
+  img {
     width: 75vw;
     padding: 3vw;
-    margin-top: 80px;
   }
 
   @include media-breakpoint-up(md) {
