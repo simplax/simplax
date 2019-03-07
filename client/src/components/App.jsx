@@ -27,9 +27,7 @@ export default function App() {
         {/* <Route path="/about-us" component={AboutUs} /> */}
         <Route path="/explore" component={Showcase} />
         <Route path="/customize" component={Customize} />
-        <Route path="/login" component={Login} />
         <Route path="/success-login" component={SuccessLogin} />
-        <Route path="/secret" component={Secret} />
         <Route path="/new-blog" component={AddBlog} />
         <Route path="/blog" component={Blog} />
         <Route path="/edit-blog/:id" component={EditBlog} />

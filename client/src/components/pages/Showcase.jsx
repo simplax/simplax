@@ -202,7 +202,7 @@ const Showcase = () => {
   }
   return (
     <div id="Showcase" className="Showcase">
-      
+
 
       {/* Scroll Down */}
       <div ref={categoryNavRef} className="scroll-down-container">

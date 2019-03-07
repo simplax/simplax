@@ -62,6 +62,10 @@ export default function Customize() {
 
   // window scroll
   useEffect(() => {
+    const buffer = window.innerHeight * 0.22 * 1.5;
+    window.scrollTo(0, window.innerHeight - buffer);
+  }, []);
+  useEffect(() => {
     function scrollHandler() {
       const windowTop = document.documentElement.scrollTop;
       const windowBottom =

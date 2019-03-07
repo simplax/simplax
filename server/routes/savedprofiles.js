@@ -12,8 +12,9 @@ router.get('/', isLoggedIn, (req, res, next) => {
     .catch(err => next(err))
 })
 
-router.post('/', (req, res, next) => {
-  let { _owner, title, modifiedEffects, likedEffects } = req.body
+router.post('/', isLoggedIn, (req, res, next) => {
+  let { title, modifiedEffects, likedEffects } = req.body
+  let _owner = req.user._id
   SavedProfile.create({ _owner, title, modifiedEffects, likedEffects })
     .then(savedprofile => {
       res.json({
@@ -24,7 +25,7 @@ router.post('/', (req, res, next) => {
     .catch(err => next(err))
 })
 
-router.get('/:id', (req, res, next) => {
+router.get('/:id', isLoggedIn, (req, res, next) => {
   SavedProfile.findById(req.params.id)
     .then(savedprofile => {
       res.json({
@@ -34,8 +35,8 @@ router.get('/:id', (req, res, next) => {
     .catch(err => next(err))
 })
 
-router.delete('/:id', (req, res, next) => {
-  SavedProfile.findByIdAndDelete(req.params.id)
+router.delete('/:id', isLoggedIn, (req, res, next) => {
+  SavedProfile.findOneAndDelete({ _id: req.params.id, _owner: req.user._id })
     .then(savedprofile => {
       res.json({
         savedprofile
@@ -44,9 +45,9 @@ router.delete('/:id', (req, res, next) => {
     .catch(err => next(err))
 })
 
-router.put('/:title', (req, res, next) => {
-  let { _owner, title, modifiedEffects, likedEffects } = req.body
-  SavedProfile.findOneAndUpdate({ title: req.params.title }, { _owner, title, modifiedEffects, likedEffects })
+router.put('/:title', isLoggedIn, (req, res, next) => {
+  let { title, modifiedEffects, likedEffects } = req.body
+  SavedProfile.findOneAndUpdate({ title: req.params.title, _owner: req.user._id }, { title, modifiedEffects, likedEffects })
     .then(savedprofile => {
       res.json({
         savedprofile

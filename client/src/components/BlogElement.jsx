@@ -14,7 +14,7 @@ export default function BlogElement({ blogs }) {
 
           return (<div key={blog._id} className='blog-block mt-3 px-5 py-3 mx-5'
           >
-            <h3><i class="fas fa-highlighter pr-3"></i>  <span className='blog-title'>{blog.title}</span></h3>
+            <h3><i className="fas fa-highlighter pr-3"></i>  <span className='blog-title'>{blog.title}</span></h3>
 
 
             {console.log(newBlogContent)}
@@ -24,8 +24,8 @@ export default function BlogElement({ blogs }) {
 
             <div className={'button-position'}>
               {api.isAdmin() &&
-                <Link to={`/edit-blog/${blog._id}`}><i class="fas fa-2x fa-pencil-alt"></i></Link>}
-              {api.isAdmin() && <button onClick={e => this.deleteBlogPost(blog._id)}><i class="fas fa-eraser fa-2x"></i></button>}
+                <Link to={`/edit-blog/${blog._id}`}><i className="fas fa-2x fa-pencil-alt"></i></Link>}
+              {api.isAdmin() && <button onClick={e => this.deleteBlogPost(blog._id)}><i className="fas fa-eraser fa-2x"></i></button>}
             </div>
           </div>)
         })

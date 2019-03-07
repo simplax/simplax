@@ -3,35 +3,22 @@ import LandingTitle from '../animations/LandingTitle';
 import Plx from 'react-plx';
 
 const Home = () => {
+  let layers = []
+  for (let i = 4; i >= 1; i--) {
+    layers.push(<img
+      key={i}
+      id={`layer${i}`}
+      className="landing-logo"
+      src={`/images/logo-layer-${i}.svg`}
+      alt="logo"
+    />)
+  }
   return (
     <div className="Home">
     {/* Landing */}
       <section className="landing">
         <div className="landing-logo-container">
-          <img
-            id="layer4"
-            className="landing-logo"
-            src="/images/logo-layer-4.svg"
-            alt="logo"
-          />
-          <img
-            id="layer3"
-            className="landing-logo"
-            src="/images/logo-layer-3.svg"
-            alt="logo"
-          />
-          <img
-            id="layer2"
-            className="landing-logo"
-            src="/images/logo-layer-2.svg"
-            alt="logo"
-          />
-          <img
-            id="layer1"
-            className="landing-logo"
-            src="/images/logo-layer-1.svg"
-            alt="logo"
-          />
+          {layers}
         </div>
         <div className="landing-title-container">
           <LandingTitle />

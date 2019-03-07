@@ -16,7 +16,6 @@ export default function Save({ modifiedEffects, likedEffects, onSave, loadedFile
   }
 
   let data = {
-    _owner: api.getLocalStorageUser(),
     title: newtitle,
     modifiedEffects: modifiedEffects,
     likedEffects: likedEffects
