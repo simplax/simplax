@@ -23,7 +23,7 @@ const Home = () => {
           <LandingTitle />
           <div className="landing-quote-container">
             <p className="landing-quote">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit.
+              parallax effects prepared in a simple way.
             </p>
           </div>
         </div>
