@@ -85,14 +85,16 @@ export default class AddBlog extends React.Component {
   render() {
     return (
       <div className="AddBlog">
-        <div className="container">
+        <div className="container mt-5 pt-5">
           <form action="">
-            <label htmlFor="title">title:</label>
+
             <input
               type="text"
               name="title"
+              className='mb-3 form-control bg-dark-light text-light'
               onChange={e => this.handleTitleChange(e)}
               value={this.state.title}
+              placeholder='blog title'
             />
             <ReactQuill
               value={this.state.text}
@@ -102,9 +104,12 @@ export default class AddBlog extends React.Component {
               formats={this.formats}
               placeholder={"new blogpost"}
             />
-            <button className="btn btn-primary mt-5" onClick={this.handleClick} type="submit">
-              Add post
-            </button>
+            <div className='d-flex justify-content-center'>
+              <button className="btn btn-primary mt-5" onClick={this.handleClick} type="submit">
+                <i class="fab fa-2x fa-telegram-plane"></i>
+              </button>
+
+            </div>
           </form>
         </div>
       </div>

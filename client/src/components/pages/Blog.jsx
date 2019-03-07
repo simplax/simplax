@@ -7,6 +7,7 @@ export default class Blog extends React.Component {
   constructor(props) {
     super(props);
     this.state = { blogs: [] };
+    this.deleteBlogPost = this.deleteBlogPost.bind(this)
   }
 
   componentDidMount() {
@@ -23,7 +24,7 @@ export default class Blog extends React.Component {
     return (
       <div className="Blog">
         <div className="container blog-container">
-          <BlogElement blogs={this.state.blogs} />
+          <BlogElement blogs={this.state.blogs} handleDelete={this.deleteBlogPost} />
         </div>
       </div>
     );

@@ -2,9 +2,11 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import api from "../api";
 
-export default function BlogElement({ blogs }) {
+export default function BlogElement({ blogs, handleDelete }) {
 
   const [hover, setHover] = useState(null)
+
+
 
   return (
     <div>
@@ -16,16 +18,13 @@ export default function BlogElement({ blogs }) {
           >
             <h3><i className="fas fa-highlighter pr-3"></i>  <span className='blog-title'>{blog.title}</span></h3>
 
-
-            {console.log(newBlogContent)}
-
             <div dangerouslySetInnerHTML={{ __html: newBlogContent }} className={'blog-content'}
             />
 
             <div className={'button-position'}>
               {api.isAdmin() &&
                 <Link to={`/edit-blog/${blog._id}`}><i className="fas fa-2x fa-pencil-alt"></i></Link>}
-              {api.isAdmin() && <button onClick={e => this.deleteBlogPost(blog._id)}><i className="fas fa-eraser fa-2x"></i></button>}
+              {api.isAdmin() && <button onClick={e => handleDelete(blog._id)}><i className="fas fa-eraser fa-2x"></i></button>}
             </div>
           </div>)
         })
