@@ -1,8 +1,8 @@
-import React from 'react';
-import LandingTitle from '../animations/LandingTitle';
-import Motivation from '../Motivation';
-import GoTo from '../GoTo';
-import Plx from 'react-plx';
+import React from "react";
+import LandingTitle from "../animations/LandingTitle";
+import Motivation from "../Motivation";
+import GoTo from "../GoTo";
+import Plx from "react-plx";
 
 const Home = () => {
   let layers = [];
@@ -25,9 +25,7 @@ const Home = () => {
         <div className="landing-title-container">
           <LandingTitle />
           <div className="landing-quote-container">
-            <p className="landing-quote">
-              parallax effects prepared in a simple way.
-            </p>
+            <p className="landing-quote">parallax effects prepared in a simple way.</p>
           </div>
         </div>
       </section>
@@ -46,5 +44,3 @@ const Home = () => {
 };
 
 export default Home;
-
-// An array of parallax effects to be applied
