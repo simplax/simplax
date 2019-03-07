@@ -5,6 +5,7 @@ export default function Save({ modifiedEffects, likedEffects, onSave, loadedFile
   const [newtitle, setNewTitle] = useState(
     loadedFile && loadedFile.savedprofile.title ? loadedFile.savedprofile.title : "Save file"
   );
+  const [isSaving, setIsSaving] = useState(false);
 
   useEffect(() => {
     if (loadedFile && loadedFile.savedprofile.title) setNewTitle(loadedFile.savedprofile.title);
@@ -30,9 +31,23 @@ export default function Save({ modifiedEffects, likedEffects, onSave, loadedFile
           onChange={e => handleChange(e)}
           value={newtitle}
         />
-        <div className="btn-icon text-primary" onClick={() => onSave(data)}>
-          <i className="fas fa-save" />
-        </div>
+        {isSaving ? (
+          <div className="btn-icon">
+            <div className="spinner-border spinner-border-sm text-primary" role="status">
+              <span className="sr-only">Loading...</span>
+            </div>
+          </div>
+        ) : (
+          <div
+            className="btn-icon text-primary"
+            onClick={() => {
+              onSave(data);
+              setIsSaving(true);
+              setTimeout(() => setIsSaving(false), 1000);
+            }}>
+            <i className="fas fa-save" />
+          </div>
+        )}
       </div>
     </div>
   );

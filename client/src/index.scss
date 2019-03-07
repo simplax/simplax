@@ -25,9 +25,9 @@ $dark: #1f1f1f;
 $dark-light: lighten(#1f1f1f, 10%);
 $grey-light: #dbc8a6;
 
-@import "../node_modules/bootstrap/scss/bootstrap.scss";
-@import url("https://fonts.googleapis.com/css?family=Poppins");
-@import url("https://fonts.googleapis.com/css?family=Roboto:100,300,400");
+@import '../node_modules/bootstrap/scss/bootstrap.scss';
+@import url('https://fonts.googleapis.com/css?family=Poppins');
+@import url('https://fonts.googleapis.com/css?family=Roboto:100,300,400');
 
 // --------------------
 // Variables
@@ -64,7 +64,7 @@ $grey-light: #dbc8a6;
 body {
   margin: 0;
   padding: 0;
-  font-family: "Roboto", sans-serif;
+  font-family: 'Roboto', sans-serif;
   font-size: 0.9rem;
   letter-spacing: 0.07rem;
   background-color: $dark;
@@ -116,7 +116,12 @@ i:hover {
 .showcase-box {
   width: 44vw;
   height: 44vw;
-  background-image: linear-gradient(-60deg, $secondary-super-dark, $secondary, $primary);
+  background-image: linear-gradient(
+    -60deg,
+    $secondary-super-dark,
+    $secondary,
+    $primary
+  );
   border: 3px solid white;
   z-index: 1;
 }
@@ -219,10 +224,10 @@ i:hover {
   ul.navbar-nav {
     width: 100%;
     display: flex;
-    justify-content: center;
+    justify-content: flex-end;
     align-items: center;
     .nav-item {
-      margin: 0 1.2rem;
+      margin: 0 0.8rem;
       .nav-link {
         font-size: 0.85rem;
         font-weight: 300;
@@ -239,15 +244,15 @@ i:hover {
         border-bottom: 1px solid $grey-light;
       }
     }
-    .home-link {
-      margin-left: auto;
-    }
-    .github-login-link {
-      margin-left: auto;
-    }
-    .profile-image-link {
-      margin-left: auto;
-    }
+    // .home-link {
+    //   margin-left: auto;
+    // }
+    // .github-login-link {
+    //   margin-left: auto;
+    // }
+    // .profile-image-link {
+    //   margin-left: auto;
+    // }
     .profile-image {
       width: 3.1vw;
       border-radius: 50%;
@@ -292,23 +297,23 @@ i:hover {
       }
       #layer4 {
         top: 75%;
-        animation: logoDropDown 0.3s ease-out forwards, logoSpring 3s 0.3s ease-out,
-          logoShine 4s 1.2s;
+        animation: logoDropDown 0.3s ease-out forwards,
+          logoSpring 3s 0.3s ease-out, logoShine 4s 1.2s;
       }
       #layer3 {
         top: 50%;
-        animation: logoDropDown 0.3s 0.1s ease-out forwards, logoSpring 3s 0.4s ease-out,
-          logoShine 4s 1.2s;
+        animation: logoDropDown 0.3s 0.1s ease-out forwards,
+          logoSpring 3s 0.4s ease-out, logoShine 4s 1.2s;
       }
       #layer2 {
         top: 25%;
-        animation: logoDropDown 0.3s 0.2s ease-out forwards, logoSpring 3s 0.5s ease-out,
-          logoShine 4s 1.2s;
+        animation: logoDropDown 0.3s 0.2s ease-out forwards,
+          logoSpring 3s 0.5s ease-out, logoShine 4s 1.2s;
       }
       #layer1 {
         top: 0;
-        animation: logoDropDown 0.3s 0.3s ease-out forwards, logoSpring 3s 0.6s ease-out,
-          logoShine 4s 1.2s;
+        animation: logoDropDown 0.3s 0.3s ease-out forwards,
+          logoSpring 3s 0.6s ease-out, logoShine 4s 1.2s;
       }
     }
     .landing-title-container {
@@ -357,6 +362,9 @@ i:hover {
         animation: titleShine3 1s 5s;
       }
     }
+  }
+
+  .motivation {
   }
 }
 
@@ -708,6 +716,29 @@ i:hover {
     position: fixed;
     bottom: 1.5rem;
     right: 2rem;
+    .code-snippet-ring {
+      display: inline-block;
+      width: 70px;
+      animation: codeSnippetRotate 15s infinite;
+    }
+    .fa-code {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-60%, -30%);
+    }
+  }
+}
+
+@keyframes codeSnippetRotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(360deg);
+  }
+  100% {
+    transform: rotate(0deg);
   }
 }
 
@@ -986,7 +1017,7 @@ i:hover {
 
   .chevron:before,
   .chevron:after {
-    content: " ";
+    content: ' ';
     position: absolute;
     top: 0;
     height: 100%;
@@ -1029,7 +1060,7 @@ i:hover {
 
   .chevron:before,
   .chevron:after {
-    content: " ";
+    content: ' ';
     position: absolute;
     top: 0;
     height: 100%;
