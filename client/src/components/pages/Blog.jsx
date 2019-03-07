@@ -13,7 +13,7 @@ export default class Blog extends React.Component {
     api.getBlogPost().then(data => this.setState({ blogs: data }));
   }
 
-  deleteCountry(blogId) {
+  deleteBlogPost(blogId) {
     api
       .deleteBlogPost(blogId)
       .then(() => this.setState({ blogs: this.state.blogs.filter(blog => blog._id !== blogId) }));

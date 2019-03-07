@@ -1,4 +1,6 @@
 import React, { useRef, useState, useEffect } from "react";
+import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
+import { tomorrow } from 'react-syntax-highlighter/dist/esm/styles/prism';
 
 export default function CodeSnipppetModal({ parallaxDataCode, onCloseClick }) {
   const codeSnippetValue = useRef(null);
@@ -90,7 +92,8 @@ const parallaxData = [
         <div className="code-snippet-seperator" />
         <div className="code-snippet-body overflow-auto rounded">
           <pre className="pre-text">
-            <span>{code}</span>
+
+            <SyntaxHighlighter language='javascript' style={tomorrow} useInlineStyles>{code}</SyntaxHighlighter>
           </pre>
           <textarea className="hidden" ref={codeSnippetValue} value={code} readOnly />
         </div>

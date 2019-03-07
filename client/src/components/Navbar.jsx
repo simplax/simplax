@@ -3,13 +3,36 @@ import { NavLink, Link } from 'react-router-dom';
 import api from '../api';
 
 export default function Navbar() {
-  useEffect(() => {});
+  useEffect(() => { });
   return (
     <div className="Navbar">
       <nav className="navbar navbar-expand-md navbar-dark">
-        <NavLink className="navbar-brand" exact to="/">
-          Simplx Logo
-        </NavLink>
+        <div className="top-logo-container">
+          <img
+            id="layer4Top"
+            className="landing-logoTop"
+            src="/images/logo-layer-4.svg"
+            alt="logo"
+          />
+          <img
+            id="layer3Top"
+            className="landing-logoTop"
+            src="/images/logo-layer-3.svg"
+            alt="logo"
+          />
+          <img
+            id="layer2Top"
+            className="landing-logoTop"
+            src="/images/logo-layer-2.svg"
+            alt="logo"
+          />
+          <img
+            id="layer1Top"
+            className="landing-logoTop"
+            src="/images/logo-layer-1.svg"
+            alt="logo"
+          />
+        </div>
         <button
           className="navbar-toggler"
           type="button"
@@ -49,11 +72,11 @@ export default function Navbar() {
                 Blog
               </NavLink>
             </li>
-            <li className="nav-item">
+            {api.isAdmin() && <li className="nav-item">
               <NavLink className="nav-link" to="/new-blog">
                 New Blog
               </NavLink>
-            </li>
+            </li>}
             {!api.isLoggedIn() && (
               <li className="nav-item github-login-link">
                 <a

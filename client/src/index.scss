@@ -140,6 +140,9 @@ i:hover {
     width: 40vw;
     height: 40vw;
   }
+  .top-logo-container{
+    display:none;
+  }
 }
 
 .showcase-box-inner {
@@ -1179,12 +1182,16 @@ i:hover {
 .blog-container {
   margin-top: 80px;
 
-  .blog-block {
-    color: black;
-    border-radius: 10px;
-    background-image: linear-gradient(-60deg, $light, $white);
-    box-shadow: 14px 13px 21px -5px #726650;
-  }
+.blog-block{
+  color:black;
+  border-radius: 10px;
+  background-image: linear-gradient(-60deg, $light, $white);
+  box-shadow: 14px 13px 21px -5px #302b21;
+}
+
+.blog-block:hover{
+  box-shadow: 14px 13px 21px -5px #726650;
+}
   h3 {
     font-weight: 500;
     color: #726650;
@@ -1264,3 +1271,125 @@ i:hover {
     margin-left: auto;
   }
 }
+
+//----top logo container
+.top-logo-container {
+  height: 60px;
+  margin: 0 3rem;
+  position: absolute;
+  top: 18%;
+  left: 0;
+}
+
+.top-logo-container:hover #layer3Top{
+animation: logoLayerThree 1.5s ease-out;
+}
+
+.top-logo-container:hover #layer2Top{
+animation: logoLayerTwo 1.5s ease-out;
+}
+
+.top-logo-container:hover #layer1Top{
+animation: logoLayerOne 1.5s ease-out;
+}
+
+@keyframes logoLayerThree {
+0%{
+  transform: translate(0,0)
+}
+
+20%{
+  transform: translate(0,20%)
+}
+
+40%{
+  transform: translate(0,-15%)
+}
+
+60%{
+  transform: translate(0,10%)
+}
+
+80%{
+  transform: translate(0,-5%)
+}
+
+100%{
+  transform: translate(0,0)
+}
+}
+
+@keyframes logoLayerTwo {
+0%{
+  transform: translate(0,0)
+}
+
+20%{
+  transform: translate(0,40%)
+}
+
+40%{
+  transform: translate(0,-30%)
+}
+
+60%{
+  transform: translate(0,20%)
+}
+
+80%{
+  transform: translate(0,-10%)
+}
+
+100%{
+  transform: translate(0,0)
+}
+}
+
+@keyframes logoLayerOne {
+0%{
+  transform: translate(0,0)
+}
+
+20%{
+  transform: translate(0,60%)
+}
+
+40%{
+  transform: translate(0,-50%)
+}
+
+60%{
+  transform: translate(0,40%)
+}
+
+80%{
+  transform: translate(0,-30%)
+}
+
+100%{
+  transform: translate(0,0)
+}
+}
+
+  // transform: translateY(-65%);
+  .landing-logoTop {
+    position: absolute;
+    width: 60px;
+  }
+  #layer4Top {
+    top: 45%;
+    // animation: logoDropDown 0.3s forwards;
+  }
+  #layer3Top {
+    top: 30%;
+    // animation: logoDropDown 0.3s 0.1s forwards;
+  }
+  #layer2Top {
+    top: 15%;
+    // animation: logoDropDown 0.3s 0.2s forwards;
+  }
+  #layer1Top {
+    top: 0;
+    // animation: logoDropDown 0.3s 0.3s forwards;
+  }
+

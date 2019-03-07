@@ -13,12 +13,12 @@ export default function CustomizeBox({ parallaxDataCode }) {
           .getElementById('sidebar')
           .getBoundingClientRect();
         setWidthSidebar(width);
-        console.log('correct')
+
       } else {
         setWidthSidebar(0);
-        console.log('incorrect')
+
       }
-    }, 500)
+    }, 100)
 
 
   });

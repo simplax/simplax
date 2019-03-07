@@ -325,7 +325,7 @@ export default function Customize() {
               setSavedProfile(profile);
             });
           })
-          .catch(err => {});
+          .catch(err => { });
       } else api.updateSavedProfile(data.title, data);
     });
   }
@@ -351,7 +351,15 @@ export default function Customize() {
 
   function handleCodeSnippetClick() {
     setShowCodeSnippet(!showCodeSnippet);
+
   }
+
+  useEffect(() => {
+    if (showCodeSnippet)
+      document.body.style.overflow = "hidden";
+    else
+      document.body.style.overflow = "scroll";
+  }, [showCodeSnippet])
 
   /*********************************
    * Render
@@ -452,15 +460,15 @@ export default function Customize() {
                     loadedFile={loadedFile}
                   />
                 ) : (
-                  <div className="d-flex justify-content-center">
-                    <a
-                      className="btn-save btn-icon text-white"
-                      href={api.service.defaults.baseURL + "/github-login"}>
-                      <i className="fab fa-github" />
-                      <span>Save</span>
-                    </a>
-                  </div>
-                )}
+                    <div className="d-flex justify-content-center">
+                      <a
+                        className="btn-save btn-icon text-white"
+                        href={api.service.defaults.baseURL + "/github-login"}>
+                        <i className="fab fa-github" />
+                        <span>Save</span>
+                      </a>
+                    </div>
+                  )}
               </div>
             </div>
           ) : null}

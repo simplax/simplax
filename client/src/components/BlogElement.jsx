@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import api from "../api";
 
 export default function BlogElement({ blogs }) {
 
@@ -22,9 +23,9 @@ export default function BlogElement({ blogs }) {
             />
 
             <div className={'button-position'}>
-
-              <Link to={`/edit-blog/${blog._id}`}><i class="fas fa-2x fa-pencil-alt"></i></Link>
-              <button onClick={e => this.deleteCountry(blog._id)}><i class="fas fa-eraser fa-2x"></i></button>
+              {api.isAdmin() &&
+                <Link to={`/edit-blog/${blog._id}`}><i class="fas fa-2x fa-pencil-alt"></i></Link>}
+              {api.isAdmin() && <button onClick={e => this.deleteBlogPost(blog._id)}><i class="fas fa-eraser fa-2x"></i></button>}
             </div>
           </div>)
         })
