@@ -274,18 +274,13 @@ i:hover {
   .landing {
     height: 100vh;
     width: 100vw;
-    .landing-background-1 {
-      width: 100%;
-      height: 100%;
-      position: absolute;
-    }
+    display: flex;
+    justify-content: center;
+    align-items: center;
     .landing-logo-container {
       height: 18vh;
-      margin: 0 3rem;
-      position: absolute;
-      top: 50%;
-      left: 10%;
-      transform: translateY(-78%);
+      width: 15vw;
+      position: relative;
       .landing-logo {
         position: absolute;
         width: 15vw;
@@ -313,27 +308,29 @@ i:hover {
       }
     }
     .landing-title-container {
-      width: 80%;
       height: 100%;
       display: flex;
       flex-direction: column;
       justify-content: center;
-      align-items: center;
+      align-items: flex-start;
+      margin-left: 3rem;
       .landing-title {
+        margin-top: 2rem;
+        margin-right: 0.2rem;
         color: lighten($light, 10%);
         display: inline-block;
-        margin-right: 0.3rem;
       }
       .landing-quote-container {
-        width: 50%;
-        margin-top: 0.5%;
-        margin-left: auto;
-        margin-right: 45px;
+        width: 100%;
+        margin-top: 0.3rem;
+        margin-left: 3rem;
         .landing-quote {
           color: $gray;
           font-size: 0.87rem;
           font-weight: 100;
           letter-spacing: 0.1rem;
+          opacity: 0;
+          animation: textFadeIn 1s 5s forwards;
         }
       }
 
@@ -354,6 +351,68 @@ i:hover {
       }
       #title-6 {
         animation: titleShine3 1s 5s;
+      }
+    }
+  }
+}
+
+@include media-breakpoint-down(md) {
+  .Home {
+    .landing {
+      .landing-logo-container {
+        height: 18vh;
+        width: 20vw;
+        .landing-logo {
+          width: 20vw;
+        }
+      }
+      .landing-title-container {
+        margin-left: 5rem;
+        .landing-title {
+          font-size: 2rem;
+        }
+        .landing-quote-container {
+          width: 80%;
+          margin-top: 0.1rem;
+          margin-left: 0rem;
+          .landing-quote {
+            color: $gray;
+            font-size: 0.7rem;
+            font-weight: 100;
+            letter-spacing: 0.05rem;
+          }
+        }
+      }
+    }
+  }
+}
+
+@include media-breakpoint-down(sm) {
+  .Home {
+    margin: 0 3rem;
+    .landing {
+      .landing-logo-container {
+        height: 10vh;
+        .landing-logo {
+          width: 25vw;
+        }
+      }
+      .landing-title-container {
+        margin-left: 5rem;
+        .landing-title {
+          font-size: 2rem;
+        }
+        .landing-quote-container {
+          width: 80%;
+          margin-top: 0.1rem;
+          margin-left: 0rem;
+          .landing-quote {
+            color: $gray;
+            font-size: 0.7rem;
+            font-weight: 100;
+            letter-spacing: 0.05rem;
+          }
+        }
       }
     }
   }
@@ -454,17 +513,12 @@ i:hover {
     color: lighten($light, 10%);
   }
 }
-
-@include media-breakpoint-down(md) {
-  .Home {
-    .landing {
-      .landing-logo-container {
-        height: 16vh;
-        .landing-logo {
-          width: 20vw;
-        }
-      }
-    }
+@keyframes textFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
   }
 }
 
