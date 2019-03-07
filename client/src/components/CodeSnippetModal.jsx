@@ -3,27 +3,54 @@ import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { tomorrow } from "react-syntax-highlighter/dist/esm/styles/prism";
 
 export default function CodeSnipppetModal({ parallaxDataCode, onCloseClick }) {
+  console.log('TCL: CodeSnipppetModal -> parallaxDataCode', parallaxDataCode)
   const codeSnippetValue = useRef(null);
 
   if (parallaxDataCode.length !== 0) {
     const propertiesArrayEnter = parallaxDataCode[0].properties.map(property => {
-      return `
+      if (property.property === 'color' || property.property === 'backgroundColor' || property.property === 'borderColor' || property.property === 'borderBottomColor' || property.property === 'borderTopColor' || property.property === 'borderLeftColor' || property.property === 'borderRightColor') {
+        console.log('color')
+        return `
           {
             startValue: '${property.startValue}',
             endValue: '${property.endValue}',
             property: '${property.property}',
             unit: '${property.unit}'
           }`;
+      }
+
+
+      else {
+        console.log('not color')
+        return `{
+            startValue: ${property.startValue},
+            endValue: ${property.endValue},
+            property: ${property.property},
+            unit: '${property.unit}'
+          }`}
     });
 
     const propertiesArrayLeave = parallaxDataCode[1].properties.map(property => {
-      return `
+      if (property.property === 'color' || property.property === 'backgroundColor' || property.property === 'borderColor' || property.property === 'borderBottomColor' || property.property === 'borderTopColor' || property.property === 'borderLeftColor' || property.property === 'borderRightColor') {
+        console.log('color')
+        return `
           {
             startValue: '${property.startValue}',
             endValue: '${property.endValue}',
             property: '${property.property}',
             unit: '${property.unit}'
           }`;
+      }
+
+
+      else {
+        console.log('not color')
+        return `{
+            startValue: ${property.startValue},
+            endValue: ${property.endValue},
+            property: ${property.property},
+            unit: '${property.unit}'
+          }`}
     });
     var code = `import React, { Component } from 'react';
 import Plx from 'react-plx';
