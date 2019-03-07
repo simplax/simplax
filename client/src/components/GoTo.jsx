@@ -117,12 +117,12 @@ const GoTo = () => {
             </Plx>
             <Plx parallaxData={parallaxDataUp}>
               <p className="go-to-paragraph">
-                Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+                Mix, merge and customize your favorite effects!
               </p>
             </Plx>
             <Plx parallaxData={parallaxDataRight}>
               <Link className="go-to-link" to="/customize">
-                Customize
+                Customize Now
               </Link>
               <i className="fas fa-arrow-left" />
             </Plx>
@@ -135,7 +135,7 @@ const GoTo = () => {
             </Plx>
             <Plx parallaxData={parallaxDataUp}>
               <p className="go-to-paragraph">
-                Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+                Need a quick start guide?
               </p>
             </Plx>
             <Plx parallaxData={parallaxDataRight}>
