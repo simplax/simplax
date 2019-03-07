@@ -51,11 +51,7 @@ export default function Navbar() {
                 Home
               </NavLink>
             </li>
-            <li className="nav-item">
-              <NavLink className="nav-link" to="/about-us">
-                About Us
-              </NavLink>
-            </li>
+
             <li className="nav-item">
               <NavLink className="nav-link" to="/explore">
                 Explore
@@ -64,6 +60,11 @@ export default function Navbar() {
             <li className="nav-item">
               <NavLink className="nav-link" to="/customize">
                 Customize
+              </NavLink>
+            </li>
+            <li className="nav-item">
+              <NavLink className="nav-link" to="/tutorial">
+                Tutorial
               </NavLink>
             </li>
             <li className="nav-item">
@@ -85,17 +86,19 @@ export default function Navbar() {
                 </a>
               </li>
             )}
-            {api.isLoggedIn() && (
+            {/* {api.isLoggedIn() && (
               <li className="nav-item github-login-link">
                 <Link className="nav-link " to="/" onClick={() => api.logout()}>
                   Logout
                 </Link>
               </li>
-            )}
+            )} */}
             {api.isLoggedIn() && (
-              <Link className="nav-link" to="/customize" onClick={() => api.logout()}>
-                <img src={api.getLocalStorageUser().imageUrl} alt="" className="profile-image" />
-              </Link>
+              <li className="nav-item profile-image-link">
+                <Link className="nav-link" to="/customize" onClick={() => api.logout()}>
+                  <img src={api.getLocalStorageUser().imageUrl} alt="" className="profile-image" />
+                </Link>
+              </li>
             )}
           </ul>
         </div>
