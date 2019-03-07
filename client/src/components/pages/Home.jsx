@@ -5,7 +5,8 @@ import Plx from 'react-plx';
 const Home = () => {
   return (
     <div className="Home">
-      <div className="landing">
+    {/* Landing */}
+      <section className="landing">
         <div className="landing-logo-container">
           <img
             id="layer4"
@@ -40,7 +41,13 @@ const Home = () => {
             </p>
           </div>
         </div>
-      </div>
+      </section>
+    
+    {/* Motivation */}
+    <section className="motivation"></section>
+
+      {/* Go To */}
+      <section className="goTo"></section>
     </div>
   );
 };
