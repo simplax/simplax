@@ -143,6 +143,8 @@ i:hover {
   .top-logo-container {
     display: none;
   }
+
+
 }
 
 .showcase-box-inner {
@@ -1542,4 +1544,94 @@ i:hover {
 #layer1Top {
   top: 0;
   // animation: logoDropDown 0.3s 0.3s forwards;
+}
+
+// Tutorial section
+
+.tutorial-intro-container{
+  top:80px;
+  height: 100vh;
+  width: 100vw;
+  // background-color: rgba($secondary-super-dark,0.1);
+  color: white;
+
+  h4{
+    margin: 0 25vw;
+    font-weight: 200;
+    letter-spacing: 0.2rem;
+    line-height: 2em;
+    text-align: center;
+
+    span{
+      display:block;
+    }
+  }
+
+  h5{
+    font-weight: 200;
+    letter-spacing: 0.2rem;
+    line-height: 2em;
+    text-align: center;
+  }
+
+  a{
+    text-decoration: none;
+  }
+
+
+}
+
+.tutorial-intro-explore{
+width: 25vw;
+height: 25vw;
+background-color: white;
+margin: 0 5vw;
+}
+
+.tutorial-intro-customize{
+width: 25vw;
+height: 25vw;
+background-color: white;
+
+}
+
+.tutorial-intro-code{
+width: 25vw;
+height: 25vw;
+background-color: white;
+margin: 0 5vw;
+}
+
+.tutorial-explore-container{
+  height: 100vh;
+  width: 100vw;
+  background-color: rgba($secondary-dark,0.1);
+
+  img{
+    width: 75vw;
+    // height: 40vh;
+  
+    // height: 55vh;
+    padding: 3vw;
+    margin-top: 80px;
+  }
+
+  @include media-breakpoint-up(md) {
+  img{
+  width: 50vw;
+  }
+
+}
+}
+
+.tutorial-customize-container{
+  height: 100vh;
+  width: 100vw;
+  background-color: rgba($primary-super-dark,0.1);
+}
+
+.tutorial-code-container{
+  height: 100vh;
+  width: 100vw;
+  background-color: rgba($primary-dark,0.1);
 }

@@ -3,6 +3,7 @@ import api from "../api";
 
 export default function Load({ onLoad, saved, onDelete, remove }) {
   const [savedProfile, setSavedProfile] = useState([]);
+  const [isDeleting, setIsDeleting] = useState(false);
 
   const [title, setTitle] = useState("");
 
@@ -54,9 +55,23 @@ export default function Load({ onLoad, saved, onDelete, remove }) {
             );
           })}
         </select>
-        <div className="btn-icon text-secondary" onClick={() => onDelete(title)}>
-          <i className="fas fa-trash-alt" />
-        </div>
+        {isDeleting ? (
+          <div className="btn-icon">
+            <div className="spinner-border spinner-border-sm text-secondary" role="status">
+              <span className="sr-only">Loading...</span>
+            </div>
+          </div>
+        ) : (
+          <div
+            className="btn-icon text-secondary"
+            onClick={() => {
+              onDelete(title);
+              setIsDeleting(true);
+              setTimeout(() => setIsDeleting(false), 1000);
+            }}>
+            <i className="fas fa-trash-alt" />
+          </div>
+        )}
       </div>
     </div>
   );

@@ -12,6 +12,7 @@ import AddBlog from './pages/AddBlog';
 import EditBlog from './pages/EditBlog';
 import Blog from './pages/Blog';
 import SuccessLogin from './pages/SuccessLogin';
+import Tutorial from './pages/Tutorial';
 
 export default function App() {
   return (
@@ -31,6 +32,7 @@ export default function App() {
         <Route path="/new-blog" component={AddBlog} />
         <Route path="/blog" component={Blog} />
         <Route path="/edit-blog/:id" component={EditBlog} />
+        <Route path='/tutorial' component={Tutorial} />
         <Route render={() => <h2>404</h2>} />
       </Switch>
     </div>
