@@ -27,7 +27,7 @@ export default function Navbar() {
             alt="logo"
           />
           <img
-            id="layer1T"
+            id="layer1Top"
             className="landing-logoTop"
             src="/images/logo-layer-1.svg"
             alt="logo"
