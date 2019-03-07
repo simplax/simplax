@@ -55,9 +55,8 @@ export default function Customize() {
   // window scroll
   useEffect(() => {
     const buffer = window.innerHeight * 0.22 * 1.5;
-    window.scrollTo(0, window.innerHeight - buffer)
-  }, [])
-
+    window.scrollTo(0, window.innerHeight - buffer);
+  }, []);
   useEffect(() => {
     function scrollHandler() {
       const windowTop = document.documentElement.scrollTop;
@@ -330,7 +329,7 @@ export default function Customize() {
               setSavedProfile(profile);
             });
           })
-          .catch(err => { });
+          .catch(err => {});
       } else api.updateSavedProfile(data.title, data);
     });
   }
@@ -462,15 +461,15 @@ export default function Customize() {
                     loadedFile={loadedFile}
                   />
                 ) : (
-                    <div className="d-flex justify-content-center">
-                      <a
-                        className="btn-save btn-icon text-white"
-                        href={api.service.defaults.baseURL + "/github-login"}>
-                        <i className="fab fa-github" />
-                        <span>Save</span>
-                      </a>
-                    </div>
-                  )}
+                  <div className="d-flex justify-content-center">
+                    <a
+                      className="btn-save btn-icon text-white"
+                      href={api.service.defaults.baseURL + "/github-login"}>
+                      <i className="fab fa-github" />
+                      <span>Save</span>
+                    </a>
+                  </div>
+                )}
               </div>
             </div>
           ) : null}

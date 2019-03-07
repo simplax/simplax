@@ -3,7 +3,8 @@ import { NavLink, Link } from "react-router-dom";
 import api from "../api";
 
 export default function Navbar() {
-  useEffect(() => { });
+  const [isExpanded, setIsExpanded] = useState(false);
+
   return (
     <div className="Navbar">
       <nav className="navbar navbar-expand-md navbar-dark pl-3">
@@ -34,54 +35,60 @@ export default function Navbar() {
           />
         </div>
         <button
-          className="navbar-toggler"
+          onClick={() => setIsExpanded(!isExpanded)}
+          className={isExpanded ? "navbar-toggler" : "navbar-toggler collapsed"}
           type="button"
           data-toggle="collapse"
           data-target="#navbarToggler"
           aria-controls="navbarToggler"
-          aria-expanded="false"
+          aria-expanded={isExpanded}
           aria-label="Toggle navigation">
           <span className="navbar-toggler-icon" />
         </button>
 
-        <div className="collapse navbar-collapse" id="navbarToggler">
+        <div
+          className={isExpanded ? "collapse navbar-collapse show" : "collapse navbar-collapse"}
+          id="navbarToggler">
           <ul className="navbar-nav mt-2 mt-lg-0">
             <li className="nav-item home-link">
-              <NavLink className="nav-link" exact to="/">
+              <NavLink onClick={() => setIsExpanded(false)} className="nav-link" exact to="/">
                 Home
               </NavLink>
             </li>
 
             <li className="nav-item">
-              <NavLink className="nav-link" to="/explore">
+              <NavLink onClick={() => setIsExpanded(false)} className="nav-link" to="/explore">
                 Explore
               </NavLink>
             </li>
             <li className="nav-item">
-              <NavLink className="nav-link" to="/customize">
+              <NavLink onClick={() => setIsExpanded(false)} className="nav-link" to="/customize">
                 Customize
               </NavLink>
             </li>
             <li className="nav-item">
-              <NavLink className="nav-link" to="/tutorial">
+              <NavLink onClick={() => setIsExpanded(false)} className="nav-link" to="/tutorial">
                 Tutorial
               </NavLink>
             </li>
             <li className="nav-item">
-              <NavLink className="nav-link" to="/blog">
+              <NavLink onClick={() => setIsExpanded(false)} className="nav-link" to="/blog">
                 Blog
               </NavLink>
             </li>
             {api.isAdmin() && (
               <li className="nav-item">
-                <NavLink className="nav-link" to="/new-blog">
+                <NavLink onClick={() => setIsExpanded(false)} className="nav-link" to="/new-blog">
                   New Blog
                 </NavLink>
               </li>
             )}
             {!api.isLoggedIn() && (
               <li className="nav-item github-login-link">
-                <a className="nav-link" href={api.service.defaults.baseURL + "/github-login"}>
+                <a
+                  onClick={() => setIsExpanded(false)}
+                  className="nav-link"
+                  href={api.service.defaults.baseURL + "/github-login"}>
                   <i className="fab fa-3x fa-github" />
                 </a>
               </li>
@@ -95,7 +102,13 @@ export default function Navbar() {
             )} */}
             {api.isLoggedIn() && (
               <li className="nav-item profile-image-link">
-                <Link className="nav-link" to="/customize" onClick={() => api.logout()}>
+                <Link
+                  className="nav-link"
+                  to="/customize"
+                  onClick={() => {
+                    api.logout();
+                    setIsExpanded(false);
+                  }}>
                   <img src={api.getLocalStorageUser().imageUrl} alt="" className="profile-image" />
                 </Link>
               </li>
