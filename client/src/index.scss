@@ -1700,4 +1700,15 @@ i:hover {
   height: 100vh;
   width: 100vw;
   background-color: rgba($primary-dark, 0.1);
+  img{
+    width: 75vw;
+    padding: 3vw;
+    margin-top: 80px;
+  }
+
+  @include media-breakpoint-up(md) {
+    img {
+      width: 50vw;
+    }
+  }
 }
