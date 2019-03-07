@@ -5,7 +5,10 @@ const userSchema = new Schema(
   {
     _github: Number,
     githubUsername: String,
-    imageUrl: String
+    imageUrl: {
+      type: String,
+      default: '/images/logo.svg'
+    }
 
   },
   {
