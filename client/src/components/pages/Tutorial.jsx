@@ -36,12 +36,6 @@ export default function Tutorial() {
           endValue: 1.5,
           property: 'scale',
         },
-
-        {
-          startValue: '#fbeed7',
-          endValue: '#ffcb59',
-          property: 'color',
-        }
       ],
     },
   ];
@@ -70,12 +64,6 @@ export default function Tutorial() {
           startValue: 1,
           endValue: 1.5,
           property: 'scale',
-        },
-
-        {
-          startValue: '#ffcb59',
-          endValue: '#d76d77',
-          property: 'color',
         }
       ],
     },
@@ -105,12 +93,6 @@ export default function Tutorial() {
           startValue: 1,
           endValue: 1.5,
           property: 'scale',
-        },
-
-        {
-          startValue: '#d76d77',
-          endValue: '#703873',
-          property: 'color',
         }
       ],
     },

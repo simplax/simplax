@@ -75,7 +75,7 @@ const Motivation = () => {
       properties: [
         {
           startValue: 0,
-          endValue:300,
+          endValue: 300,
           property: 'translateY'
         }
       ]
@@ -84,7 +84,7 @@ const Motivation = () => {
 
   return (
     <div className="motivation-container">
-    <h1>hello hello</h1>
+      <h1>hello hello</h1>
       <Plx className="bg-img-container" parallaxData={parallaxDataPurple}>
         <img className="bg-img" src="/images/purple.svg" alt="purple" />
       </Plx>
