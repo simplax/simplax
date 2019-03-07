@@ -8,8 +8,8 @@ import Plx from 'react-plx';
 
 export default function Tutorial() {
   useEffect(() => {
-    goToTop()
-  }, [])
+    goToTop();
+  }, []);
 
   const parallaxDataExploreTitle = [
     {
@@ -117,37 +117,55 @@ export default function Tutorial() {
   ];
 
   return (
-    <div>
+    <div className="Tutorial">
       {/* anchor tag for page section */}
-      <div className={'tutorial-intro-container d-flex justify-content-center align-items-center flex-column'}>
-        <div>
-          <h4> <span>Hi welcome to Simplx! </span> <span> Are you excited to dive into animations? </span> <span>Here is a quick tutorial to get you started!</span>  </h4>
-
+      <div className="tutorial-intro-container d-flex flex-column justify-content-between">
+        <div className="">
+          <h4 id="first">Hi welcome to Simplx! </h4>
+          <h4 id="second"> Are you excited to dive into animations? </h4>
+          <h4 id="third">Here is a quick tutorial to get you started!</h4>
         </div>
-        <div className={'pt-4 d-flex'}>
-          <a href="#explore">
-            <div className={'tutorial-intro-explore'}>
-
-
+        <div className="container">
+          <div className="row">
+            <div className="col">
+              <a href="#explore">
+                <div className="intro-container">
+                  <h5>Explore</h5>
+                  <div className="content">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam, magnam! A,
+                    error sit, consequatur culpa autem rerum, hic accusamus exercitationem quisquam
+                    corporis pariatur minima magnam possimus labore sapiente! Cum, odio.
+                  </div>
+                </div>
+              </a>
             </div>
-          </a>
-
-          <a href="#tutorial-customize">
-            <div className={'tutorial-intro-customize'}>
-              <h5>Customize</h5>
+            <div className="col">
+              <a href="#tutorial-customize">
+                <div className="intro-container">
+                  <h5>Customize</h5>
+                  <div className="content">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam, magnam! A,
+                    error sit, consequatur culpa autem rerum, hic accusamus exercitationem quisquam
+                    corporis pariatur minima magnam possimus labore sapiente! Cum, odio.
+                  </div>
+                </div>
+              </a>
             </div>
-          </a>
-
-          <a href="#tutorial-codeSnippet">
-            <div className={'tutorial-intro-code'}>
-              <h5>Code snippet</h5>
+            <div className="col">
+              <a href="#tutorial-codeSnippet">
+                <div className="intro-container">
+                  <h5>Code snippet</h5>
+                  <div className="content">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam, magnam! A,
+                    error sit, consequatur culpa autem rerum, hic accusamus exercitationem quisquam
+                    corporis pariatur minima magnam possimus labore sapiente! Cum, odio.
+                  </div>
+                </div>
+              </a>
             </div>
-          </a>
-
+          </div>
         </div>
       </div>
-
-
 
       {/* different tutorial page section. */}
       <ScrollableAnchor id={'explore'}>
@@ -182,5 +200,5 @@ export default function Tutorial() {
 
 
     </div>
-  )
+  );
 }

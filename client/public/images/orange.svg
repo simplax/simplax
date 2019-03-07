@@ -1,0 +1,21 @@
+<svg id="orange" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="781.703" height="502.351" viewBox="0 0 781.703 502.351">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: url(#linear-gradient);
+      }
+    </style>
+    <linearGradient id="linear-gradient" x2="1" y2="1" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#ff8c49" stop-opacity="0.102"/>
+      <stop offset="1" stop-color="#ff4651" stop-opacity="0.102"/>
+    </linearGradient>
+  </defs>
+  <rect id="Rectangle_13" data-name="Rectangle 13" class="cls-1" width="43" height="56" transform="translate(196.274 316.535)"/>
+  <rect id="Rectangle_15" data-name="Rectangle 15" class="cls-1" width="55" height="68" transform="translate(488.031 258.837)"/>
+  <rect id="Rectangle_16" data-name="Rectangle 16" class="cls-1" width="51" height="65" transform="translate(107 31)"/>
+  <rect id="Rectangle_17" data-name="Rectangle 17" class="cls-1" width="19" height="19" transform="translate(0 229.569)"/>
+  <rect id="Rectangle_19" data-name="Rectangle 19" class="cls-1" width="55" height="68" transform="translate(392.74 434.351)"/>
+  <rect id="Rectangle_20" data-name="Rectangle 20" class="cls-1" width="33" height="41" transform="translate(717.703 103.514)"/>
+  <rect id="Rectangle_23" data-name="Rectangle 23" class="cls-1" width="37" height="49" transform="translate(473.253)"/>
+  <rect id="Rectangle_26" data-name="Rectangle 26" class="cls-1" width="19" height="19" transform="translate(762.703 344.354)"/>
+</svg>
