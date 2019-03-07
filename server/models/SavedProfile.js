@@ -15,12 +15,16 @@ const savedProfileSchema = new Schema({
   },
 
   modifiedEffects: {
+    // type: [{
+    //   property: String,
+    //   value: [Schema.Types.Mixed]
+    // }],
     type: Array,
     required: true
   },
 
   likedEffects: {
-    type: Array,
+    type: [String], // NOTES: could be changed to Schema.Types.ObjectId
     required: true
   }
 })

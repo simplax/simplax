@@ -3,7 +3,7 @@ import { NavLink, Link } from "react-router-dom";
 import api from "../api";
 
 export default function Navbar() {
-  useEffect(() => {});
+  useEffect(() => { });
   return (
     <div className="Navbar">
       <nav className="navbar navbar-expand-md navbar-dark pl-3">
@@ -82,7 +82,7 @@ export default function Navbar() {
             {!api.isLoggedIn() && (
               <li className="nav-item github-login-link">
                 <a className="nav-link" href={api.service.defaults.baseURL + "/github-login"}>
-                  <i class="fab fa-3x fa-github" />
+                  <i className="fab fa-3x fa-github" />
                 </a>
               </li>
             )}
