@@ -132,9 +132,7 @@ export default function Tutorial() {
                 <div className="intro-container">
                   <h5>Explore</h5>
                   <div className="content">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam, magnam! A,
-                    error sit, consequatur culpa autem rerum, hic accusamus exercitationem quisquam
-                    corporis pariatur minima magnam possimus labore sapiente! Cum, odio.
+                    Take a look at all the 27 amazing parallax effects available in the react-plx package!
                   </div>
                 </div>
               </a>
@@ -144,9 +142,7 @@ export default function Tutorial() {
                 <div className="intro-container">
                   <h5>Customize</h5>
                   <div className="content">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam, magnam! A,
-                    error sit, consequatur culpa autem rerum, hic accusamus exercitationem quisquam
-                    corporis pariatur minima magnam possimus labore sapiente! Cum, odio.
+                    Mix, merge and customize your favorite parallax effects!
                   </div>
                 </div>
               </a>
@@ -156,9 +152,7 @@ export default function Tutorial() {
                 <div className="intro-container">
                   <h5>Code snippet</h5>
                   <div className="content">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam, magnam! A,
-                    error sit, consequatur culpa autem rerum, hic accusamus exercitationem quisquam
-                    corporis pariatur minima magnam possimus labore sapiente! Cum, odio.
+                    Get the code snippet of your customized profile and implement it immediately onto your website and see the changes!
                   </div>
                 </div>
               </a>
