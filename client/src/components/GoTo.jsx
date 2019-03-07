@@ -7,7 +7,7 @@ const GoTo = () => {
     {
       start: 'self',
       end: 'self',
-      endOffset: '20vh',
+      endOffset: '50vh',
       properties: [
         {
           startValue: 2,
@@ -52,7 +52,7 @@ const GoTo = () => {
       endOffset: '20vh',
       properties: [
         {
-          startValue: -150,
+          startValue: -200,
           endValue: 0,
           property: 'translateY'
         },
