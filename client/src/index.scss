@@ -25,9 +25,9 @@ $dark: #1f1f1f;
 $dark-light: lighten(#1f1f1f, 10%);
 $grey-light: #dbc8a6;
 
-@import '../node_modules/bootstrap/scss/bootstrap.scss';
-@import url('https://fonts.googleapis.com/css?family=Poppins');
-@import url('https://fonts.googleapis.com/css?family=Roboto:100,300,400');
+@import "../node_modules/bootstrap/scss/bootstrap.scss";
+@import url("https://fonts.googleapis.com/css?family=Poppins");
+@import url("https://fonts.googleapis.com/css?family=Roboto:100,300,400");
 
 // --------------------
 // Variables
@@ -64,7 +64,7 @@ $grey-light: #dbc8a6;
 body {
   margin: 0;
   padding: 0;
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
   font-size: 0.9rem;
   letter-spacing: 0.07rem;
   background-color: $dark;
@@ -116,12 +116,7 @@ i:hover {
 .showcase-box {
   width: 44vw;
   height: 44vw;
-  background-image: linear-gradient(
-    -60deg,
-    $secondary-super-dark,
-    $secondary,
-    $primary
-  );
+  background-image: linear-gradient(-60deg, $secondary-super-dark, $secondary, $primary);
   border: 3px solid white;
   z-index: 1;
 }
@@ -295,23 +290,23 @@ i:hover {
       }
       #layer4 {
         top: 75%;
-        animation: logoDropDown 0.3s ease-out forwards,
-          logoSpring 3s 0.3s ease-out, logoShine 4s 1.2s;
+        animation: logoDropDown 0.3s ease-out forwards, logoSpring 3s 0.3s ease-out,
+          logoShine 4s 1.2s;
       }
       #layer3 {
         top: 50%;
-        animation: logoDropDown 0.3s 0.1s ease-out forwards,
-          logoSpring 3s 0.4s ease-out, logoShine 4s 1.2s;
+        animation: logoDropDown 0.3s 0.1s ease-out forwards, logoSpring 3s 0.4s ease-out,
+          logoShine 4s 1.2s;
       }
       #layer2 {
         top: 25%;
-        animation: logoDropDown 0.3s 0.2s ease-out forwards,
-          logoSpring 3s 0.5s ease-out, logoShine 4s 1.2s;
+        animation: logoDropDown 0.3s 0.2s ease-out forwards, logoSpring 3s 0.5s ease-out,
+          logoShine 4s 1.2s;
       }
       #layer1 {
         top: 0;
-        animation: logoDropDown 0.3s 0.3s ease-out forwards,
-          logoSpring 3s 0.6s ease-out, logoShine 4s 1.2s;
+        animation: logoDropDown 0.3s 0.3s ease-out forwards, logoSpring 3s 0.6s ease-out,
+          logoShine 4s 1.2s;
       }
     }
     .landing-title-container {
@@ -661,8 +656,8 @@ i:hover {
   }
   .customize-icon-link {
     position: fixed;
-    bottom: 5vh;
-    right: 3vw;
+    bottom: 1.5rem;
+    right: 2rem;
     color: $secondary;
     display: flex;
     align-items: center;
@@ -688,10 +683,11 @@ i:hover {
 .Customize {
   .btn-toggle {
     position: fixed;
-    top: 59.2px;
+    top: 0.7rem;
     right: 2rem;
     z-index: 2000;
     background-color: $dark;
+    animation: customizeIconAnimation 7s infinite;
   }
   .sidebar-container {
     margin-top: 100px;
@@ -706,8 +702,9 @@ i:hover {
     }
   }
   .btn-code {
+    padding-bottom: 0;
     position: fixed;
-    bottom: 2rem;
+    bottom: 1.5rem;
     right: 2rem;
   }
 }
@@ -720,18 +717,14 @@ i:hover {
     .sidebar-container {
       margin-left: 2.5vw;
       margin-top: 0;
-      top: 80px;
+      top: 83px;
       position: fixed;
       z-index: 2000;
       display: block;
-      height: calc(100vh - 80px);
-
-      // display: flex;
-      // flex-direction: column;
-      // justify-content: space-between;
+      height: calc(100vh - 100px);
     }
     .effect-container {
-      height: calc(100vh - 344px);
+      height: calc(100vh - 394px);
       overflow-x: hidden;
       overflow-y: auto;
       // border-bottom: 2px solid $light;
@@ -991,7 +984,7 @@ i:hover {
 
   .chevron:before,
   .chevron:after {
-    content: ' ';
+    content: " ";
     position: absolute;
     top: 0;
     height: 100%;
@@ -1034,7 +1027,7 @@ i:hover {
 
   .chevron:before,
   .chevron:after {
-    content: ' ';
+    content: " ";
     position: absolute;
     top: 0;
     height: 100%;

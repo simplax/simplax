@@ -1,12 +1,12 @@
-import React, { useEffect, useState } from 'react';
-import { NavLink, Link } from 'react-router-dom';
-import api from '../api';
+import React, { useEffect, useState } from "react";
+import { NavLink, Link } from "react-router-dom";
+import api from "../api";
 
 export default function Navbar() {
   useEffect(() => {});
   return (
     <div className="Navbar">
-      <nav className="navbar navbar-expand-md navbar-dark">
+      <nav className="navbar navbar-expand-md navbar-dark pl-3">
         <div className="top-logo-container">
           <img
             id="layer4Top"
@@ -40,8 +40,7 @@ export default function Navbar() {
           data-target="#navbarToggler"
           aria-controls="navbarToggler"
           aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
+          aria-label="Toggle navigation">
           <span className="navbar-toggler-icon" />
         </button>
 
@@ -82,10 +81,7 @@ export default function Navbar() {
             )}
             {!api.isLoggedIn() && (
               <li className="nav-item github-login-link">
-                <a
-                  className="nav-link"
-                  href={api.service.defaults.baseURL + '/github-login'}
-                >
+                <a className="nav-link" href={api.service.defaults.baseURL + "/github-login"}>
                   <i class="fab fa-3x fa-github" />
                 </a>
               </li>
@@ -99,16 +95,8 @@ export default function Navbar() {
             )} */}
             {api.isLoggedIn() && (
               <li className="nav-item profile-image-link">
-                <Link
-                  className="nav-link"
-                  to="/customize"
-                  onClick={() => api.logout()}
-                >
-                  <img
-                    src={api.getLocalStorageUser().imageUrl}
-                    alt=""
-                    className="profile-image"
-                  />
+                <Link className="nav-link" to="/customize" onClick={() => api.logout()}>
+                  <img src={api.getLocalStorageUser().imageUrl} alt="" className="profile-image" />
                 </Link>
               </li>
             )}
