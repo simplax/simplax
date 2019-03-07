@@ -104,7 +104,7 @@ const GoTo = () => {
             </Plx>
             <Plx parallaxData={parallaxDataRight}>
               <Link className="go-to-link" to="/explore">
-                Explore Now
+                Explore
               </Link>
               <i className="fas fa-arrow-left" />
             </Plx>
