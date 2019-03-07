@@ -93,7 +93,7 @@ const parallaxData = [
         <div className="code-snippet-body overflow-auto rounded">
           <pre className="pre-text">
 
-            <SyntaxHighlighter language='javascript' style={tomorrow} >{code}</SyntaxHighlighter>
+            <SyntaxHighlighter language='javascript' style={tomorrow} useInlineStyles>{code}</SyntaxHighlighter>
           </pre>
           <textarea className="hidden" ref={codeSnippetValue} value={code} readOnly />
         </div>
