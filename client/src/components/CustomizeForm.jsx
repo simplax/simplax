@@ -32,6 +32,10 @@ export default function CustomizeForm({
     endValueModified ? endValueModified : endValue
   ]);
 
+  useEffect(() => {
+    onModifyEffect(property, values);
+  }, [values]);
+
   /*********************************
    * Render
    *********************************/

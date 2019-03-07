@@ -1,44 +1,40 @@
-import React from 'react';
-import LandingTitle from '../animations/LandingTitle';
-import Plx from 'react-plx';
+import React from "react";
+import LandingTitle from "../animations/LandingTitle";
+import Plx from "react-plx";
 
 const Home = () => {
-  let layers = []
+  let layers = [];
   for (let i = 4; i >= 1; i--) {
-    layers.push(<img
-      key={i}
-      id={`layer${i}`}
-      className="landing-logo"
-      src={`/images/logo-layer-${i}.svg`}
-      alt="logo"
-    />)
+    layers.push(
+      <img
+        key={i}
+        id={`layer${i}`}
+        className="landing-logo"
+        src={`/images/logo-layer-${i}.svg`}
+        alt="logo"
+      />
+    );
   }
   return (
     <div className="Home">
-    {/* Landing */}
+      {/* Landing */}
       <section className="landing">
-        <div className="landing-logo-container">
-          {layers}
-        </div>
+        <div className="landing-logo-container">{layers}</div>
         <div className="landing-title-container">
           <LandingTitle />
           <div className="landing-quote-container">
-            <p className="landing-quote">
-              parallax effects prepared in a simple way.
-            </p>
+            <p className="landing-quote">parallax effects prepared in a simple way.</p>
           </div>
         </div>
       </section>
-    
-    {/* Motivation */}
-    <section className="motivation"></section>
+
+      {/* Motivation */}
+      <section className="motivation" />
 
       {/* Go To */}
-      <section className="goTo"></section>
+      <section className="goTo" />
     </div>
   );
 };
 
 export default Home;
-
-// An array of parallax effects to be applied
