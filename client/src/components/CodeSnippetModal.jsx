@@ -1,6 +1,6 @@
 import React, { useRef, useState, useEffect } from "react";
-import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
-import { tomorrow } from 'react-syntax-highlighter/dist/esm/styles/prism';
+import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
+import { tomorrow } from "react-syntax-highlighter/dist/esm/styles/prism";
 
 export default function CodeSnipppetModal({ parallaxDataCode, onCloseClick }) {
   const codeSnippetValue = useRef(null);
@@ -79,7 +79,7 @@ const parallaxData = [
     <div className="CodeSnippetModal">
       <div className="code-snippet-container">
         <div className="code-snippet-title d-fley justify-content-between">
-          <h5>Code snippet for your awesome React app!</h5>
+          <h5>Code snippet</h5>
           <div className="d-flex">
             <div className="btn-icon text-primary" onClick={copyToClipboard}>
               <i className="fas fa-paste" />
@@ -92,8 +92,9 @@ const parallaxData = [
         <div className="code-snippet-seperator" />
         <div className="code-snippet-body overflow-auto rounded">
           <pre className="pre-text">
-
-            <SyntaxHighlighter language='javascript' style={tomorrow} useInlineStyles>{code}</SyntaxHighlighter>
+            <SyntaxHighlighter language="javascript" style={tomorrow} useInlineStyles>
+              {code}
+            </SyntaxHighlighter>
           </pre>
           <textarea className="hidden" ref={codeSnippetValue} value={code} readOnly />
         </div>

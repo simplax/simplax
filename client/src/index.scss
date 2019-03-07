@@ -652,8 +652,8 @@ i:hover {
   }
   .customize-icon-link {
     position: fixed;
-    bottom: 5vh;
-    right: 3vw;
+    bottom: 1.5rem;
+    right: 2rem;
     color: $secondary;
     display: flex;
     align-items: center;
@@ -679,10 +679,11 @@ i:hover {
 .Customize {
   .btn-toggle {
     position: fixed;
-    top: 59.2px;
+    top: 0.7rem;
     right: 2rem;
     z-index: 2000;
     background-color: $dark;
+    animation: customizeIconAnimation 7s infinite;
   }
   .sidebar-container {
     margin-top: 100px;
@@ -697,8 +698,9 @@ i:hover {
     }
   }
   .btn-code {
+    padding-bottom: 0;
     position: fixed;
-    bottom: 2rem;
+    bottom: 1.5rem;
     right: 2rem;
   }
 }
