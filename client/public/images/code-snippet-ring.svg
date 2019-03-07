@@ -1,0 +1,125 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="176.779" height="184.032" viewBox="0 0 176.779 184.032">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #ffcb59;
+      }
+
+      .cls-1, .cls-10, .cls-11, .cls-12, .cls-2, .cls-3, .cls-4, .cls-5, .cls-6, .cls-7, .cls-8, .cls-9 {
+        font-size: 20px;
+      }
+
+      .cls-1, .cls-10, .cls-11, .cls-12, .cls-13, .cls-14, .cls-15, .cls-16, .cls-17, .cls-18, .cls-19, .cls-2, .cls-20, .cls-21, .cls-3, .cls-4, .cls-5, .cls-6, .cls-7, .cls-8, .cls-9 {
+        font-family: SegoeUI, Segoe UI;
+      }
+
+      .cls-2 {
+        fill: #ffc444;
+      }
+
+      .cls-3 {
+        fill: #ffba25;
+      }
+
+      .cls-4 {
+        fill: #ffae00;
+      }
+
+      .cls-5 {
+        fill: #ff8c49;
+      }
+
+      .cls-6 {
+        fill: #fe7a2d;
+      }
+
+      .cls-7 {
+        fill: #ff6b15;
+      }
+
+      .cls-8 {
+        fill: #ff4b51;
+      }
+
+      .cls-9 {
+        fill: #ff3e44;
+      }
+
+      .cls-10 {
+        fill: #ff4f60;
+      }
+
+      .cls-11 {
+        fill: #e76571;
+      }
+
+      .cls-12 {
+        fill: #d76d77;
+      }
+
+      .cls-13 {
+        fill: #e17c86;
+      }
+
+      .cls-13, .cls-14, .cls-15, .cls-16, .cls-17, .cls-18, .cls-19, .cls-20, .cls-21 {
+        font-size: 21px;
+      }
+
+      .cls-14 {
+        fill: #f19ca8;
+      }
+
+      .cls-15 {
+        fill: #da82c2;
+      }
+
+      .cls-16 {
+        fill: #c463aa;
+      }
+
+      .cls-17 {
+        fill: #a951ae;
+      }
+
+      .cls-18 {
+        fill: #ab33a5;
+      }
+
+      .cls-19 {
+        fill: #9a2194;
+      }
+
+      .cls-20 {
+        fill: #84207f;
+      }
+
+      .cls-21 {
+        fill: #700f6b;
+      }
+    </style>
+  </defs>
+  <g id="code-snippet-ring" transform="translate(-15.352 -8)">
+    <text id="G" class="cls-1" transform="translate(95 30)"><tspan x="0" y="0">G</tspan></text>
+    <text id="e" class="cls-2" transform="matrix(0.966, 0.259, -0.259, 0.966, 111.97, 30.416)"><tspan x="0" y="0">e</tspan></text>
+    <text id="n" class="cls-3" transform="matrix(0.848, 0.53, -0.53, 0.848, 126.331, 34.794)"><tspan x="0" y="0">n</tspan></text>
+    <text id="e-2" data-name="e" class="cls-4" transform="matrix(0.809, 0.588, -0.588, 0.809, 139.539, 43.076)"><tspan x="0" y="0">e</tspan></text>
+    <text id="r" class="cls-5" transform="matrix(0.643, 0.766, -0.766, 0.643, 151.178, 52.222)"><tspan x="0" y="0">r</tspan></text>
+    <text id="a" class="cls-6" transform="translate(157.139 60.42) rotate(60)"><tspan x="0" y="0">a</tspan></text>
+    <text id="t" class="cls-7" transform="translate(164.755 73.058) rotate(70)"><tspan x="0" y="0">t</tspan></text>
+    <text id="e-3" data-name="e" class="cls-8" transform="translate(168.123 83.344) rotate(76)"><tspan x="0" y="0">e</tspan></text>
+    <text id="C" class="cls-9" transform="matrix(-0.391, 0.921, -0.921, -0.391, 168.434, 117.037)"><tspan x="0" y="0">C</tspan></text>
+    <text id="o" class="cls-10" transform="translate(163.297 129.74) rotate(119)"><tspan x="0" y="0">o</tspan></text>
+    <text id="d" class="cls-11" transform="translate(155.343 142.004) rotate(131)"><tspan x="0" y="0">d</tspan></text>
+    <text id="e-4" data-name="e" class="cls-12" transform="translate(144.777 153.443) rotate(139)"><tspan x="0" y="0">e</tspan></text>
+    <text id="S" class="cls-13" transform="translate(113.502 165.393) rotate(155)"><tspan x="0" y="0">S</tspan></text>
+    <text id="n-2" data-name="n" class="cls-14" transform="translate(101.46 168.826) rotate(179)"><tspan x="0" y="0">n</tspan></text>
+    <text id="i" class="cls-15" transform="translate(85.626 168.236) rotate(-173)"><tspan x="0" y="0">i</tspan></text>
+    <text id="p" class="cls-16" transform="translate(76.858 166.567) rotate(-163)"><tspan x="0" y="0">p</tspan></text>
+    <text id="p-2" data-name="p" class="cls-17" transform="translate(62.84 161.092) rotate(-153)"><tspan x="0" y="0">p</tspan></text>
+    <text id="e-5" data-name="e" class="cls-18" transform="translate(49.98 153.589) rotate(-137)"><tspan x="0" y="0">e</tspan></text>
+    <text id="t-2" data-name="t" class="cls-19" transform="translate(40.431 142.789) rotate(-129)"><tspan x="0" y="0">t</tspan></text>
+    <text id="_." data-name="." class="cls-20" transform="translate(30.858 126.567) rotate(-163)"><tspan x="0" y="0">.</tspan></text>
+    <text id="_.-2" data-name="." class="cls-20" transform="translate(26.858 112.567) rotate(-163)"><tspan x="0" y="0">.</tspan></text>
+    <text id="_.-3" data-name="." class="cls-21" transform="translate(26.858 98.567) rotate(-163)"><tspan x="0" y="0">.</tspan></text>
+  </g>
+</svg>
