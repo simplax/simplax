@@ -1,5 +1,7 @@
 import React from "react";
 import LandingTitle from "../animations/LandingTitle";
+import Motivation from "../Motivation";
+import GoTo from "../GoTo";
 import Plx from "react-plx";
 
 const Home = () => {
@@ -29,10 +31,14 @@ const Home = () => {
       </section>
 
       {/* Motivation */}
-      <section className="motivation" />
+      {/* <section className="motivation">
+        <Motivation />
+      </section> */}
 
       {/* Go To */}
-      <section className="goTo" />
+      <section className="go-to">
+        <GoTo />
+      </section>
     </div>
   );
 };

@@ -1,0 +1,22 @@
+<svg id="yellow" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="858.703" height="507.351" viewBox="0 0 858.703 507.351">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: url(#linear-gradient);
+      }
+    </style>
+    <linearGradient id="linear-gradient" x2="1" y2="1" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#ffcb59" stop-opacity="0.102"/>
+      <stop offset="1" stop-color="#ffaf00" stop-opacity="0.102"/>
+    </linearGradient>
+  </defs>
+  <rect id="Rectangle_27" data-name="Rectangle 27" class="cls-1" width="29" height="33" transform="translate(237.445 200.48)"/>
+  <rect id="Rectangle_28" data-name="Rectangle 28" class="cls-1" width="54" height="66" transform="translate(351.945 441.351)"/>
+  <rect id="Rectangle_29" data-name="Rectangle 29" class="cls-1" width="39" height="46" transform="translate(610.494 301.618)"/>
+  <rect id="Rectangle_30" data-name="Rectangle 30" class="cls-1" width="30" height="35" transform="translate(147.145 123.455)"/>
+  <rect id="Rectangle_31" data-name="Rectangle 31" class="cls-1" width="30" height="35" transform="translate(61 278.222)"/>
+  <rect id="Rectangle_32" data-name="Rectangle 32" class="cls-1" width="41" height="50" transform="translate(514.784)"/>
+  <rect id="Rectangle_33" data-name="Rectangle 33" class="cls-1" width="19" height="26" transform="translate(839.703 173.896)"/>
+  <rect id="Rectangle_34" data-name="Rectangle 34" class="cls-1" width="19" height="26" transform="translate(754.703 311.937)"/>
+  <rect id="Rectangle_35" data-name="Rectangle 35" class="cls-1" width="16" height="16" transform="translate(0 90)"/>
+</svg>
