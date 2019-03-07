@@ -140,6 +140,14 @@ export default {
 
   },
 
+  isAdmin() {
+    if (localStorage.getItem('user') !== null) {
+      if (JSON.parse(localStorage.getItem("user"))._github === 39859424) return true
+      else return false
+    } else return false
+
+  },
+
   /****************************************
    * Storing informations on session storage for non logged in users
    *****************************************/

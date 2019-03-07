@@ -27,7 +27,7 @@ export default function Navbar() {
             alt="logo"
           />
           <img
-            id="layer1Top"
+            id="layer1T"
             className="landing-logoTop"
             src="/images/logo-layer-1.svg"
             alt="logo"
@@ -72,11 +72,11 @@ export default function Navbar() {
                 Blog
               </NavLink>
             </li>
-            <li className="nav-item">
+            {api.isAdmin() && <li className="nav-item">
               <NavLink className="nav-link" to="/new-blog">
                 New Blog
               </NavLink>
-            </li>
+            </li>}
             {!api.isLoggedIn() && (
               <li className="nav-item github-login-link">
                 <a
