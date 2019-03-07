@@ -274,13 +274,13 @@ i:hover {
 }
 
 //------------- Home Page -------------
-// --------------------
-// Home
-// --------------------
+
 .Home {
+  // --------------------
+  // Landing
+  // --------------------
   .landing {
     height: 100vh;
-    width: 100vw;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -361,8 +361,122 @@ i:hover {
       }
     }
   }
-
+  // --------------------
+  // Motivation
+  // --------------------
   .motivation {
+    height: 100vh;
+    .bg-img-container {
+      width: 50%;
+      position: absolute;
+    }
+    .bg-img {
+      position: absolute;
+      left: 100%;
+      transform: translateX(-50%);
+    }
+  }
+
+  // --------------------
+  // Go-To
+  // --------------------
+  .go-to {
+    height: 130vh;
+    .GoTo {
+      .go-to-title {
+        font-size: 1.3rem;
+        letter-spacing: 0.3rem;
+        color: darken(white, 10%);
+        margin: 5rem 0;
+        text-align: center;
+      }
+
+      .col-flex {
+        display: flex;
+        flex-direction: column;
+      }
+      .row-flex {
+        display: flex;
+        height: 30vh;
+        align-items: center;
+        justify-content: flex-start;
+      }
+      .go-to-paragraph {
+        margin: 0;
+        letter-spacing: 0.15rem;
+        font-weight: 300;
+        color: darken(white, 20%);
+      }
+      .go-to-link {
+        color: $light;
+        margin-right: 1rem;
+        margin-left: 2rem;
+        letter-spacing: 0.1rem;
+        transition: all;
+        transition-duration: 0.5s;
+      }
+      .go-to-link:hover {
+        text-decoration: none;
+      }
+      .fa-arrow-left {
+        color: $grey-light;
+        animation: arrowLeftMove 5s infinite;
+      }
+      .go-to-explore {
+        width: 100%;
+        margin-left: 25%;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        .fa-wpexplorer {
+          color: $primary;
+          margin-right: 2rem;
+        }
+      }
+      .go-to-customize {
+        width: 100%;
+        margin-left: 25%;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        .fa-tools {
+          color: $secondary;
+          margin-right: 2rem;
+        }
+      }
+      .go-to-tutorial {
+        width: 100%;
+        margin-left: 25%;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        .fa-question-circle {
+          color: $secondary-dark;
+          margin-right: 2rem;
+        }
+      }
+    }
+  }
+}
+
+@keyframes arrowLeftMove {
+  0% {
+    transform: translateX(0px);
+  }
+  4% {
+    transform: translateX(-5px);
+  }
+  8% {
+    transform: translateX(0px);
+  }
+  12% {
+    transform: translateX(-3px);
+  }
+  16% {
+    transform: translateX(0px);
+  }
+  100% {
+    transform: translateX(0px);
   }
 }
 
@@ -571,6 +685,14 @@ i:hover {
   }
 }
 
+@include media-breakpoint-down(sm) {
+  .CategoryNavbar {
+    ul {
+      margin: 0.6rem 2rem;
+    }
+  }
+}
+
 // --------------------
 // Property Navbar
 // --------------------
@@ -680,6 +802,7 @@ i:hover {
     }
   }
   .customize-icon-link:hover {
+    animation: codeSnippetRotate 3s infinite;
     color: lighten($secondary, 12%);
   }
 }
